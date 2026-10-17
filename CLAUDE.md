@@ -19,4 +19,4 @@ Keep this list current. When the combined size of these gets unwieldy, switch fr
 ## Conventions
 
 - Follow the testing workflow and the "world layout rule" (only zombies share the player's Z=0 lane) in `ROADMAP.md`.
-- Commit messages end with the Claude co-author trailer.
+- Never include Claude Code references in commits or PR descriptions: no `Co-Authored-By: Claude` trailers, no "Generated with Claude Code" lines, no mentions of Claude or AI tooling.
