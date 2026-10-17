@@ -68,13 +68,13 @@ func heal(amount: float) -> void:
 
 func _die() -> void:
 	is_dead = true
-	print("[Player] died - returning to main menu")
+	print("[Player] died - showing death screen")
 	Inventory.items.clear()
 	Inventory.inventory_changed.emit()
 	LootState.looted.clear()
 	GameState.has_pending_spawn = false
-	get_tree().paused = false
-	call_deferred("_return_to_menu")
+	get_tree().paused = true
+	call_deferred("_trigger_death_screen")
 
-func _return_to_menu() -> void:
-	get_tree().change_scene_to_file("res://scenes/ui/main_menu.tscn")
+func _trigger_death_screen() -> void:
+	DeathScreen.show_death()

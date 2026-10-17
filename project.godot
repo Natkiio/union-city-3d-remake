@@ -26,6 +26,7 @@ LootState="*res://scripts/loot_state.gd"
 TrunkUI="*res://scenes/ui/trunk_ui.tscn"
 InventoryUI="*res://scenes/ui/inventory_ui.tscn"
 HoverSystem="*res://scripts/hover_system.gd"
+DeathScreen="*res://scenes/ui/death_screen.tscn"
 
 [input]
 
