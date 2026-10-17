@@ -9,6 +9,7 @@ const ATTACK_DAMAGE: float = 25.0
 const MAX_HEALTH: float = 100.0
 
 var health: float = MAX_HEALTH
+var is_dead: bool = false
 var attack_cooldown: float = 0.0
 const ATTACK_COOLDOWN_TIME: float = 0.5
 
@@ -54,11 +55,26 @@ func _do_attack() -> void:
 
 
 func take_damage(amount: float) -> void:
+	if is_dead:
+		return
 	health = max(0.0, health - amount)
 	print("[Player] took %.1f damage, health now %.1f" % [amount, health])
 	if health <= 0.0:
-		print("[Player] died")
+		_die()
 
 func heal(amount: float) -> void:
 	health = min(MAX_HEALTH, health + amount)
 	print("[Player] healed %.1f, health now %.1f" % [amount, health])
+
+func _die() -> void:
+	is_dead = true
+	print("[Player] died - returning to main menu")
+	Inventory.items.clear()
+	Inventory.inventory_changed.emit()
+	LootState.looted.clear()
+	GameState.has_pending_spawn = false
+	get_tree().paused = false
+	call_deferred("_return_to_menu")
+
+func _return_to_menu() -> void:
+	get_tree().change_scene_to_file("res://scenes/ui/main_menu.tscn")
