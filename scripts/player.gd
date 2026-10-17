@@ -2,9 +2,12 @@ extends CharacterBody3D
 ## 2.5D side-scroller player controller.
 ## Movement is locked to the X axis to match the original flash game's
 ## left/right lane movement; Z stays fixed on the game's "street plane".
-## Facing and attack direction are driven by the mouse, not movement —
-## matching the original game, where you aim your fist/weapon with the
-## cursor independently of which way you're walking.
+## Facing and aim are driven by the mouse, not movement — matching the
+## original game, where you aim your fist/weapon with the cursor
+## independently of which way you're walking. The actual right arm
+## bone is posed to point at the aim target every frame (not a
+## separate floating prop), so the model's own arm is the thing that
+## visibly aims.
 
 const SPEED: float = 6.0
 const ATTACK_RANGE: float = 1.6
@@ -18,11 +21,24 @@ var attack_cooldown: float = 0.0
 const ATTACK_COOLDOWN_TIME: float = 0.5
 
 var facing_dir: float = 1.0
+var aim_pitch: float = 0.0
 
 @onready var model: Node3D = $Model
-@onready var weapon_pivot: Node3D = $WeaponPivot
-@onready var attack_area: Area3D = $WeaponPivot/AttackArea
+@onready var attack_area: Area3D = $Model/MaleBasic_Armature/Skeleton3D/HandAttachment/AttackArea
 @onready var anim_player: AnimationPlayer = model.find_child("AnimationPlayer", true, false)
+@onready var skeleton: Skeleton3D = model.find_child("Skeleton3D", true, false)
+@onready var upper_arm_r_idx: int = skeleton.find_bone("UpperArm_R") if skeleton else -1
+
+## UpperArm_R's rest pose hangs straight down. This rotates it onto a
+## forward "ready to punch" pose (local Z by -90 deg) then tilts that
+## by the aim pitch (local X) -- empirically determined in Godot at
+## runtime (with the body already yawed to face sideways), since bone
+## axes don't map to world axes the same way they do in Blender's own
+## Z-up space before import/yaw.
+func _arm_pose_for_pitch(pitch: float) -> Quaternion:
+	var raise_to_forward := Basis(Vector3(0, 0, 1), -PI / 2.0)
+	var pitch_basis := Basis(Vector3(1, 0, 0), pitch)
+	return (raise_to_forward * pitch_basis).get_rotation_quaternion()
 
 func _ready() -> void:
 	if GameState.has_pending_spawn:
@@ -33,6 +49,11 @@ func _ready() -> void:
 			if anim_player.has_animation(anim_name):
 				anim_player.get_animation(anim_name).loop_mode = Animation.LOOP_PINGPONG
 		anim_player.play("Idle")
+	# AnimationPlayer also keyframes the arms (for the idle/walk swing);
+	# it updates during the default idle-process pass. Run our own arm
+	# aim override AFTER that in the same frame, or the animation would
+	# stomp it right back to the walk/idle pose every tick.
+	set_process_priority(100)
 
 func _physics_process(delta: float) -> void:
 	var input_dir := 0.0
@@ -60,6 +81,11 @@ func _physics_process(delta: float) -> void:
 		_do_attack()
 
 
+func _process(_delta: float) -> void:
+	if skeleton and upper_arm_r_idx >= 0:
+		skeleton.set_bone_pose_rotation(upper_arm_r_idx, _arm_pose_for_pitch(aim_pitch))
+
+
 func _update_aim() -> void:
 	var camera := get_viewport().get_camera_3d()
 	if camera == null:
@@ -77,25 +103,26 @@ func _update_aim() -> void:
 
 
 ## Given a world-space aim point, face the body toward it (left/right)
-## and orient the weapon pivot to point at it (left/right + up/down).
-## Split out from _update_aim() so it can be tested directly without
-## depending on screen/mouse plumbing.
+## and store the pitch used to pose the arm. Split out from
+## _update_aim() so it can be tested directly without depending on
+## screen/mouse plumbing.
 func _apply_aim(aim_point: Vector3) -> void:
 	var dx := aim_point.x - global_position.x
 	if abs(dx) > 0.05:
 		facing_dir = sign(dx)
 	model.rotation.y = -PI / 2.0 if facing_dir > 0.0 else PI / 2.0
 
-	var dy := aim_point.y - weapon_pivot.global_position.y
+	var shoulder_height := global_position.y + 0.4
+	var dy := aim_point.y - shoulder_height
 	var horiz: float = max(abs(dx), 0.2) # avoid a degenerate near-vertical aim
-	var pitch: float = clamp(atan2(dy, horiz), -deg_to_rad(MAX_AIM_PITCH_DEG), deg_to_rad(MAX_AIM_PITCH_DEG))
-	var aim_dir := Vector3(facing_dir * cos(pitch), sin(pitch), 0.0)
-	weapon_pivot.look_at(weapon_pivot.global_position + aim_dir, Vector3.UP)
+	aim_pitch = clamp(atan2(dy, horiz), -deg_to_rad(MAX_AIM_PITCH_DEG), deg_to_rad(MAX_AIM_PITCH_DEG))
 
 
 func _do_attack() -> void:
 	attack_cooldown = ATTACK_COOLDOWN_TIME
 	for body in attack_area.get_overlapping_bodies():
+		if body == self:
+			continue # the hitbox sits on our own hand; never hit ourselves
 		if body.has_method("take_damage"):
 			body.take_damage(ATTACK_DAMAGE)
 	print("[Player] attack swung")
