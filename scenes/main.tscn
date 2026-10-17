@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://g5e4f6h7hud" path="res://scenes/ui/hud.tscn" id="4"]
 [ext_resource type="Script" uid="uid://hk8fraxhflyo" path="res://scripts/camera_rig.gd" id="5"]
 [ext_resource type="PackedScene" uid="uid://bhngb4prda4au" path="res://scenes/house/house_exterior.tscn" id="6"]
-[ext_resource type="PackedScene" path="res://scenes/car/car.tscn" id="7"]
+[ext_resource type="PackedScene" uid="uid://ckfi017achjt3" path="res://scenes/car/car.tscn" id="7"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_street"]
 size = Vector3(60, 1, 6)
@@ -74,8 +74,8 @@ item_name = "Pistol Ammo"
 [node name="HouseExterior" parent="." unique_id=1696498767 instance=ExtResource("6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25, 0, 0)
 
-[node name="Car" parent="." instance=ExtResource("7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, 0)
+[node name="Car" parent="." unique_id=1127041731 instance=ExtResource("7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, -1.8)
 
 [node name="CameraRig" type="Node3D" parent="." unique_id=1468777941]
 script = ExtResource("5")

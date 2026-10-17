@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://k9i8j0l1trunkui"]
+[gd_scene format=3 uid="uid://buk0n7wimyb73"]
 
 [ext_resource type="Script" path="res://scripts/trunk_ui.gd" id="1"]
 
