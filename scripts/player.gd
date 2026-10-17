@@ -22,6 +22,7 @@ var facing_dir: float = 1.0
 func _ready() -> void:
 	if GameState.has_pending_spawn:
 		global_position.x = GameState.consume_spawn()
+	model.rotation.y = -PI / 2.0 if facing_dir > 0.0 else PI / 2.0
 	if anim_player:
 		for anim_name in ["Idle", "Walk"]:
 			if anim_player.has_animation(anim_name):
@@ -44,7 +45,9 @@ func _physics_process(delta: float) -> void:
 
 	if input_dir != 0.0:
 		facing_dir = sign(input_dir)
-		model.rotation.y = 0.0 if input_dir > 0.0 else PI
+		# The model's local "front" is -Z; rotate it onto the X axis so it
+		# shows a side profile facing the direction of travel, not front/back.
+		model.rotation.y = -PI / 2.0 if input_dir > 0.0 else PI / 2.0
 		attack_area.position.x = 0.9 * facing_dir
 
 	if anim_player:
