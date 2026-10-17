@@ -1,0 +1,110 @@
+[gd_scene load_steps=12 format=3 uid="uid://i7g6h8j9house"]
+
+[ext_resource type="Script" path="res://scripts/door_trigger.gd" id="1"]
+
+[sub_resource type="BoxShape3D" id="Shape_FrontSide"]
+size = Vector3(1.8, 3, 0.2)
+
+[sub_resource type="BoxMesh" id="Mesh_FrontSide"]
+size = Vector3(1.8, 3, 0.2)
+
+[sub_resource type="StandardMaterial3D" id="Mat_Wall"]
+albedo_color = Color(0.68, 0.6, 0.5, 1)
+
+[sub_resource type="BoxShape3D" id="Shape_Back"]
+size = Vector3(6, 3, 0.2)
+
+[sub_resource type="BoxMesh" id="Mesh_Back"]
+size = Vector3(6, 3, 0.2)
+
+[sub_resource type="BoxShape3D" id="Shape_Side"]
+size = Vector3(0.2, 3, 6)
+
+[sub_resource type="BoxMesh" id="Mesh_Side"]
+size = Vector3(0.2, 3, 6)
+
+[sub_resource type="BoxMesh" id="Mesh_Roof"]
+size = Vector3(6.6, 0.3, 6.6)
+
+[sub_resource type="StandardMaterial3D" id="Mat_Roof"]
+albedo_color = Color(0.35, 0.18, 0.15, 1)
+
+[sub_resource type="BoxMesh" id="Mesh_Door"]
+size = Vector3(1.9, 2.7, 0.08)
+
+[sub_resource type="StandardMaterial3D" id="Mat_Door"]
+albedo_color = Color(0.3, 0.2, 0.1, 1)
+
+[sub_resource type="BoxShape3D" id="Shape_Trigger"]
+size = Vector3(2.2, 3, 2.0)
+
+[node name="HouseExterior" type="Node3D"]
+
+[node name="FrontWallLeft" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.1, 1.5, 0)
+
+[node name="Collision" type="CollisionShape3D" parent="FrontWallLeft"]
+shape = SubResource("Shape_FrontSide")
+
+[node name="Mesh" type="MeshInstance3D" parent="FrontWallLeft"]
+mesh = SubResource("Mesh_FrontSide")
+surface_material_override/0 = SubResource("Mat_Wall")
+
+[node name="FrontWallRight" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.1, 1.5, 0)
+
+[node name="Collision" type="CollisionShape3D" parent="FrontWallRight"]
+shape = SubResource("Shape_FrontSide")
+
+[node name="Mesh" type="MeshInstance3D" parent="FrontWallRight"]
+mesh = SubResource("Mesh_FrontSide")
+surface_material_override/0 = SubResource("Mat_Wall")
+
+[node name="BackWall" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, -6)
+
+[node name="Collision" type="CollisionShape3D" parent="BackWall"]
+shape = SubResource("Shape_Back")
+
+[node name="Mesh" type="MeshInstance3D" parent="BackWall"]
+mesh = SubResource("Mesh_Back")
+surface_material_override/0 = SubResource("Mat_Wall")
+
+[node name="LeftWall" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 1.5, -3)
+
+[node name="Collision" type="CollisionShape3D" parent="LeftWall"]
+shape = SubResource("Shape_Side")
+
+[node name="Mesh" type="MeshInstance3D" parent="LeftWall"]
+mesh = SubResource("Mesh_Side")
+surface_material_override/0 = SubResource("Mat_Wall")
+
+[node name="RightWall" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 1.5, -3)
+
+[node name="Collision" type="CollisionShape3D" parent="RightWall"]
+shape = SubResource("Shape_Side")
+
+[node name="Mesh" type="MeshInstance3D" parent="RightWall"]
+mesh = SubResource("Mesh_Side")
+surface_material_override/0 = SubResource("Mat_Wall")
+
+[node name="Roof" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.15, -3)
+mesh = SubResource("Mesh_Roof")
+surface_material_override/0 = SubResource("Mat_Roof")
+
+[node name="DoorVisual" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.35, 0)
+mesh = SubResource("Mesh_Door")
+surface_material_override/0 = SubResource("Mat_Door")
+
+[node name="DoorTrigger" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+script = ExtResource("1")
+target_scene = "res://scenes/house/house_interior.tscn"
+spawn_x = 0.0
+
+[node name="TriggerShape" type="CollisionShape3D" parent="DoorTrigger"]
+shape = SubResource("Shape_Trigger")

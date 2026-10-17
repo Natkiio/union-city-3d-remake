@@ -1,0 +1,82 @@
+[gd_scene format=3 uid="uid://h6f5g7i8main"]
+
+[ext_resource type="PackedScene" uid="uid://brkmmjsexl3ej" path="res://scenes/player/player.tscn" id="1"]
+[ext_resource type="PackedScene" uid="uid://b0wtc2kfx4joa" path="res://scenes/zombie/zombie.tscn" id="2"]
+[ext_resource type="PackedScene" uid="uid://f4d3e5g6loot" path="res://scenes/building/loot_crate.tscn" id="3"]
+[ext_resource type="PackedScene" uid="uid://g5e4f6h7hud" path="res://scenes/ui/hud.tscn" id="4"]
+[ext_resource type="Script" uid="uid://hk8fraxhflyo" path="res://scripts/camera_rig.gd" id="5"]
+[ext_resource type="PackedScene" uid="uid://bhngb4prda4au" path="res://scenes/house/house_exterior.tscn" id="6"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_street"]
+size = Vector3(60, 1, 6)
+
+[sub_resource type="BoxMesh" id="BoxMesh_street"]
+size = Vector3(60, 1, 6)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_street"]
+albedo_color = Color(0.22, 0.22, 0.24, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_building"]
+size = Vector3(10, 1, 8)
+
+[sub_resource type="BoxMesh" id="BoxMesh_building"]
+size = Vector3(10, 1, 8)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_building"]
+albedo_color = Color(0.3, 0.25, 0.2, 1)
+
+[node name="Main" type="Node3D" unique_id=1293013932]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1938065118]
+transform = Transform3D(0.8, -0.3, 0.5, 0, 0.86, 0.5, -0.6, -0.4, 0.69, 0, 10, 5)
+shadow_enabled = true
+
+[node name="Street" type="StaticBody3D" parent="." unique_id=1063684449]
+
+[node name="StreetCollision" type="CollisionShape3D" parent="Street" unique_id=456394855]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+shape = SubResource("BoxShape3D_street")
+
+[node name="StreetMesh" type="MeshInstance3D" parent="Street" unique_id=403715988]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+mesh = SubResource("BoxMesh_street")
+surface_material_override/0 = SubResource("StandardMaterial3D_street")
+
+[node name="BuildingFloor" type="StaticBody3D" parent="." unique_id=1045686735]
+
+[node name="BuildingCollision" type="CollisionShape3D" parent="BuildingFloor" unique_id=2048623081]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, -0.5, -6)
+shape = SubResource("BoxShape3D_building")
+
+[node name="BuildingMesh" type="MeshInstance3D" parent="BuildingFloor" unique_id=1528674668]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, -0.5, -6)
+mesh = SubResource("BoxMesh_building")
+surface_material_override/0 = SubResource("StandardMaterial3D_building")
+
+[node name="Player" parent="." unique_id=1699670702 instance=ExtResource("1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 1, 0)
+
+[node name="Zombie" parent="." unique_id=100253904 instance=ExtResource("2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 1, 0)
+
+[node name="LootCrate1" parent="." unique_id=461404622 instance=ExtResource("3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0.25, -5)
+
+[node name="LootCrate2" parent="." unique_id=840308638 instance=ExtResource("3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0.25, -7)
+item_name = "Bandages"
+
+[node name="LootCrate3" parent="." unique_id=629044188 instance=ExtResource("3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 0.25, -5)
+item_name = "Pistol Ammo"
+
+[node name="HouseExterior" parent="." unique_id=1696498767 instance=ExtResource("6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25, 0, -0.9108572)
+
+[node name="CameraRig" type="Node3D" parent="." unique_id=1468777941]
+script = ExtResource("5")
+
+[node name="Camera3D" type="Camera3D" parent="CameraRig" unique_id=1042660207]
+transform = Transform3D(1, 0, 0, 0, 0.93, 0.37, 0, -0.37, 0.93, 0, 0, 0)
+
+[node name="HUD" parent="." unique_id=1769649300 instance=ExtResource("4")]
