@@ -75,7 +75,7 @@ item_name = "Pistol Ammo"
 item_weight = 0.3
 
 [node name="HouseExterior" parent="." unique_id=1696498767 instance=ExtResource("6")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25, 0, -1.8)
 
 [node name="Car" parent="." unique_id=1127041731 instance=ExtResource("7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, -1.8)

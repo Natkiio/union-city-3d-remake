@@ -36,7 +36,7 @@ size = Vector3(1.9, 2.7, 0.08)
 albedo_color = Color(0.3, 0.2, 0.1, 1)
 
 [sub_resource type="BoxShape3D" id="Shape_Trigger"]
-size = Vector3(2.2, 3, 2.0)
+size = Vector3(2.2, 3, 2.8)
 
 [node name="HouseExterior" type="Node3D"]
 
@@ -101,7 +101,7 @@ mesh = SubResource("Mesh_Door")
 surface_material_override/0 = SubResource("Mat_Door")
 
 [node name="DoorTrigger" type="Area3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 1.8)
 script = ExtResource("1")
 target_scene = "res://scenes/house/house_interior.tscn"
 spawn_x = -5.0

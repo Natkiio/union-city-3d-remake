@@ -1,6 +1,7 @@
 extends CanvasLayer
-## Trunk inventory menu: pauses the game, lists the trunk's items,
-## and moves them into the player's shared Inventory on "Take All".
+## Trunk inventory menu: pauses the game, lists the trunk's items.
+## [1-9] takes a single numbered item, [A] takes everything,
+## [E] exits.
 
 var current_trunk: Node = null
 
@@ -29,9 +30,10 @@ func _refresh() -> void:
 	for child in items_list.get_children():
 		child.queue_free()
 	var total := 0.0
-	for item in current_trunk.items:
+	for i in range(current_trunk.items.size()):
+		var item: Dictionary = current_trunk.items[i]
 		var row := Label.new()
-		row.text = "%s  —  %.1f lbs" % [item["name"], item["weight"]]
+		row.text = "[%d] %s  —  %.1f lbs" % [i + 1, item["name"], item["weight"]]
 		items_list.add_child(row)
 		total += item["weight"]
 	if current_trunk.items.is_empty():
@@ -48,10 +50,20 @@ func _input(event: InputEvent) -> void:
 			_take_all()
 		elif event.keycode == KEY_E:
 			close()
+		elif event.keycode >= KEY_1 and event.keycode <= KEY_9:
+			_take_single(event.keycode - KEY_1)
 
 func _take_all() -> void:
 	var taken: Array = current_trunk.take_all()
 	for item in taken:
 		Inventory.add_item(item["name"], item["weight"])
 	print("[Trunk] took %d items" % taken.size())
+	_refresh()
+
+func _take_single(index: int) -> void:
+	if index < 0 or index >= current_trunk.items.size():
+		return
+	var item: Dictionary = current_trunk.take_item(index)
+	Inventory.add_item(item["name"], item["weight"])
+	print("[Trunk] took 1 item: %s" % item["name"])
 	_refresh()
