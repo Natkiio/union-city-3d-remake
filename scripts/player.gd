@@ -15,12 +15,18 @@ const ATTACK_COOLDOWN_TIME: float = 0.5
 
 var facing_dir: float = 1.0
 
-@onready var mesh: MeshInstance3D = $MeshInstance3D
+@onready var model: Node3D = $Model
 @onready var attack_area: Area3D = $AttackArea
+@onready var anim_player: AnimationPlayer = model.find_child("AnimationPlayer", true, false)
 
 func _ready() -> void:
 	if GameState.has_pending_spawn:
 		global_position.x = GameState.consume_spawn()
+	if anim_player:
+		for anim_name in ["Idle", "Walk"]:
+			if anim_player.has_animation(anim_name):
+				anim_player.get_animation(anim_name).loop_mode = Animation.LOOP_PINGPONG
+		anim_player.play("Idle")
 
 func _physics_process(delta: float) -> void:
 	var input_dir := 0.0
@@ -38,8 +44,13 @@ func _physics_process(delta: float) -> void:
 
 	if input_dir != 0.0:
 		facing_dir = sign(input_dir)
-		mesh.rotation.y = 0.0 if input_dir > 0.0 else PI
+		model.rotation.y = 0.0 if input_dir > 0.0 else PI
 		attack_area.position.x = 0.9 * facing_dir
+
+	if anim_player:
+		var desired := "Walk" if input_dir != 0.0 else "Idle"
+		if anim_player.current_animation != desired:
+			anim_player.play(desired)
 
 	attack_cooldown = max(0.0, attack_cooldown - delta)
 	if Input.is_action_just_pressed("attack") and attack_cooldown <= 0.0:
