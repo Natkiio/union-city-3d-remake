@@ -75,8 +75,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25, 0, -0.9108572)
 
 [node name="CameraRig" type="Node3D" parent="." unique_id=1468777941]
 script = ExtResource("5")
+offset = Vector3(0, 2.3, 4.4)
 
 [node name="Camera3D" type="Camera3D" parent="CameraRig" unique_id=1042660207]
-transform = Transform3D(1, 0, 0, 0, 0.93, 0.37, 0, -0.37, 0.93, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 0.97, 0.26, 0, -0.26, 0.97, 0, 0, 0)
+fov = 50.0
 
 [node name="HUD" parent="." unique_id=1769649300 instance=ExtResource("4")]
