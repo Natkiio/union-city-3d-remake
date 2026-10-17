@@ -25,6 +25,7 @@ GameState="*res://scripts/game_state.gd"
 LootState="*res://scripts/loot_state.gd"
 TrunkUI="*res://scenes/ui/trunk_ui.tscn"
 InventoryUI="*res://scenes/ui/inventory_ui.tscn"
+HoverSystem="*res://scripts/hover_system.gd"
 
 [input]
 

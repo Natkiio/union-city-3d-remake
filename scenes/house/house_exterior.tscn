@@ -1,6 +1,7 @@
-[gd_scene load_steps=12 format=3 uid="uid://i7g6h8j9house"]
+[gd_scene load_steps=14 format=3 uid="uid://i7g6h8j9house"]
 
 [ext_resource type="Script" path="res://scripts/door_trigger.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/hoverable.gd" id="2"]
 
 [sub_resource type="BoxShape3D" id="Shape_FrontSide"]
 size = Vector3(1.8, 3, 0.2)
@@ -37,6 +38,9 @@ albedo_color = Color(0.3, 0.2, 0.1, 1)
 
 [sub_resource type="BoxShape3D" id="Shape_Trigger"]
 size = Vector3(2.2, 3, 2.8)
+
+[sub_resource type="BoxShape3D" id="Shape_DoorHover"]
+size = Vector3(2.1, 2.9, 0.4)
 
 [node name="HouseExterior" type="Node3D"]
 
@@ -99,6 +103,16 @@ surface_material_override/0 = SubResource("Mat_Roof")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.35, 0)
 mesh = SubResource("Mesh_Door")
 surface_material_override/0 = SubResource("Mat_Door")
+
+[node name="DoorHoverZone" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.35, 0)
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("2")
+target_mesh_path = NodePath("../DoorVisual")
+
+[node name="DoorHoverShape" type="CollisionShape3D" parent="DoorHoverZone"]
+shape = SubResource("Shape_DoorHover")
 
 [node name="DoorTrigger" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 1.8)

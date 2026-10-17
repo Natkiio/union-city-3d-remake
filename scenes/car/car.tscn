@@ -1,6 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://l0j9k1m2carscene"]
+[gd_scene load_steps=13 format=3 uid="uid://l0j9k1m2carscene"]
 
 [ext_resource type="Script" path="res://scripts/car_trunk.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/hoverable.gd" id="2"]
 
 [sub_resource type="BoxShape3D" id="Shape_Body"]
 size = Vector3(2.4, 0.9, 1.1)
@@ -23,6 +24,17 @@ albedo_color = Color(0.08, 0.08, 0.08, 1)
 
 [sub_resource type="BoxShape3D" id="Shape_Trunk"]
 size = Vector3(1.0, 1.2, 2.4)
+
+[sub_resource type="BoxMesh" id="Mesh_TrunkLid"]
+size = Vector3(0.08, 0.7, 0.95)
+
+[sub_resource type="StandardMaterial3D" id="Mat_TrunkLid"]
+albedo_color = Color(0.42, 0.44, 0.47, 1)
+metallic = 0.35
+roughness = 0.35
+
+[sub_resource type="BoxShape3D" id="Shape_TrunkHover"]
+size = Vector3(0.3, 0.9, 1.1)
 
 [node name="Car" type="Node3D"]
 
@@ -62,3 +74,18 @@ script = ExtResource("1")
 
 [node name="TriggerShape" type="CollisionShape3D" parent="TrunkTrigger"]
 shape = SubResource("Shape_Trunk")
+
+[node name="TrunkLid" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.24, 0.45, 0)
+mesh = SubResource("Mesh_TrunkLid")
+surface_material_override/0 = SubResource("Mat_TrunkLid")
+
+[node name="TrunkHoverZone" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.24, 0.45, 0)
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("2")
+target_mesh_path = NodePath("../TrunkLid")
+
+[node name="HoverShape" type="CollisionShape3D" parent="TrunkHoverZone"]
+shape = SubResource("Shape_TrunkHover")
