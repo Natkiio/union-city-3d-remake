@@ -62,14 +62,17 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 1, 0)
 
 [node name="LootCrate1" parent="." unique_id=461404622 instance=ExtResource("3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0.25, -5)
+item_weight = 1.0
 
 [node name="LootCrate2" parent="." unique_id=840308638 instance=ExtResource("3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0.25, -7)
 item_name = "Bandages"
+item_weight = 0.5
 
 [node name="LootCrate3" parent="." unique_id=629044188 instance=ExtResource("3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 0.25, -5)
 item_name = "Pistol Ammo"
+item_weight = 0.3
 
 [node name="HouseExterior" parent="." unique_id=1696498767 instance=ExtResource("6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25, 0, 0)

@@ -1,13 +1,17 @@
 extends Area3D
 ## Car trunk: walk up to the rear, press "interact" to open the trunk
 ## inventory. Items live here until taken into the player's Inventory.
+## Uses its stable scene path as a loot id so an emptied trunk stays
+## empty across scene reloads instead of respawning full.
 
 @export var items: Array[Dictionary] = []
 
 var player_in_range: Node3D = null
 var reopen_cooldown: float = 0.0
+var trunk_id: String = ""
 
 func _ready() -> void:
+	trunk_id = str(get_path())
 	body_entered.connect(_on_body_entered)
 	body_exited.connect(_on_body_exited)
 	if items.is_empty():
@@ -16,6 +20,8 @@ func _ready() -> void:
 			{"name": "Tool Kit", "weight": 3.5},
 			{"name": "Road Flares", "weight": 1.0},
 		]
+	if LootState.is_looted(trunk_id):
+		items = []
 
 func suppress_interact(duration: float = 0.3) -> void:
 	reopen_cooldown = duration
@@ -38,7 +44,11 @@ func _process(delta: float) -> void:
 func take_all() -> Array:
 	var taken: Array = items.duplicate()
 	items.clear()
+	LootState.mark_looted(trunk_id)
 	return taken
 
 func take_item(index: int) -> Dictionary:
-	return items.pop_at(index)
+	var item: Dictionary = items.pop_at(index)
+	if items.is_empty():
+		LootState.mark_looted(trunk_id)
+	return item

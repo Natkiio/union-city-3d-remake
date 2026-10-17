@@ -52,6 +52,6 @@ func _input(event: InputEvent) -> void:
 func _take_all() -> void:
 	var taken: Array = current_trunk.take_all()
 	for item in taken:
-		Inventory.add_item(item["name"])
+		Inventory.add_item(item["name"], item["weight"])
 	print("[Trunk] took %d items" % taken.size())
 	_refresh()
