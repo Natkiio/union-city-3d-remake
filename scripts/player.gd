@@ -58,3 +58,7 @@ func take_damage(amount: float) -> void:
 	print("[Player] took %.1f damage, health now %.1f" % [amount, health])
 	if health <= 0.0:
 		print("[Player] died")
+
+func heal(amount: float) -> void:
+	health = min(MAX_HEALTH, health + amount)
+	print("[Player] healed %.1f, health now %.1f" % [amount, health])

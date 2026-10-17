@@ -3,6 +3,14 @@ extends Node
 ## Items are stackable: name -> {"weight": float, "count": int}.
 
 signal item_added(item_name: String)
+signal inventory_changed()
+
+## Items with a defined "use" effect, keyed by name. Everything else
+## can still be carried/dropped but has no Use action.
+const USE_EFFECTS := {
+	"Canned Food": {"type": "heal", "amount": 25.0},
+	"Bandages": {"type": "heal", "amount": 15.0},
+}
 
 var items: Dictionary = {}
 
@@ -12,11 +20,27 @@ func add_item(item_name: String, weight: float = 1.0, count: int = 1) -> void:
 	else:
 		items[item_name] = {"weight": weight, "count": count}
 	item_added.emit(item_name)
+	inventory_changed.emit()
 	print("[Inventory] picked up: %s x%d (unique: %d, total units: %d, %.1f lbs)" % [
 		item_name, count, items.size(), item_count(), total_weight()])
 
+func remove_item(item_name: String, count: int = 1) -> void:
+	if not items.has(item_name):
+		return
+	items[item_name]["count"] -= count
+	if items[item_name]["count"] <= 0:
+		items.erase(item_name)
+	inventory_changed.emit()
+	print("[Inventory] removed: %s x%d" % [item_name, count])
+
 func has_item(item_name: String) -> bool:
 	return items.has(item_name)
+
+func is_usable(item_name: String) -> bool:
+	return USE_EFFECTS.has(item_name)
+
+func get_use_effect(item_name: String) -> Dictionary:
+	return USE_EFFECTS.get(item_name, {})
 
 func item_count() -> int:
 	var total := 0
