@@ -1,0 +1,272 @@
+{
+  "cannedBeans": {
+    "ref": "cannedBeans",
+    "name": "Canned Beans",
+    "desc": "Can of baked beans.",
+    "effect": "",
+    "weight": 0.5,
+    "bonus": 20,
+    "pickup": "can",
+    "rarity": 1
+  },
+  "cannedCorn": {
+    "ref": "cannedCorn",
+    "name": "Canned Corn",
+    "desc": "Can of sweet corn.",
+    "effect": "",
+    "weight": 0.5,
+    "bonus": 10,
+    "pickup": "can",
+    "rarity": 3
+  },
+  "cannedTomato": {
+    "ref": "cannedTomato",
+    "name": "Canned Tomatoes",
+    "desc": "Can of peeled tomatoes.",
+    "effect": "",
+    "weight": 0.5,
+    "bonus": 15,
+    "pickup": "can",
+    "rarity": 3
+  },
+  "water": {
+    "ref": "water",
+    "name": "Bottled Water",
+    "desc": "Bottle of Water.",
+    "effect": "",
+    "weight": 0.5,
+    "bonus": 5,
+    "pickup": "bottle",
+    "rarity": 1
+  },
+  "jerky": {
+    "ref": "jerky",
+    "name": "Beef Jerky",
+    "desc": "Dried beef in stick form.",
+    "effect": "",
+    "weight": 0.1,
+    "bonus": 2,
+    "pickup": "package",
+    "rarity": 4
+  },
+  "cannedFruit": {
+    "ref": "cannedFruit",
+    "name": "Canned Fruit",
+    "desc": "Can of mixed summer fruits.",
+    "effect": "",
+    "weight": 0.5,
+    "bonus": 10,
+    "pickup": "can",
+    "rarity": 3
+  },
+  "apple": {
+    "ref": "apple",
+    "name": "Apple",
+    "desc": "An apple.",
+    "effect": "",
+    "weight": 0.1,
+    "bonus": 5,
+    "pickup": "apple",
+    "rarity": 1
+  },
+  "orange": {
+    "ref": "orange",
+    "name": "Orange",
+    "desc": "An orange.",
+    "effect": "",
+    "weight": 0.1,
+    "bonus": 5,
+    "pickup": "orange",
+    "rarity": 1
+  },
+  "chips": {
+    "ref": "chips",
+    "name": "Chips",
+    "desc": "Bag of Chips. No dip.",
+    "effect": "",
+    "weight": 0.2,
+    "bonus": 2,
+    "pickup": "package",
+    "rarity": 1
+  },
+  "cereal": {
+    "ref": "cereal",
+    "name": "Breakfast Cereal",
+    "desc": "Box of breakfast cereal.",
+    "effect": "",
+    "weight": 1,
+    "bonus": 15,
+    "pickup": "box",
+    "rarity": 5
+  },
+  "chocolate": {
+    "ref": "chocolate",
+    "name": "Chocolate",
+    "desc": "Bag of \\'fun sized\\' chocolate bars.",
+    "effect": "",
+    "weight": 0.2,
+    "bonus": 8,
+    "pickup": "package",
+    "rarity": 4
+  },
+  "pasta": {
+    "ref": "pasta",
+    "name": "Pasta",
+    "desc": "Canned pasta.",
+    "effect": "",
+    "weight": 0.5,
+    "bonus": 25,
+    "pickup": "can",
+    "rarity": 6
+  },
+  "pickles": {
+    "ref": "pickles",
+    "name": "Pickles",
+    "desc": "Jar of Pickles.",
+    "effect": "",
+    "weight": 1,
+    "bonus": 15,
+    "pickup": "jar",
+    "rarity": 6
+  },
+  "peanuts": {
+    "ref": "peanuts",
+    "name": "Peanuts",
+    "desc": "Bag of Peanuts.",
+    "effect": "",
+    "weight": 0.5,
+    "bonus": 12,
+    "pickup": "package",
+    "rarity": 3
+  },
+  "sodaCan": {
+    "ref": "sodaCan",
+    "name": "Can of Soda",
+    "desc": "Small can of soda.",
+    "effect": "",
+    "weight": 0.5,
+    "bonus": 1,
+    "pickup": "sodaCan",
+    "rarity": 2
+  },
+  "sodaBottle": {
+    "ref": "sodaBottle",
+    "name": "Bottle of Soda",
+    "desc": "Large bottle of soda.",
+    "effect": "",
+    "weight": 2,
+    "bonus": 2,
+    "pickup": "bottleSoda",
+    "rarity": 3
+  },
+  "cookies": {
+    "ref": "cookies",
+    "name": "Cookies",
+    "desc": "Chocolate chip cookies.",
+    "effect": "",
+    "weight": 0.5,
+    "bonus": 8,
+    "pickup": "package",
+    "rarity": 3
+  },
+  "soupChicken": {
+    "ref": "soupChicken",
+    "name": "Chicken Soup",
+    "desc": "Can of Chicken Noodle Soup.",
+    "effect": "",
+    "weight": 0.5,
+    "bonus": 12,
+    "pickup": "can",
+    "rarity": 3
+  },
+  "soupBeef": {
+    "ref": "soupBeef",
+    "name": "Beef Soup",
+    "desc": "Can of Beef Soup.",
+    "effect": "",
+    "weight": 0.5,
+    "bonus": 12,
+    "pickup": "can",
+    "rarity": 3
+  },
+  "soupVegetable": {
+    "ref": "soupVegetable",
+    "name": "Vegetable Soup",
+    "desc": "Can of Vegetable Soup.",
+    "effect": "",
+    "weight": 0.5,
+    "bonus": 10,
+    "pickup": "can",
+    "rarity": 3
+  },
+  "jelly": {
+    "ref": "jelly",
+    "name": "Raspberry Jelly",
+    "desc": "Jar of Jelly.",
+    "effect": "",
+    "weight": 0.5,
+    "bonus": 5,
+    "pickup": "jar",
+    "rarity": 6
+  },
+  "peanutButter": {
+    "ref": "peanutButter",
+    "name": "Peanut Butter",
+    "desc": "Jar of Peanut Butter.",
+    "effect": "",
+    "weight": 0.5,
+    "bonus": 5,
+    "pickup": "jar",
+    "rarity": 6
+  },
+  "crackers": {
+    "ref": "crackers",
+    "name": "Crackers",
+    "desc": "Packet of savory crackers.",
+    "effect": "",
+    "weight": 0.2,
+    "bonus": 8,
+    "pickup": "package",
+    "rarity": 2
+  },
+  "sardines": {
+    "ref": "sardines",
+    "name": "Sardines",
+    "desc": "Can of Sardines.",
+    "effect": "",
+    "weight": 0.2,
+    "bonus": 15,
+    "pickup": "can",
+    "rarity": 6
+  },
+  "spam": {
+    "ref": "spam",
+    "name": "Can\\'o\\'Ham",
+    "desc": "A can of ham like meat.",
+    "effect": "",
+    "weight": 0.5,
+    "bonus": 10,
+    "pickup": "can",
+    "rarity": 3
+  },
+  "mre": {
+    "ref": "mre",
+    "name": "MRE",
+    "desc": "Meal Ready to Eat. Military ration.",
+    "effect": "",
+    "weight": 0.5,
+    "bonus": 15,
+    "pickup": "can",
+    "rarity": 999999
+  },
+  "instantNoodles": {
+    "ref": "instantNoodles",
+    "name": "Instant Noodles",
+    "desc": "Not quite instant noodles.",
+    "effect": "",
+    "weight": 0.5,
+    "bonus": 8,
+    "pickup": "package",
+    "rarity": 1
+  }
+}

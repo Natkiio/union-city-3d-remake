@@ -1,0 +1,238 @@
+{
+  "name": "UPTOWN",
+  "b0": {
+    "name": "JEFFERSON AVE",
+    "f0": {
+      "r1": {
+        "seed": 156,
+        "name": "Outside",
+        "lightReduction": 0,
+        "type": "anywhere",
+        "rand": "Trash",
+        "randRate": "medium",
+        "outside": true,
+        "cont1": {
+          "desc": "Trash Can",
+          "display": "blank",
+          "cnt": []
+        },
+        "cont2": {
+          "desc": "Trash Can",
+          "display": "blank",
+          "cnt": []
+        },
+        "cont3": {
+          "desc": "Newspaper Stand",
+          "display": "blank",
+          "cnt": {
+            "$expr": "new Array(\"magazine\")"
+          }
+        }
+      }
+    }
+  },
+  "b1": {
+    "name": {
+      "$expr": "\"10 \" + l1.b0.name"
+    },
+    "f1": {
+      "r1": {
+        "name": "Apartment",
+        "lightReduction": 30,
+        "type": "anywhere",
+        "cont1": {
+          "desc": "Bookshelf",
+          "display": "blank",
+          "cnt": {
+            "$expr": "new Array(\"longGuns\")"
+          }
+        },
+        "cont2": {
+          "desc": "Cupboard",
+          "display": "blank",
+          "cnt": {
+            "$expr": "new Array(\"cargoShorts\",\"singletBlack\")"
+          }
+        },
+        "cont3": {
+          "desc": "Bookshelf",
+          "display": "blank",
+          "cnt": {
+            "$expr": "new Array(\"tshirtBrown\",\"tshirtWhite\")"
+          }
+        },
+        "rand": "Trash",
+        "randRate": "light"
+      },
+      "r2": {
+        "name": "Apartment",
+        "lightReduction": 50,
+        "type": "anywhere",
+        "cont1": {
+          "desc": "Bookshelf",
+          "display": "blank",
+          "cnt": {
+            "$expr": "new Array(\"bandana\")"
+          }
+        },
+        "cont2": {
+          "desc": "Closet",
+          "display": "blank",
+          "cnt": {
+            "$expr": "new Array(\"suitBlack\",\"jeansBlack\",\"shoeBlack\",\"sodaCan\")"
+          }
+        }
+      },
+      "r3": {
+        "name": "Apartment",
+        "lightReduction": 70,
+        "type": "anywhere",
+        "cont1": {
+          "desc": "Cupboard",
+          "display": "blank",
+          "cnt": {
+            "$expr": "new Array(\"bandage\",\"medkit\",\"water\")"
+          }
+        },
+        "cont2": {
+          "desc": "Bookshelf",
+          "display": "blank",
+          "cnt": {
+            "$expr": "new Array(\"glock\",\"bat\")"
+          }
+        },
+        "cont3": {
+          "desc": "Bookshelf",
+          "display": "blank",
+          "cnt": {
+            "$expr": "new Array(\"pistols\",\"fitness\")"
+          }
+        },
+        "cont4": {
+          "desc": "Closet",
+          "display": "blank",
+          "cnt": {
+            "$expr": "new Array(\"longSleeveWhite\",\"M1911\",\"water\")"
+          }
+        }
+      }
+    },
+    "f2": {
+      "r3": {
+        "name": "Apartment",
+        "lightReduction": 70,
+        "type": "anywhere",
+        "cont1": {
+          "desc": "Cupboard",
+          "display": "blank",
+          "cnt": {
+            "$expr": "new Array(\"compoundBow\")"
+          }
+        },
+        "cont2": {
+          "desc": "Bookshelf",
+          "display": "blank",
+          "cnt": {
+            "$expr": "new Array(\"book\")"
+          }
+        },
+        "cont3": {
+          "desc": "Bookshelf",
+          "display": "blank",
+          "cnt": {
+            "$expr": "new Array(\"magazine\")"
+          }
+        },
+        "cont4": {
+          "desc": "Closet",
+          "display": "blank",
+          "cnt": []
+        },
+        "NPCs": {
+          "$expr": "new Array(\"Jonah\",\"Darren\",\"Alex\")"
+        },
+        "NPC_x": {
+          "$expr": "new Array(\"300\",\"60\",\"650\")"
+        },
+        "NPCPose": {
+          "$expr": "new Array(\"idle\",\"sit\",\"idle\")"
+        },
+        "NPCFacing": {
+          "$expr": "new Array(\"right\",\"right\",\"left\")"
+        }
+      }
+    }
+  },
+  "b2": {
+    "name": {
+      "$expr": "\"12 \" + l1.b0.name"
+    },
+    "f1": {
+      "r1": {
+        "name": "Wharehouse",
+        "lightReduction": 80,
+        "type": "anywhere",
+        "rand": "Trash",
+        "randRate": "light"
+      },
+      "r2": {
+        "name": "Wharehouse",
+        "lightReduction": 80,
+        "type": "anywhere",
+        "cont1": {
+          "desc": "Boxes",
+          "display": "blank",
+          "cnt": {
+            "$expr": "new Array(\"vector\")"
+          }
+        },
+        "cont2": {
+          "desc": "Boxes",
+          "display": "blank",
+          "cnt": {
+            "$expr": "new Array(\"cannedCorn\",\"cannedTomato\")"
+          }
+        },
+        "cont3": {
+          "desc": "Boxes",
+          "display": "blank",
+          "cnt": {
+            "$expr": "new Array(\"spam\",\"crackers\",\"sardines\")"
+          }
+        },
+        "cont4": {
+          "desc": "Boxes",
+          "display": "blank",
+          "cnt": {
+            "$expr": "new Array(\"searching\",\"MP5\")"
+          }
+        },
+        "cont5": {
+          "desc": "Boxes",
+          "display": "blank",
+          "cnt": {
+            "$expr": "new Array(\"soupBeef\",\"soupVegetable\")"
+          }
+        },
+        "rand": "Trash",
+        "randRate": "light",
+        "NPCs": {
+          "$expr": "new Array(\"Matt\")"
+        },
+        "NPC_x": {
+          "$expr": "new Array(\"950\")"
+        },
+        "NPCPose": {
+          "$expr": "new Array(\"sit\")"
+        },
+        "NPCFacing": {
+          "$expr": "new Array(\"left\")"
+        }
+      }
+    }
+  },
+  "b3": {},
+  "b4": {},
+  "b5": {},
+  "b6": {}
+}

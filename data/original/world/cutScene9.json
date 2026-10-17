@@ -1,0 +1,15 @@
+{
+  "lockControls": false,
+  "action1": {
+    "func": "displayWorldSpeech",
+    "var1": "player",
+    "var2": "They\\'ve followed us through!",
+    "timing": 1
+  },
+  "action2": {
+    "func": "displayWorldSpeech",
+    "var1": "player",
+    "var2": "RUN!",
+    "timing": 3000
+  }
+}

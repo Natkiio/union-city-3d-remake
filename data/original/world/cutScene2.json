@@ -1,0 +1,27 @@
+{
+  "lockControls": false,
+  "action1": {
+    "func": "displayWorldSpeech",
+    "var1": "player",
+    "var2": "Did you say\ryou were bitten?",
+    "timing": 1
+  },
+  "action2": {
+    "func": "displayWorldSpeech",
+    "var1": "partner",
+    "var2": "At the hospital, yeah.",
+    "timing": 2500
+  },
+  "action3": {
+    "func": "displayWorldSpeech",
+    "var1": "partner",
+    "var2": "On the arm, god it hurts.",
+    "timing": 5000
+  },
+  "action4": {
+    "func": "displayWorldSpeech",
+    "var1": "player",
+    "var2": "Ok honey, stay with me.",
+    "timing": 8000
+  }
+}

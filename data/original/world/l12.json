@@ -1,0 +1,661 @@
+{
+  "ref": "section12",
+  "danger": 9,
+  "s1": {
+    "b0": {
+      "name": "HOUSTON ST",
+      "f0": {
+        "r1": {
+          "seed": 156,
+          "name": "Outside",
+          "lightReduction": 0,
+          "type": "anywhere",
+          "rand": "Trash",
+          "randRate": "heavy",
+          "outside": true
+        }
+      }
+    },
+    "b1": {
+      "name": "U-Conbank",
+      "f1": {
+        "r0": {
+          "seed": 632,
+          "name": "U-ConBank",
+          "lightReduction": 45,
+          "type": "anywhere",
+          "rand": "Trash",
+          "randRate": "light",
+          "cont1": {
+            "desc": "Filing Cabinet",
+            "cnt": {
+              "$expr": "new Array(\"cannedBeans\",\"sodaCan\")"
+            },
+            "noJunk": true
+          },
+          "cont2": {
+            "desc": "First Aid Box",
+            "cnt": {
+              "$expr": "new Array(\"medkit\")"
+            },
+            "noJunk": true
+          }
+        },
+        "r1": {
+          "seed": 123123,
+          "name": "U-ConBank",
+          "lightReduction": 30,
+          "type": "anywhere",
+          "rand": "Trash",
+          "randRate": "heavy",
+          "cont1": {
+            "desc": "Filing Cabinet",
+            "cnt": {
+              "$expr": "new Array(\"cash_40\",\"noDoze\",\"searching\")"
+            }
+          }
+        }
+      }
+    },
+    "b2": {
+      "name": "The Red Rum",
+      "f1": {
+        "r1": {
+          "seed": 887,
+          "name": "U-ConBank",
+          "lightReduction": 30,
+          "type": "anywhere",
+          "rand": "Trash",
+          "randRate": "heavy",
+          "cont1": {
+            "desc": "Handbag",
+            "cnt": {
+              "$expr": "new Array(\"cash_16\")"
+            },
+            "noJunk": true
+          }
+        }
+      }
+    },
+    "b3": {
+      "name": "Union Security",
+      "f1": {
+        "r0": {
+          "seed": 1287,
+          "name": "",
+          "lightReduction": 40,
+          "type": "office",
+          "rand": "Trash",
+          "randRate": "medium",
+          "cont1": {
+            "desc": "Boxes",
+            "cnt": {
+              "$expr": "new Array(\"security\")"
+            }
+          },
+          "cont2": {
+            "desc": "Boxes",
+            "cnt": []
+          }
+        },
+        "r1": {
+          "seed": 1245,
+          "name": "",
+          "lightReduction": 40,
+          "type": "office",
+          "rand": "Trash",
+          "randRate": "heavy",
+          "NPCs": {
+            "$expr": "new Array(\"Johnson\")"
+          },
+          "NPC_x": {
+            "$expr": "new Array(\"110\")"
+          },
+          "NPCPose": {
+            "$expr": "new Array(\"standPistol\")"
+          },
+          "NPCFacing": {
+            "$expr": "new Array(\"right\")"
+          }
+        },
+        "r2": {
+          "seed": 1245,
+          "name": "",
+          "lightReduction": 40,
+          "type": "office",
+          "rand": "Trash",
+          "randRate": "heavy",
+          "cont1": {
+            "desc": "Filing Cabinet",
+            "cnt": {
+              "$expr": "new Array(\"magazine\",\"scrapPaper\")"
+            },
+            "noJunk": true
+          },
+          "cont2": {
+            "desc": "Filing Cabinet",
+            "cnt": {
+              "$expr": "new Array(\"scrapPaper\")"
+            }
+          },
+          "cont3": {
+            "desc": "Shelves",
+            "cnt": {
+              "$expr": "new Array(\"policeBaton\")"
+            }
+          },
+          "cont4": {
+            "desc": "Boxes",
+            "cnt": {
+              "$expr": "new Array(\"cup\",\"cup\",\"cup\",\"cup\")"
+            }
+          },
+          "cont5": {
+            "desc": "Desk",
+            "cnt": {
+              "$expr": "new Array(\"cash_45\")"
+            }
+          },
+          "cont6": {
+            "desc": "Filing Cabinet",
+            "cnt": {
+              "$expr": "new Array(\"smarts\")"
+            }
+          }
+        }
+      },
+      "safeHouse": true,
+      "f2": {
+        "r0": {
+          "seed": 1245,
+          "name": "",
+          "lightReduction": 40,
+          "type": "office",
+          "rand": "Trash",
+          "randRate": "heavy",
+          "cont1": {
+            "desc": "Footlocker",
+            "cnt": {
+              "$expr": "new Array(\"ammo45_12\",\"ammo9mm_30\")"
+            }
+          },
+          "cont2": {
+            "desc": "Shelf",
+            "cnt": []
+          },
+          "cont3": {
+            "desc": "Shelf",
+            "cnt": {
+              "$expr": "new Array(\"blunt\",\"tape\")"
+            }
+          },
+          "cont4": {
+            "desc": "Shelf",
+            "cnt": {
+              "$expr": "new Array(\"unionSecTop\",\"unionSecTop\",\"policeBottom\")"
+            }
+          }
+        },
+        "r1": {
+          "seed": 324,
+          "name": "",
+          "lightReduction": 20,
+          "type": "office",
+          "rand": "Trash",
+          "randRate": "light",
+          "cont1": {
+            "desc": "Filing Cabinet",
+            "cnt": []
+          },
+          "lockedDoors": {
+            "$expr": "new Array(\"door2\")"
+          },
+          "needsKey": {
+            "$expr": "new Array(true)"
+          },
+          "lockDiff": {
+            "$expr": "new Array(\"very hard\")"
+          },
+          "NPCs": {
+            "$expr": "new Array(\"Stephens\",\"Keith\")"
+          },
+          "NPC_x": {
+            "$expr": "new Array(\"600\",\"400\")"
+          },
+          "NPCPose": {
+            "$expr": "new Array(\"idle\",\"idle\")"
+          },
+          "NPCFacing": {
+            "$expr": "new Array(\"left\",\"left\")"
+          }
+        },
+        "r2": {
+          "seed": 1258,
+          "name": "",
+          "lightReduction": 20,
+          "type": "anywhere",
+          "rand": "Trash",
+          "randRate": "light",
+          "cont1": {
+            "desc": "Gun Cage",
+            "cnt": {
+              "$expr": "new Array(\"ammo45_50\",\"ammo9mm_50\",\"ammoshotgun_50\",\"MP5\",\"glock\",\"glock\",\"shotgun_stock\",\"deathAdder\",\"hunter_scope\")"
+            },
+            "noJunk": true
+          }
+        }
+      }
+    },
+    "b4": {
+      "name": "Warehouse",
+      "f1": {
+        "r1": {
+          "seed": 67814,
+          "lightReduction": 40,
+          "type": "basement",
+          "rand": "Trash",
+          "randRate": "light",
+          "cont1": {
+            "desc": "Junk Pile",
+            "cnt": {
+              "$expr": "new Array(\"woodBoard_heavy\")"
+            }
+          },
+          "cont2": {
+            "desc": "Boxes",
+            "cnt": {
+              "$expr": "new Array(\"machete\")"
+            }
+          },
+          "cont3": {
+            "desc": "Boxes",
+            "cnt": []
+          },
+          "cont4": {
+            "desc": "Boxes",
+            "cnt": {
+              "$expr": "new Array(\"spam\")"
+            }
+          },
+          "cont5": {
+            "desc": "Boxes",
+            "cnt": []
+          }
+        },
+        "r2": {
+          "seed": 177,
+          "lightReduction": 40,
+          "type": "basement",
+          "rand": "Trash",
+          "randRate": "light",
+          "cont1": {
+            "desc": "Boxes",
+            "cnt": []
+          },
+          "cont2": {
+            "desc": "Boxes",
+            "cnt": {
+              "$expr": "new Array(\"blades\")"
+            }
+          },
+          "cont3": {
+            "desc": "Boxes",
+            "cnt": {
+              "$expr": "new Array(\"cash_4\")"
+            }
+          },
+          "cont4": {
+            "desc": "Ammo Stockpile",
+            "cnt": {
+              "$expr": "new Array(\"ammo9mm_35\",\"ammo45_40\",\"ammoshotgun_20\")"
+            },
+            "noJunk": true
+          }
+        }
+      },
+      "f2": {
+        "r2": {
+          "seed": 177,
+          "lightReduction": 60,
+          "type": "basement",
+          "rand": "Trash",
+          "randRate": "light",
+          "cont1": {
+            "desc": "Footlocker",
+            "cnt": {
+              "$expr": "new Array(\"compoundBow\",\"ammoarrow_20\")"
+            }
+          },
+          "cont2": {
+            "desc": "Boxes",
+            "cnt": {
+              "$expr": "new Array(\"soupChicken\",\"cannedBeans\",\"water\",\"jerky\")"
+            }
+          },
+          "cont3": {
+            "desc": "Broken Microwave",
+            "cnt": {
+              "$expr": "new Array(\"glock\")"
+            }
+          }
+        }
+      }
+    },
+    "b5": {
+      "name": "King-o-Pawn"
+    },
+    "b6": {}
+  },
+  "s2": {
+    "b0": {
+      "name": "WASHINGTON AVE",
+      "f0": {
+        "r1": {
+          "seed": 156,
+          "name": "Outside",
+          "lightReduction": 0,
+          "type": "anywhere",
+          "rand": "Trash",
+          "randRate": "heavy",
+          "outside": true
+        },
+        "r100": {
+          "seed": 244,
+          "lightReduction": 70,
+          "type": "anywhere",
+          "rand": "Trash",
+          "randRate": "heavy",
+          "body1": {
+            "type": "unionSec",
+            "pose": "deadSit",
+            "facing": "left"
+          },
+          "cont1": {
+            "desc": "Richards\\' Corpse",
+            "cnt": {
+              "$expr": "new Array(\"unionSecKey\")"
+            },
+            "noJunk": true
+          }
+        },
+        "r101": {
+          "seed": 654235,
+          "lightReduction": 70,
+          "type": "anywhere",
+          "cont1": {
+            "desc": "Suitcase",
+            "cnt": {
+              "$expr": "new Array(\"scrapPaper\",\"fitness\")"
+            },
+            "noJunk": true
+          }
+        },
+        "r102": {
+          "seed": 1234,
+          "lightReduction": 70,
+          "type": "anywhere"
+        },
+        "r103": {
+          "seed": 658,
+          "lightReduction": 80,
+          "type": "anywhere"
+        },
+        "r104": {
+          "safeHouse": true,
+          "seed": 894,
+          "lightReduction": 50,
+          "type": "basement",
+          "cont1": {
+            "desc": "Shelf",
+            "cnt": {
+              "$expr": "new Array(\"crowbar_heavy\",\"ammo556_30\",\"pocketKnife\",\"pipe\",\"nails\")"
+            }
+          },
+          "cont2": {
+            "desc": "Cleaning Shelf",
+            "cnt": {
+              "$expr": "new Array(\"steelWool\",\"scrubbingBrush\")"
+            }
+          }
+        }
+      }
+    },
+    "b1": {
+      "name": "Earl of Burger",
+      "f1": {
+        "r1": {
+          "seed": 1245,
+          "lightReduction": 40,
+          "type": "anywhere",
+          "rand": "Trash",
+          "randRate": "light",
+          "cont1": {
+            "desc": "Cash Register",
+            "cnt": {
+              "$expr": "new Array(\"cash_56\",\"coins\",\"EOBbathroomKey\")"
+            },
+            "noJunk": true
+          },
+          "cont2": {
+            "desc": "Backpack",
+            "cnt": {
+              "$expr": "new Array(\"clawHammer\",\"cash_3\",\"ammo9mm_3\")"
+            }
+          }
+        },
+        "r2": {
+          "seed": 65,
+          "lightReduction": 60,
+          "type": "anywhere",
+          "rand": "Trash",
+          "randRate": "light",
+          "lockedDoors": {
+            "$expr": "new Array(\"room101\")"
+          },
+          "needsKey": {
+            "$expr": "new Array(false)"
+          },
+          "lockDiff": {
+            "$expr": "new Array(\"easy\")"
+          },
+          "cont1": {
+            "desc": "Trash",
+            "cnt": []
+          },
+          "cont2": {
+            "desc": "Trash",
+            "cnt": []
+          }
+        },
+        "r100": {
+          "seed": 145,
+          "lightReduction": 60,
+          "type": "anywhere",
+          "rand": "Trash",
+          "randRate": "light"
+        },
+        "r101": {
+          "seed": 9877,
+          "lightReduction": 60,
+          "type": "anywhere",
+          "rand": "Trash",
+          "randRate": "light",
+          "cont1": {
+            "desc": "Handbag",
+            "cnt": {
+              "$expr": "new Array(\"cash_60\")"
+            },
+            "noJunk": true
+          },
+          "body1": {
+            "type": "civilian",
+            "pose": "deadSit"
+          }
+        }
+      }
+    },
+    "b2": {
+      "name": "Paper Company Offices",
+      "f0": {
+        "r0": {
+          "seed": 30,
+          "lightReduction": 60,
+          "type": "basement",
+          "rand": "Trash",
+          "randRate": "light",
+          "cont1": {
+            "desc": "Crate",
+            "cnt": {
+              "$expr": "new Array(\"gasMask\",\"bolts\")"
+            }
+          },
+          "cont2": {
+            "desc": "Boxes",
+            "cnt": {
+              "$expr": "new Array(\"nails\")"
+            }
+          },
+          "cont3": {
+            "desc": "Boxes",
+            "cnt": {
+              "$expr": "new Array(\"blunt\")"
+            }
+          },
+          "cont4": {
+            "desc": "Filing Cabinets",
+            "cnt": {
+              "$expr": "new Array(\"scrapPaper\")"
+            }
+          },
+          "cont5": {
+            "desc": "Boxes",
+            "cnt": {
+              "$expr": "new Array(\"bandage\")"
+            }
+          },
+          "cont6": {
+            "desc": "Boxes",
+            "cnt": {
+              "$expr": "new Array(\"ammo9mm_12\")"
+            }
+          }
+        }
+      },
+      "f1": {
+        "r0": {
+          "seed": 30,
+          "lightReduction": 40,
+          "type": "anywhere",
+          "rand": "Trash",
+          "randRate": "light"
+        },
+        "r1": {
+          "seed": 1245,
+          "lightReduction": 40,
+          "type": "anywhere",
+          "rand": "Trash",
+          "randRate": "light",
+          "cont1": {
+            "desc": "Boxes",
+            "cnt": []
+          }
+        },
+        "r2": {
+          "seed": 6732,
+          "lightReduction": 40,
+          "type": "office",
+          "rand": "Trash",
+          "randRate": "light",
+          "cont1": {
+            "desc": "Filing Cabinets",
+            "cnt": {
+              "$expr": "new Array(\"magazine\")"
+            }
+          }
+        },
+        "r3": {
+          "seed": 6732,
+          "lightReduction": 40,
+          "type": "kitchen",
+          "rand": "Trash",
+          "randRate": "light",
+          "cont1": {
+            "desc": "Food Counter",
+            "cnt": {
+              "$expr": "new Array(\"cereal\",\"jelly\")"
+            }
+          },
+          "cont2": {
+            "desc": "First Aid Box",
+            "cnt": {
+              "$expr": "new Array(\"bandage\")"
+            },
+            "noJunk": true
+          },
+          "cont3": {
+            "desc": "Vent",
+            "cnt": {
+              "$expr": "new Array(\"tauron\",\"ammo9mm_35\")"
+            },
+            "noJunk": true
+          }
+        }
+      },
+      "f2": {
+        "r3": {
+          "seed": 30,
+          "lightReduction": 40,
+          "type": "basement",
+          "rand": "Trash",
+          "randRate": "light",
+          "cont1": {
+            "desc": "Boxes",
+            "cnt": {
+              "$expr": "new Array(\"scrapPaper\")"
+            }
+          },
+          "cont2": {
+            "desc": "Filing Cabinet",
+            "cnt": {
+              "$expr": "new Array(\"cash_12\")"
+            }
+          }
+        }
+      }
+    },
+    "b3": {
+      "name": "Mechanics",
+      "f1": {
+        "r1": {
+          "seed": 30,
+          "lightReduction": 60,
+          "type": "basement",
+          "rand": "Trash",
+          "randRate": "light",
+          "cont1": {
+            "desc": "Boxes",
+            "cnt": {
+              "$expr": "new Array(\"nails\",\"pipe\")"
+            }
+          },
+          "cont2": {
+            "desc": "Boxes",
+            "cnt": {
+              "$expr": "new Array(\"bolts\")"
+            }
+          },
+          "cont3": {
+            "desc": "Shelf",
+            "cnt": {
+              "$expr": "new Array(\"clawHammer_heavy\",\"metalSheet\",\"bolts\",\"nails\")"
+            }
+          }
+        }
+      }
+    }
+  },
+  "startLoc": "l12_s1_b0_f0_r1",
+  "startLocName": "HOUSTON ST - UNION SECURITY",
+  "endLoc": "l12_s2_b0_f0_r103",
+  "endLocName": "SUBWAY EXIT"
+}

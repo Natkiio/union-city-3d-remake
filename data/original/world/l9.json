@@ -1,0 +1,661 @@
+{
+  "danger": 4,
+  "music": "music_2",
+  "s1": {
+    "ref": "section9",
+    "b0": {
+      "name": "TANNER STREET",
+      "f0": {
+        "r1": {
+          "seed": 156,
+          "name": "Outside",
+          "lightReduction": 0,
+          "type": "anywhere",
+          "rand": "Trash",
+          "randRate": "heavy",
+          "outside": true,
+          "cont1": {
+            "desc": "Dumpster",
+            "display": "blank",
+            "cnt": {
+              "$expr": "new Array(\"brokenPipe\")"
+            }
+          }
+        }
+      }
+    },
+    "b1": {
+      "name": {
+        "$expr": "\"860 \" + l9.s1.b0.name"
+      },
+      "f1": {
+        "r0": {
+          "name": "House",
+          "lightReduction": 60,
+          "type": "kitchen",
+          "rand": "Trash",
+          "randRate": "light",
+          "cont1": {
+            "desc": "Cupboard",
+            "cnt": {
+              "$expr": "new Array(\"cannedBeans\")"
+            }
+          },
+          "cont2": {
+            "desc": "Cupboard",
+            "cnt": {
+              "$expr": "new Array(\"soupBeef\")"
+            }
+          },
+          "cont3": {
+            "desc": "Cupboard",
+            "cnt": []
+          },
+          "cont4": {
+            "desc": "Fridge",
+            "cnt": {
+              "$expr": "new Array(\"sodaCan\",\"water\")"
+            },
+            "noJunk": true
+          }
+        },
+        "r1": {
+          "name": "House",
+          "lightReduction": 60,
+          "type": "anywhere",
+          "rand": "Trash",
+          "randRate": "light",
+          "cont1": {
+            "desc": "Bookshelf",
+            "cnt": {
+              "$expr": "new Array(\"firstAid\",\"magazine\",\"book\",\"book\",\"scrapPaper\")"
+            },
+            "noJunk": true
+          },
+          "cont2": {
+            "desc": "Side Table",
+            "cnt": {
+              "$expr": "new Array(\"pocketKnife\",\"cash_20\")"
+            }
+          }
+        },
+        "r2": {
+          "name": "House",
+          "lightReduction": 60,
+          "type": "anywhere",
+          "rand": "Trash",
+          "randRate": "light",
+          "cont1": {
+            "desc": "Bookshelf",
+            "cnt": {
+              "$expr": "new Array(\"magazine\",\"paperWeight\")"
+            },
+            "noJunk": true
+          },
+          "cont2": {
+            "desc": "Drawers",
+            "cnt": []
+          }
+        }
+      },
+      "f2": {
+        "r1": {
+          "name": "House",
+          "lightReduction": 60,
+          "type": "anywhere",
+          "rand": "Trash",
+          "randRate": "light",
+          "cont1": {
+            "desc": "Suitcase",
+            "cnt": {
+              "$expr": "new Array(\"capBlue\",\"tshirtBlack\",\"jeansBlue\")"
+            }
+          },
+          "cont2": {
+            "desc": "Closet",
+            "cnt": {
+              "$expr": "new Array(\"ammo45_24\",\"longSleeveGreen\")"
+            }
+          }
+        },
+        "r2": {
+          "name": "House",
+          "lightReduction": 60,
+          "type": "anywhere",
+          "rand": "Trash",
+          "randRate": "light"
+        }
+      }
+    },
+    "b2": {
+      "name": {
+        "$expr": "\"862 \" + l9.s1.b0.name"
+      },
+      "f1": {
+        "r1": {
+          "name": "House",
+          "lightReduction": 70,
+          "type": "anywhere",
+          "cont1": {
+            "desc": "Boxes",
+            "cnt": {
+              "$expr": "new Array(\"ammo45_15\")"
+            }
+          },
+          "cont2": {
+            "desc": "Drawers",
+            "cnt": {
+              "$expr": "new Array(\"cash_25\")"
+            }
+          }
+        },
+        "r2": {
+          "name": "House",
+          "lightReduction": 70,
+          "type": "anywhere",
+          "cont1": {
+            "desc": "Fridge",
+            "cnt": {
+              "$expr": "new Array(\"apple\")"
+            },
+            "noJunk": true
+          },
+          "cont2": {
+            "desc": "Kitchen Sink",
+            "cnt": {
+              "$expr": "new Array(\"kitchenKnife\")"
+            },
+            "noJunk": true
+          }
+        },
+        "r3": {
+          "name": "Backyard",
+          "lightReduction": 0,
+          "type": "anywhere",
+          "outside": true,
+          "cont1": {
+            "desc": "Trash Can",
+            "cnt": {
+              "$expr": "new Array(\"brokenBoard\")"
+            }
+          },
+          "cont2": {
+            "desc": "Back Fence",
+            "cnt": {
+              "$expr": "new Array(\"pipe\")"
+            }
+          }
+        }
+      }
+    },
+    "b3": {
+      "name": "STAN\\'S GENERAL FOODS",
+      "f1": {
+        "r1": {
+          "name": "Store",
+          "lightReduction": 50,
+          "type": "anywhere",
+          "cont1": {
+            "desc": "Boxes",
+            "cnt": {
+              "$expr": "new Array(\"orange\")"
+            },
+            "noJunk": true
+          },
+          "cont2": {
+            "desc": "Shelf",
+            "cnt": {
+              "$expr": "new Array(\"cannedCorn\")"
+            }
+          },
+          "cont3": {
+            "desc": "Shelf",
+            "cnt": {
+              "$expr": "new Array(\"cannedTomato\")"
+            }
+          },
+          "cont4": {
+            "desc": "Shelf",
+            "cnt": {
+              "$expr": "new Array(\"cereal\")"
+            }
+          },
+          "cont5": {
+            "desc": "Cash Register",
+            "cnt": {
+              "$expr": "new Array(\"cash_56\")"
+            },
+            "noJunk": true
+          },
+          "cont6": {
+            "desc": "Counter",
+            "cnt": {
+              "$expr": "new Array(\"jerky\")"
+            }
+          },
+          "cont7": {
+            "desc": "Storage Shelf",
+            "cnt": {
+              "$expr": "new Array(\"jerky\",\"pipe\",\"brokenPipe\")"
+            }
+          },
+          "cont8": {
+            "desc": "Floor",
+            "cnt": {
+              "$expr": "new Array(\"kellyGlasses\")"
+            },
+            "noJunk": true
+          }
+        },
+        "r2": {
+          "name": "Store Room",
+          "lightReduction": 70,
+          "type": "anywhere",
+          "NPCs": {
+            "$expr": "new Array(\"Kelly\")"
+          },
+          "NPC_x": {
+            "$expr": "new Array(\"370\")"
+          },
+          "NPCPose": {
+            "$expr": "new Array(\"sit\")"
+          },
+          "NPCFacing": {
+            "$expr": "new Array(\"left\")"
+          },
+          "cont1": {
+            "desc": "Shelf",
+            "cnt": {
+              "$expr": "new Array(\"sodaCan\")"
+            },
+            "noJunk": true
+          },
+          "cont2": {
+            "desc": "Shelf",
+            "cnt": {
+              "$expr": "new Array(\"cannedCorn\")"
+            }
+          },
+          "cont3": {
+            "desc": "Boxes",
+            "cnt": {
+              "$expr": "new Array(\"cannedCorn\",\"cannedCorn\")"
+            }
+          }
+        }
+      }
+    }
+  },
+  "s2": {
+    "ref": "section9",
+    "b0": {
+      "name": "8TH AVENUE",
+      "f0": {
+        "r1": {
+          "seed": 100,
+          "name": "Outside",
+          "lightReduction": 0,
+          "type": "anywhere",
+          "rand": "Trash",
+          "randRate": "heavy",
+          "outside": true
+        }
+      }
+    },
+    "b1": {
+      "name": "Plenty Phone",
+      "safeHouse": true,
+      "f1": {
+        "r1": {
+          "safeHouse": true,
+          "lightReduction": 60,
+          "name": "Plenty Phone",
+          "type": "anywhere",
+          "rand": "Trash",
+          "randRate": "heavy",
+          "cont1": {
+            "desc": "Bag",
+            "cnt": {
+              "$expr": "new Array(\"ammoshotgun_6\",\"sawnOff\",\"tape\")"
+            }
+          },
+          "cont2": {
+            "desc": "Table",
+            "cnt": {
+              "$expr": "new Array(\"cereal\",\"cookies\")"
+            }
+          },
+          "cont3": {
+            "desc": "Ammo Stockpile",
+            "cnt": {
+              "$expr": "new Array(\"ammo9mm_30\",\"ammo45_30\",\"ammoshotgun_10\")"
+            },
+            "noJunk": true
+          }
+        }
+      }
+    },
+    "b2": {
+      "name": "Store House",
+      "f1": {
+        "r1": {
+          "lightReduction": 60,
+          "name": "Warehouse",
+          "type": "basement",
+          "rand": "Trash",
+          "randRate": "heavy",
+          "cont1": {
+            "desc": "Boxes",
+            "cnt": []
+          }
+        },
+        "r2": {
+          "lightReduction": 60,
+          "name": "Warehouse",
+          "type": "basement",
+          "rand": "Trash",
+          "randRate": "heavy",
+          "cont1": {
+            "desc": "Shelf",
+            "cnt": []
+          },
+          "cont2": {
+            "desc": "Shelf",
+            "cnt": []
+          },
+          "cont3": {
+            "desc": "Shelf",
+            "cnt": {
+              "$expr": "new Array(\"nails\",\"metalSheet\")"
+            }
+          },
+          "cont4": {
+            "desc": "Boxes",
+            "cnt": []
+          },
+          "cont5": {
+            "desc": "Shelf",
+            "cnt": []
+          },
+          "cont6": {
+            "desc": "Shelf",
+            "cnt": {
+              "$expr": "new Array(\"weldingRod\")"
+            }
+          },
+          "cont7": {
+            "desc": "Shelf",
+            "cnt": {
+              "$expr": "new Array(\"nails\")"
+            }
+          },
+          "cont8": {
+            "desc": "Shelf",
+            "cnt": []
+          }
+        }
+      }
+    },
+    "b3": {
+      "name": "Workshop",
+      "f1": {
+        "r1": {
+          "lightReduction": 60,
+          "name": "Warehouse",
+          "type": "basement",
+          "rand": "Trash",
+          "randRate": "heavy",
+          "cont1": {
+            "desc": "Shelf",
+            "cnt": []
+          }
+        }
+      },
+      "f2": {
+        "r1": {
+          "lightReduction": 60,
+          "name": "Warehouse",
+          "type": "basement",
+          "rand": "Trash",
+          "randRate": "heavy",
+          "NPCs": {
+            "$expr": "new Array(\"Darnel\")"
+          },
+          "NPC_x": {
+            "$expr": "new Array(\"95\")"
+          },
+          "NPCPose": {
+            "$expr": "new Array(\"useStanding\")"
+          },
+          "NPCFacing": {
+            "$expr": "new Array(\"left\")"
+          },
+          "cont1": {
+            "desc": "Shelf",
+            "cnt": {
+              "$expr": "new Array(\"brokenPipe\")"
+            }
+          },
+          "cont2": {
+            "desc": "Crate",
+            "cnt": []
+          },
+          "cont3": {
+            "desc": "Shelf",
+            "cnt": {
+              "$expr": "new Array(\"clawHammer\")"
+            }
+          }
+        }
+      }
+    },
+    "b4": {
+      "name": "Storage Warehouse",
+      "f0": {
+        "r2": {
+          "lightReduction": 60,
+          "name": "Warehouse",
+          "type": "basement",
+          "rand": "Trash",
+          "randRate": "medium",
+          "cont1": {
+            "desc": "Cleaning Shelf",
+            "cnt": []
+          },
+          "cont2": {
+            "desc": "Shelf",
+            "cnt": []
+          },
+          "cont3": {
+            "desc": "Boxes",
+            "cnt": {
+              "$expr": "new Array(\"tape\")"
+            }
+          },
+          "cont4": {
+            "desc": "Box",
+            "cnt": []
+          },
+          "cont5": {
+            "desc": "Shelf",
+            "cnt": []
+          }
+        }
+      },
+      "f1": {
+        "r1": {
+          "lightReduction": 60,
+          "name": "Warehouse",
+          "type": "basement",
+          "rand": "Trash",
+          "randRate": "medium",
+          "cont1": {
+            "desc": "Crate",
+            "cnt": {
+              "$expr": "new Array(\"metalSheet\")"
+            }
+          },
+          "cont2": {
+            "desc": "Boxes",
+            "cnt": []
+          },
+          "cont3": {
+            "desc": "Boxes",
+            "cnt": []
+          }
+        },
+        "r2": {
+          "lightReduction": 60,
+          "name": "Warehouse",
+          "type": "basement",
+          "rand": "Trash",
+          "randRate": "medium",
+          "cont1": {
+            "desc": "Storage Unit",
+            "cnt": {
+              "$expr": "new Array(\"hockeyStick\",\"cricketBat\")"
+            },
+            "locked": true,
+            "lockDiff": "normal"
+          },
+          "cont2": {
+            "desc": "Storage Unit",
+            "cnt": {
+              "$expr": "new Array(\"longGuns\",\"book\",\"book\")"
+            },
+            "locked": true,
+            "lockDiff": "normal"
+          },
+          "cont3": {
+            "desc": "Storage Unit",
+            "cnt": {
+              "$expr": "new Array(\"urbanCamo\",\"singletBlack\",\"PPM9\",\"paperWeight\")"
+            }
+          },
+          "cont4": {
+            "desc": "Storage Unit",
+            "cnt": {
+              "$expr": "new Array(\"brokenBoard\")"
+            }
+          },
+          "cont5": {
+            "desc": "Storage Unit",
+            "cnt": {
+              "$expr": "new Array(\"woolHatBrown\",\"shoeWhite\")"
+            },
+            "locked": true,
+            "lockDiff": "normal"
+          }
+        }
+      }
+    },
+    "b5": {
+      "name": "Apartment Block",
+      "f0": {},
+      "f1": {
+        "r0": {
+          "lightReduction": 60,
+          "name": "Apartments",
+          "type": "anywhere",
+          "rand": "Trash",
+          "randRate": "light",
+          "cont1": {
+            "desc": "Book Shelf",
+            "cnt": {
+              "$expr": "new Array(\"security\",\"cash_25\")"
+            }
+          }
+        },
+        "r1": {
+          "lightReduction": 60,
+          "name": "Apartments",
+          "type": "anywhere",
+          "rand": "Trash",
+          "randRate": "light"
+        },
+        "r2": {
+          "lightReduction": 60,
+          "name": "Apartments",
+          "type": "anywhere",
+          "rand": "Trash",
+          "randRate": "light",
+          "cont1": {
+            "desc": "Dresser",
+            "cnt": {
+              "$expr": "new Array(\"M1911_damaged\")"
+            },
+            "locked": true,
+            "lockDiff": "normal"
+          },
+          "cont2": {
+            "desc": "Stair Closet",
+            "cnt": {
+              "$expr": "new Array(\"ammo45_32\")"
+            },
+            "locked": true,
+            "lockDiff": "normal"
+          }
+        }
+      },
+      "f2": {
+        "r1": {
+          "lightReduction": 60,
+          "name": "Apartments",
+          "type": "bathroom",
+          "rand": "Trash",
+          "randRate": "light",
+          "cont1": {
+            "desc": "Medicine Cabinet",
+            "cnt": {
+              "$expr": "new Array(\"pills\")"
+            }
+          }
+        },
+        "r2": {
+          "lightReduction": 60,
+          "name": "Apartments",
+          "type": "anywhere",
+          "rand": "Trash",
+          "randRate": "light",
+          "cont1": {
+            "desc": "Bedside Cupboard",
+            "cnt": {
+              "$expr": "new Array(\"singletBlack\",\"tshirtWhite\")"
+            }
+          },
+          "cont2": {
+            "desc": "Bedside Cupboard",
+            "cnt": {
+              "$expr": "new Array(\"sunglassesBottle\",\"cash_30\")"
+            }
+          },
+          "cont3": {
+            "desc": "Closet",
+            "cnt": {
+              "$expr": "new Array(\"suitBlack\",\"pantsBrown\",\"capRed\")"
+            }
+          }
+        },
+        "r3": {
+          "lightReduction": 60,
+          "name": "Apartments",
+          "type": "anywhere",
+          "rand": "Trash",
+          "randRate": "light",
+          "cont1": {
+            "desc": "Sideboard",
+            "cnt": []
+          },
+          "cont2": {
+            "desc": "TV Cabinet",
+            "cnt": []
+          }
+        }
+      }
+    }
+  },
+  "startLoc": "l9_s1_b0_f0_r1",
+  "startLocName": "TANNER STREET",
+  "endLoc": "l9_s2_b0_f0_r1",
+  "endLocName": "8TH AVENUE - APARTMENT"
+}

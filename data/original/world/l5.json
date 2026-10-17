@@ -1,0 +1,415 @@
+{
+  "music": "music_5",
+  "danger": 10,
+  "ref": "section5",
+  "s1": {
+    "b0": {
+      "name": "BALLPARK DRIVE",
+      "f0": {
+        "r1": {
+          "seed": 156,
+          "name": "Stadium - Outside",
+          "lightReduction": 0,
+          "type": "anywhere",
+          "rand": "Trash",
+          "randRate": "heavy",
+          "outside": true,
+          "enemy": {
+            "$expr": "new Array(\"armyBio\",\"armyBioOfficer\",\"armyBio2\")"
+          },
+          "enemyX": {
+            "$expr": "new Array(\"950\",\"1100\",\"1975\")"
+          },
+          "NPCs": {
+            "$expr": "new Array(\"Williams\")"
+          },
+          "NPC_x": {
+            "$expr": "new Array(\"1400\")"
+          },
+          "NPCPose": {
+            "$expr": "new Array(\"standPistol\")"
+          },
+          "NPCFacing": {
+            "$expr": "new Array(\"left\")"
+          }
+        }
+      }
+    },
+    "b1": {
+      "name": "Stadium",
+      "f1": {
+        "r1": {
+          "seed": 156,
+          "name": "Stadium - Outside",
+          "lightReduction": 0,
+          "type": "anywhere",
+          "rand": "Trash",
+          "randRate": "heavy",
+          "safeHouse": true
+        },
+        "r2": {
+          "seed": 156,
+          "name": "",
+          "lightReduction": 40,
+          "type": "anywhere",
+          "rand": "Trash",
+          "randRate": "heavy",
+          "safeHouse": true,
+          "NPCs": {
+            "$expr": "new Array(\"DrSmith\",\"Kowalski\")"
+          },
+          "NPC_x": {
+            "$expr": "new Array(\"550\",\"1320\")"
+          },
+          "NPCPose": {
+            "$expr": "new Array(\"idle\",\"holdRifle\")"
+          },
+          "NPCFacing": {
+            "$expr": "new Array(\"right\",\"left\")"
+          }
+        },
+        "r3": {
+          "seed": 1896,
+          "name": "",
+          "lightReduction": 40,
+          "type": "anywhere",
+          "rand": "Trash",
+          "randRate": "light",
+          "safeHouse": true,
+          "lockedDoors": {
+            "$expr": "new Array(\"door1\",\"room100\")"
+          },
+          "needsKey": {
+            "$expr": "new Array(true,true)"
+          },
+          "lockDiff": {
+            "$expr": "new Array(\"hard\",\"hard\")"
+          },
+          "NPCs": {
+            "$expr": "new Array(\"Simmons\",\"Hammond\",\"Martinez\")"
+          },
+          "NPC_x": {
+            "$expr": "new Array(\"40\",\"510\",\"835\")"
+          },
+          "NPCPose": {
+            "$expr": "new Array(\"holdRifle\",\"sitTable\",\"holdRifle\")"
+          },
+          "NPCFacing": {
+            "$expr": "new Array(\"right\",\"left\",\"left\")"
+          }
+        },
+        "r100": {
+          "seed": 156,
+          "name": "",
+          "lightReduction": 20,
+          "type": "anywhere",
+          "rand": "Trash",
+          "randRate": "light",
+          "safeHouse": true,
+          "NPCs": {
+            "$expr": "new Array(\"Carol\",\"Steve\",\"Ryan\",\"Anna\",\"Barry\")"
+          },
+          "NPC_x": {
+            "$expr": "new Array(\"1500\",\"1350\",\"550\",\"650\",\"2100\")"
+          },
+          "NPCPose": {
+            "$expr": "new Array(\"sit\",\"idle\",\"idle\",\"idle\",\"idle\")"
+          },
+          "NPCFacing": {
+            "$expr": "new Array(\"left\",\"right\",\"right\",\"left\",\"left\")"
+          }
+        },
+        "r4": {
+          "seed": 1896,
+          "name": "",
+          "lightReduction": 40,
+          "type": "anywhere",
+          "rand": "Trash",
+          "randRate": "light",
+          "safeHouse": true,
+          "lockedDoors": {
+            "$expr": "new Array(\"door1\")"
+          },
+          "needsKey": {
+            "$expr": "new Array(true)"
+          },
+          "lockDiff": {
+            "$expr": "new Array(\"hard\")"
+          },
+          "NPCs": {
+            "$expr": "new Array(\"Ramirez\")"
+          },
+          "NPC_x": {
+            "$expr": "new Array(\"700\")"
+          },
+          "NPCPose": {
+            "$expr": "new Array(\"holdRifle\")"
+          },
+          "NPCFacing": {
+            "$expr": "new Array(\"left\")"
+          },
+          "cont1": {
+            "desc": "Vending Machine",
+            "cnt": {
+              "$expr": "new Array(\"water\",\"water\",\"sodaCan\")"
+            },
+            "noJunk": true
+          }
+        },
+        "r402": {
+          "seed": 12455,
+          "name": "",
+          "lightReduction": 40,
+          "type": "anywhere",
+          "rand": "Trash",
+          "randRate": "light",
+          "safeHouse": true,
+          "lockedDoors": {
+            "$expr": "new Array(\"door1\")"
+          },
+          "needsKey": {
+            "$expr": "new Array(true)"
+          },
+          "lockDiff": {
+            "$expr": "new Array(\"hard\")"
+          }
+        },
+        "r403": {
+          "seed": 5534,
+          "name": "",
+          "lightReduction": 40,
+          "type": "anywhere",
+          "rand": "Trash",
+          "randRate": "light",
+          "safeHouse": true,
+          "lockedDoors": {
+            "$expr": "new Array(\"door1\")"
+          },
+          "needsKey": {
+            "$expr": "new Array(true)"
+          },
+          "lockDiff": {
+            "$expr": "new Array(\"hard\")"
+          }
+        },
+        "r404": {
+          "seed": 4652,
+          "name": "",
+          "lightReduction": 60,
+          "type": "basement",
+          "rand": "Trash",
+          "randRate": "light",
+          "safeHouse": true,
+          "lockedDoors": {
+            "$expr": "new Array(\"door1\",\"door2\")"
+          },
+          "needsKey": {
+            "$expr": "new Array(true,true)"
+          },
+          "lockDiff": {
+            "$expr": "new Array(\"hard\",\"hard\")"
+          },
+          "NPCs": {
+            "$expr": "new Array(\"Barry\")"
+          },
+          "NPC_x": {
+            "$expr": "new Array(\"470\")"
+          },
+          "NPCPose": {
+            "$expr": "new Array(\"idle\")"
+          },
+          "NPCFacing": {
+            "$expr": "new Array(\"left\")"
+          },
+          "cont1": {
+            "desc": "Shelves",
+            "cnt": []
+          }
+        },
+        "r405": {
+          "seed": 4652,
+          "name": "",
+          "lightReduction": 60,
+          "type": "anywhere",
+          "rand": "Trash",
+          "randRate": "light",
+          "safeHouse": true
+        },
+        "r4051": {
+          "seed": 3553,
+          "name": "",
+          "lightReduction": 60,
+          "type": "basement",
+          "rand": "Trash",
+          "randRate": "light",
+          "safeHouse": true,
+          "cont1": {
+            "desc": "Footlocker",
+            "cnt": []
+          },
+          "cont2": {
+            "desc": "Ammunition Box",
+            "cnt": {
+              "$expr": "new Array(\"ammo556_50\")"
+            }
+          },
+          "cont3": {
+            "desc": "Footlocker",
+            "cnt": []
+          },
+          "cont4": {
+            "desc": "Boxes",
+            "cnt": []
+          },
+          "cont5": {
+            "desc": "First Aid Kit",
+            "cnt": {
+              "$expr": "new Array(\"bandage\")"
+            },
+            "noJunk": true
+          }
+        },
+        "r406": {
+          "seed": 4652,
+          "name": "",
+          "lightReduction": 80,
+          "type": "anywhere",
+          "rand": "Trash",
+          "randRate": "light",
+          "safeHouse": true
+        },
+        "r4061": {
+          "seed": 4652,
+          "name": "",
+          "lightReduction": 80,
+          "type": "anywhere",
+          "rand": "Trash",
+          "randRate": "light",
+          "safeHouse": true
+        },
+        "r4062": {
+          "seed": 4652,
+          "name": "",
+          "lightReduction": 80,
+          "type": "anywhere",
+          "rand": "Trash",
+          "randRate": "light",
+          "safeHouse": true,
+          "lockedDoors": {
+            "$expr": "new Array(\"room4063\")"
+          },
+          "needsKey": {
+            "$expr": "new Array(true)"
+          },
+          "lockDiff": {
+            "$expr": "new Array(\"very hard\")"
+          }
+        },
+        "r4063": {
+          "seed": 4652,
+          "name": "",
+          "lightReduction": 80,
+          "type": "anywhere",
+          "rand": "Trash",
+          "randRate": "light",
+          "safeHouse": true
+        },
+        "r499": {
+          "seed": 4652,
+          "name": "",
+          "lightReduction": 60,
+          "type": "basement",
+          "rand": "Trash",
+          "randRate": "light",
+          "safeHouse": true,
+          "cont1": {
+            "desc": "Shelf",
+            "cnt": []
+          },
+          "cont2": {
+            "desc": "Cleaning Shelf",
+            "cnt": []
+          }
+        },
+        "r500": {
+          "seed": 4652,
+          "name": "",
+          "lightReduction": 40,
+          "type": "anywhere",
+          "rand": "Trash",
+          "randRate": "light",
+          "safeHouse": true,
+          "cont1": {
+            "desc": "Footlocker",
+            "cnt": {
+              "$expr": "new Array(\"ammo45_100\",\"ammo9mm_100\")"
+            },
+            "noJunk": true
+          }
+        },
+        "r501": {
+          "seed": 4652,
+          "name": "",
+          "lightReduction": 50,
+          "type": "anywhere",
+          "rand": "Trash",
+          "randRate": "light",
+          "safeHouse": true,
+          "enemy": {
+            "$expr": "new Array(\"HERCscientist\")"
+          },
+          "enemyX": {
+            "$expr": "new Array(\"820\")"
+          },
+          "cont1": {
+            "desc": "Footlocker",
+            "cnt": [],
+            "noJunk": true
+          }
+        },
+        "r502": {
+          "seed": 4652,
+          "name": "",
+          "lightReduction": 50,
+          "type": "anywhere",
+          "rand": "Trash",
+          "randRate": "light",
+          "safeHouse": true,
+          "enemy": {
+            "$expr": "new Array(\"HERCscientist\",\"HERCscientistMelee\")"
+          },
+          "enemyX": {
+            "$expr": "new Array(\"600\",\"450\")"
+          },
+          "cont1": {
+            "desc": "Footlocker",
+            "cnt": {
+              "$expr": "new Array(\"UMP45_specOps\")"
+            },
+            "noJunk": true
+          },
+          "cont2": {
+            "desc": "Footlocker",
+            "cnt": {
+              "$expr": "new Array(\"thor\",\"ammoshotgun_30\")"
+            },
+            "noJunk": true
+          }
+        }
+      }
+    },
+    "b2": {
+      "name": {
+        "$expr": "\"12 \" + l5.s1.b0.name"
+      }
+    },
+    "b3": {},
+    "b4": {},
+    "b5": {},
+    "b6": {}
+  },
+  "startLoc": "l5_s1_b0_f0_r1",
+  "startLocName": "BALLPARK DRIVE",
+  "endLoc": "l5_s1_b1_f1_r4063",
+  "endLocName": "SEWER ACCESS"
+}

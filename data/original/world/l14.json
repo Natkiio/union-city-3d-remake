@@ -1,0 +1,332 @@
+{
+  "music": "music_5",
+  "danger": 20,
+  "ref": "section14",
+  "startLoc": "l14_s1_b0_f0_r1",
+  "startLocName": "STANTON DRIVE",
+  "endLoc": "l14_s2_b0_f0_r1",
+  "endLocName": "MILITARY BASE",
+  "s0": {
+    "b0": {
+      "f0": {
+        "r1": {
+          "seed": 32433,
+          "name": "Outside",
+          "lightReduction": 0,
+          "type": "anywhere",
+          "rand": "Trash",
+          "randRate": "heavy"
+        }
+      }
+    }
+  },
+  "s1": {
+    "b0": {
+      "name": "STANTON DRIVE - CHURCH",
+      "f0": {
+        "r1": {
+          "seed": 32433,
+          "name": "Outside",
+          "lightReduction": 0,
+          "type": "anywhere",
+          "rand": "Trash",
+          "randRate": "heavy",
+          "outside": true,
+          "cont1": {
+            "desc": "Trunk",
+            "display": "blank",
+            "cnt": {
+              "$expr": "new Array(\"tireIron_damaged\")"
+            },
+            "noJunk": true
+          },
+          "cont2": {
+            "desc": "Trash Can",
+            "display": "blank",
+            "cnt": []
+          },
+          "cont3": {
+            "desc": "Newspaper Stand",
+            "display": "blank",
+            "cnt": {
+              "$expr": "new Array(\"magazine\")"
+            }
+          }
+        }
+      }
+    },
+    "b1": {
+      "name": "CHURCH",
+      "f1": {
+        "r1": {
+          "seed": 3532,
+          "name": "Outside",
+          "lightReduction": 50,
+          "type": "anywhere",
+          "rand": "Trash",
+          "randRate": "heavy",
+          "safeHouse": true
+        }
+      }
+    },
+    "b2": {
+      "name": {
+        "$expr": "\"1232 \" + l14.s1.b0.name"
+      },
+      "f1": {
+        "r1": {
+          "seed": 11123,
+          "name": "Outside",
+          "lightReduction": 50,
+          "type": "anywhere",
+          "rand": "Trash",
+          "randRate": "medium",
+          "cont1": {
+            "desc": "Cash Register",
+            "cnt": {
+              "$expr": "new Array(\"cash_15\")"
+            },
+            "noJunk": true
+          },
+          "cont2": {
+            "desc": "Shelf",
+            "cnt": {
+              "$expr": "new Array(\"pasta\",\"spam\")"
+            },
+            "noJunk": true
+          }
+        }
+      }
+    },
+    "b3": {},
+    "b4": {},
+    "b5": {},
+    "b6": {}
+  },
+  "s2": {
+    "b0": {
+      "name": "MILITARY BASE",
+      "f0": {
+        "r1": {
+          "seed": 32433,
+          "name": "Outside",
+          "lightReduction": 0,
+          "type": "anywhere",
+          "rand": "Trash",
+          "randRate": "heavy",
+          "outside": true
+        }
+      }
+    },
+    "b1": {
+      "name": {
+        "$expr": "l14.s2.b0.name"
+      },
+      "f1": {
+        "r1": {
+          "seed": 3532,
+          "name": "Outside",
+          "lightReduction": 0,
+          "type": "anywhere",
+          "rand": "Trash",
+          "randRate": "heavy",
+          "outside": true
+        },
+        "r100": {
+          "seed": 3532,
+          "name": "Outside",
+          "lightReduction": 60,
+          "type": "anywhere",
+          "rand": "Trash",
+          "randRate": "heavy",
+          "cont1": {
+            "desc": "Filing Cabinet",
+            "cnt": []
+          },
+          "cont2": {
+            "desc": "Filing Cabinet",
+            "cnt": []
+          },
+          "cont3": {
+            "desc": "Footlocker",
+            "cnt": {
+              "$expr": "new Array(\"ammo762_50\",\"ammo556_50\")"
+            }
+          },
+          "cont4": {
+            "desc": "Box Stack",
+            "cnt": {
+              "$expr": "new Array(\"medicalMask\",\"gasMask\",\"gasMask\")"
+            }
+          },
+          "cont5": {
+            "desc": "Box Stack",
+            "cnt": {
+              "$expr": "new Array(\"mre\",\"mre\")"
+            }
+          },
+          "cont6": {
+            "desc": "Footlocker",
+            "cnt": {
+              "$expr": "new Array(\"M4A1_specOps\",\"ammo556_90\")"
+            },
+            "locked": true,
+            "lockDiff": "hard"
+          }
+        },
+        "r200": {
+          "seed": 3532,
+          "name": "Outside",
+          "lightReduction": 60,
+          "type": "office",
+          "rand": "Trash",
+          "randRate": "heavy",
+          "cont1": {
+            "desc": "Filing Cabinet",
+            "cnt": []
+          },
+          "cont2": {
+            "desc": "Filing Cabinet",
+            "cnt": []
+          },
+          "cont3": {
+            "desc": "Filing Cabinet",
+            "cnt": []
+          },
+          "cont4": {
+            "desc": "Box Stack",
+            "cnt": []
+          },
+          "cont5": {
+            "desc": "Box Stack",
+            "cnt": []
+          },
+          "cont6": {
+            "desc": "Footlocker",
+            "cnt": []
+          },
+          "cont7": {
+            "desc": "Footlocker",
+            "cnt": {
+              "$expr": "new Array(\"M9_suppressor\")"
+            }
+          },
+          "cont8": {
+            "desc": "Box Stack",
+            "cnt": []
+          }
+        },
+        "r300": {
+          "seed": 756,
+          "name": "Outside",
+          "lightReduction": 60,
+          "type": "basement",
+          "rand": "Trash",
+          "randRate": "heavy",
+          "cont1": {
+            "desc": "Footlocker",
+            "cnt": {
+              "$expr": "new Array(\"explosivesBlastingCap\",\"explosivesBlastingCap\")"
+            }
+          },
+          "cont2": {
+            "desc": "Humvee",
+            "cnt": {
+              "$expr": "new Array(\"M249\",\"ammo556_100\")"
+            },
+            "noJunk": true
+          }
+        }
+      },
+      "f2": {
+        "r100": {
+          "seed": 123,
+          "name": "Outside",
+          "lightReduction": 40,
+          "type": "office",
+          "rand": "Trash",
+          "randRate": "heavy",
+          "cont1": {
+            "desc": "Footlocker",
+            "cnt": {
+              "$expr": "new Array(\"SCARH\",\"ammo762_60\")"
+            }
+          },
+          "cont2": {
+            "desc": "Footlocker",
+            "cnt": {
+              "$expr": "new Array(\"FAL\",\"armyTop\",\"armyBottom\")"
+            },
+            "locked": true,
+            "lockDiff": "hard"
+          },
+          "cont3": {
+            "desc": "Weapons Cage",
+            "cnt": {
+              "$expr": "new Array(\"M24_scope\",\"explosivesC4\",\"explosivesC4\",\"explosivesC4\")"
+            },
+            "noJunk": true,
+            "locked": true,
+            "hasKey": true,
+            "lockDiff": "very hard"
+          },
+          "cont4": {
+            "desc": "Equipment Rack",
+            "cnt": {
+              "$expr": "new Array(\"kevlarVestArmy\",\"armyKevlar\",\"kevlarVestArmy\",\"armyKevlar\")"
+            }
+          },
+          "cont5": {
+            "desc": "Locker",
+            "cnt": {
+              "$expr": "new Array(\"explosivesBlastingCap\")"
+            },
+            "noJunk": true
+          }
+        },
+        "r200": {
+          "seed": 1244,
+          "name": "Outside",
+          "lightReduction": 60,
+          "type": "office",
+          "rand": "Trash",
+          "randRate": "heavy",
+          "cont1": {
+            "desc": "Footlocker",
+            "cnt": {
+              "$expr": "new Array(\"explosivesTimer\")"
+            },
+            "noJunk": true
+          },
+          "cont2": {
+            "desc": "Storage",
+            "cnt": {
+              "$expr": "new Array(\"armyCageKey\")"
+            }
+          },
+          "cont3": {
+            "desc": "Filing Cabinet",
+            "cnt": []
+          },
+          "cont4": {
+            "desc": "Filing Cabinet",
+            "cnt": []
+          },
+          "cont5": {
+            "desc": "Filing Cabinet",
+            "cnt": []
+          }
+        }
+      }
+    },
+    "b2": {
+      "name": {
+        "$expr": "l14.s2.b0.name"
+      }
+    },
+    "b3": {},
+    "b4": {},
+    "b5": {},
+    "b6": {}
+  }
+}

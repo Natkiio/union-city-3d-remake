@@ -1,0 +1,1652 @@
+{
+  "ref": "section11",
+  "danger": 11,
+  "startLoc": "l11_s1_b0_f0_r1",
+  "startLocName": "MAIN ST - CENTRAL BUILDING",
+  "endLoc": "l11_s4_b0_f0_r1",
+  "endLocName": "PARK BLVD - PAWN SHOP",
+  "s1": {
+    "b0": {
+      "name": "MAIN ST",
+      "f0": {
+        "r1": {
+          "seed": 156,
+          "name": "Outside",
+          "lightReduction": 0,
+          "type": "anywhere",
+          "rand": "Trash",
+          "randRate": "heavy",
+          "outside": true
+        }
+      }
+    },
+    "b1": {
+      "name": "Central Building",
+      "f1": {
+        "r1": {
+          "seed": 14523,
+          "name": "Outside",
+          "lightReduction": 50,
+          "type": "office",
+          "rand": "Trash",
+          "randRate": "heavy",
+          "cont1": {
+            "desc": "Footlocker",
+            "cnt": {
+              "$expr": "new Array(\"ammo556_35\",\"ammo762_20\")"
+            },
+            "noJunk": true
+          },
+          "cont2": {
+            "desc": "Footlocker",
+            "cnt": [],
+            "noJunk": true
+          },
+          "cont3": {
+            "desc": "Ammunition Box",
+            "cnt": [],
+            "noJunk": true
+          }
+        },
+        "r2": {
+          "seed": 14523,
+          "name": "Outside",
+          "lightReduction": 50,
+          "type": "office",
+          "rand": "Trash",
+          "randRate": "heavy",
+          "cont1": {
+            "desc": "Ammunition Box",
+            "cnt": {
+              "$expr": "new Array(\"ammo556_40\")"
+            },
+            "noJunk": true
+          }
+        }
+      },
+      "f2": {
+        "r0": {
+          "seed": 4646,
+          "name": "Outside",
+          "lightReduction": 20,
+          "type": "office",
+          "rand": "Trash",
+          "randRate": "light",
+          "cont1": {
+            "desc": "Desk",
+            "cnt": {
+              "$expr": "new Array(\"cash_60\")"
+            },
+            "noJunk": true
+          },
+          "cont2": {
+            "desc": "Desk",
+            "cnt": {
+              "$expr": "new Array(\"brokenPen\",\"files\",\"scrapPaper\")"
+            },
+            "noJunk": true
+          },
+          "cont3": {
+            "desc": "Desk",
+            "cnt": {
+              "$expr": "new Array(\"cash_5\")"
+            },
+            "noJunk": true
+          },
+          "cont4": {
+            "desc": "Filing Cabinets",
+            "cnt": [],
+            "noJunk": true
+          },
+          "cont5": {
+            "desc": "Desk",
+            "cnt": {
+              "$expr": "new Array(\"files\",\"scrapPaper\")"
+            },
+            "noJunk": true
+          }
+        },
+        "r1": {
+          "seed": 4646,
+          "name": "Outside",
+          "lightReduction": 30,
+          "type": "office",
+          "rand": "Trash",
+          "randRate": "light",
+          "cont1": {
+            "desc": "Desk",
+            "cnt": {
+              "$expr": "new Array(\"cash_5\")"
+            },
+            "noJunk": true
+          },
+          "cont2": {
+            "desc": "Filing Cabinet",
+            "cnt": {
+              "$expr": "new Array(\"brokenPen\",\"book\")"
+            },
+            "noJunk": true
+          },
+          "cont3": {
+            "desc": "Desk",
+            "cnt": {
+              "$expr": "new Array(\"noDoze\",\"pills\")"
+            },
+            "noJunk": true
+          },
+          "cont4": {
+            "desc": "Desk",
+            "cnt": {
+              "$expr": "new Array(\"scrapPaper\",\"magazine\")"
+            },
+            "noJunk": true
+          },
+          "cont5": {
+            "desc": "Desk",
+            "cnt": {
+              "$expr": "new Array(\"cash_20\")"
+            },
+            "noJunk": true
+          }
+        },
+        "r2": {
+          "seed": 4646,
+          "name": "Outside",
+          "lightReduction": 20,
+          "type": "office",
+          "rand": "Trash",
+          "randRate": "light",
+          "cont1": {
+            "desc": "Desk",
+            "cnt": {
+              "$expr": "new Array(\"book\")"
+            },
+            "noJunk": true
+          },
+          "cont2": {
+            "desc": "Desk",
+            "cnt": {
+              "$expr": "new Array(\"smarts\",\"cash_30\")"
+            },
+            "noJunk": true
+          },
+          "cont3": {
+            "desc": "Desk",
+            "cnt": [],
+            "noJunk": true
+          },
+          "cont4": {
+            "desc": "Desk",
+            "cnt": {
+              "$expr": "new Array(\"files\",\"scrapPaper\")"
+            },
+            "noJunk": true
+          },
+          "cont5": {
+            "desc": "Desk",
+            "cnt": {
+              "$expr": "new Array(\"cash_10\")"
+            },
+            "noJunk": true
+          }
+        }
+      }
+    },
+    "b2": {
+      "name": "Whistler Hotel",
+      "f1": {
+        "r0": {
+          "seed": 868,
+          "name": "Outside",
+          "lightReduction": 50,
+          "type": "office",
+          "rand": "Trash",
+          "randRate": "light",
+          "cont1": {
+            "desc": "Filing Cabinet",
+            "cnt": {
+              "$expr": "new Array(\"scrapPaper\",\"security\")"
+            }
+          },
+          "cont2": {
+            "desc": "Desk Cupboard",
+            "cnt": {
+              "$expr": "new Array(\"brokenPen\",\"kitchenKnife\",\"tauron\",\"ammo9mm_12\")"
+            }
+          },
+          "cont3": {
+            "desc": "Desk Drawer",
+            "cnt": {
+              "$expr": "new Array(\"hotelKey403\")"
+            }
+          }
+        },
+        "r1": {
+          "seed": 9865,
+          "name": "Outside",
+          "lightReduction": 50,
+          "type": "anywhere",
+          "rand": "Trash",
+          "randRate": "medium"
+        }
+      },
+      "f2": {
+        "r1": {
+          "seed": 986,
+          "name": "Outside",
+          "lightReduction": 50,
+          "type": "kitchen",
+          "rand": "Trash",
+          "randRate": "heavy",
+          "cont1": {
+            "desc": "Overturned Cupboard",
+            "cnt": {
+              "$expr": "new Array(\"cleaver\",\"plate\")"
+            }
+          }
+        },
+        "r203": {
+          "seed": 5435,
+          "name": "Outside",
+          "lightReduction": 50,
+          "type": "anywhere",
+          "rand": "Trash",
+          "randRate": "light",
+          "cont1": {
+            "desc": "Bedside Table",
+            "cnt": {
+              "$expr": "new Array(\"book\")"
+            }
+          },
+          "cont2": {
+            "desc": "Bedside Table",
+            "cnt": {
+              "$expr": "new Array(\"cash_25\")"
+            }
+          }
+        },
+        "r2031": {
+          "seed": 5435,
+          "name": "Outside",
+          "lightReduction": 50,
+          "type": "bathroom",
+          "rand": "Trash",
+          "randRate": "light",
+          "cont1": {
+            "desc": "Medicine Cabinet",
+            "cnt": {
+              "$expr": "new Array(\"noDoze\")"
+            },
+            "noJunk": true
+          }
+        },
+        "r204": {
+          "seed": 5435,
+          "name": "Outside",
+          "lightReduction": 50,
+          "type": "anywhere",
+          "rand": "Trash",
+          "randRate": "light",
+          "cont1": {
+            "desc": "Bedside Table",
+            "cnt": {
+              "$expr": "new Array(\"blades\")"
+            }
+          },
+          "cont2": {
+            "desc": "Bedside Table",
+            "cnt": {
+              "$expr": "new Array(\"cash_5\")"
+            }
+          },
+          "cont3": {
+            "desc": "Suitcase",
+            "cnt": {
+              "$expr": "new Array(\"shirtCheckerBlue\")"
+            }
+          }
+        },
+        "r2041": {
+          "seed": 5435,
+          "name": "Outside",
+          "lightReduction": 50,
+          "type": "bathroom",
+          "rand": "Trash",
+          "randRate": "light",
+          "cont1": {
+            "desc": "Medicine Cabinet",
+            "cnt": {
+              "$expr": "new Array(\"toothPaste\")"
+            },
+            "noJunk": true
+          }
+        }
+      },
+      "f3": {
+        "r1": {
+          "seed": 182,
+          "name": "Outside",
+          "lightReduction": 50,
+          "type": "anywhere",
+          "rand": "Trash",
+          "randRate": "heavy",
+          "cont1": {
+            "desc": "Desktop",
+            "cnt": {
+              "$expr": "new Array(\"hospitalStore\")"
+            }
+          }
+        },
+        "r301": {
+          "seed": 5435,
+          "name": "Outside",
+          "lightReduction": 50,
+          "type": "anywhere",
+          "rand": "Trash",
+          "randRate": "light",
+          "cont1": {
+            "desc": "Bedside Table",
+            "cnt": {
+              "$expr": "new Array(\"capBlack\")"
+            }
+          },
+          "cont2": {
+            "desc": "Bedside Table",
+            "cnt": {
+              "$expr": "new Array(\"tshirtBlue\")"
+            }
+          },
+          "cont3": {
+            "desc": "Suitcase",
+            "cnt": {
+              "$expr": "new Array(\"cash_200\",\"scrapPaper\",\"brokenPen\")"
+            },
+            "noJunk": true
+          }
+        },
+        "r3011": {
+          "seed": 5435,
+          "name": "Outside",
+          "lightReduction": 50,
+          "type": "bathroom",
+          "rand": "Trash",
+          "randRate": "light",
+          "cont1": {
+            "desc": "Medicine Cabinet",
+            "cnt": {
+              "$expr": "new Array(\"bandage\")"
+            },
+            "noJunk": true
+          }
+        },
+        "r302": {
+          "seed": 5435,
+          "name": "Outside",
+          "lightReduction": 50,
+          "type": "anywhere",
+          "rand": "Trash",
+          "randRate": "light",
+          "cont1": {
+            "desc": "Bedside Table",
+            "cnt": []
+          },
+          "cont2": {
+            "desc": "Bedside Table",
+            "cnt": []
+          },
+          "cont3": {
+            "desc": "Suitcases",
+            "cnt": {
+              "$expr": "new Array(\"shoeBrown\",\"pantsBrown\")"
+            }
+          }
+        },
+        "r3021": {
+          "seed": 5435,
+          "name": "Outside",
+          "lightReduction": 50,
+          "type": "bathroom",
+          "rand": "Trash",
+          "randRate": "light",
+          "cont1": {
+            "desc": "Medicine Cabinet",
+            "cnt": [],
+            "noJunk": true
+          },
+          "cont2": {
+            "desc": "Trash Bag",
+            "cnt": {
+              "$expr": "new Array(\"scrapPaper\",\"towel\")"
+            }
+          }
+        },
+        "r304": {
+          "seed": 5435,
+          "name": "Outside",
+          "lightReduction": 50,
+          "type": "anywhere",
+          "rand": "Trash",
+          "randRate": "light",
+          "cont1": {
+            "desc": "Bedside Table",
+            "cnt": []
+          },
+          "cont2": {
+            "desc": "Bedside Table",
+            "cnt": {
+              "$expr": "new Array(\"book\",\"cash_23\")"
+            }
+          },
+          "cont3": {
+            "desc": "Suitcases",
+            "cnt": {
+              "$expr": "new Array(\"shirtBlue\",\"pantsGrey\")"
+            }
+          }
+        },
+        "r3041": {
+          "seed": 5435,
+          "name": "Outside",
+          "lightReduction": 50,
+          "type": "bathroom",
+          "rand": "Trash",
+          "randRate": "light",
+          "cont1": {
+            "desc": "Medicine Cabinet",
+            "cnt": {
+              "$expr": "new Array(\"pills\",\"shampoo\")"
+            },
+            "noJunk": true
+          },
+          "cont2": {
+            "desc": "Vent",
+            "cnt": {
+              "$expr": "new Array(\"cash_100\")"
+            }
+          }
+        }
+      },
+      "f4": {
+        "r1": {
+          "seed": 865,
+          "name": "Outside",
+          "lightReduction": 50,
+          "type": "anywhere",
+          "rand": "Trash",
+          "randRate": "heavy",
+          "lockedDoors": {
+            "$expr": "new Array(\"room403\")"
+          },
+          "needsKey": {
+            "$expr": "new Array(false)"
+          },
+          "lockDiff": {
+            "$expr": "new Array(\"hard\")"
+          }
+        },
+        "r401": {
+          "seed": 5435,
+          "name": "Outside",
+          "lightReduction": 50,
+          "type": "anywhere",
+          "rand": "Trash",
+          "randRate": "light",
+          "cont1": {
+            "desc": "Bedside Table",
+            "cnt": []
+          },
+          "cont2": {
+            "desc": "Bedside Table",
+            "cnt": {
+              "$expr": "new Array(\"cash_15\")"
+            }
+          },
+          "cont3": {
+            "desc": "Suitcase",
+            "cnt": []
+          }
+        },
+        "r4011": {
+          "seed": 5435,
+          "name": "Outside",
+          "lightReduction": 50,
+          "type": "bathroom",
+          "rand": "Trash",
+          "randRate": "light",
+          "cont1": {
+            "desc": "Medicine Cabinet",
+            "cnt": [],
+            "noJunk": true
+          }
+        },
+        "r402": {
+          "seed": 5435,
+          "name": "Outside",
+          "lightReduction": 50,
+          "type": "anywhere",
+          "rand": "Trash",
+          "randRate": "light",
+          "cont1": {
+            "desc": "Box",
+            "cnt": {
+              "$expr": "new Array(\"clawHammer_heavy\",\"nails\",\"bolts\")"
+            }
+          },
+          "cont2": {
+            "desc": "Box",
+            "cnt": {
+              "$expr": "new Array(\"metalSheet\")"
+            }
+          },
+          "cont3": {
+            "desc": "Suitcase",
+            "cnt": []
+          }
+        },
+        "r4021": {
+          "seed": 5435,
+          "name": "Outside",
+          "lightReduction": 50,
+          "type": "bathroom",
+          "rand": "Trash",
+          "randRate": "light",
+          "cont1": {
+            "desc": "Vent",
+            "cnt": []
+          }
+        },
+        "r403": {
+          "seed": 8463,
+          "name": "Outside",
+          "lightReduction": 50,
+          "type": "anywhere",
+          "rand": "Trash",
+          "randRate": "light",
+          "body1": {
+            "type": "civilian",
+            "pose": "deadSit",
+            "facing": "right"
+          },
+          "cont1": {
+            "desc": "Bedside Table",
+            "cnt": {
+              "$expr": "new Array(\"book\")"
+            },
+            "noJunk": true
+          },
+          "cont2": {
+            "desc": "Bedside Table",
+            "cnt": {
+              "$expr": "new Array(\"glock_extendedMag\",\"ammo9mm_32\")"
+            },
+            "noJunk": true
+          },
+          "cont3": {
+            "desc": "Suitcase",
+            "cnt": {
+              "$expr": "new Array(\"cash_350\",\"suitGrey\",\"pantsGrey\",\"fedoraGrey\")"
+            },
+            "noJunk": true
+          }
+        },
+        "r4031": {
+          "seed": 846,
+          "name": "Outside",
+          "lightReduction": 50,
+          "type": "bathroom",
+          "rand": "Trash",
+          "randRate": "light",
+          "body1": {
+            "type": "civilian",
+            "pose": "deadSit2",
+            "facing": "left"
+          },
+          "cont1": {
+            "desc": "Medicine Cabinet",
+            "cnt": {
+              "$expr": "new Array(\"medkit\")"
+            },
+            "noJunk": true
+          }
+        },
+        "r404": {
+          "seed": 5435,
+          "name": "Outside",
+          "lightReduction": 50,
+          "type": "anywhere",
+          "rand": "Trash",
+          "randRate": "light",
+          "body1": {
+            "type": "civilian",
+            "pose": "deadSlumpBed"
+          },
+          "cont1": {
+            "desc": "Bedside Table",
+            "cnt": []
+          },
+          "cont2": {
+            "desc": "Bedside Table",
+            "cnt": []
+          },
+          "cont3": {
+            "desc": "Suitcase",
+            "cnt": {
+              "$expr": "new Array(\"shoeWhite\")"
+            }
+          }
+        },
+        "r4041": {
+          "seed": 5435,
+          "name": "Outside",
+          "lightReduction": 50,
+          "type": "bathroom",
+          "rand": "Trash",
+          "randRate": "light",
+          "cont1": {
+            "desc": "Medicine Cabinet",
+            "cnt": [],
+            "noJunk": true
+          }
+        }
+      },
+      "f5": {
+        "r1": {
+          "seed": 244,
+          "name": "Outside",
+          "lightReduction": 0,
+          "type": "anywhere",
+          "rand": "Trash",
+          "randRate": "light",
+          "outside": true,
+          "safeHouse": true,
+          "cont1": {
+            "desc": "Ammo Stockpile",
+            "cnt": {
+              "$expr": "new Array(\"ammoshotgun_30\",\"ammo556_30\",\"ammo9mm_50\")"
+            },
+            "noJunk": true
+          },
+          "cont2": {
+            "desc": "Food Stock",
+            "cnt": {
+              "$expr": "new Array(\"pasta\",\"cereal\")"
+            },
+            "noJunk": true
+          },
+          "cont3": {
+            "desc": "Footlocker",
+            "cnt": {
+              "$expr": "new Array(\"hunter\",\"glock\")"
+            },
+            "noJunk": true
+          },
+          "cont4": {
+            "desc": "First Aid Box",
+            "cnt": {
+              "$expr": "new Array(\"bandage\",\"medkit\")"
+            },
+            "noJunk": true
+          }
+        }
+      }
+    },
+    "b3": {
+      "name": "Union Security"
+    },
+    "b4": {
+      "name": "Warehouse"
+    },
+    "b5": {},
+    "b6": {}
+  },
+  "s2": {
+    "b0": {
+      "name": "LINCOLN AVE",
+      "f0": {
+        "r1": {
+          "seed": 156,
+          "name": "Outside",
+          "lightReduction": 0,
+          "type": "anywhere",
+          "rand": "Trash",
+          "randRate": "heavy",
+          "outside": true,
+          "cont1": {
+            "desc": "Footlocker",
+            "cnt": {
+              "$expr": "new Array(\"M79\",\"ammo40mmGrenade_3\")"
+            },
+            "noJunk": true
+          }
+        }
+      }
+    },
+    "b1": {
+      "name": "Gas Station",
+      "f1": {
+        "r1": {
+          "seed": 8909,
+          "name": "Outside",
+          "lightReduction": 40,
+          "type": "anywhere",
+          "rand": "Trash",
+          "randRate": "light",
+          "cont1": {
+            "desc": "Store Shelf",
+            "cnt": {
+              "$expr": "new Array(\"chocolate\",\"chips\")"
+            },
+            "noJunk": true
+          },
+          "cont2": {
+            "desc": "Store Shelf",
+            "cnt": {
+              "$expr": "new Array(\"cookies\",\"jelly\")"
+            },
+            "noJunk": true
+          },
+          "cont3": {
+            "desc": "Store Shelf",
+            "cnt": {
+              "$expr": "new Array(\"soupBeef\",\"soupChicken\",\"soupVegetable\")"
+            },
+            "noJunk": true
+          },
+          "cont4": {
+            "desc": "Store Shelf",
+            "cnt": {
+              "$expr": "new Array(\"crackers\",\"spam\")"
+            },
+            "noJunk": true
+          },
+          "cont5": {
+            "desc": "Store Shelf",
+            "cnt": {
+              "$expr": "new Array(\"instantNoodles\",\"instantNoodles\")"
+            },
+            "noJunk": true
+          },
+          "cont6": {
+            "desc": "Vending Machine",
+            "cnt": {
+              "$expr": "new Array(\"sodaCan\",\"cash_25\")"
+            },
+            "noJunk": true
+          },
+          "cont7": {
+            "desc": "Cash Register",
+            "cnt": {
+              "$expr": "new Array(\"cash_47\")"
+            },
+            "noJunk": true
+          }
+        }
+      }
+    },
+    "b2": {
+      "name": "Boothtique",
+      "f1": {
+        "r1": {
+          "seed": 244,
+          "name": "Outside",
+          "lightReduction": 50,
+          "type": "anywhere",
+          "rand": "Trash",
+          "randRate": "light",
+          "cont1": {
+            "desc": "Boxes",
+            "cnt": {
+              "$expr": "new Array(\"longSleeveWhite\",\"longSleeveGreen\",\"tshirtWhite\")"
+            },
+            "noJunk": true
+          },
+          "cont2": {
+            "desc": "Boxes",
+            "cnt": {
+              "$expr": "new Array(\"tshirtBlack\",\"tshirtBrown\")"
+            },
+            "noJunk": true
+          },
+          "cont3": {
+            "desc": "Boxes",
+            "cnt": {
+              "$expr": "new Array(\"tshirtBlue\",\"tshirtRed\",\"longSleeveRed\")"
+            },
+            "noJunk": true
+          },
+          "cont4": {
+            "desc": "CameoCrab Boxes",
+            "cnt": {
+              "$expr": "new Array(\"shirtCheckerYellow\",\"shirtCheckerYellow\")"
+            },
+            "noJunk": true
+          }
+        }
+      }
+    },
+    "b3": {
+      "name": "Mechanics"
+    }
+  },
+  "s3": {
+    "b0": {
+      "name": "10th AVE",
+      "f0": {
+        "r1": {
+          "seed": 156,
+          "name": "Outside",
+          "lightReduction": 0,
+          "type": "anywhere",
+          "rand": "Trash",
+          "randRate": "heavy",
+          "outside": true,
+          "NPCs": {
+            "$expr": "new Array(\"newBarry\")"
+          },
+          "NPC_x": {
+            "$expr": "new Array(\"2100\")"
+          },
+          "NPCPose": {
+            "$expr": "new Array(\"standPistol\")"
+          },
+          "NPCFacing": {
+            "$expr": "new Array(\"right\")"
+          },
+          "enemy": {
+            "$expr": "new Array(\"HERCsoldierHeavyFriendly\",\"HERCsoldierHeavyFriendly\")"
+          },
+          "enemyX": {
+            "$expr": "new Array(\"780\",\"1150\")"
+          }
+        }
+      }
+    },
+    "b1": {
+      "name": "Harrison & Harrison",
+      "f1": {
+        "r0": {
+          "seed": 1655,
+          "name": "Outside",
+          "lightReduction": 40,
+          "type": "office",
+          "rand": "Trash",
+          "randRate": "light",
+          "cont1": {
+            "desc": "Trash",
+            "cnt": {
+              "$expr": "new Array(\"scrapPaper\")"
+            }
+          }
+        },
+        "r1": {
+          "seed": 244,
+          "name": "Outside",
+          "lightReduction": 50,
+          "type": "office",
+          "rand": "Trash",
+          "randRate": "light",
+          "cont1": {
+            "desc": "Vending Machine",
+            "cnt": {
+              "$expr": "new Array(\"cash_4\",\"sodaCan\")"
+            },
+            "noJunk": true
+          }
+        },
+        "r2": {
+          "seed": 9886,
+          "name": "Outside",
+          "lightReduction": 50,
+          "type": "office",
+          "rand": "Trash",
+          "randRate": "light",
+          "cont1": {
+            "desc": "Boxes",
+            "cnt": {
+              "$expr": "new Array(\"magazine\",\"magazine\",\"magazine\")"
+            }
+          },
+          "cont2": {
+            "desc": "Shelf",
+            "cnt": {
+              "$expr": "new Array(\"security\")"
+            }
+          }
+        },
+        "r3": {
+          "seed": 9886,
+          "name": "Outside",
+          "lightReduction": 50,
+          "type": "office",
+          "rand": "Trash",
+          "randRate": "light",
+          "cont1": {
+            "desc": "Shelf",
+            "cnt": {
+              "$expr": "new Array(\"bandage\")"
+            }
+          },
+          "cont2": {
+            "desc": "Filing Cabinets",
+            "cnt": {
+              "$expr": "new Array(\"scrapPaper\")"
+            }
+          },
+          "cont3": {
+            "desc": "Desk",
+            "cnt": {
+              "$expr": "new Array(\"paperWeight\",\"brokenPen\",\"cash_13\",\"book\")"
+            }
+          },
+          "cont4": {
+            "desc": "Shelf",
+            "cnt": []
+          },
+          "cont5": {
+            "desc": "Shelf",
+            "cnt": []
+          },
+          "cont6": {
+            "desc": "Books",
+            "cnt": {
+              "$expr": "new Array(\"book\",\"smarts\",\"searching\",\"magazine\",\"book\")"
+            }
+          },
+          "cont7": {
+            "desc": "Filing Cabinets",
+            "cnt": []
+          },
+          "cont8": {
+            "desc": "Boxes",
+            "cnt": []
+          },
+          "cont9": {
+            "desc": "Trash",
+            "cnt": []
+          },
+          "cont10": {
+            "desc": "Filing Cabinets",
+            "cnt": []
+          }
+        }
+      },
+      "f0": {
+        "r3": {
+          "seed": 888,
+          "name": "Outside",
+          "lightReduction": 60,
+          "type": "basement",
+          "rand": "Trash",
+          "randRate": "light",
+          "safeHouse": true,
+          "NPCs": {
+            "$expr": "new Array(\"safeRoomBarry\")"
+          },
+          "NPC_x": {
+            "$expr": "new Array(\"680\")"
+          },
+          "NPCPose": {
+            "$expr": "new Array(\"standPistol\")"
+          },
+          "NPCFacing": {
+            "$expr": "new Array(\"right\")"
+          },
+          "lockedDoors": {
+            "$expr": "new Array(\"room500\")"
+          },
+          "needsKey": {
+            "$expr": "new Array(true)"
+          },
+          "lockDiff": {
+            "$expr": "new Array(\"veryHard\")"
+          },
+          "cont1": {
+            "desc": "Box",
+            "cnt": {
+              "$expr": "new Array(\"crowbar_heavy\")"
+            }
+          }
+        },
+        "r500": {
+          "seed": 1111,
+          "name": "Outside",
+          "lightReduction": 60,
+          "type": "basement"
+        },
+        "r501": {
+          "seed": 1222,
+          "name": "Outside",
+          "lightReduction": 60,
+          "type": "basement"
+        },
+        "r502": {
+          "seed": 4356,
+          "name": "Outside",
+          "lightReduction": 60,
+          "type": "basement"
+        },
+        "r503": {
+          "seed": 156,
+          "name": "Outside",
+          "lightReduction": 0,
+          "type": "anywhere",
+          "rand": "Trash",
+          "randRate": "light",
+          "safeHouse": true,
+          "outside": true,
+          "enemy": {
+            "$expr": "new Array(\"HERCsoldier\",\"HERCsoldier\")"
+          },
+          "enemyX": {
+            "$expr": "new Array(\"600\",\"1500\")"
+          },
+          "cont1": {
+            "desc": "Footlocker",
+            "cnt": {
+              "$expr": "new Array(\"M4A1\",\"ammo556_60\")"
+            },
+            "noJunk": true
+          }
+        },
+        "r504": {
+          "seed": 12441,
+          "name": "Outside",
+          "lightReduction": 40,
+          "type": "anywhere",
+          "safeHouse": true,
+          "cont1": {
+            "desc": "First Aid Kit",
+            "cnt": {
+              "$expr": "new Array(\"bandage\")"
+            },
+            "noJunk": true
+          },
+          "cont2": {
+            "desc": "Shelf",
+            "cnt": [],
+            "noJunk": true
+          },
+          "cont3": {
+            "desc": "Footlocker",
+            "cnt": {
+              "$expr": "new Array(\"M9\",\"ammo9mm_50\")"
+            },
+            "noJunk": true
+          },
+          "cont4": {
+            "desc": "Bookshelf",
+            "cnt": {
+              "$expr": "new Array(\"survival\",\"fitness\",\"automatics\")"
+            },
+            "noJunk": true
+          }
+        },
+        "r505": {
+          "seed": 6634,
+          "name": "Outside",
+          "lightReduction": 40,
+          "type": "office",
+          "safeHouse": true,
+          "cont1": {
+            "desc": "Bookshelf",
+            "cnt": {
+              "$expr": "new Array(\"firstAid\")"
+            },
+            "noJunk": true
+          },
+          "cont2": {
+            "desc": "Boxes",
+            "cnt": {
+              "$expr": "new Array(\"mre\",\"mre\",\"mre\")"
+            },
+            "noJunk": true
+          },
+          "cont3": {
+            "desc": "Bookshelf",
+            "cnt": {
+              "$expr": "new Array(\"book\")"
+            }
+          },
+          "cont4": {
+            "desc": "Footlocker",
+            "cnt": {
+              "$expr": "new Array(\"ammo45_50\",\"ammo556_50\",\"ammo9mm_50\")"
+            },
+            "noJunk": true,
+            "locked": true,
+            "lockDiff": "normal"
+          }
+        },
+        "r506": {
+          "seed": 156,
+          "name": "Outside",
+          "lightReduction": 0,
+          "type": "anywhere",
+          "rand": "Trash",
+          "randRate": "light",
+          "safeHouse": true,
+          "outside": true,
+          "enemy": {
+            "$expr": "new Array(\"HERCsoldier\",\"HERCsoldier\")"
+          },
+          "enemyX": {
+            "$expr": "new Array(\"450\",\"1550\")"
+          }
+        },
+        "r507": {
+          "seed": 156,
+          "name": "Outside",
+          "lightReduction": 0,
+          "type": "anywhere",
+          "rand": "Trash",
+          "randRate": "light",
+          "safeHouse": true,
+          "outside": true,
+          "cont1": {
+            "desc": "Key Rack",
+            "cnt": {
+              "$expr": "new Array(\"questHERCkey\")"
+            },
+            "noJunk": true
+          },
+          "NPCs": {
+            "$expr": "new Array(\"Partner\")"
+          },
+          "NPC_x": {
+            "$expr": "new Array(\"710\")"
+          },
+          "NPCPose": {
+            "$expr": "new Array(\"hurt\")"
+          },
+          "NPCFacing": {
+            "$expr": "new Array(\"right\")"
+          }
+        }
+      }
+    },
+    "b2": {
+      "name": "Medical Clinic",
+      "f1": {
+        "r1": {
+          "name": "Outside",
+          "lightReduction": 40,
+          "type": "office",
+          "rand": "Trash",
+          "randRate": "light",
+          "cont1": {
+            "desc": "Filing Cabinet",
+            "cnt": []
+          },
+          "cont2": {
+            "desc": "Books",
+            "cnt": {
+              "$expr": "new Array(\"firstAid\")"
+            }
+          },
+          "cont3": {
+            "desc": "Bag",
+            "cnt": []
+          }
+        },
+        "r2": {
+          "name": "Outside",
+          "lightReduction": 40,
+          "type": "anywhere",
+          "rand": "Trash",
+          "randRate": "light",
+          "lockedDoors": {
+            "$expr": "new Array(\"room202\")"
+          },
+          "needsKey": {
+            "$expr": "new Array(true)"
+          },
+          "lockDiff": {
+            "$expr": "new Array(\"hard\")"
+          },
+          "cont1": {
+            "desc": "Handbag",
+            "cnt": {
+              "$expr": "new Array(\"cash_30\",\"hairClip\")"
+            },
+            "noJunk": true
+          }
+        },
+        "r200": {
+          "name": "Outside",
+          "lightReduction": 40,
+          "type": "office",
+          "rand": "Trash",
+          "randRate": "light",
+          "cont1": {
+            "desc": "Desk Drawer",
+            "cnt": []
+          },
+          "cont2": {
+            "desc": "Books",
+            "cnt": {
+              "$expr": "new Array(\"book\",\"book\",\"blades\")"
+            }
+          },
+          "cont3": {
+            "desc": "Desk Drawer",
+            "cnt": {
+              "$expr": "new Array(\"cash_10\")"
+            }
+          },
+          "cont4": {
+            "desc": "Filing Cabinet",
+            "cnt": []
+          }
+        },
+        "r201": {
+          "name": "Outside",
+          "lightReduction": 40,
+          "type": "office",
+          "rand": "Trash",
+          "randRate": "light",
+          "cont1": {
+            "desc": "Desk Drawer",
+            "cnt": {
+              "$expr": "new Array(\"cash_35\")"
+            }
+          },
+          "cont2": {
+            "desc": "Desk Drawer",
+            "cnt": []
+          },
+          "cont3": {
+            "desc": "Books",
+            "cnt": {
+              "$expr": "new Array(\"firstAid\",\"searching\")"
+            }
+          },
+          "cont4": {
+            "desc": "Filing Cabinet",
+            "cnt": []
+          }
+        },
+        "r202": {
+          "name": "Outside",
+          "lightReduction": 40,
+          "type": "office",
+          "rand": "Trash",
+          "randRate": "light",
+          "cont1": {
+            "desc": "Bookcase",
+            "cnt": {
+              "$expr": "new Array(\"firstAid\",\"firstAid\",\"smarts\",\"fitness\",\"survival\")"
+            }
+          },
+          "cont2": {
+            "desc": "Cabinet",
+            "cnt": {
+              "$expr": "new Array(\"medkit\",\"medkit\",\"pills\",\"pills\",\"bandage\")"
+            }
+          },
+          "cont3": {
+            "desc": "Desk Drawer",
+            "cnt": []
+          },
+          "cont4": {
+            "desc": "Desk Drawer",
+            "cnt": {
+              "$expr": "new Array(\"cash_800\")"
+            }
+          },
+          "cont5": {
+            "desc": "Filing Cabinet",
+            "cnt": []
+          }
+        }
+      },
+      "f2": {
+        "r1": {
+          "name": "Outside",
+          "lightReduction": 40,
+          "type": "office",
+          "rand": "Trash",
+          "randRate": "light",
+          "cont1": {
+            "desc": "First Aid Kit",
+            "cnt": {
+              "$expr": "new Array(\"bandage\",\"tape\")"
+            },
+            "noJunk": true
+          },
+          "cont2": {
+            "desc": "Boxes",
+            "cnt": {
+              "$expr": "new Array(\"medicalMask\",\"medicalMask\",\"medicalMask\",\"medicalMask\")"
+            },
+            "noJunk": true
+          },
+          "cont3": {
+            "desc": "Books",
+            "cnt": {
+              "$expr": "new Array(\"book\",\"book\",\"firstAid\",\"magazine\")"
+            }
+          },
+          "cont4": {
+            "desc": "Boxes",
+            "cnt": {
+              "$expr": "new Array(\"medicalMask\",\"medicalMask\",\"medicalMask\",\"medicalMask\")"
+            },
+            "noJunk": true
+          }
+        },
+        "r2": {
+          "name": "Outside",
+          "lightReduction": 40,
+          "type": "office",
+          "rand": "Trash",
+          "randRate": "light",
+          "cont1": {
+            "desc": "Secure Cabinet",
+            "cnt": {
+              "$expr": "new Array(\"medkit\",\"medkit\",\"pills\",\"bandage\")"
+            },
+            "noJunk": true,
+            "locked": true,
+            "lockDiff": "hard"
+          },
+          "cont2": {
+            "desc": "Secure Cabinet",
+            "cnt": {
+              "$expr": "new Array(\"bandage\",\"pills\")"
+            },
+            "noJunk": true,
+            "locked": true,
+            "lockDiff": "normal"
+          },
+          "cont3": {
+            "desc": "Desk",
+            "cnt": []
+          },
+          "cont4": {
+            "desc": "Filing Cabinets",
+            "cnt": [],
+            "noJunk": true
+          },
+          "cont5": {
+            "desc": "Shelves",
+            "cnt": {
+              "$expr": "new Array(\"medicalMask\")"
+            }
+          },
+          "cont6": {
+            "desc": "Desk",
+            "cnt": {
+              "$expr": "new Array(\"cash_12\")"
+            },
+            "noJunk": true
+          }
+        }
+      }
+    },
+    "b3": {
+      "name": "Mechanics"
+    }
+  },
+  "s4": {
+    "b0": {
+      "name": "PARK BLVD",
+      "f0": {
+        "r1": {
+          "seed": 189565,
+          "name": "Outside",
+          "lightReduction": 0,
+          "type": "anywhere",
+          "rand": "Trash",
+          "randRate": "heavy",
+          "outside": true,
+          "cont1": {
+            "desc": "Vending Machine",
+            "cnt": {
+              "$expr": "new Array(\"cash_50\",\"chocolate\",\"chocolate\",\"chips\",\"chips\",\"sodaCan\",\"sodaCan\",\"water\")"
+            },
+            "noJunk": true
+          }
+        }
+      }
+    },
+    "b1": {
+      "name": "Earl of Burger"
+    },
+    "b2": {
+      "name": "UCPD Station",
+      "f1": {
+        "r0": {
+          "name": "Outside",
+          "lightReduction": 40,
+          "type": "anywhere",
+          "rand": "Trash",
+          "randRate": "light"
+        },
+        "r1": {
+          "name": "Outside",
+          "lightReduction": 40,
+          "type": "anywhere",
+          "rand": "Trash",
+          "randRate": "light"
+        },
+        "r2": {
+          "name": "Outside",
+          "lightReduction": 40,
+          "type": "anywhere",
+          "rand": "Trash",
+          "randRate": "light",
+          "cont1": {
+            "desc": "Books",
+            "cnt": {
+              "$expr": "new Array(\"security\",\"blunt\",\"pistols\",\"book\",\"book\")"
+            },
+            "noJunk": true
+          }
+        },
+        "r200": {
+          "name": "Outside",
+          "lightReduction": 40,
+          "type": "anywhere",
+          "rand": "Trash",
+          "randRate": "light"
+        },
+        "r201": {
+          "name": "Outside",
+          "lightReduction": 40,
+          "type": "anywhere",
+          "rand": "Trash",
+          "randRate": "light"
+        }
+      },
+      "f2": {
+        "r0": {
+          "name": "Outside",
+          "lightReduction": 40,
+          "type": "office",
+          "rand": "Trash",
+          "randRate": "light",
+          "lockedDoors": {
+            "$expr": "new Array(\"room1101\")"
+          },
+          "needsKey": {
+            "$expr": "new Array(false)"
+          },
+          "lockDiff": {
+            "$expr": "new Array(\"very hard\")"
+          }
+        },
+        "r110": {
+          "name": "Outside",
+          "lightReduction": 40,
+          "type": "office",
+          "rand": "Trash",
+          "randRate": "light",
+          "cont1": {
+            "desc": "Junk Pile",
+            "cnt": []
+          }
+        },
+        "r1101": {
+          "name": "Outside",
+          "lightReduction": 40,
+          "type": "office",
+          "rand": "Trash",
+          "randRate": "light",
+          "cont1": {
+            "desc": "Gun Locker",
+            "cnt": {
+              "$expr": "new Array(\"M4A1\",\"M4A1\",\"glock\",\"ammo556_50\",\"ammo556_50\",\"kevlarVest\")"
+            },
+            "noJunk": true
+          },
+          "cont2": {
+            "desc": "Gun Locker",
+            "cnt": {
+              "$expr": "new Array(\"ambrose\",\"ambrose\",\"UMP45\",\"ammo45_50\",\"ammoshotgun_50\")"
+            },
+            "noJunk": true
+          }
+        },
+        "r1": {
+          "name": "Outside",
+          "lightReduction": 40,
+          "type": "office",
+          "rand": "Trash",
+          "randRate": "light",
+          "cont1": {
+            "desc": "Desk",
+            "cnt": {
+              "$expr": "new Array(\"cash_15\")"
+            }
+          },
+          "cont2": {
+            "desc": "Filing Cabinets",
+            "cnt": []
+          },
+          "cont3": {
+            "desc": "Desk",
+            "cnt": {
+              "$expr": "new Array(\"fedoraBlack\")"
+            }
+          },
+          "cont4": {
+            "desc": "Filing Cabinet",
+            "cnt": []
+          },
+          "cont5": {
+            "desc": "Desk",
+            "cnt": {
+              "$expr": "new Array(\"cannedBeans\")"
+            }
+          }
+        },
+        "r100": {
+          "name": "Outside",
+          "lightReduction": 40,
+          "type": "office",
+          "rand": "Trash",
+          "randRate": "light",
+          "cont1": {
+            "desc": "Desk",
+            "cnt": {
+              "$expr": "new Array(\"cash_20\")"
+            }
+          },
+          "cont2": {
+            "desc": "Filing Cabinet",
+            "cnt": {
+              "$expr": "new Array(\"scrapPaper\")"
+            }
+          },
+          "cont3": {
+            "desc": "Secure Cabinet",
+            "cnt": {
+              "$expr": "new Array(\"blunt\",\"cash_55\",\"policeBaton\",\"UCPDcageKey\")"
+            },
+            "noJunk": true,
+            "locked": true,
+            "lockDiff": "easy"
+          }
+        },
+        "r2": {
+          "name": "Outside",
+          "lightReduction": 40,
+          "type": "office",
+          "rand": "Trash",
+          "randRate": "light",
+          "cont1": {
+            "desc": "Filing Cabinet",
+            "cnt": {
+              "$expr": "new Array(\"files\",\"scrapPaper\")"
+            }
+          }
+        },
+        "r200": {
+          "name": "Outside",
+          "lightReduction": 40,
+          "type": "office",
+          "rand": "Trash",
+          "randRate": "light",
+          "cont1": {
+            "desc": "Desk",
+            "cnt": {
+              "$expr": "new Array(\"tauron_scope\",\"ammo9mm_30\")"
+            }
+          },
+          "cont2": {
+            "desc": "Filing Cabinet",
+            "cnt": {
+              "$expr": "new Array(\"files\",\"scrapPaper\")"
+            }
+          }
+        },
+        "r201": {
+          "name": "Outside",
+          "lightReduction": 40,
+          "type": "office",
+          "rand": "Trash",
+          "randRate": "light",
+          "cont1": {
+            "desc": "Desk",
+            "cnt": {
+              "$expr": "new Array(\"files\")"
+            }
+          },
+          "cont2": {
+            "desc": "Filing Cabinet",
+            "cnt": {
+              "$expr": "new Array(\"files\",\"scrapPaper\",\"files\",\"scrapPaper\")"
+            }
+          }
+        }
+      }
+    },
+    "b3": {
+      "name": "King-O-Pawn",
+      "f1": {
+        "r1": {
+          "name": "Outside",
+          "lightReduction": 40,
+          "type": "anywhere",
+          "rand": "Trash",
+          "randRate": "light",
+          "isShop": true,
+          "shopSet": 2,
+          "safeHouse": true,
+          "NPCs": {
+            "$expr": "new Array(\"King\")"
+          },
+          "NPC_x": {
+            "$expr": "new Array(\"720\")"
+          },
+          "NPCPose": {
+            "$expr": "new Array(\"idle\")"
+          },
+          "NPCFacing": {
+            "$expr": "new Array(\"left\")"
+          }
+        }
+      }
+    }
+  }
+}

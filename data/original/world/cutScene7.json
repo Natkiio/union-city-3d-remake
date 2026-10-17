@@ -1,0 +1,33 @@
+{
+  "lockControls": false,
+  "action1": {
+    "func": "displayWorldSpeech",
+    "var1": "npc_JackWall",
+    "var2": "Timer is set!\rHere we go!",
+    "timing": 1
+  },
+  "action2": {
+    "func": "animateCharacter",
+    "var1": "wallExplosion",
+    "var2": "explode",
+    "timing": 4000
+  },
+  "action3": {
+    "func": "displayWorldSpeech",
+    "var1": "npc_JackWall",
+    "var2": "Go through kid, we\\'ll hold them here.",
+    "timing": 5000
+  },
+  "action4": {
+    "func": "displayWorldSpeech",
+    "var1": "npc_ShawnWall",
+    "var2": "We\\'ll meet you at the monument!",
+    "timing": 7000
+  },
+  "action5": {
+    "func": "displayWorldSpeech",
+    "var1": "npc_JackWall",
+    "var2": "Good luck, see you on the other side!",
+    "timing": 10000
+  }
+}

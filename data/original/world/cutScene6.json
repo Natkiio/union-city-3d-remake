@@ -1,0 +1,24 @@
+{
+  "lockControls": false,
+  "action1": {
+    "func": "displayWorldSpeech",
+    "var1": "player",
+    "var2": "Honey, you stay.",
+    "timing": 1
+  },
+  "action2": {
+    "func": "displayWorldSpeech",
+    "var1": "player",
+    "var2": "You\\'ll be safer here.\\rBesides, you\\'re hurt.",
+    "timing": 3000
+  },
+  "action3": {
+    "func": "setupAnNPCDirect",
+    "var1": "1",
+    "timing": 4
+  },
+  "action4": {
+    "func": "removePartner",
+    "timing": 6
+  }
+}

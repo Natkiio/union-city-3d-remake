@@ -1,0 +1,47 @@
+{
+  "item1": {
+    "ref": "MP5_specOps",
+    "cost": 800,
+    "num": 1
+  },
+  "item2": {
+    "ref": "M24",
+    "cost": 750,
+    "num": 2
+  },
+  "item3": {
+    "ref": "katana",
+    "cost": 1250,
+    "num": 3
+  },
+  "item4": {
+    "ref": "medkit",
+    "cost": 75,
+    "num": 4
+  },
+  "item5": {
+    "ref": "ammoarrow_30",
+    "cost": 30,
+    "num": 5
+  },
+  "item6": {
+    "ref": "ammo556_50",
+    "cost": 65,
+    "num": 6
+  },
+  "item7": {
+    "ref": "ammo762_50",
+    "cost": 100,
+    "num": 7
+  },
+  "item8": {
+    "ref": "ammo9mm_100",
+    "cost": 90,
+    "num": 8
+  },
+  "item9": {
+    "ref": "riotHelmetVisor",
+    "cost": 400,
+    "num": 9
+  }
+}

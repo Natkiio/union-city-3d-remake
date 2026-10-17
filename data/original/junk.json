@@ -1,0 +1,514 @@
+{
+  "cigarettes": {
+    "ref": "cigarettes",
+    "name": "Cigarettes",
+    "desc": "Packet of smokes.",
+    "effect": "",
+    "weight": 0.1,
+    "location": "anywhere"
+  },
+  "book": {
+    "ref": "book",
+    "name": "Book",
+    "desc": "A book on some topic.",
+    "effect": "",
+    "weight": 0.2,
+    "location": "anywhere"
+  },
+  "magazine": {
+    "ref": "magazine",
+    "name": "Magazine",
+    "desc": "Weekly gossip magazine.",
+    "effect": "",
+    "weight": 0.2,
+    "location": "anywhere"
+  },
+  "scrapPaper": {
+    "ref": "scrapPaper",
+    "name": "Scrap Paper",
+    "desc": "Torn piece of paper.",
+    "effect": "",
+    "weight": 0.1,
+    "location": "anywhere"
+  },
+  "brokenPen": {
+    "ref": "brokenPen",
+    "name": "Broken Pen",
+    "desc": "The whole ink section is missing.",
+    "effect": "",
+    "weight": 0.1,
+    "location": "anywhere"
+  },
+  "tissue": {
+    "ref": "tissue",
+    "name": "Tissue",
+    "desc": "For crying into.",
+    "effect": "",
+    "weight": 0.1,
+    "location": "anywhere"
+  },
+  "bottleCap": {
+    "ref": "bottleCap",
+    "name": "Bottle Cap",
+    "desc": "Wonder if these will be currency.",
+    "effect": "",
+    "weight": 0.1,
+    "location": "anywhere"
+  },
+  "coins": {
+    "ref": "coins",
+    "name": "Coins",
+    "desc": "Loose change.",
+    "effect": "",
+    "weight": 0.1,
+    "location": "anywhere"
+  },
+  "files": {
+    "ref": "files",
+    "name": "Files",
+    "desc": "Office files.",
+    "effect": "",
+    "weight": 0.1,
+    "location": "office"
+  },
+  "stapler": {
+    "ref": "stapler",
+    "name": "stapler",
+    "desc": "Office Stapler.",
+    "effect": "",
+    "weight": 0.4,
+    "location": "office"
+  },
+  "paperClips": {
+    "ref": "paperClips",
+    "name": "Paper Clips",
+    "desc": "Box of Paper Clips.",
+    "effect": "",
+    "weight": 0.2,
+    "location": "office"
+  },
+  "officeCigs": {
+    "ref": "officeCigs",
+    "name": "Cigarettes",
+    "desc": "Pack of cigarettes.",
+    "effect": "",
+    "weight": 0.4,
+    "location": "office"
+  },
+  "binder": {
+    "ref": "binder",
+    "name": "Binder",
+    "desc": "File binder.",
+    "effect": "",
+    "weight": 0.2,
+    "location": "office"
+  },
+  "papers": {
+    "ref": "papers",
+    "name": "Papers",
+    "desc": "Loose Papers.",
+    "effect": "",
+    "weight": 0.1,
+    "location": "office"
+  },
+  "newsPaper": {
+    "ref": "newsPaper",
+    "name": "Newspaper",
+    "desc": "Old Newspaper.",
+    "effect": "",
+    "weight": 0.1,
+    "location": "office"
+  },
+  "stamp": {
+    "ref": "stamp",
+    "name": "Stamp",
+    "desc": "\\'Invoiced\\' Stamp.",
+    "effect": "",
+    "weight": 0.2,
+    "location": "office"
+  },
+  "tapeDispenser": {
+    "ref": "tapeDispenser",
+    "name": "Tape Dispenser",
+    "desc": "No tape roll on it.",
+    "effect": "",
+    "weight": 0.5,
+    "location": "office"
+  },
+  "staples": {
+    "ref": "staples",
+    "name": "Box of Staples",
+    "desc": "200 x 26/6 for No. 10 Stapler.",
+    "effect": "",
+    "weight": 0.5,
+    "location": "office"
+  },
+  "adhesiveLabels": {
+    "ref": "adhesiveLabels",
+    "name": "Poster-It Notes",
+    "desc": "Large off-brand adhesive notes.",
+    "effect": "",
+    "weight": 0.2,
+    "location": "office"
+  },
+  "envelope": {
+    "ref": "envelope",
+    "name": "Envelope",
+    "desc": "An empty paper envelope.",
+    "effect": "",
+    "weight": 0.1,
+    "location": "office"
+  },
+  "holePunch": {
+    "ref": "holePunch",
+    "name": "Hole Punch",
+    "desc": "AKA - Confetti Maker.",
+    "effect": "",
+    "weight": 0.4,
+    "location": "office"
+  },
+  "printerInk": {
+    "ref": "printerInk",
+    "name": "Printer Ink",
+    "desc": "Cartridge of printer ink.",
+    "effect": "",
+    "weight": 0.2,
+    "location": "office"
+  },
+  "cup": {
+    "ref": "cup",
+    "name": "Cup",
+    "desc": "Ceramic cup.",
+    "effect": "",
+    "weight": 0.2,
+    "location": "kitchen"
+  },
+  "shotGlass": {
+    "ref": "shotGlass",
+    "name": "Shot Glass",
+    "desc": "Small standard shot glass.",
+    "effect": "",
+    "weight": 0.2,
+    "location": "kitchen"
+  },
+  "fork": {
+    "ref": "fork",
+    "name": "Fork",
+    "desc": "A fork.",
+    "effect": "",
+    "weight": 0.1,
+    "location": "kitchen"
+  },
+  "spoon": {
+    "ref": "spoon",
+    "name": "Spoon",
+    "desc": "A spoon.",
+    "effect": "",
+    "weight": 0.1,
+    "location": "kitchen"
+  },
+  "placemat": {
+    "ref": "placemat",
+    "name": "Place Mat",
+    "desc": "Mat for dinner tables.",
+    "effect": "",
+    "weight": 0.1,
+    "location": "kitchen"
+  },
+  "plate": {
+    "ref": "plate",
+    "name": "Dinner Plate",
+    "desc": "A dinner plate.",
+    "effect": "",
+    "weight": 0.5,
+    "location": "kitchen"
+  },
+  "bowl": {
+    "ref": "bowl",
+    "name": "Soup Bowl",
+    "desc": "A soup bowl.",
+    "effect": "",
+    "weight": 0.5,
+    "location": "kitchen"
+  },
+  "spatula": {
+    "ref": "spatula",
+    "name": "Spatula",
+    "desc": "For flipping eggs.",
+    "effect": "",
+    "weight": 0.2,
+    "location": "kitchen"
+  },
+  "woodenSpoon": {
+    "ref": "woodenSpoon",
+    "name": "Wooden Spoon",
+    "desc": "A well used wooden spoon.",
+    "effect": "",
+    "weight": 0.1,
+    "location": "kitchen"
+  },
+  "whisk": {
+    "ref": "whisk",
+    "name": "Whisk",
+    "desc": "For whisking things.",
+    "effect": "",
+    "weight": 0.2,
+    "location": "kitchen"
+  },
+  "eggBeater": {
+    "ref": "eggBeater",
+    "name": "Egg Beater",
+    "desc": "For beating eggs.",
+    "effect": "",
+    "weight": 0.2,
+    "location": "kitchen"
+  },
+  "bakingTray": {
+    "ref": "bakingTray",
+    "name": "Baking Tray",
+    "desc": "A muffin baking tray.",
+    "effect": "",
+    "weight": 0.2,
+    "location": "kitchen"
+  },
+  "cookingOil": {
+    "ref": "cookingOil",
+    "name": "Cooking Oil",
+    "desc": "Vegetable based cooking oil.",
+    "effect": "",
+    "weight": 1,
+    "location": "kitchen"
+  },
+  "dishLiquid": {
+    "ref": "dishLiquid",
+    "name": "Dishwashing Liquid",
+    "desc": "Lemony fresh dish liquid.",
+    "effect": "",
+    "weight": 0.5,
+    "location": "kitchen"
+  },
+  "steelWool": {
+    "ref": "steelWool",
+    "name": "Steel Wool",
+    "desc": "This is not wool at all!",
+    "effect": "",
+    "weight": 0.1,
+    "location": "kitchen"
+  },
+  "towel": {
+    "ref": "towel",
+    "name": "Towel",
+    "desc": "Cheap cotton towel.",
+    "effect": "",
+    "weight": 0.5,
+    "location": "bathroom"
+  },
+  "handTowel": {
+    "ref": "handTowel",
+    "name": "Hand Towel",
+    "desc": "Cheap cotton hand towel.",
+    "effect": "",
+    "weight": 0.2,
+    "location": "bathroom"
+  },
+  "shampoo": {
+    "ref": "shampoo",
+    "name": "Shampoo",
+    "desc": "Hair shampoo.",
+    "effect": "",
+    "weight": 0.5,
+    "location": "bathroom"
+  },
+  "conditioner": {
+    "ref": "conditioner",
+    "name": "Conditioner",
+    "desc": "Hair conditioner.",
+    "effect": "",
+    "weight": 0.5,
+    "location": "bathroom"
+  },
+  "soap": {
+    "ref": "soap",
+    "name": "Soap",
+    "desc": "Bar of soap.",
+    "effect": "",
+    "weight": 0.2,
+    "location": "bathroom"
+  },
+  "toothBrush": {
+    "ref": "toothBrush",
+    "name": "Toothbrush",
+    "desc": "Someone else\\'s toothbrush.",
+    "effect": "",
+    "weight": 0.1,
+    "location": "bathroom"
+  },
+  "bleach": {
+    "ref": "bleach",
+    "name": "Bleach",
+    "desc": "Toilet cleaning bleach.",
+    "effect": "",
+    "weight": 1,
+    "location": "bathroom"
+  },
+  "toothPaste": {
+    "ref": "toothPaste",
+    "name": "Toothpaste",
+    "desc": "Super whitening minty fresh.",
+    "effect": "",
+    "weight": 0.2,
+    "location": "bathroom"
+  },
+  "hairClip": {
+    "ref": "hairClip",
+    "name": "Hair Clip",
+    "desc": "Ladies hair clip.",
+    "effect": "",
+    "weight": 0.1,
+    "location": "bathroom"
+  },
+  "hairDryer": {
+    "ref": "hairDryer",
+    "name": "Hair Dryer",
+    "desc": "Blow dryer for hair.",
+    "effect": "",
+    "weight": 1,
+    "location": "bathroom"
+  },
+  "brokenPipe": {
+    "ref": "brokenPipe",
+    "name": "Broken Pipe",
+    "desc": "A broken length of pipe.",
+    "effect": "",
+    "weight": 2,
+    "location": "basement"
+  },
+  "brokenBoard": {
+    "ref": "brokenBoard",
+    "name": "Broken Board",
+    "desc": "A broken length of wood board.",
+    "effect": "",
+    "weight": 2,
+    "location": "basement"
+  },
+  "weldingRod": {
+    "ref": "weldingRod",
+    "name": "Welding Rods",
+    "desc": "Those stick things that weld stuff.",
+    "effect": "",
+    "weight": 1,
+    "location": "basement"
+  },
+  "football": {
+    "ref": "football",
+    "name": "Football",
+    "desc": "A deflated football.",
+    "effect": "",
+    "weight": 0.5,
+    "location": "basement"
+  },
+  "pictureFrame": {
+    "ref": "pictureFrame",
+    "name": "Picture Frame",
+    "desc": "An empty picture frame.",
+    "effect": "",
+    "weight": 0.5,
+    "location": "basement"
+  },
+  "vase": {
+    "ref": "vase",
+    "name": "Vase",
+    "desc": "A cheap ceramic flower vase.",
+    "effect": "",
+    "weight": 1,
+    "location": "basement"
+  },
+  "paperWeight": {
+    "ref": "paperWeight",
+    "name": "Paper Weight",
+    "desc": "A heavy metal paperweight.",
+    "effect": "",
+    "weight": 5,
+    "location": "basement"
+  },
+  "oldClock": {
+    "ref": "oldClock",
+    "name": "Antique Clock",
+    "desc": "A French marble clock.",
+    "effect": "",
+    "weight": 5,
+    "location": "basement"
+  },
+  "bolts": {
+    "ref": "bolts",
+    "name": "Bag of Bolts",
+    "desc": "Small gauge bolts.",
+    "effect": "",
+    "weight": 1,
+    "location": "basement"
+  },
+  "nails": {
+    "ref": "nails",
+    "name": "Bag of Nails",
+    "desc": "3 inch nails.",
+    "effect": "",
+    "weight": 1,
+    "location": "basement"
+  },
+  "tape": {
+    "ref": "tape",
+    "name": "Roll of Tape",
+    "desc": "Cheap electrical tape.",
+    "effect": "",
+    "weight": 0.5,
+    "location": "basement"
+  },
+  "metalSheet": {
+    "ref": "metalSheet",
+    "name": "Metal Sheeting",
+    "desc": "A small section of metal sheet.",
+    "effect": "",
+    "weight": 3,
+    "location": "basement"
+  },
+  "paint": {
+    "ref": "paint",
+    "name": "Can of paint",
+    "desc": "Dried up sample can of paint.",
+    "effect": "",
+    "weight": 1,
+    "location": "basement"
+  },
+  "tennisBall": {
+    "ref": "tennisBall",
+    "name": "Tennis Ball",
+    "desc": "An old dog chewed tennis ball.",
+    "effect": "",
+    "weight": 0.2,
+    "location": "basement"
+  },
+  "hose": {
+    "ref": "hose",
+    "name": "Hose",
+    "desc": "Section of old garden hose.",
+    "effect": "",
+    "weight": 1,
+    "location": "basement"
+  },
+  "tapHandle": {
+    "ref": "tapHandle",
+    "name": "Tap Handle",
+    "desc": "Chrome tap handle.",
+    "effect": "",
+    "weight": 0.5,
+    "location": "basement"
+  },
+  "scrubbingBrush": {
+    "ref": "scrubbingBrush",
+    "name": "Scrubbing Brush",
+    "desc": "Wood handled stiff brush.",
+    "effect": "",
+    "weight": 0.2,
+    "location": "basement"
+  }
+}
