@@ -12,3 +12,6 @@ data_*/
 # System / editor junk
 .DS_Store
 *.tmp
+
+# Local-only reverse engineering inputs/outputs (original game files, decompiled code, extracted assets)
+reference/
