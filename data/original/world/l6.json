@@ -69,9 +69,9 @@
           },
           "cont3": {
             "desc": "Drawer",
-            "cnt": {
-              "$expr": "new Array(\"cash_50\")"
-            }
+            "cnt": [
+              "cash_50"
+            ]
           }
         }
       },
@@ -89,9 +89,11 @@
           },
           "cont2": {
             "desc": "Ammo Stockpile",
-            "cnt": {
-              "$expr": "new Array(\"ammo556_40\",\"ammo762_30\",\"ammoshotgun_12\")"
-            },
+            "cnt": [
+              "ammo556_40",
+              "ammo762_30",
+              "ammoshotgun_12"
+            ],
             "noJunk": true
           }
         }
@@ -124,18 +126,34 @@
           "rand": "Trash",
           "randRate": "light",
           "safeHouse": true,
-          "NPCs": {
-            "$expr": "new Array(\"Jack\",\"PartnerDocks\",\"Dana\",\"Jane\",\"Shawn\")"
-          },
-          "NPC_x": {
-            "$expr": "new Array(\"450\",\"650\",\"80\",\"1380\",\"1150\")"
-          },
-          "NPCPose": {
-            "$expr": "new Array(\"sitCrate\",\"idle\",\"holdRifle\",\"holdRifle\",\"standPistol\")"
-          },
-          "NPCFacing": {
-            "$expr": "new Array(\"right\",\"left\",\"right\",\"left\",\"right\")"
-          }
+          "NPCs": [
+            "Jack",
+            "PartnerDocks",
+            "Dana",
+            "Jane",
+            "Shawn"
+          ],
+          "NPC_x": [
+            "450",
+            "650",
+            "80",
+            "1380",
+            "1150"
+          ],
+          "NPCPose": [
+            "sitCrate",
+            "idle",
+            "holdRifle",
+            "holdRifle",
+            "standPistol"
+          ],
+          "NPCFacing": [
+            "right",
+            "left",
+            "right",
+            "left",
+            "right"
+          ]
         }
       }
     },
@@ -171,20 +189,21 @@
           "type": "office",
           "rand": "Trash",
           "randRate": "light",
-          "lockedDoors": {
-            "$expr": "new Array(\"door1\")"
-          },
-          "needsKey": {
-            "$expr": "new Array(false)"
-          },
-          "lockDiff": {
-            "$expr": "new Array(\"very hard\")"
-          },
+          "lockedDoors": [
+            "door1"
+          ],
+          "needsKey": [
+            false
+          ],
+          "lockDiff": [
+            "very hard"
+          ],
           "cont1": {
             "desc": "Desk",
-            "cnt": {
-              "$expr": "new Array(\"docksKey\",\"files\")"
-            }
+            "cnt": [
+              "docksKey",
+              "files"
+            ]
           },
           "cont2": {
             "desc": "Filing Cabinet",
@@ -192,9 +211,12 @@
           },
           "cont3": {
             "desc": "Fridge",
-            "cnt": {
-              "$expr": "new Array(\"spam\",\"apple\",\"orange\",\"chocolate\")"
-            },
+            "cnt": [
+              "spam",
+              "apple",
+              "orange",
+              "chocolate"
+            ],
             "noJunk": true
           }
         },
@@ -208,9 +230,10 @@
           "outside": true,
           "cont1": {
             "desc": "Shipping Container",
-            "cnt": {
-              "$expr": "new Array(\"RPG\",\"ammoRPG_5\")"
-            },
+            "cnt": [
+              "RPG",
+              "ammoRPG_5"
+            ],
             "noJunk": true
           }
         }
@@ -235,24 +258,30 @@
           "rand": "Trash",
           "randRate": "heavy",
           "outside": true,
-          "NPCs": {
-            "$expr": "new Array(\"JackWall\",\"DanaWall\")"
-          },
-          "NPC_x": {
-            "$expr": "new Array(\"1860\",\"1780\")"
-          },
-          "NPCPose": {
-            "$expr": "new Array(\"crouchReady\",\"holdRifle\")"
-          },
-          "NPCFacing": {
-            "$expr": "new Array(\"right\",\"right\")"
-          },
-          "enemy": {
-            "$expr": "new Array(\"JaneWall\",\"ShawnWall\")"
-          },
-          "enemyX": {
-            "$expr": "new Array(\"1690\",\"1590\")"
-          }
+          "NPCs": [
+            "JackWall",
+            "DanaWall"
+          ],
+          "NPC_x": [
+            "1860",
+            "1780"
+          ],
+          "NPCPose": [
+            "crouchReady",
+            "holdRifle"
+          ],
+          "NPCFacing": [
+            "right",
+            "right"
+          ],
+          "enemy": [
+            "JaneWall",
+            "ShawnWall"
+          ],
+          "enemyX": [
+            "1690",
+            "1590"
+          ]
         }
       }
     },

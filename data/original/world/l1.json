@@ -24,9 +24,9 @@
         "cont3": {
           "desc": "Newspaper Stand",
           "display": "blank",
-          "cnt": {
-            "$expr": "new Array(\"magazine\")"
-          }
+          "cnt": [
+            "magazine"
+          ]
         }
       }
     }
@@ -43,23 +43,25 @@
         "cont1": {
           "desc": "Bookshelf",
           "display": "blank",
-          "cnt": {
-            "$expr": "new Array(\"longGuns\")"
-          }
+          "cnt": [
+            "longGuns"
+          ]
         },
         "cont2": {
           "desc": "Cupboard",
           "display": "blank",
-          "cnt": {
-            "$expr": "new Array(\"cargoShorts\",\"singletBlack\")"
-          }
+          "cnt": [
+            "cargoShorts",
+            "singletBlack"
+          ]
         },
         "cont3": {
           "desc": "Bookshelf",
           "display": "blank",
-          "cnt": {
-            "$expr": "new Array(\"tshirtBrown\",\"tshirtWhite\")"
-          }
+          "cnt": [
+            "tshirtBrown",
+            "tshirtWhite"
+          ]
         },
         "rand": "Trash",
         "randRate": "light"
@@ -71,16 +73,19 @@
         "cont1": {
           "desc": "Bookshelf",
           "display": "blank",
-          "cnt": {
-            "$expr": "new Array(\"bandana\")"
-          }
+          "cnt": [
+            "bandana"
+          ]
         },
         "cont2": {
           "desc": "Closet",
           "display": "blank",
-          "cnt": {
-            "$expr": "new Array(\"suitBlack\",\"jeansBlack\",\"shoeBlack\",\"sodaCan\")"
-          }
+          "cnt": [
+            "suitBlack",
+            "jeansBlack",
+            "shoeBlack",
+            "sodaCan"
+          ]
         }
       },
       "r3": {
@@ -90,30 +95,36 @@
         "cont1": {
           "desc": "Cupboard",
           "display": "blank",
-          "cnt": {
-            "$expr": "new Array(\"bandage\",\"medkit\",\"water\")"
-          }
+          "cnt": [
+            "bandage",
+            "medkit",
+            "water"
+          ]
         },
         "cont2": {
           "desc": "Bookshelf",
           "display": "blank",
-          "cnt": {
-            "$expr": "new Array(\"glock\",\"bat\")"
-          }
+          "cnt": [
+            "glock",
+            "bat"
+          ]
         },
         "cont3": {
           "desc": "Bookshelf",
           "display": "blank",
-          "cnt": {
-            "$expr": "new Array(\"pistols\",\"fitness\")"
-          }
+          "cnt": [
+            "pistols",
+            "fitness"
+          ]
         },
         "cont4": {
           "desc": "Closet",
           "display": "blank",
-          "cnt": {
-            "$expr": "new Array(\"longSleeveWhite\",\"M1911\",\"water\")"
-          }
+          "cnt": [
+            "longSleeveWhite",
+            "M1911",
+            "water"
+          ]
         }
       }
     },
@@ -125,41 +136,49 @@
         "cont1": {
           "desc": "Cupboard",
           "display": "blank",
-          "cnt": {
-            "$expr": "new Array(\"compoundBow\")"
-          }
+          "cnt": [
+            "compoundBow"
+          ]
         },
         "cont2": {
           "desc": "Bookshelf",
           "display": "blank",
-          "cnt": {
-            "$expr": "new Array(\"book\")"
-          }
+          "cnt": [
+            "book"
+          ]
         },
         "cont3": {
           "desc": "Bookshelf",
           "display": "blank",
-          "cnt": {
-            "$expr": "new Array(\"magazine\")"
-          }
+          "cnt": [
+            "magazine"
+          ]
         },
         "cont4": {
           "desc": "Closet",
           "display": "blank",
           "cnt": []
         },
-        "NPCs": {
-          "$expr": "new Array(\"Jonah\",\"Darren\",\"Alex\")"
-        },
-        "NPC_x": {
-          "$expr": "new Array(\"300\",\"60\",\"650\")"
-        },
-        "NPCPose": {
-          "$expr": "new Array(\"idle\",\"sit\",\"idle\")"
-        },
-        "NPCFacing": {
-          "$expr": "new Array(\"right\",\"right\",\"left\")"
-        }
+        "NPCs": [
+          "Jonah",
+          "Darren",
+          "Alex"
+        ],
+        "NPC_x": [
+          "300",
+          "60",
+          "650"
+        ],
+        "NPCPose": [
+          "idle",
+          "sit",
+          "idle"
+        ],
+        "NPCFacing": [
+          "right",
+          "right",
+          "left"
+        ]
       }
     }
   },
@@ -182,52 +201,57 @@
         "cont1": {
           "desc": "Boxes",
           "display": "blank",
-          "cnt": {
-            "$expr": "new Array(\"vector\")"
-          }
+          "cnt": [
+            "vector"
+          ]
         },
         "cont2": {
           "desc": "Boxes",
           "display": "blank",
-          "cnt": {
-            "$expr": "new Array(\"cannedCorn\",\"cannedTomato\")"
-          }
+          "cnt": [
+            "cannedCorn",
+            "cannedTomato"
+          ]
         },
         "cont3": {
           "desc": "Boxes",
           "display": "blank",
-          "cnt": {
-            "$expr": "new Array(\"spam\",\"crackers\",\"sardines\")"
-          }
+          "cnt": [
+            "spam",
+            "crackers",
+            "sardines"
+          ]
         },
         "cont4": {
           "desc": "Boxes",
           "display": "blank",
-          "cnt": {
-            "$expr": "new Array(\"searching\",\"MP5\")"
-          }
+          "cnt": [
+            "searching",
+            "MP5"
+          ]
         },
         "cont5": {
           "desc": "Boxes",
           "display": "blank",
-          "cnt": {
-            "$expr": "new Array(\"soupBeef\",\"soupVegetable\")"
-          }
+          "cnt": [
+            "soupBeef",
+            "soupVegetable"
+          ]
         },
         "rand": "Trash",
         "randRate": "light",
-        "NPCs": {
-          "$expr": "new Array(\"Matt\")"
-        },
-        "NPC_x": {
-          "$expr": "new Array(\"950\")"
-        },
-        "NPCPose": {
-          "$expr": "new Array(\"sit\")"
-        },
-        "NPCFacing": {
-          "$expr": "new Array(\"left\")"
-        }
+        "NPCs": [
+          "Matt"
+        ],
+        "NPC_x": [
+          "950"
+        ],
+        "NPCPose": [
+          "sit"
+        ],
+        "NPCFacing": [
+          "left"
+        ]
       }
     }
   },

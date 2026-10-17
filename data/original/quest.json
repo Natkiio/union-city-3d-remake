@@ -1,41 +1,748 @@
 {
-  "quest900": {},
-  "quest901": {},
-  "quest902": {},
-  "quest903": {},
-  "quest904": {},
-  "quest905": {},
-  "quest906": {},
-  "quest907": {},
-  "quest908": {},
-  "quest909": {},
-  "quest910": {},
-  "quest911": {},
-  "quest912": {},
-  "quest913": {},
-  "quest914": {},
-  "quest915": {},
-  "quest916": {},
-  "quest917": {},
-  "quest918": {},
-  "quest919": {},
+  "quest900": {
+    "ref": "900",
+    "owner": "Player",
+    "desc": "Breaking Through",
+    "shortDesc": "Find a way into Brookvale",
+    "type": "triggered",
+    "XPreward": 200,
+    "rewards": [],
+    "activeQuest": false,
+    "completed": false,
+    "tracking": false,
+    "longDesc": {
+      "$expr": "\"Something terrible is happening.\\r\\rI need to get to my apartment in Brookvale and find my \" + _root[player.sex + \"Partner\"] + \", \" + _root[player.sex + \"PartnerName\"] + \".\""
+    },
+    "loc": "section9"
+  },
+  "quest901": {
+    "ref": "901",
+    "owner": "Player",
+    "desc": "Get Home",
+    "shortDesc": "Go to your apartment",
+    "type": "triggered",
+    "XPreward": 300,
+    "rewards": [],
+    "activeQuest": false,
+    "completed": false,
+    "tracking": false,
+    "longDesc": {
+      "$expr": "\"The apartment is a the end of the block in Brookvale. God I hope my \" + _root[player.sex + \"Partner\"] + \" is ok.\""
+    },
+    "loc": "section9"
+  },
+  "quest902": {
+    "ref": "902",
+    "owner": "Player",
+    "desc": "Clues",
+    "shortDesc": {
+      "$expr": "\"Find out where \" + _root[player.sex + \"PartnerNameShort\"] + \" went\""
+    },
+    "type": "triggered",
+    "XPreward": 50,
+    "rewards": [],
+    "activeQuest": false,
+    "completed": false,
+    "unlocks": [
+      "section13",
+      "section9",
+      "section16"
+    ],
+    "tracking": false,
+    "longDesc": {
+      "$expr": "_root[player.sex + \"PartnerNameShort\"] + \" isn\\'t here, I need to find out where \" + _root[player.sex + \"PartnerSex\"] + \"\\'s gone\""
+    },
+    "loc": "section9"
+  },
+  "quest903": {
+    "ref": "903",
+    "owner": "Player",
+    "desc": "Hospital",
+    "shortDesc": {
+      "$expr": "\"Find your \" + _root[player.sex + \"Partner\"] + \" in Canal Park\""
+    },
+    "type": "triggered",
+    "XPreward": 350,
+    "rewards": [],
+    "activeQuest": false,
+    "completed": false,
+    "tracking": false,
+    "longDesc": {
+      "$expr": "\"My \" + _root[player.sex + \"Partner\"] + \" \" + _root[player.sex + \"PartnerNameShort\"] + \" left a note saying \" + _root[player.sex + \"PartnerSex\"] + \" went to the hospital to help out. Nearest Hospital is in Canal Park.\""
+    },
+    "loc": "section13"
+  },
+  "quest904": {
+    "ref": "904",
+    "owner": "Player",
+    "desc": "Searching",
+    "shortDesc": {
+      "$expr": "\"Find \" + _root[player.sex + \"PartnerName\"] + \" in the Hospital\""
+    },
+    "type": "talk",
+    "talkReq": "Shenice",
+    "XPreward": 100,
+    "rewards": [],
+    "unlocks": [
+      "section9",
+      "section16",
+      "section13",
+      "section12"
+    ],
+    "activeQuest": false,
+    "completed": false,
+    "tracking": false,
+    "longDesc": {
+      "$expr": "\"This hospital was where \" + _root[player.sex + \"PartnerName\"] + \" said \" + _root[player.sex + \"PartnerSex\"] + \"\\'d be.\""
+    },
+    "loc": "section13"
+  },
+  "quest905": {
+    "ref": "905",
+    "owner": "Player",
+    "desc": "Get to Stadium",
+    "shortDesc": "Work your way to Stadium",
+    "type": "triggered",
+    "XPreward": 1000,
+    "rewards": [],
+    "activeQuest": false,
+    "completed": false,
+    "tracking": false,
+    "longDesc": {
+      "$expr": "\"One of the nurses said that they might\\'ve moved people to the Stadium, including \" + _root[player.sex + \"PartnerName\"] + \".\\r\\rTravel through Newtown and Uptown to get there.\""
+    },
+    "loc": "section5"
+  },
+  "quest906": {
+    "ref": "906",
+    "owner": "Player",
+    "desc": "Registration",
+    "shortDesc": "Check inside the stadium",
+    "type": "triggered",
+    "XPreward": 100,
+    "rewards": [],
+    "activeQuest": false,
+    "completed": false,
+    "tracking": false,
+    "longDesc": {
+      "$expr": "\"The soldier at the gate told you to report to the registration officer at Stadium. Perhaps they have information on where \" + _root[player.sex + \"PartnerName\"] + \" is.\""
+    },
+    "loc": "section5"
+  },
+  "quest907": {
+    "ref": "907",
+    "owner": "Player",
+    "desc": "Relocated",
+    "shortDesc": {
+      "$expr": "\"Find out what happened to \" + _root[player.sex + \"PartnerName\"]"
+    },
+    "type": "triggered",
+    "XPreward": 100,
+    "rewards": [],
+    "activeQuest": false,
+    "completed": false,
+    "tracking": false,
+    "longDesc": {
+      "$expr": "\"The list says \" + _root[player.sex + \"PartnerName\"] + \" was relocated, find out where they sent \" + _root[player.sex + \"PartnerSexAddress\"] + \".\""
+    },
+    "loc": "section5"
+  },
+  "quest908": {
+    "ref": "908",
+    "owner": "Player",
+    "desc": "Disappeared",
+    "shortDesc": {
+      "$expr": "\"Ask around about \" + _root[player.sex + \"PartnerName\"]"
+    },
+    "type": "talk",
+    "talkReq": "Barry",
+    "XPreward": 100,
+    "rewards": [],
+    "activeQuest": false,
+    "completed": false,
+    "tracking": false,
+    "longDesc": {
+      "$expr": "\"Find someone in the stadium grounds that knows what happened to \" + _root[player.sex + \"PartnerName\"]"
+    },
+    "loc": "section5"
+  },
+  "quest909": {
+    "ref": "909",
+    "owner": "Player",
+    "desc": "Maintennance Room",
+    "shortDesc": "Meet Barry in the Mens Room",
+    "type": "triggered",
+    "XPreward": 250,
+    "rewards": [],
+    "activeQuest": false,
+    "completed": false,
+    "tracking": false,
+    "longDesc": "Barry asked you to meet him in the maintennance room behind the mens room at the Stadium.",
+    "unlocksDoorStart": [
+      "l5_s1_b1_f1_r403_door1"
+    ],
+    "loc": "section5"
+  },
+  "quest910": {
+    "ref": "910",
+    "owner": "Player",
+    "desc": "Talk to Barry",
+    "shortDesc": "",
+    "type": "talk",
+    "talkReq": "Barry",
+    "XPreward": 250,
+    "rewards": [],
+    "activeQuest": false,
+    "completed": false,
+    "tracking": false,
+    "longDesc": "Talk to Barry to find out what the plan is.",
+    "loc": "section5"
+  },
+  "quest911": {
+    "ref": "911",
+    "owner": "Player",
+    "desc": "Conspiracy Theory",
+    "shortDesc": "Investigate HERC Command Post",
+    "type": "triggered",
+    "XPreward": 1000,
+    "rewards": [],
+    "activeQuest": false,
+    "completed": false,
+    "tracking": false,
+    "longDesc": "Barry wants you to find out what the Homeland Environmental Risk Control (HERC) is up to at the Stadium.",
+    "unlocksDoorStart": [
+      "l5_s1_b1_f1_r404_door2"
+    ],
+    "changeStateComplete": [
+      "Barry"
+    ],
+    "changeStateCompleteNum": [
+      3
+    ],
+    "loc": "section5"
+  },
+  "quest912": {
+    "ref": "912",
+    "owner": "Barry",
+    "desc": "Theory Proven",
+    "shortDesc": "Return to Barry with the info",
+    "type": "talk",
+    "talkReq": "Barry",
+    "XPreward": 500,
+    "rewards": [],
+    "activeQuest": false,
+    "completed": false,
+    "tracking": false,
+    "longDesc": "You have information that says that the relocations are to Union Park in Uptown, go and tell Barry.",
+    "loc": "section5"
+  },
+  "quest913": {
+    "ref": "913",
+    "owner": "Barry",
+    "desc": "Another Castle",
+    "shortDesc": "Go to the park in Uptown",
+    "type": "talk",
+    "talkReq": "safeRoomBarry",
+    "XPreward": 500,
+    "rewards": [],
+    "activeQuest": false,
+    "completed": false,
+    "tracking": false,
+    "longDesc": {
+      "$expr": "\"All evidence points to \" + _root[player.sex + \"PartnerName\"] + \" being at Union Park in Uptown. Go and meet Barry there!\""
+    },
+    "loc": "section11",
+    "startRewards": [
+      "stadiumKey"
+    ]
+  },
+  "quest914": {
+    "ref": "914",
+    "owner": "Partner",
+    "desc": "Break Out",
+    "shortDesc": {
+      "$expr": "\"Find \" + _root[player.sex + \"PartnerName\"] + \" in Union Park\""
+    },
+    "type": "talk",
+    "talkReq": "Partner",
+    "XPreward": 750,
+    "rewards": [],
+    "activeQuest": false,
+    "completed": false,
+    "tracking": false,
+    "longDesc": {
+      "$expr": "\"Use the key to break into the HERC compound at Union Park and find \" + _root[player.sex + \"PartnerName\"]"
+    },
+    "loc": "section11",
+    "startRewards": [
+      "sewerKey"
+    ]
+  },
+  "quest915": {
+    "ref": "915",
+    "owner": "Partner",
+    "desc": "Alive",
+    "shortDesc": {
+      "$expr": "\"Get the keys to release \" + _root[player.sex + \"PartnerName\"]"
+    },
+    "type": "fetch",
+    "itemReq": [
+      "questHERCkey"
+    ],
+    "itemCount": [
+      1
+    ],
+    "XPreward": 750,
+    "rewards": [
+      "partner"
+    ],
+    "activeQuest": false,
+    "completed": false,
+    "tracking": false,
+    "longDesc": {
+      "$expr": "\"Use the key to break into the HERC compound at Union Park and find \" + _root[player.sex + \"PartnerName\"]"
+    },
+    "loc": "section11"
+  },
+  "quest916": {
+    "ref": "916",
+    "owner": "Player",
+    "desc": "Seabound",
+    "shortDesc": "Find a boat to escape",
+    "type": "triggered",
+    "XPreward": 1250,
+    "rewards": [],
+    "activeQuest": false,
+    "completed": false,
+    "tracking": false,
+    "longDesc": "Go to the Docks and find a boat",
+    "loc": "section6"
+  },
+  "quest917": {
+    "ref": "917",
+    "owner": "Player",
+    "desc": "Military Base",
+    "shortDesc": "Enter the base",
+    "type": "triggered",
+    "XPreward": 350,
+    "rewards": [],
+    "activeQuest": false,
+    "completed": false,
+    "tracking": false,
+    "longDesc": "Go to the Military Base in Waterside and find some explosives.",
+    "loc": "section14",
+    "unlocksAreaStart": "section14",
+    "changeStateComplete": [
+      "Jack"
+    ],
+    "changeStateCompleteNum": [
+      3
+    ],
+    "startCutScene": 6
+  },
+  "quest918": {
+    "ref": "918",
+    "owner": "Jack",
+    "desc": "Explosive Components",
+    "shortDesc": "Find explosive parts",
+    "type": "fetch",
+    "itemReq": [
+      "explosivesC4",
+      "explosivesBlastingCap",
+      "explosivesTimer"
+    ],
+    "itemCount": [
+      3,
+      3,
+      1
+    ],
+    "XPreward": 1250,
+    "rewards": [
+      "XM8_specOps"
+    ],
+    "activeQuest": false,
+    "completed": false,
+    "tracking": false,
+    "longDesc": "We\\'re going to need blocks of C4, blasting caps and a timer.",
+    "changeStateComplete": [
+      "Jack"
+    ],
+    "changeStateCompleteNum": [
+      4
+    ],
+    "loc": "section14"
+  },
+  "quest919": {
+    "ref": "919",
+    "owner": "Jack",
+    "desc": "Tear it down",
+    "shortDesc": "Go to the wall",
+    "type": "triggered",
+    "XPreward": 500,
+    "rewards": [],
+    "activeQuest": false,
+    "completed": false,
+    "tracking": false,
+    "longDesc": "Go to the wall with Jack and prepare for the final assault.",
+    "loc": "section6",
+    "triggerOnStart": [
+      "trig40",
+      "trig44"
+    ]
+  },
+  "quest001": {
+    "ref": "001",
+    "owner": "Ed",
+    "desc": "Talk to Ray",
+    "shortDesc": "Ask about Bolt Cutters",
+    "type": "talk",
+    "talkReq": "Ray",
+    "XPreward": 50,
+    "rewards": [],
+    "activeQuest": false,
+    "completed": false,
+    "changeStateStart": [
+      "Ray"
+    ],
+    "changeStateStartNum": [
+      2
+    ],
+    "tracking": false,
+    "longDesc": "Ed is trying to get through the fence, it\\'s the only way into the Brookvale and my apartment.\\rHe needs bolt cutters to cut his way in.\\rHe said Ray at number 12 has some.",
+    "loc": "section16"
+  },
+  "quest003": {
+    "ref": "003",
+    "owner": "Ray",
+    "desc": "Return to Ed",
+    "shortDesc": "Talk to Ed again",
+    "type": "talk",
+    "talkReq": "Ed",
+    "itemCount": [
+      1
+    ],
+    "XPreward": 50,
+    "rewards": [],
+    "activeQuest": false,
+    "completed": false,
+    "changeStateStart": [
+      "Ed"
+    ],
+    "changeStateStartNum": [
+      2
+    ],
+    "tracking": false,
+    "longDesc": "Ray says that he returned Ed\\'s boltcutters. I should go and tell Ed he must have them.",
+    "loc": "section16"
+  },
+  "quest004": {
+    "ref": "004",
+    "owner": "Ed",
+    "desc": "Find Bolt Cutters",
+    "type": "fetch",
+    "itemReq": [
+      "questBoltCutters"
+    ],
+    "itemCount": [
+      1
+    ],
+    "XPreward": 300,
+    "rewards": [],
+    "activeQuest": false,
+    "completed": false,
+    "unlocks": [
+      "section9",
+      "section16"
+    ],
+    "changeStateStart": [
+      "Ray"
+    ],
+    "changeStateStartNum": [
+      2
+    ],
+    "startRewards": [
+      "edKey"
+    ],
+    "tracking": false,
+    "longDesc": "Ed gave me the key to his garage at number 14. The bolt cutters should be in there somewhere.",
+    "loc": "section16"
+  },
+  "quest002": {
+    "ref": "002",
+    "owner": "Hank",
+    "desc": "Find Hank\\'s Dad\\'s Rifle",
+    "type": "fetch",
+    "itemReq": [
+      "questHanksRifle",
+      "questHanksRifleBolt"
+    ],
+    "itemCount": [
+      1,
+      1
+    ],
+    "XPreward": 500,
+    "rewards": [
+      "follower"
+    ],
+    "activeQuest": false,
+    "completed": false,
+    "startRewards": [
+      "hankKey"
+    ],
+    "tracking": false,
+    "longDesc": "Hank the gun shop owner needs me to find his rifle and bolt group for it. They\\'re in his apartment, number 202, down the street from his Canal Park shop. He gave me his neighbours key to get in.",
+    "loc": "section13"
+  },
+  "quest005": {
+    "ref": "005",
+    "owner": "Kowalski",
+    "desc": "",
+    "type": "talk",
+    "talkReq": "Kowalski",
+    "XPreward": 50,
+    "rewards": [],
+    "unlocksDoor": "l5_s2_b1_f1_r2_door1",
+    "activeQuest": false,
+    "completed": false,
+    "tracking": false,
+    "changeState": [],
+    "longDesc": "Alex will follow you if you talk to him.",
+    "loc": "section5"
+  },
+  "quest006": {
+    "ref": "006",
+    "owner": "Darnel",
+    "desc": "Heavy, Man",
+    "type": "fetch",
+    "itemReq": [
+      "brokenPipe",
+      "paperWeight"
+    ],
+    "itemCount": [
+      1,
+      1
+    ],
+    "XPreward": 200,
+    "rewards": [
+      "pipe_heavy"
+    ],
+    "activeQuest": false,
+    "completed": false,
+    "tracking": false,
+    "longDesc": "Darnel says he can make you something to smash some skulls if you find him the materials.",
+    "loc": "section9"
+  },
+  "quest007": {
+    "ref": "007",
+    "owner": "Darnel",
+    "desc": "Something Spikey",
+    "type": "fetch",
+    "itemReq": [
+      "brokenBoard",
+      "nails",
+      "tape"
+    ],
+    "itemCount": [
+      1,
+      2,
+      1
+    ],
+    "XPreward": 300,
+    "rewards": [
+      "nailBoard_heavy"
+    ],
+    "activeQuest": false,
+    "completed": false,
+    "tracking": false,
+    "longDesc": "Darnel has plans for something pretty nasty I think if you can find the materials.",
+    "loc": "section9"
+  },
+  "quest008": {
+    "ref": "008",
+    "owner": "Darnel",
+    "desc": "Keeping it Quiet",
+    "type": "fetch",
+    "itemReq": [
+      "PPM9",
+      "weldingRod",
+      "brokenPipe",
+      "metalSheet"
+    ],
+    "itemCount": [
+      1,
+      1,
+      1,
+      1
+    ],
+    "XPreward": 400,
+    "rewards": [
+      "PPM9_suppressed"
+    ],
+    "activeQuest": false,
+    "completed": false,
+    "tracking": false,
+    "longDesc": "Darnel has plans for a suppressed pistol, not sure where he learned to make something like this.",
+    "loc": "section9"
+  },
+  "quest009": {
+    "ref": "009",
+    "owner": "Stephens",
+    "desc": "Security Failure",
+    "shortDesc": "Find Richards",
+    "type": "triggered",
+    "XPreward": 250,
+    "rewards": [],
+    "activeQuest": false,
+    "completed": false,
+    "tracking": false,
+    "longDesc": "Union Security staff are stuck at their offices in Newtown. They need the weapons from their gun cage, an employee named Richards stole the key and headed to Uptown. Find the key and return to Union Security.",
+    "triggerOnStart": [
+      "trig49"
+    ],
+    "loc": "section12"
+  },
+  "quest010": {
+    "ref": "010",
+    "owner": "Player",
+    "desc": "Security Failure",
+    "shortDesc": "Open the Gun Cage",
+    "type": "triggered",
+    "XPreward": 500,
+    "rewards": [],
+    "activeQuest": false,
+    "completed": false,
+    "tracking": false,
+    "longDesc": "Get the key off Richards\\' body and return to Union Security in Newtown to open the gun cage.",
+    "changeStateComplete": [
+      "Keith",
+      "Johnson"
+    ],
+    "changeStateCompleteNum": [
+      2,
+      2
+    ],
+    "loc": "section12"
+  },
+  "quest011": {
+    "ref": "011",
+    "owner": "Kelly",
+    "desc": "Help Kelly",
+    "shortDesc": "Find her glasses",
+    "type": "fetch",
+    "itemReq": [
+      "kellyGlasses"
+    ],
+    "itemCount": [
+      1
+    ],
+    "XPreward": 150,
+    "rewards": [
+      "follower"
+    ],
+    "activeQuest": false,
+    "completed": false,
+    "tracking": false,
+    "longDesc": "Kelly, the store clerk at Stan\\'s General Foods in Brookvale has lost her glasses, she can\\'t go anywhere without them.\\r\\rShe said she dropped them on the floor.",
+    "loc": "section9"
+  },
+  "quest015": {
+    "ref": "015",
+    "owner": "Jeb",
+    "desc": "The Mechanic",
+    "shortDesc": "",
+    "type": "fetch",
+    "itemReq": [
+      "gas",
+      "fanBelt",
+      "socketSet"
+    ],
+    "itemCount": [
+      3,
+      1,
+      1
+    ],
+    "XPreward": 1000,
+    "rewards": [
+      "cash_500"
+    ],
+    "activeQuest": false,
+    "completed": false,
+    "tracking": false,
+    "longDesc": "Jeb, Paul and their \\'friends\\' are stranded with their van not working. They need gas and parts to get it running again.",
+    "changeStateComplete": [
+      "Clarence",
+      "Fern"
+    ],
+    "changeStateCompleteNum": [
+      2,
+      2
+    ],
+    "triggerOnComplete": "trig51",
+    "loc": "section15"
+  },
+  "quest016": {
+    "ref": "016",
+    "owner": "Lisa",
+    "desc": "Into the Wilds",
+    "shortDesc": "Find Terry",
+    "type": "talk",
+    "talkReq": "Terry",
+    "XPreward": 1000,
+    "rewards": [
+      "hellSlinger"
+    ],
+    "activeQuest": false,
+    "completed": false,
+    "tracking": false,
+    "longDesc": "Directions to the cabin: Go left, up, turn right at the pond. Go past the old fence and take the path up. Go left and take the second path. Look for the can on a stick.",
+    "loc": "section15"
+  },
+  "quest017": {
+    "ref": "017",
+    "owner": "Phillip",
+    "desc": "Blood Samples",
+    "shortDesc": "",
+    "type": "fetch",
+    "itemReq": [
+      "bloodSample"
+    ],
+    "itemCount": [
+      4
+    ],
+    "XPreward": 1000,
+    "rewards": [
+      "doctorOfficeKey"
+    ],
+    "activeQuest": false,
+    "completed": false,
+    "tracking": false,
+    "longDesc": "Find 4 blood samples on corpses in the Whistler\\'s Forest nature reserve. Dr.Phillip Best thinks he can find out more about what\\'s going on from that.",
+    "loc": "section15"
+  },
+  "quest500": {
+    "ref": "500",
+    "owner": "Fred",
+    "desc": "Kill 3 Zombies",
+    "type": "kill",
+    "killDesc": "Zombies",
+    "killType": "zombie",
+    "killCount": 3,
+    "killLocation": 16,
+    "killStreet": 2,
+    "killBuilding": 0,
+    "count": 0,
+    "XPreward": 100,
+    "rewards": [],
+    "unlocksDoor": [
+      "l16_s2_b0_f0_r1_entr1"
+    ],
+    "activeQuest": false,
+    "completed": false,
+    "tracking": false,
+    "longDesc": "Clear the street ahead of zombies for Fred."
+  },
   "quest920": {},
-  "quest001": {},
-  "quest002": {},
-  "quest003": {},
-  "quest004": {},
-  "quest005": {},
-  "quest006": {},
-  "quest007": {},
-  "quest008": {},
-  "quest009": {},
-  "quest010": {},
-  "quest011": {},
   "quest012": {},
   "quest013": {},
-  "quest014": {},
-  "quest015": {},
-  "quest016": {},
-  "quest017": {},
-  "quest500": {}
+  "quest014": {}
 }

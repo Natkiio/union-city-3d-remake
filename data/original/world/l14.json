@@ -35,9 +35,9 @@
           "cont1": {
             "desc": "Trunk",
             "display": "blank",
-            "cnt": {
-              "$expr": "new Array(\"tireIron_damaged\")"
-            },
+            "cnt": [
+              "tireIron_damaged"
+            ],
             "noJunk": true
           },
           "cont2": {
@@ -48,9 +48,9 @@
           "cont3": {
             "desc": "Newspaper Stand",
             "display": "blank",
-            "cnt": {
-              "$expr": "new Array(\"magazine\")"
-            }
+            "cnt": [
+              "magazine"
+            ]
           }
         }
       }
@@ -83,16 +83,17 @@
           "randRate": "medium",
           "cont1": {
             "desc": "Cash Register",
-            "cnt": {
-              "$expr": "new Array(\"cash_15\")"
-            },
+            "cnt": [
+              "cash_15"
+            ],
             "noJunk": true
           },
           "cont2": {
             "desc": "Shelf",
-            "cnt": {
-              "$expr": "new Array(\"pasta\",\"spam\")"
-            },
+            "cnt": [
+              "pasta",
+              "spam"
+            ],
             "noJunk": true
           }
         }
@@ -149,27 +150,32 @@
           },
           "cont3": {
             "desc": "Footlocker",
-            "cnt": {
-              "$expr": "new Array(\"ammo762_50\",\"ammo556_50\")"
-            }
+            "cnt": [
+              "ammo762_50",
+              "ammo556_50"
+            ]
           },
           "cont4": {
             "desc": "Box Stack",
-            "cnt": {
-              "$expr": "new Array(\"medicalMask\",\"gasMask\",\"gasMask\")"
-            }
+            "cnt": [
+              "medicalMask",
+              "gasMask",
+              "gasMask"
+            ]
           },
           "cont5": {
             "desc": "Box Stack",
-            "cnt": {
-              "$expr": "new Array(\"mre\",\"mre\")"
-            }
+            "cnt": [
+              "mre",
+              "mre"
+            ]
           },
           "cont6": {
             "desc": "Footlocker",
-            "cnt": {
-              "$expr": "new Array(\"M4A1_specOps\",\"ammo556_90\")"
-            },
+            "cnt": [
+              "M4A1_specOps",
+              "ammo556_90"
+            ],
             "locked": true,
             "lockDiff": "hard"
           }
@@ -207,9 +213,9 @@
           },
           "cont7": {
             "desc": "Footlocker",
-            "cnt": {
-              "$expr": "new Array(\"M9_suppressor\")"
-            }
+            "cnt": [
+              "M9_suppressor"
+            ]
           },
           "cont8": {
             "desc": "Box Stack",
@@ -225,15 +231,17 @@
           "randRate": "heavy",
           "cont1": {
             "desc": "Footlocker",
-            "cnt": {
-              "$expr": "new Array(\"explosivesBlastingCap\",\"explosivesBlastingCap\")"
-            }
+            "cnt": [
+              "explosivesBlastingCap",
+              "explosivesBlastingCap"
+            ]
           },
           "cont2": {
             "desc": "Humvee",
-            "cnt": {
-              "$expr": "new Array(\"M249\",\"ammo556_100\")"
-            },
+            "cnt": [
+              "M249",
+              "ammo556_100"
+            ],
             "noJunk": true
           }
         }
@@ -248,23 +256,29 @@
           "randRate": "heavy",
           "cont1": {
             "desc": "Footlocker",
-            "cnt": {
-              "$expr": "new Array(\"SCARH\",\"ammo762_60\")"
-            }
+            "cnt": [
+              "SCARH",
+              "ammo762_60"
+            ]
           },
           "cont2": {
             "desc": "Footlocker",
-            "cnt": {
-              "$expr": "new Array(\"FAL\",\"armyTop\",\"armyBottom\")"
-            },
+            "cnt": [
+              "FAL",
+              "armyTop",
+              "armyBottom"
+            ],
             "locked": true,
             "lockDiff": "hard"
           },
           "cont3": {
             "desc": "Weapons Cage",
-            "cnt": {
-              "$expr": "new Array(\"M24_scope\",\"explosivesC4\",\"explosivesC4\",\"explosivesC4\")"
-            },
+            "cnt": [
+              "M24_scope",
+              "explosivesC4",
+              "explosivesC4",
+              "explosivesC4"
+            ],
             "noJunk": true,
             "locked": true,
             "hasKey": true,
@@ -272,15 +286,18 @@
           },
           "cont4": {
             "desc": "Equipment Rack",
-            "cnt": {
-              "$expr": "new Array(\"kevlarVestArmy\",\"armyKevlar\",\"kevlarVestArmy\",\"armyKevlar\")"
-            }
+            "cnt": [
+              "kevlarVestArmy",
+              "armyKevlar",
+              "kevlarVestArmy",
+              "armyKevlar"
+            ]
           },
           "cont5": {
             "desc": "Locker",
-            "cnt": {
-              "$expr": "new Array(\"explosivesBlastingCap\")"
-            },
+            "cnt": [
+              "explosivesBlastingCap"
+            ],
             "noJunk": true
           }
         },
@@ -293,16 +310,16 @@
           "randRate": "heavy",
           "cont1": {
             "desc": "Footlocker",
-            "cnt": {
-              "$expr": "new Array(\"explosivesTimer\")"
-            },
+            "cnt": [
+              "explosivesTimer"
+            ],
             "noJunk": true
           },
           "cont2": {
             "desc": "Storage",
-            "cnt": {
-              "$expr": "new Array(\"armyCageKey\")"
-            }
+            "cnt": [
+              "armyCageKey"
+            ]
           },
           "cont3": {
             "desc": "Filing Cabinet",

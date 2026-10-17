@@ -55,7 +55,7 @@ adjustedSkill(s) = round( skill[s] + attribute[ skill.attr ] * 1.6 - 5 )
 - Kill XP: `round(baseXP × enemy.xpBonus)`, `baseXP = round(dangerLevel × 5) + 5`. **No kill XP if `player.level − dangerLevel > 4`** (anti-farming).
 - Skill-use XP: search `5 + level`, reload `1 + level`, first aid `5 + level`, security `25 + level` (search/aid/security also add `ceil(adjustedSkill(smarts)/30)`). Quests give a fixed amount from the quest definition.
 - Death costs `XP / 2`.
-- `skillTrack()` counts uses per skill (blunt/blades/searching 5, fitness 3, most guns 1, sneak 0.1 per use) into `<skill>_used` counters. **(verify)** what those counters pay out — not traced yet.
+- `skillTrack()` counts uses per skill into `<skill>_used` counters, and they are saved and loaded — but **nothing ever reads them**. It's leftover from a use-based skill-growth design. Skills only grow from level-up points (10/level) and books. Don't build a use-to-improve system for parity.
 
 ## 3. Combat
 
@@ -186,21 +186,113 @@ Containers marked `noJunk` skip steps 2–4.
 
 ## 7. Items
 
-All item types are in `data/original/` (`weapon`, `clothing`, `food`, `meds`, `books`, `junk`, `questItem`). Weapons carry: `damage`, `accuracy`, `reloadTime` (frames), `maxAmmo`, `ammoType`, `roundsPerShot`, `roundSpeed`, `knockback`, `recoil`, `weaponNoise` (alerts zombies within `noiseRangeClose/Medium/Long` = 100/300/500 px), `skill`, `weight`, `rarity`. Melee weapons use `skill` of `blunt` or `blades` and have no noise. Books carry a `bookBonus` field (effect not traced yet).
+All item types are in `data/original/` (`weapon`, `clothing`, `food`, `meds`, `books`, `junk`, `questItem`). Weapons carry: `damage`, `accuracy`, `reloadTime` (frames), `maxAmmo`, `ammoType`, `roundsPerShot`, `roundSpeed`, `knockback`, `recoil`, `weaponNoise` (alerts zombies within `noiseRangeClose/Medium/Long` = 100/300/500 px), `skill`, `weight`, `rarity`. Melee weapons use `skill` of `blunt` or `blades` and have no noise. Ammo is tracked per weapon instance in inventory plus a pool per ammo type.
 
-Ammo is tracked per weapon instance in inventory plus a pool per ammo type.
+**Using items** (`useItem`)
 
-## 8. Not analysed yet
+| Type | Effect |
+|---|---|
+| Food (Survivor) | hunger `−(food.bonus + round(adjustedSkill(survival)/5))` |
+| Food (Run'n'Gun) | heals health *and* permHealth by the same amount (no hunger); popup shows it `/3` |
+| Meds, `health` | heals `round((bonus + adjustedSkill(firstAid)/2) / 100 × healthMax)` to both health and permHealth. Only usable when `permHealth < healthMax`. Bandages 5, pills 15, medkit 30 |
+| Meds, `sleep` (No ZZZ) | `adjustVital(sleep, decNeed, 2.5)` → sleep `−25` |
+| Books | `+ (book.bonus (=3) + ceil(adjustedSkill(smarts)/33))` skill points to the book's skill, capped at 100. Consumed |
+| Clothing / weapons | equip |
 
-Rough priority order for the remake roadmap:
+**Weapon mods** (`createWeaponMods`, `applyWeaponMods`): the game generates a variant of each eligible weapon as `<ref>_<mod>` (e.g. `glock_scope`). Multipliers, from `constants.json`:
 
-- **Zombie AI** (`zombieAIRoutines`, `alertedZombie`, `findZombieTarget`, grabs and struggle minigame)
-- **Day/night lighting** (`setLighting`, `lightTime1..28` tables in `world/`)
-- **Quests and NPCs** (`quest.json`, `npc.json`, `checkKillQuest`, `giveQuestRewards`)
-- **Lockpicking and door keys** (`pickLock`, `getLockDiff`)
-- **Shops** (`shopSet1..6`, `buyItem`)
-- **Companions / survivors** (`survivorAIRoutine`, follower and partner logic)
-- **Map / travel** (`travelTo`, `checkTravelRoute`, location unlocks)
-- **Weapon mods**, **rarity lists**, **ammo drop rate** (`setAmmoDropRate`)
-- What the `skillTrack` usage counters actually pay out
-- **Items**: how `useItem` applies food/meds/book effects
+| Mod | Effect |
+|---|---|
+| stock | accuracy ×0.9 (lower = tighter) |
+| scope | accuracy ×0.7 |
+| specOps | accuracy ×0.7, noise ×0.3, no muzzle flash |
+| suppressed | damage ×0.9, noise ×0.3, no flash |
+| extendedMag | magazine ×1.5 |
+| military | damage ×1.3, magazine ×1.3 |
+| lightened | weight ×0.5 |
+| heavy (blunt) | damage ×1.3, weight ×1.4 |
+| sharpened (blades) | damage ×1.3 |
+| dull (blades) | damage ×0.7, rarity −2 |
+| damaged (any) | damage ×0.5, accuracy ×1.4 (worse), rarity −2 |
+
+Positive mods add +2 rarity (rarer drops).
+
+**Drop rates** (percent, per container roll): ammo 40 (×1.4 in Run'n'Gun), food 30, medical 30, clothing 25, weapons 2, cash 33.
+
+**Shops** (`shopSet1..6`, `data/original/world/shopSet*.json`): up to 9 fixed items with a cost each; `discountCost = ceil(cost × (100 − smarts/2)/100)`, so Smarts 100 halves prices.
+
+## 8. Zombie AI (`zombieAIRoutines`)
+
+Each zombie is a state machine: `idle` (risers/crawlers start here, lying down), `wander`, `chase`, `grab`, `attack`, `stumble`. Everything is 1-D along the street (x only), with a few px of y jitter.
+
+| Property | Value |
+|---|---|
+| Sight range | 600 px, × `currentLighting.sightMod` (**0.6 at every hour** → 360 px), ×1.25 with flashlight on. Must be facing the player |
+| Sense range | 150 px (behind or in front) |
+| Attack range | `random(30) + 45` px, or `enemy.attackRange` if set |
+| Wander speed | `wanderSpeed` (0.75 for riser/crawl); chase speed from `enemy.chaseSpeed` |
+| Grab range | 65 px |
+
+**Becoming alerted** (`alertedZombie`): roll `random(500) < chance` where chance = `zombie.alertChance` (5; 1000 for some) plus per-event bonus: melee hit +300, gunshot hit +300, sighted +300, sensed +100, gunshot nearby +20, plus `weapon.weaponNoise × 15`. "Seen" always alerts. Alerted → `chase`; riser zombies first play a rise animation. Alerts don't fire while stumbling or attacking.
+
+**Chase → attack/grab**: within attack range, `random(1000) < zombieGrabChance (100)` (10% per tick) and the player is on the ground (not jumping/falling) and not already grabbed → `grab` (if `noGrab` is not set); otherwise `attack`. Attack animations (`attack1/2`, `attack3` vs downed targets) deal damage through the melee hit-test, using `zombie.damage` from §3. Zombies path around obstacles by climbing blocks.
+
+**Special behaviours**: riot-shield zombies randomly pause (`random(1000) < 300`, for 90 ticks); burning zombies take `burnDamage` (10) every 30 ticks; the targeting loop picks the nearest living, non-downed, non-zombie target (`findZombieTarget`, every 30 ticks).
+
+**Stumble** (knockback): moves `stumbleSpeed` (2 px/tick) to a target distance of `30 + damage + strength + fitness/5`, then returns to the previous state. Crawlers and dogs are immune.
+
+### Grab & struggle
+
+On grab the player is locked in place facing the zombie, and a key-mash minigame starts (A / D by side; Q on AZERTY):
+
+```
+presses needed = clamp( round(level × 2 − strength × 2), 3, 8 )
+```
+
+So strength ≥ level − 1 gives the minimum 3 presses; a weak high-level character needs the maximum 8. While struggling, the zombie bites on its attack animation for normal damage ×0.5 (`struggleDamageMod`). Escaping shoves the zombie back (a 50-damage-distance stumble). Killing the grabber also ends it.
+
+## 9. Day / night
+
+- 28 lighting presets (`world/lightTime1..28.json`) chosen by clock time: dark 00:00–04:00, brightening through dawn (the red-channel brightness rises 20 → ~100 by 09:30), full day 09:30–16:00, then fading from 16:00 to 20:00 (sunset around 17:00–19:30), dark from 20:00. Each preset is an RGB offset applied to the world; indoor rooms apply `lightReduction` (percent).
+- The player's flashlight and street lights switch on as the world gets darker (`streetLightBase 65 − redLight`, hidden below alpha 25).
+- **Gameplay effect of night is small**: `sightMod` is 0.6 for every preset, so the spawn/AI rules don't depend on time of day. Danger comes from location, not clock. (Our roadmap's "zombies more aggressive at night" is a *new* feature, not parity.)
+- Brightness setting adds `setting × 4` to every channel (min 5).
+
+## 10. Locks and security
+
+- **Doors**: some doors need a key (`needsKey`); a `questItem` with a matching `door` unlocks and is consumed. Otherwise the lockpick minigame opens with that door's `lockDiff`.
+- **Container locks**: same minigame, or "force" (not for door locks or keyed locks).
+- **Difficulty → required skill**: very easy 15, easy 30, normal 45, hard 60, very hard 75. Pins: 1, 2, 2, 3, 3 by difficulty (the loop indexes from 0, so the count shown may be one more — **(verify)**). Effective difficulty label comes from `adjustedSkill(security) − required`.
+- **Pin sweet spot** half-width = `min(10, adjustedSkill(security) / 5 × k)`, `k` = 1.65 / 1.4 / 1.15 / 0.85 / 0.625 by difficulty; spot position is random, nudged by luck.
+- **Force lock** chance: `min(95, round((adjustedSkill(security) + luck) × k))`; roll `random(100)+1 ≤ chance`. Success: opens and searches (security XP). Failure: the lock is **permanently broken** (`_br` flag).
+
+## 11. Quests, NPCs, story
+
+Data: `quest.json` (39), `npc.json` (59), `trig.json` (55 scripted triggers). Quest types: `triggered` (14, advanced by trigger/cutscene), `talk` (10), `fetch` (10, hand over `itemReq` items), `kill` (1). Rewards are XP (50–1250) plus optional items, a companion (`follower`/`partner`), or cash.
+
+**Main storyline** (player searches for their partner), in order: 900 *Breaking Through* → 901 *Get Home* → 902 *Clues* → 903 *Hospital* → 904 *Searching* (talk to Shenice) → 905 *Get to Stadium* (1000 XP) → 906 *Registration* → 907 *Relocated* → 908 *Disappeared* → 909 *Maintenance Room* → 910 *Talk to Barry* → 911 *Conspiracy Theory* (1000 XP) → 912 *Theory Proven* → 913 *Another Castle* → 914 *Break Out* → 915 *Alive* (fetch HERC key; reward: partner joins) → 916 *Seabound* → 917 *Military Base* → 918 *Explosive Components* (C4 + blasting cap + timer → XM8 spec-ops) → 919 *Tear it down*. Triggers drive cutscenes (13), `startEndingRush`, `unlockEndLoc`, and `showEnding`.
+
+**Side quests** (fetch/talk): Ed/Ray bolt cutters (001–004), Hank's rifle (002; Hank becomes a follower), Darnel's crafting quests (006–008: heavy pipe, spiked board, suppressed PPM9), Kelly's glasses (011; follower), Jeb's mechanic (015: $500), Lisa/Terry (016: hellSlinger), Phillip's blood samples (017: doctor's office key), Fred's "kill 3 zombies" tutorial (500).
+
+Quests can also **unlock map sections** (`unlocks`) and change NPC states (`changeState*` fields). NPC records carry appearance (clothing fields), dialogue tree by `state`, a weapon, and `enemy`/friendly flags; a handful (`Jeb`/`JebEnemy`, `Paul`/`PaulEnemy`, `Jane/Shawn/Dana` sacrifice and wall variants) are scripted story beats.
+
+> Quest text uses string concatenation with player-sex placeholders (`PartnerName`, `PartnerSex`…), so `longDesc` fields come through as `$expr` in the JSON.
+
+## 12. World map
+
+- 16 explorable **sections** (`world/l1..l16`) arranged on a map; the map has 17 slots. The player travels by clicking a section; **travel time = `round(manhattanMapDistance / 200)` game units of time** passed through `sleepWait`, so crossing the map costs time (and hunger/sleep).
+- Sections unlock via quests (`unlockAreas`), not by distance.
+- **Danger levels** (drive §3 stats and §5 spawns): section 16: 1, 9: 4, 13: 7, 12: 9, 5: 10, 15: 10, 11: 11, 6: 16, 14: 20, 7: 25 (end area). Sections 2, 3, 4, 8, 10 are small and have no danger value (story areas). Uptown (section 1) is built from 7 street blocks.
+- Hierarchy inside a section: street → building → floor → room, with doors, stairs, `dropFloor`, safehouse flags, and room `type` (selects the junk list) — see `world/l*.json`.
+
+## 13. Not analysed yet
+
+- Companions / survivors (`survivorAIRoutine`, follower and partner logic, `giveWeapon`, `helpCompanion`)
+- Human enemy AI (`humanAIRoutine`, `setupAHuman`)
+- Cutscenes (`startCutScene`, `world/cutScene*.json`)
+- Save/load structure (`saveGame`, `loadGame`)
+- Achievements (skipped on purpose; Armor Games hooks)
+- Rarity lists and exact container loot tables per room (data is in `world/l*.json`; the generation code is mostly §6)
+- Safehouse behaviour (`checkIfSafeHouse`, sleeping/waiting in `sleepWait`)
+- Ammo pools and magazine rules (`startReload`, `reloadWeapon`; reload timing bar and "skill reload")
+- Flashlight and stealth (`sneak` skill is not yet traced)

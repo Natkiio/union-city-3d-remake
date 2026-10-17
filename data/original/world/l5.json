@@ -14,24 +14,28 @@
           "rand": "Trash",
           "randRate": "heavy",
           "outside": true,
-          "enemy": {
-            "$expr": "new Array(\"armyBio\",\"armyBioOfficer\",\"armyBio2\")"
-          },
-          "enemyX": {
-            "$expr": "new Array(\"950\",\"1100\",\"1975\")"
-          },
-          "NPCs": {
-            "$expr": "new Array(\"Williams\")"
-          },
-          "NPC_x": {
-            "$expr": "new Array(\"1400\")"
-          },
-          "NPCPose": {
-            "$expr": "new Array(\"standPistol\")"
-          },
-          "NPCFacing": {
-            "$expr": "new Array(\"left\")"
-          }
+          "enemy": [
+            "armyBio",
+            "armyBioOfficer",
+            "armyBio2"
+          ],
+          "enemyX": [
+            "950",
+            "1100",
+            "1975"
+          ],
+          "NPCs": [
+            "Williams"
+          ],
+          "NPC_x": [
+            "1400"
+          ],
+          "NPCPose": [
+            "standPistol"
+          ],
+          "NPCFacing": [
+            "left"
+          ]
         }
       }
     },
@@ -55,18 +59,22 @@
           "rand": "Trash",
           "randRate": "heavy",
           "safeHouse": true,
-          "NPCs": {
-            "$expr": "new Array(\"DrSmith\",\"Kowalski\")"
-          },
-          "NPC_x": {
-            "$expr": "new Array(\"550\",\"1320\")"
-          },
-          "NPCPose": {
-            "$expr": "new Array(\"idle\",\"holdRifle\")"
-          },
-          "NPCFacing": {
-            "$expr": "new Array(\"right\",\"left\")"
-          }
+          "NPCs": [
+            "DrSmith",
+            "Kowalski"
+          ],
+          "NPC_x": [
+            "550",
+            "1320"
+          ],
+          "NPCPose": [
+            "idle",
+            "holdRifle"
+          ],
+          "NPCFacing": [
+            "right",
+            "left"
+          ]
         },
         "r3": {
           "seed": 1896,
@@ -76,27 +84,38 @@
           "rand": "Trash",
           "randRate": "light",
           "safeHouse": true,
-          "lockedDoors": {
-            "$expr": "new Array(\"door1\",\"room100\")"
-          },
-          "needsKey": {
-            "$expr": "new Array(true,true)"
-          },
-          "lockDiff": {
-            "$expr": "new Array(\"hard\",\"hard\")"
-          },
-          "NPCs": {
-            "$expr": "new Array(\"Simmons\",\"Hammond\",\"Martinez\")"
-          },
-          "NPC_x": {
-            "$expr": "new Array(\"40\",\"510\",\"835\")"
-          },
-          "NPCPose": {
-            "$expr": "new Array(\"holdRifle\",\"sitTable\",\"holdRifle\")"
-          },
-          "NPCFacing": {
-            "$expr": "new Array(\"right\",\"left\",\"left\")"
-          }
+          "lockedDoors": [
+            "door1",
+            "room100"
+          ],
+          "needsKey": [
+            true,
+            true
+          ],
+          "lockDiff": [
+            "hard",
+            "hard"
+          ],
+          "NPCs": [
+            "Simmons",
+            "Hammond",
+            "Martinez"
+          ],
+          "NPC_x": [
+            "40",
+            "510",
+            "835"
+          ],
+          "NPCPose": [
+            "holdRifle",
+            "sitTable",
+            "holdRifle"
+          ],
+          "NPCFacing": [
+            "right",
+            "left",
+            "left"
+          ]
         },
         "r100": {
           "seed": 156,
@@ -106,18 +125,34 @@
           "rand": "Trash",
           "randRate": "light",
           "safeHouse": true,
-          "NPCs": {
-            "$expr": "new Array(\"Carol\",\"Steve\",\"Ryan\",\"Anna\",\"Barry\")"
-          },
-          "NPC_x": {
-            "$expr": "new Array(\"1500\",\"1350\",\"550\",\"650\",\"2100\")"
-          },
-          "NPCPose": {
-            "$expr": "new Array(\"sit\",\"idle\",\"idle\",\"idle\",\"idle\")"
-          },
-          "NPCFacing": {
-            "$expr": "new Array(\"left\",\"right\",\"right\",\"left\",\"left\")"
-          }
+          "NPCs": [
+            "Carol",
+            "Steve",
+            "Ryan",
+            "Anna",
+            "Barry"
+          ],
+          "NPC_x": [
+            "1500",
+            "1350",
+            "550",
+            "650",
+            "2100"
+          ],
+          "NPCPose": [
+            "sit",
+            "idle",
+            "idle",
+            "idle",
+            "idle"
+          ],
+          "NPCFacing": [
+            "left",
+            "right",
+            "right",
+            "left",
+            "left"
+          ]
         },
         "r4": {
           "seed": 1896,
@@ -127,32 +162,34 @@
           "rand": "Trash",
           "randRate": "light",
           "safeHouse": true,
-          "lockedDoors": {
-            "$expr": "new Array(\"door1\")"
-          },
-          "needsKey": {
-            "$expr": "new Array(true)"
-          },
-          "lockDiff": {
-            "$expr": "new Array(\"hard\")"
-          },
-          "NPCs": {
-            "$expr": "new Array(\"Ramirez\")"
-          },
-          "NPC_x": {
-            "$expr": "new Array(\"700\")"
-          },
-          "NPCPose": {
-            "$expr": "new Array(\"holdRifle\")"
-          },
-          "NPCFacing": {
-            "$expr": "new Array(\"left\")"
-          },
+          "lockedDoors": [
+            "door1"
+          ],
+          "needsKey": [
+            true
+          ],
+          "lockDiff": [
+            "hard"
+          ],
+          "NPCs": [
+            "Ramirez"
+          ],
+          "NPC_x": [
+            "700"
+          ],
+          "NPCPose": [
+            "holdRifle"
+          ],
+          "NPCFacing": [
+            "left"
+          ],
           "cont1": {
             "desc": "Vending Machine",
-            "cnt": {
-              "$expr": "new Array(\"water\",\"water\",\"sodaCan\")"
-            },
+            "cnt": [
+              "water",
+              "water",
+              "sodaCan"
+            ],
             "noJunk": true
           }
         },
@@ -164,15 +201,15 @@
           "rand": "Trash",
           "randRate": "light",
           "safeHouse": true,
-          "lockedDoors": {
-            "$expr": "new Array(\"door1\")"
-          },
-          "needsKey": {
-            "$expr": "new Array(true)"
-          },
-          "lockDiff": {
-            "$expr": "new Array(\"hard\")"
-          }
+          "lockedDoors": [
+            "door1"
+          ],
+          "needsKey": [
+            true
+          ],
+          "lockDiff": [
+            "hard"
+          ]
         },
         "r403": {
           "seed": 5534,
@@ -182,15 +219,15 @@
           "rand": "Trash",
           "randRate": "light",
           "safeHouse": true,
-          "lockedDoors": {
-            "$expr": "new Array(\"door1\")"
-          },
-          "needsKey": {
-            "$expr": "new Array(true)"
-          },
-          "lockDiff": {
-            "$expr": "new Array(\"hard\")"
-          }
+          "lockedDoors": [
+            "door1"
+          ],
+          "needsKey": [
+            true
+          ],
+          "lockDiff": [
+            "hard"
+          ]
         },
         "r404": {
           "seed": 4652,
@@ -200,27 +237,30 @@
           "rand": "Trash",
           "randRate": "light",
           "safeHouse": true,
-          "lockedDoors": {
-            "$expr": "new Array(\"door1\",\"door2\")"
-          },
-          "needsKey": {
-            "$expr": "new Array(true,true)"
-          },
-          "lockDiff": {
-            "$expr": "new Array(\"hard\",\"hard\")"
-          },
-          "NPCs": {
-            "$expr": "new Array(\"Barry\")"
-          },
-          "NPC_x": {
-            "$expr": "new Array(\"470\")"
-          },
-          "NPCPose": {
-            "$expr": "new Array(\"idle\")"
-          },
-          "NPCFacing": {
-            "$expr": "new Array(\"left\")"
-          },
+          "lockedDoors": [
+            "door1",
+            "door2"
+          ],
+          "needsKey": [
+            true,
+            true
+          ],
+          "lockDiff": [
+            "hard",
+            "hard"
+          ],
+          "NPCs": [
+            "Barry"
+          ],
+          "NPC_x": [
+            "470"
+          ],
+          "NPCPose": [
+            "idle"
+          ],
+          "NPCFacing": [
+            "left"
+          ],
           "cont1": {
             "desc": "Shelves",
             "cnt": []
@@ -249,9 +289,9 @@
           },
           "cont2": {
             "desc": "Ammunition Box",
-            "cnt": {
-              "$expr": "new Array(\"ammo556_50\")"
-            }
+            "cnt": [
+              "ammo556_50"
+            ]
           },
           "cont3": {
             "desc": "Footlocker",
@@ -263,9 +303,9 @@
           },
           "cont5": {
             "desc": "First Aid Kit",
-            "cnt": {
-              "$expr": "new Array(\"bandage\")"
-            },
+            "cnt": [
+              "bandage"
+            ],
             "noJunk": true
           }
         },
@@ -295,15 +335,15 @@
           "rand": "Trash",
           "randRate": "light",
           "safeHouse": true,
-          "lockedDoors": {
-            "$expr": "new Array(\"room4063\")"
-          },
-          "needsKey": {
-            "$expr": "new Array(true)"
-          },
-          "lockDiff": {
-            "$expr": "new Array(\"very hard\")"
-          }
+          "lockedDoors": [
+            "room4063"
+          ],
+          "needsKey": [
+            true
+          ],
+          "lockDiff": [
+            "very hard"
+          ]
         },
         "r4063": {
           "seed": 4652,
@@ -341,9 +381,10 @@
           "safeHouse": true,
           "cont1": {
             "desc": "Footlocker",
-            "cnt": {
-              "$expr": "new Array(\"ammo45_100\",\"ammo9mm_100\")"
-            },
+            "cnt": [
+              "ammo45_100",
+              "ammo9mm_100"
+            ],
             "noJunk": true
           }
         },
@@ -355,12 +396,12 @@
           "rand": "Trash",
           "randRate": "light",
           "safeHouse": true,
-          "enemy": {
-            "$expr": "new Array(\"HERCscientist\")"
-          },
-          "enemyX": {
-            "$expr": "new Array(\"820\")"
-          },
+          "enemy": [
+            "HERCscientist"
+          ],
+          "enemyX": [
+            "820"
+          ],
           "cont1": {
             "desc": "Footlocker",
             "cnt": [],
@@ -375,24 +416,27 @@
           "rand": "Trash",
           "randRate": "light",
           "safeHouse": true,
-          "enemy": {
-            "$expr": "new Array(\"HERCscientist\",\"HERCscientistMelee\")"
-          },
-          "enemyX": {
-            "$expr": "new Array(\"600\",\"450\")"
-          },
+          "enemy": [
+            "HERCscientist",
+            "HERCscientistMelee"
+          ],
+          "enemyX": [
+            "600",
+            "450"
+          ],
           "cont1": {
             "desc": "Footlocker",
-            "cnt": {
-              "$expr": "new Array(\"UMP45_specOps\")"
-            },
+            "cnt": [
+              "UMP45_specOps"
+            ],
             "noJunk": true
           },
           "cont2": {
             "desc": "Footlocker",
-            "cnt": {
-              "$expr": "new Array(\"thor\",\"ammoshotgun_30\")"
-            },
+            "cnt": [
+              "thor",
+              "ammoshotgun_30"
+            ],
             "noJunk": true
           }
         }

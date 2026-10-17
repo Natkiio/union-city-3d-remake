@@ -95,12 +95,14 @@
           "rand": "Trash",
           "randRate": "heavy",
           "outside": true,
-          "enemy": {
-            "$expr": "new Array(\"HERCsoldierHeavy\",\"HERCsoldierHeavy\")"
-          },
-          "enemyX": {
-            "$expr": "new Array(\"970\",\"1050\")"
-          }
+          "enemy": [
+            "HERCsoldierHeavy",
+            "HERCsoldierHeavy"
+          ],
+          "enemyX": [
+            "970",
+            "1050"
+          ]
         },
         "r100": {
           "seed": 51234,
@@ -110,24 +112,28 @@
           "rand": "Trash",
           "randRate": "heavy",
           "outside": true,
-          "enemy": {
-            "$expr": "new Array(\"JaneSacrifice\",\"ShawnSacrifice\",\"DanaWall\")"
-          },
-          "enemyX": {
-            "$expr": "new Array(\"450\",\"500\",\"600\")"
-          },
-          "NPCs": {
-            "$expr": "new Array(\"JackWall\")"
-          },
-          "NPC_x": {
-            "$expr": "new Array(\"700\")"
-          },
-          "NPCPose": {
-            "$expr": "new Array(\"holdRifle\")"
-          },
-          "NPCFacing": {
-            "$expr": "new Array(\"right\")"
-          }
+          "enemy": [
+            "JaneSacrifice",
+            "ShawnSacrifice",
+            "DanaWall"
+          ],
+          "enemyX": [
+            "450",
+            "500",
+            "600"
+          ],
+          "NPCs": [
+            "JackWall"
+          ],
+          "NPC_x": [
+            "700"
+          ],
+          "NPCPose": [
+            "holdRifle"
+          ],
+          "NPCFacing": [
+            "right"
+          ]
         }
       }
     },

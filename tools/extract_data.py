@@ -21,6 +21,12 @@ SKIP_TABLES = {"ach", "Button"}  # achievement/UI plumbing, not gameplay
 # Per-location / cutscene / lighting tables go in a "world" subfolder.
 WORLD_TABLE = re.compile(r"^(l\d+|lightTime\d+|cutScene\d+|shopSet\d+|fakeRoom)$")
 
+# Functions that fill data tables with indented `table.a.b = value;` lines
+# (quests, triggers, NPC dialogue). Their assignments are read like top-level ones.
+TABLE_FUNCTIONS = re.compile(r"^(setQuestContents|defineTriggers|setNPCLoc\d+)$")
+FUNC_DEF = re.compile(r"^function\s+(\w+)\s*\(")
+ARRAY = re.compile(r"^(?:new Array\((.*)\)|\[(.*)\])$")
+
 ASSIGN = re.compile(r"^([A-Za-z_]\w*(?:\.[A-Za-z_]\w*)+)\s*=\s*(.+?);\s*$")
 SCALAR = re.compile(r"^(?:var\s+)?([A-Za-z_]\w*)\s*=\s*(.+?);\s*$")
 NUMBER = re.compile(r"^-?\d+(?:\.\d+)?$")
@@ -30,8 +36,12 @@ def parse_value(raw):
     raw = raw.strip()
     if raw == "new Object()":
         return OrderedDict()
-    if raw == "new Array()":
+    if raw in ("new Array()", "[]"):
         return []
+    am = ARRAY.match(raw)
+    if am:
+        items = [parse_value(x) for x in re.findall(r'"(?:[^"\\]|\\.)*"|[^,\s][^,]*', am.group(1) or am.group(2) or "")]
+        return items
     if raw in ("true", "false"):
         return raw == "true"
     if raw == "null":
@@ -64,8 +74,20 @@ def main():
     tables = OrderedDict()
     constants = OrderedDict()   # name -> last literal value assigned at top level
     assigned = OrderedDict()    # name -> every literal value, to flag reassignments
+    current_fn = None
     for line in src.read_text(encoding="utf-8", errors="replace").splitlines():
-        if line[:1] in (" ", "\t", "}"):  # only top-level statements
+        fm = FUNC_DEF.match(line)
+        if fm:
+            current_fn = fm.group(1)
+        elif line.startswith("}"):
+            current_fn = None
+        if line[:1] in (" ", "\t", "}"):
+            # Indented lines only count inside the table-filling functions.
+            if current_fn and TABLE_FUNCTIONS.match(current_fn):
+                line = line.strip()
+                m = ASSIGN.match(line)
+                if m:
+                    set_path(tables, m.group(1).split("."), parse_value(m.group(2)))
             continue
         sm = SCALAR.match(line)
         if sm:

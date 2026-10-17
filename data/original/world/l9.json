@@ -17,9 +17,9 @@
           "cont1": {
             "desc": "Dumpster",
             "display": "blank",
-            "cnt": {
-              "$expr": "new Array(\"brokenPipe\")"
-            }
+            "cnt": [
+              "brokenPipe"
+            ]
           }
         }
       }
@@ -37,15 +37,15 @@
           "randRate": "light",
           "cont1": {
             "desc": "Cupboard",
-            "cnt": {
-              "$expr": "new Array(\"cannedBeans\")"
-            }
+            "cnt": [
+              "cannedBeans"
+            ]
           },
           "cont2": {
             "desc": "Cupboard",
-            "cnt": {
-              "$expr": "new Array(\"soupBeef\")"
-            }
+            "cnt": [
+              "soupBeef"
+            ]
           },
           "cont3": {
             "desc": "Cupboard",
@@ -53,9 +53,10 @@
           },
           "cont4": {
             "desc": "Fridge",
-            "cnt": {
-              "$expr": "new Array(\"sodaCan\",\"water\")"
-            },
+            "cnt": [
+              "sodaCan",
+              "water"
+            ],
             "noJunk": true
           }
         },
@@ -67,16 +68,21 @@
           "randRate": "light",
           "cont1": {
             "desc": "Bookshelf",
-            "cnt": {
-              "$expr": "new Array(\"firstAid\",\"magazine\",\"book\",\"book\",\"scrapPaper\")"
-            },
+            "cnt": [
+              "firstAid",
+              "magazine",
+              "book",
+              "book",
+              "scrapPaper"
+            ],
             "noJunk": true
           },
           "cont2": {
             "desc": "Side Table",
-            "cnt": {
-              "$expr": "new Array(\"pocketKnife\",\"cash_20\")"
-            }
+            "cnt": [
+              "pocketKnife",
+              "cash_20"
+            ]
           }
         },
         "r2": {
@@ -87,9 +93,10 @@
           "randRate": "light",
           "cont1": {
             "desc": "Bookshelf",
-            "cnt": {
-              "$expr": "new Array(\"magazine\",\"paperWeight\")"
-            },
+            "cnt": [
+              "magazine",
+              "paperWeight"
+            ],
             "noJunk": true
           },
           "cont2": {
@@ -107,15 +114,18 @@
           "randRate": "light",
           "cont1": {
             "desc": "Suitcase",
-            "cnt": {
-              "$expr": "new Array(\"capBlue\",\"tshirtBlack\",\"jeansBlue\")"
-            }
+            "cnt": [
+              "capBlue",
+              "tshirtBlack",
+              "jeansBlue"
+            ]
           },
           "cont2": {
             "desc": "Closet",
-            "cnt": {
-              "$expr": "new Array(\"ammo45_24\",\"longSleeveGreen\")"
-            }
+            "cnt": [
+              "ammo45_24",
+              "longSleeveGreen"
+            ]
           }
         },
         "r2": {
@@ -138,15 +148,15 @@
           "type": "anywhere",
           "cont1": {
             "desc": "Boxes",
-            "cnt": {
-              "$expr": "new Array(\"ammo45_15\")"
-            }
+            "cnt": [
+              "ammo45_15"
+            ]
           },
           "cont2": {
             "desc": "Drawers",
-            "cnt": {
-              "$expr": "new Array(\"cash_25\")"
-            }
+            "cnt": [
+              "cash_25"
+            ]
           }
         },
         "r2": {
@@ -155,16 +165,16 @@
           "type": "anywhere",
           "cont1": {
             "desc": "Fridge",
-            "cnt": {
-              "$expr": "new Array(\"apple\")"
-            },
+            "cnt": [
+              "apple"
+            ],
             "noJunk": true
           },
           "cont2": {
             "desc": "Kitchen Sink",
-            "cnt": {
-              "$expr": "new Array(\"kitchenKnife\")"
-            },
+            "cnt": [
+              "kitchenKnife"
+            ],
             "noJunk": true
           }
         },
@@ -175,15 +185,15 @@
           "outside": true,
           "cont1": {
             "desc": "Trash Can",
-            "cnt": {
-              "$expr": "new Array(\"brokenBoard\")"
-            }
+            "cnt": [
+              "brokenBoard"
+            ]
           },
           "cont2": {
             "desc": "Back Fence",
-            "cnt": {
-              "$expr": "new Array(\"pipe\")"
-            }
+            "cnt": [
+              "pipe"
+            ]
           }
         }
       }
@@ -197,53 +207,55 @@
           "type": "anywhere",
           "cont1": {
             "desc": "Boxes",
-            "cnt": {
-              "$expr": "new Array(\"orange\")"
-            },
+            "cnt": [
+              "orange"
+            ],
             "noJunk": true
           },
           "cont2": {
             "desc": "Shelf",
-            "cnt": {
-              "$expr": "new Array(\"cannedCorn\")"
-            }
+            "cnt": [
+              "cannedCorn"
+            ]
           },
           "cont3": {
             "desc": "Shelf",
-            "cnt": {
-              "$expr": "new Array(\"cannedTomato\")"
-            }
+            "cnt": [
+              "cannedTomato"
+            ]
           },
           "cont4": {
             "desc": "Shelf",
-            "cnt": {
-              "$expr": "new Array(\"cereal\")"
-            }
+            "cnt": [
+              "cereal"
+            ]
           },
           "cont5": {
             "desc": "Cash Register",
-            "cnt": {
-              "$expr": "new Array(\"cash_56\")"
-            },
+            "cnt": [
+              "cash_56"
+            ],
             "noJunk": true
           },
           "cont6": {
             "desc": "Counter",
-            "cnt": {
-              "$expr": "new Array(\"jerky\")"
-            }
+            "cnt": [
+              "jerky"
+            ]
           },
           "cont7": {
             "desc": "Storage Shelf",
-            "cnt": {
-              "$expr": "new Array(\"jerky\",\"pipe\",\"brokenPipe\")"
-            }
+            "cnt": [
+              "jerky",
+              "pipe",
+              "brokenPipe"
+            ]
           },
           "cont8": {
             "desc": "Floor",
-            "cnt": {
-              "$expr": "new Array(\"kellyGlasses\")"
-            },
+            "cnt": [
+              "kellyGlasses"
+            ],
             "noJunk": true
           }
         },
@@ -251,36 +263,37 @@
           "name": "Store Room",
           "lightReduction": 70,
           "type": "anywhere",
-          "NPCs": {
-            "$expr": "new Array(\"Kelly\")"
-          },
-          "NPC_x": {
-            "$expr": "new Array(\"370\")"
-          },
-          "NPCPose": {
-            "$expr": "new Array(\"sit\")"
-          },
-          "NPCFacing": {
-            "$expr": "new Array(\"left\")"
-          },
+          "NPCs": [
+            "Kelly"
+          ],
+          "NPC_x": [
+            "370"
+          ],
+          "NPCPose": [
+            "sit"
+          ],
+          "NPCFacing": [
+            "left"
+          ],
           "cont1": {
             "desc": "Shelf",
-            "cnt": {
-              "$expr": "new Array(\"sodaCan\")"
-            },
+            "cnt": [
+              "sodaCan"
+            ],
             "noJunk": true
           },
           "cont2": {
             "desc": "Shelf",
-            "cnt": {
-              "$expr": "new Array(\"cannedCorn\")"
-            }
+            "cnt": [
+              "cannedCorn"
+            ]
           },
           "cont3": {
             "desc": "Boxes",
-            "cnt": {
-              "$expr": "new Array(\"cannedCorn\",\"cannedCorn\")"
-            }
+            "cnt": [
+              "cannedCorn",
+              "cannedCorn"
+            ]
           }
         }
       }
@@ -315,21 +328,26 @@
           "randRate": "heavy",
           "cont1": {
             "desc": "Bag",
-            "cnt": {
-              "$expr": "new Array(\"ammoshotgun_6\",\"sawnOff\",\"tape\")"
-            }
+            "cnt": [
+              "ammoshotgun_6",
+              "sawnOff",
+              "tape"
+            ]
           },
           "cont2": {
             "desc": "Table",
-            "cnt": {
-              "$expr": "new Array(\"cereal\",\"cookies\")"
-            }
+            "cnt": [
+              "cereal",
+              "cookies"
+            ]
           },
           "cont3": {
             "desc": "Ammo Stockpile",
-            "cnt": {
-              "$expr": "new Array(\"ammo9mm_30\",\"ammo45_30\",\"ammoshotgun_10\")"
-            },
+            "cnt": [
+              "ammo9mm_30",
+              "ammo45_30",
+              "ammoshotgun_10"
+            ],
             "noJunk": true
           }
         }
@@ -365,9 +383,10 @@
           },
           "cont3": {
             "desc": "Shelf",
-            "cnt": {
-              "$expr": "new Array(\"nails\",\"metalSheet\")"
-            }
+            "cnt": [
+              "nails",
+              "metalSheet"
+            ]
           },
           "cont4": {
             "desc": "Boxes",
@@ -379,15 +398,15 @@
           },
           "cont6": {
             "desc": "Shelf",
-            "cnt": {
-              "$expr": "new Array(\"weldingRod\")"
-            }
+            "cnt": [
+              "weldingRod"
+            ]
           },
           "cont7": {
             "desc": "Shelf",
-            "cnt": {
-              "$expr": "new Array(\"nails\")"
-            }
+            "cnt": [
+              "nails"
+            ]
           },
           "cont8": {
             "desc": "Shelf",
@@ -418,23 +437,23 @@
           "type": "basement",
           "rand": "Trash",
           "randRate": "heavy",
-          "NPCs": {
-            "$expr": "new Array(\"Darnel\")"
-          },
-          "NPC_x": {
-            "$expr": "new Array(\"95\")"
-          },
-          "NPCPose": {
-            "$expr": "new Array(\"useStanding\")"
-          },
-          "NPCFacing": {
-            "$expr": "new Array(\"left\")"
-          },
+          "NPCs": [
+            "Darnel"
+          ],
+          "NPC_x": [
+            "95"
+          ],
+          "NPCPose": [
+            "useStanding"
+          ],
+          "NPCFacing": [
+            "left"
+          ],
           "cont1": {
             "desc": "Shelf",
-            "cnt": {
-              "$expr": "new Array(\"brokenPipe\")"
-            }
+            "cnt": [
+              "brokenPipe"
+            ]
           },
           "cont2": {
             "desc": "Crate",
@@ -442,9 +461,9 @@
           },
           "cont3": {
             "desc": "Shelf",
-            "cnt": {
-              "$expr": "new Array(\"clawHammer\")"
-            }
+            "cnt": [
+              "clawHammer"
+            ]
           }
         }
       }
@@ -468,9 +487,9 @@
           },
           "cont3": {
             "desc": "Boxes",
-            "cnt": {
-              "$expr": "new Array(\"tape\")"
-            }
+            "cnt": [
+              "tape"
+            ]
           },
           "cont4": {
             "desc": "Box",
@@ -491,9 +510,9 @@
           "randRate": "medium",
           "cont1": {
             "desc": "Crate",
-            "cnt": {
-              "$expr": "new Array(\"metalSheet\")"
-            }
+            "cnt": [
+              "metalSheet"
+            ]
           },
           "cont2": {
             "desc": "Boxes",
@@ -512,37 +531,44 @@
           "randRate": "medium",
           "cont1": {
             "desc": "Storage Unit",
-            "cnt": {
-              "$expr": "new Array(\"hockeyStick\",\"cricketBat\")"
-            },
+            "cnt": [
+              "hockeyStick",
+              "cricketBat"
+            ],
             "locked": true,
             "lockDiff": "normal"
           },
           "cont2": {
             "desc": "Storage Unit",
-            "cnt": {
-              "$expr": "new Array(\"longGuns\",\"book\",\"book\")"
-            },
+            "cnt": [
+              "longGuns",
+              "book",
+              "book"
+            ],
             "locked": true,
             "lockDiff": "normal"
           },
           "cont3": {
             "desc": "Storage Unit",
-            "cnt": {
-              "$expr": "new Array(\"urbanCamo\",\"singletBlack\",\"PPM9\",\"paperWeight\")"
-            }
+            "cnt": [
+              "urbanCamo",
+              "singletBlack",
+              "PPM9",
+              "paperWeight"
+            ]
           },
           "cont4": {
             "desc": "Storage Unit",
-            "cnt": {
-              "$expr": "new Array(\"brokenBoard\")"
-            }
+            "cnt": [
+              "brokenBoard"
+            ]
           },
           "cont5": {
             "desc": "Storage Unit",
-            "cnt": {
-              "$expr": "new Array(\"woolHatBrown\",\"shoeWhite\")"
-            },
+            "cnt": [
+              "woolHatBrown",
+              "shoeWhite"
+            ],
             "locked": true,
             "lockDiff": "normal"
           }
@@ -561,9 +587,10 @@
           "randRate": "light",
           "cont1": {
             "desc": "Book Shelf",
-            "cnt": {
-              "$expr": "new Array(\"security\",\"cash_25\")"
-            }
+            "cnt": [
+              "security",
+              "cash_25"
+            ]
           }
         },
         "r1": {
@@ -581,17 +608,17 @@
           "randRate": "light",
           "cont1": {
             "desc": "Dresser",
-            "cnt": {
-              "$expr": "new Array(\"M1911_damaged\")"
-            },
+            "cnt": [
+              "M1911_damaged"
+            ],
             "locked": true,
             "lockDiff": "normal"
           },
           "cont2": {
             "desc": "Stair Closet",
-            "cnt": {
-              "$expr": "new Array(\"ammo45_32\")"
-            },
+            "cnt": [
+              "ammo45_32"
+            ],
             "locked": true,
             "lockDiff": "normal"
           }
@@ -606,9 +633,9 @@
           "randRate": "light",
           "cont1": {
             "desc": "Medicine Cabinet",
-            "cnt": {
-              "$expr": "new Array(\"pills\")"
-            }
+            "cnt": [
+              "pills"
+            ]
           }
         },
         "r2": {
@@ -619,21 +646,25 @@
           "randRate": "light",
           "cont1": {
             "desc": "Bedside Cupboard",
-            "cnt": {
-              "$expr": "new Array(\"singletBlack\",\"tshirtWhite\")"
-            }
+            "cnt": [
+              "singletBlack",
+              "tshirtWhite"
+            ]
           },
           "cont2": {
             "desc": "Bedside Cupboard",
-            "cnt": {
-              "$expr": "new Array(\"sunglassesBottle\",\"cash_30\")"
-            }
+            "cnt": [
+              "sunglassesBottle",
+              "cash_30"
+            ]
           },
           "cont3": {
             "desc": "Closet",
-            "cnt": {
-              "$expr": "new Array(\"suitBlack\",\"pantsBrown\",\"capRed\")"
-            }
+            "cnt": [
+              "suitBlack",
+              "pantsBrown",
+              "capRed"
+            ]
           }
         },
         "r3": {

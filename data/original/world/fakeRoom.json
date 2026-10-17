@@ -1,8 +1,10 @@
 {
-  "enemy": {
-    "$expr": "new Array(\"JebEnemy\",\"PaulEnemy\")"
-  },
-  "enemyX": {
-    "$expr": "new Array(\"550\",\"950\")"
-  }
+  "enemy": [
+    "JebEnemy",
+    "PaulEnemy"
+  ],
+  "enemyX": [
+    "550",
+    "950"
+  ]
 }
