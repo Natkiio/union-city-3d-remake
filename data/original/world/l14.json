@@ -70,9 +70,7 @@
       }
     },
     "b2": {
-      "name": {
-        "$expr": "\"1232 \" + l14.s1.b0.name"
-      },
+      "name": "1232 STANTON DRIVE - CHURCH",
       "f1": {
         "r1": {
           "seed": 11123,
@@ -120,9 +118,7 @@
       }
     },
     "b1": {
-      "name": {
-        "$expr": "l14.s2.b0.name"
-      },
+      "name": "MILITARY BASE",
       "f1": {
         "r1": {
           "seed": 3532,
@@ -337,9 +333,7 @@
       }
     },
     "b2": {
-      "name": {
-        "$expr": "l14.s2.b0.name"
-      }
+      "name": "MILITARY BASE"
     },
     "b3": {},
     "b4": {},

@@ -36,14 +36,10 @@
       }
     },
     "b1": {
-      "name": {
-        "$expr": "\"10 \" + l15.s1.b0.name"
-      }
+      "name": "10 HIGHWAY"
     },
     "b2": {
-      "name": {
-        "$expr": "\"12 \" + l15.s1.b0.name"
-      }
+      "name": "12 HIGHWAY"
     },
     "b3": {},
     "b4": {},
@@ -91,14 +87,10 @@
       }
     },
     "b1": {
-      "name": {
-        "$expr": "\"10 \" + l15.s2.b0.name"
-      }
+      "name": "10 HIGHWAY"
     },
     "b2": {
-      "name": {
-        "$expr": "\"12 \" + l15.s2.b0.name"
-      }
+      "name": "12 HIGHWAY"
     },
     "b3": {},
     "b4": {},
@@ -358,14 +350,10 @@
       }
     },
     "b1": {
-      "name": {
-        "$expr": "\"10 \" + l15.s3.b0.name"
-      }
+      "name": "10 RESERVE ENTRANCE"
     },
     "b2": {
-      "name": {
-        "$expr": "\"12 \" + l15.s3.b0.name"
-      }
+      "name": "12 RESERVE ENTRANCE"
     },
     "b3": {},
     "b4": {},
@@ -389,14 +377,10 @@
       }
     },
     "b1": {
-      "name": {
-        "$expr": "\"10 \" + l15.s4.b0.name"
-      }
+      "name": "10 TOWN RD"
     },
     "b2": {
-      "name": {
-        "$expr": "\"12 \" + l15.s4.b0.name"
-      }
+      "name": "12 TOWN RD"
     },
     "b3": {},
     "b4": {},
@@ -420,9 +404,7 @@
       }
     },
     "b1": {
-      "name": {
-        "$expr": "\"10 \" + l15.s5.b0.name"
-      },
+      "name": "10 TOWN RD",
       "f1": {
         "r0": {
           "seed": 88423,
@@ -494,9 +476,7 @@
       }
     },
     "b2": {
-      "name": {
-        "$expr": "\"12 \" + l15.s5.b0.name"
-      },
+      "name": "12 TOWN RD",
       "f1": {
         "r1": {
           "seed": 14553,
@@ -604,9 +584,7 @@
       }
     },
     "b1": {
-      "name": {
-        "$expr": "\"10 \" + l15.s6.b0.name"
-      },
+      "name": "10 MAIN ST",
       "safeHouse": true,
       "f1": {
         "r1": {
@@ -665,9 +643,7 @@
       }
     },
     "b2": {
-      "name": {
-        "$expr": "\"12 \" + l15.s6.b0.name"
-      },
+      "name": "12 MAIN ST",
       "f1": {
         "r1": {
           "seed": 433,

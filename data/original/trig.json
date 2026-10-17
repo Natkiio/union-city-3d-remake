@@ -68,7 +68,11 @@
     "func2": "displayWorldSpeech",
     "func2var1": "player",
     "func2var2": {
-      "$expr": "\"\" + _root[player.sex + \"PartnerSexStart\"] + \"\\'s not here. Maybe \" + _root[player.sex + \"PartnerSex\"] + \" left a note.\""
+      "template": "{PartnerSexStart}'s not here. Maybe {PartnerSex} left a note.",
+      "placeholders": [
+        "PartnerSexStart",
+        "PartnerSex"
+      ]
     },
     "func3": "setActiveQuest",
     "func3var1": "902",
@@ -94,7 +98,10 @@
     "func2": "displayWorldSpeech",
     "func2var1": "player",
     "func2var2": {
-      "$expr": "\"Ok, now to find \" + _root[player.sex + \"PartnerName\"] + \".\""
+      "template": "Ok, now to find {PartnerName}.",
+      "placeholders": [
+        "PartnerName"
+      ]
     },
     "func3": "setActiveQuest",
     "func3var1": "904",
@@ -159,7 +166,10 @@
     "func1": "displayWorldSpeech",
     "func1var1": "player",
     "func1var2": {
-      "$expr": "\"Home. God I hope\\r\" + _root[player.sex + \"PartnerName\"] + \" is safe.\""
+      "template": "Home. God I hope\n{PartnerName} is safe.",
+      "placeholders": [
+        "PartnerName"
+      ]
     },
     "func2": "unlockEndLoc",
     "func2var1": "9",
@@ -220,7 +230,11 @@
     "func3": "displayWorldSpeech",
     "func3var1": "player",
     "func3var2": {
-      "$expr": "\"That\\'s \" + _root[player.sex + \"PartnerNameShort\"] + \"\\'s bag.\\rWhere the hell is \" + _root[player.sex + \"PartnerSex\"]"
+      "template": "That's {PartnerNameShort}'s bag.\nWhere the hell is {PartnerSex}",
+      "placeholders": [
+        "PartnerNameShort",
+        "PartnerSex"
+      ]
     },
     "triggered": false,
     "multi": false
@@ -250,7 +264,10 @@
     "func1": "displayWorldSpeech",
     "func1var1": "human2",
     "func1var2": {
-      "$expr": "\"Infected!\\rTake \" + _root[player.sex + \"PlayerSexAddress\"] + \" down!\""
+      "template": "Infected!\nTake {PlayerSexAddress} down!",
+      "placeholders": [
+        "PlayerSexAddress"
+      ]
     },
     "triggered": false,
     "multi": false
@@ -262,7 +279,10 @@
     "func2": "displayWorldSpeech",
     "func2var1": "player",
     "func2var2": {
-      "$expr": "\"They must\\'ve moved \" + _root[player.sex + \"PartnerNameShort\"] + \" to the park in Uptown.\""
+      "template": "They must've moved {PartnerNameShort} to the park in Uptown.",
+      "placeholders": [
+        "PartnerNameShort"
+      ]
     },
     "func3": "setActiveQuest",
     "func3var1": "912",
@@ -412,7 +432,10 @@
     "func1": "displayWorldSpeech",
     "func1var1": "player",
     "func1var2": {
-      "$expr": "\"I need to get\\rhome to \" + _root[player.sex + \"PartnerNameShort\"] + \".\""
+      "template": "I need to get\nhome to {PartnerNameShort}.",
+      "placeholders": [
+        "PartnerNameShort"
+      ]
     },
     "func2": "showHelp",
     "func2var1": "sprint",

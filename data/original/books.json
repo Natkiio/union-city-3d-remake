@@ -5,9 +5,7 @@
     "desc": "Batting instructional magazine.",
     "effect": "to Blunt Weapons",
     "weight": 0.5,
-    "bonus": {
-      "$expr": "bookBonus"
-    },
+    "bonus": 3,
     "rarity": 3
   },
   "blades": {
@@ -16,9 +14,7 @@
     "desc": "Monthly martial arts weapons magazine.",
     "effect": "to Bladed Weapons",
     "weight": 0.5,
-    "bonus": {
-      "$expr": "bookBonus"
-    },
+    "bonus": 3,
     "rarity": 3
   },
   "pistols": {
@@ -27,9 +23,7 @@
     "desc": "Annual guide to handgun ownership.",
     "effect": "to Pistols",
     "weight": 0.5,
-    "bonus": {
-      "$expr": "bookBonus"
-    },
+    "bonus": 3,
     "rarity": 4
   },
   "longGuns": {
@@ -38,9 +32,7 @@
     "desc": "Hunters weapons guide from the small town of Glendale.",
     "effect": "to Long Guns",
     "weight": 0.5,
-    "bonus": {
-      "$expr": "bookBonus"
-    },
+    "bonus": 3,
     "rarity": 6
   },
   "automatics": {
@@ -49,9 +41,7 @@
     "desc": "Special Forces monthly magazine.",
     "effect": "to Automatics",
     "weight": 0.5,
-    "bonus": {
-      "$expr": "bookBonus"
-    },
+    "bonus": 3,
     "rarity": 7
   },
   "specialWeapons": {
@@ -60,9 +50,7 @@
     "desc": "Half of these weapons are old as heck.",
     "effect": "to Special Weapons",
     "weight": 0.5,
-    "bonus": {
-      "$expr": "bookBonus"
-    },
+    "bonus": 3,
     "rarity": 9
   },
   "smarts": {
@@ -71,9 +59,7 @@
     "desc": "Trade, Education and Training",
     "effect": "to Smarts",
     "weight": 0.5,
-    "bonus": {
-      "$expr": "bookBonus"
-    },
+    "bonus": 3,
     "rarity": 11
   },
   "security": {
@@ -82,9 +68,7 @@
     "desc": "Locks, surveillance and ladies on page 4.",
     "effect": "to Security",
     "weight": 0.5,
-    "bonus": {
-      "$expr": "bookBonus"
-    },
+    "bonus": 3,
     "rarity": 7
   },
   "searching": {
@@ -93,9 +77,7 @@
     "desc": "I can never find this guy.",
     "effect": "to Searching",
     "weight": 0.5,
-    "bonus": {
-      "$expr": "bookBonus"
-    },
+    "bonus": 3,
     "rarity": 2
   },
   "firstAid": {
@@ -104,9 +86,7 @@
     "desc": "Beginners manual to first aid.",
     "effect": "to First Aid",
     "weight": 0.5,
-    "bonus": {
-      "$expr": "bookBonus"
-    },
+    "bonus": 3,
     "rarity": 4
   },
   "fitness": {
@@ -115,9 +95,7 @@
     "desc": "Scary fitness magazine, oily men everywhere.",
     "effect": "to Fitness",
     "weight": 0.5,
-    "bonus": {
-      "$expr": "bookBonus"
-    },
+    "bonus": 3,
     "rarity": 3
   },
   "survival": {
@@ -126,9 +104,7 @@
     "desc": "How to grow a beard and live in a tree, apparently.",
     "effect": "to Survival",
     "weight": 0.5,
-    "bonus": {
-      "$expr": "bookBonus"
-    },
+    "bonus": 3,
     "rarity": 5
   }
 }

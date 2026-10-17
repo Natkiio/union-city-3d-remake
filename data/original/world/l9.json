@@ -25,9 +25,7 @@
       }
     },
     "b1": {
-      "name": {
-        "$expr": "\"860 \" + l9.s1.b0.name"
-      },
+      "name": "860 TANNER STREET",
       "f1": {
         "r0": {
           "name": "House",
@@ -138,9 +136,7 @@
       }
     },
     "b2": {
-      "name": {
-        "$expr": "\"862 \" + l9.s1.b0.name"
-      },
+      "name": "862 TANNER STREET",
       "f1": {
         "r1": {
           "name": "House",

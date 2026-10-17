@@ -17,9 +17,7 @@
     "bonus": 0.1,
     "rarity": 999999999,
     "wearLocation": "top",
-    "st": {
-      "$expr": "clothSortTop"
-    },
+    "st": "aaaa3",
     "premium": true
   },
   "TLSbottom": {
@@ -31,9 +29,7 @@
     "bonus": 1,
     "rarity": 999999999,
     "wearLocation": "bottom",
-    "st": {
-      "$expr": "clothSortBottom"
-    },
+    "st": "aaaa5",
     "premium": true
   },
   "unionSecTop": {
@@ -45,9 +41,7 @@
     "bonus": 1,
     "rarity": 18,
     "wearLocation": "top",
-    "st": {
-      "$expr": "clothSortTop"
-    }
+    "st": "aaaa3"
   },
   "policeBottom": {
     "ref": "policeBottom",
@@ -58,9 +52,7 @@
     "bonus": 1,
     "rarity": 15,
     "wearLocation": "bottom",
-    "st": {
-      "$expr": "clothSortBottom"
-    }
+    "st": "aaaa5"
   },
   "bioHazardHat": {
     "ref": "bioHazardHat",
@@ -71,9 +63,7 @@
     "bonus": 1,
     "rarity": null,
     "wearLocation": "head",
-    "st": {
-      "$expr": "clothSortHead"
-    },
+    "st": "aaaa1",
     "pickup": "hat",
     "reward": true
   },
@@ -86,9 +76,7 @@
     "bonus": 1,
     "rarity": null,
     "wearLocation": "top",
-    "st": {
-      "$expr": "clothSortTop"
-    },
+    "st": "aaaa3",
     "reward": true
   },
   "bioHazardPants": {
@@ -100,9 +88,7 @@
     "bonus": 1,
     "rarity": null,
     "wearLocation": "bottom",
-    "st": {
-      "$expr": "clothSortBottom"
-    },
+    "st": "aaaa5",
     "reward": true
   },
   "kevlarVest": {
@@ -114,9 +100,7 @@
     "bonus": 0.5,
     "rarity": 12,
     "wearLocation": "armor",
-    "st": {
-      "$expr": "clothSortArmor"
-    }
+    "st": "aaaa4"
   },
   "kevlarVestArmy": {
     "ref": "kevlarVestArmy",
@@ -127,9 +111,7 @@
     "bonus": 0.2,
     "rarity": 15,
     "wearLocation": "armor",
-    "st": {
-      "$expr": "clothSortArmor"
-    }
+    "st": "aaaa4"
   },
   "kevlarVestHERC": {
     "ref": "kevlarVestHERC",
@@ -140,9 +122,7 @@
     "bonus": 0.2,
     "rarity": 99999999,
     "wearLocation": "armor",
-    "st": {
-      "$expr": "clothSortArmor"
-    },
+    "st": "aaaa4",
     "premium": true
   },
   "HERCtop": {
@@ -153,9 +133,7 @@
     "weight": 3,
     "bonus": 1,
     "wearLocation": "top",
-    "st": {
-      "$expr": "clothSortTop"
-    },
+    "st": "aaaa3",
     "handColour": 1973790,
     "rarity": 999999999,
     "premium": true
@@ -168,9 +146,7 @@
     "weight": 4,
     "bonus": 1,
     "wearLocation": "bottom",
-    "st": {
-      "$expr": "clothSortTop"
-    },
+    "st": "aaaa3",
     "rarity": 999999999,
     "premium": true
   },
@@ -182,9 +158,7 @@
     "weight": 6,
     "bonus": 0.8,
     "wearLocation": "head",
-    "st": {
-      "$expr": "clothSortTop"
-    },
+    "st": "aaaa3",
     "pickup": "hat",
     "rarity": 999999999,
     "premium": true
@@ -197,9 +171,7 @@
     "weight": 2,
     "bonus": 1,
     "wearLocation": "top",
-    "st": {
-      "$expr": "clothSortTop"
-    }
+    "st": "aaaa3"
   },
   "armyBottom": {
     "ref": "armyBottom",
@@ -209,9 +181,7 @@
     "weight": 3,
     "bonus": 1,
     "wearLocation": "bottom",
-    "st": {
-      "$expr": "clothSortBottom"
-    }
+    "st": "aaaa5"
   },
   "longSleeveRed": {
     "ref": "longSleeveRed",
@@ -221,9 +191,7 @@
     "weight": 0.5,
     "bonus": 1,
     "wearLocation": "top",
-    "st": {
-      "$expr": "clothSortTop"
-    },
+    "st": "aaaa3",
     "rarity": 5
   },
   "longSleeveGreen": {
@@ -234,9 +202,7 @@
     "weight": 0.5,
     "bonus": 1,
     "wearLocation": "top",
-    "st": {
-      "$expr": "clothSortTop"
-    },
+    "st": "aaaa3",
     "rarity": 5
   },
   "longSleeveWhite": {
@@ -247,9 +213,7 @@
     "weight": 0.5,
     "bonus": 1,
     "wearLocation": "top",
-    "st": {
-      "$expr": "clothSortTop"
-    },
+    "st": "aaaa3",
     "rarity": 2
   },
   "longSleeveBlack": {
@@ -260,9 +224,7 @@
     "weight": 0.5,
     "bonus": 1,
     "wearLocation": "top",
-    "st": {
-      "$expr": "clothSortTop"
-    },
+    "st": "aaaa3",
     "rarity": 6
   },
   "tshirtWhite": {
@@ -273,9 +235,7 @@
     "weight": 0.5,
     "bonus": 1,
     "wearLocation": "top",
-    "st": {
-      "$expr": "clothSortTop"
-    },
+    "st": "aaaa3",
     "rarity": 1
   },
   "tshirtBlue": {
@@ -286,9 +246,7 @@
     "weight": 0.5,
     "bonus": 1,
     "wearLocation": "top",
-    "st": {
-      "$expr": "clothSortTop"
-    },
+    "st": "aaaa3",
     "rarity": 1
   },
   "tshirtRed": {
@@ -299,9 +257,7 @@
     "weight": 0.5,
     "bonus": 1,
     "wearLocation": "top",
-    "st": {
-      "$expr": "clothSortTop"
-    },
+    "st": "aaaa3",
     "rarity": 3
   },
   "tshirtBlack": {
@@ -312,9 +268,7 @@
     "weight": 0.5,
     "bonus": 1,
     "wearLocation": "top",
-    "st": {
-      "$expr": "clothSortTop"
-    },
+    "st": "aaaa3",
     "rarity": 5
   },
   "tshirtBrown": {
@@ -325,9 +279,7 @@
     "weight": 0.5,
     "bonus": 1,
     "wearLocation": "top",
-    "st": {
-      "$expr": "clothSortTop"
-    },
+    "st": "aaaa3",
     "rarity": 4
   },
   "hoodyBlack": {
@@ -338,9 +290,7 @@
     "weight": 1,
     "bonus": 1,
     "wearLocation": "top",
-    "st": {
-      "$expr": "clothSortTop"
-    },
+    "st": "aaaa3",
     "rarity": 10
   },
   "suitBlack": {
@@ -352,9 +302,7 @@
     "bonus": 1,
     "wearLocation": "top",
     "rarity": 7,
-    "st": {
-      "$expr": "clothSortTop"
-    }
+    "st": "aaaa3"
   },
   "suitGrey": {
     "ref": "suitGrey",
@@ -365,9 +313,7 @@
     "bonus": 1,
     "wearLocation": "top",
     "rarity": 7,
-    "st": {
-      "$expr": "clothSortTop"
-    }
+    "st": "aaaa3"
   },
   "singletBlack": {
     "ref": "singletBlack",
@@ -378,9 +324,7 @@
     "bonus": 1,
     "wearLocation": "top",
     "rarity": 4,
-    "st": {
-      "$expr": "clothSortTop"
-    }
+    "st": "aaaa3"
   },
   "shirtWhite": {
     "ref": "shirtWhite",
@@ -391,9 +335,7 @@
     "bonus": 1,
     "wearLocation": "top",
     "rarity": 1,
-    "st": {
-      "$expr": "clothSortTop"
-    }
+    "st": "aaaa3"
   },
   "shirtBlue": {
     "ref": "shirtBlue",
@@ -404,9 +346,7 @@
     "bonus": 1,
     "wearLocation": "top",
     "rarity": 1,
-    "st": {
-      "$expr": "clothSortTop"
-    }
+    "st": "aaaa3"
   },
   "shirtCheckerBlue": {
     "ref": "shirtCheckerBlue",
@@ -417,9 +357,7 @@
     "bonus": 1,
     "wearLocation": "top",
     "rarity": 5,
-    "st": {
-      "$expr": "clothSortTop"
-    }
+    "st": "aaaa3"
   },
   "shirtCheckerYellow": {
     "ref": "shirtCheckerYellow",
@@ -430,9 +368,7 @@
     "bonus": 1,
     "wearLocation": "top",
     "rarity": 5,
-    "st": {
-      "$expr": "clothSortTop"
-    }
+    "st": "aaaa3"
   },
   "jeansBlue": {
     "ref": "jeansBlue",
@@ -442,9 +378,7 @@
     "weight": 1,
     "bonus": 1,
     "wearLocation": "bottom",
-    "st": {
-      "$expr": "clothSortBottom"
-    },
+    "st": "aaaa5",
     "rarity": 5
   },
   "jeansBlack": {
@@ -455,9 +389,7 @@
     "weight": 1,
     "bonus": 1,
     "wearLocation": "bottom",
-    "st": {
-      "$expr": "clothSortBottom"
-    },
+    "st": "aaaa5",
     "rarity": 10
   },
   "pantsBrown": {
@@ -468,9 +400,7 @@
     "weight": 1,
     "bonus": 1,
     "wearLocation": "bottom",
-    "st": {
-      "$expr": "clothSortBottom"
-    },
+    "st": "aaaa5",
     "rarity": 5
   },
   "pantsGrey": {
@@ -481,9 +411,7 @@
     "weight": 1,
     "bonus": 1,
     "wearLocation": "bottom",
-    "st": {
-      "$expr": "clothSortBottom"
-    },
+    "st": "aaaa5",
     "rarity": 5
   },
   "greenCargo": {
@@ -495,9 +423,7 @@
     "bonus": 1,
     "wearLocation": "bottom",
     "rarity": 3,
-    "st": {
-      "$expr": "clothSortBottom"
-    }
+    "st": "aaaa5"
   },
   "cargoShorts": {
     "ref": "cargoShorts",
@@ -508,9 +434,7 @@
     "bonus": 1,
     "wearLocation": "bottom",
     "rarity": 3,
-    "st": {
-      "$expr": "clothSortBottom"
-    }
+    "st": "aaaa5"
   },
   "camoCargo": {
     "ref": "camoCargo",
@@ -521,9 +445,7 @@
     "bonus": 1,
     "wearLocation": "bottom",
     "rarity": 5,
-    "st": {
-      "$expr": "clothSortBottom"
-    }
+    "st": "aaaa5"
   },
   "urbanCamo": {
     "ref": "urbanCamo",
@@ -534,9 +456,7 @@
     "bonus": 1,
     "wearLocation": "bottom",
     "rarity": 7,
-    "st": {
-      "$expr": "clothSortBottom"
-    }
+    "st": "aaaa5"
   },
   "weldingMask": {
     "ref": "weldingMask",
@@ -547,9 +467,7 @@
     "wearLocation": "face",
     "rarity": 15,
     "location": "basement",
-    "st": {
-      "$expr": "clothSortFace"
-    },
+    "st": "aaaa2",
     "pickup": "mask"
   },
   "medicalMask": {
@@ -562,9 +480,7 @@
     "wearLocation": "face",
     "rarity": 5,
     "location": "anywhere",
-    "st": {
-      "$expr": "clothSortFace"
-    },
+    "st": "aaaa2",
     "icon": "mask"
   },
   "HERCmask": {
@@ -577,9 +493,7 @@
     "wearLocation": "face",
     "rarity": 999999999,
     "location": "police",
-    "st": {
-      "$expr": "clothSortFace"
-    },
+    "st": "aaaa2",
     "icon": "mask",
     "premium": true
   },
@@ -593,9 +507,7 @@
     "wearLocation": "face",
     "rarity": 14,
     "location": "police",
-    "st": {
-      "$expr": "clothSortFace"
-    },
+    "st": "aaaa2",
     "icon": "mask"
   },
   "sunglassesBig": {
@@ -608,9 +520,7 @@
     "wearLocation": "eyes",
     "rarity": 4,
     "location": "anywhere",
-    "st": {
-      "$expr": "clothSortFace"
-    }
+    "st": "aaaa2"
   },
   "sunglassesBottle": {
     "ref": "sunglassesBottle",
@@ -622,9 +532,7 @@
     "wearLocation": "eyes",
     "rarity": 6,
     "location": "anywhere",
-    "st": {
-      "$expr": "clothSortFace"
-    }
+    "st": "aaaa2"
   },
   "glassesBig": {
     "ref": "glassesBig",
@@ -636,9 +544,7 @@
     "wearLocation": "eyes",
     "rarity": 6,
     "location": "anywhere",
-    "st": {
-      "$expr": "clothSortFace"
-    }
+    "st": "aaaa2"
   },
   "glasses": {
     "ref": "glasses",
@@ -650,9 +556,7 @@
     "wearLocation": "eyes",
     "rarity": 6,
     "location": "anywhere",
-    "st": {
-      "$expr": "clothSortFace"
-    }
+    "st": "aaaa2"
   },
   "goggles": {
     "ref": "goggles",
@@ -664,9 +568,7 @@
     "wearLocation": "eyes",
     "rarity": 12,
     "location": "anywhere",
-    "st": {
-      "$expr": "clothSortFace"
-    }
+    "st": "aaaa2"
   },
   "bandana": {
     "ref": "bandana",
@@ -678,9 +580,7 @@
     "wearLocation": "face",
     "rarity": 8,
     "location": "anywhere",
-    "st": {
-      "$expr": "clothSortFace"
-    },
+    "st": "aaaa2",
     "icon": "mask"
   },
   "armyKevlar": {
@@ -692,9 +592,7 @@
     "wearLocation": "head",
     "rarity": 15,
     "location": "military",
-    "st": {
-      "$expr": "clothSortHead"
-    },
+    "st": "aaaa1",
     "pickup": "hat"
   },
   "riotHelmet": {
@@ -706,9 +604,7 @@
     "wearLocation": "head",
     "rarity": 14,
     "location": "police",
-    "st": {
-      "$expr": "clothSortHead"
-    },
+    "st": "aaaa1",
     "pickup": "hat"
   },
   "riotHelmetVisor": {
@@ -720,9 +616,7 @@
     "wearLocation": "head",
     "rarity": 16,
     "location": "police",
-    "st": {
-      "$expr": "clothSortHead"
-    },
+    "st": "aaaa1",
     "pickup": "hat"
   },
   "woolHatBrown": {
@@ -733,9 +627,7 @@
     "bonus": 1,
     "wearLocation": "head",
     "rarity": 8,
-    "st": {
-      "$expr": "clothSortHead"
-    },
+    "st": "aaaa1",
     "pickup": "hat"
   },
   "woolHatBlack": {
@@ -746,9 +638,7 @@
     "bonus": 1,
     "wearLocation": "head",
     "rarity": 10,
-    "st": {
-      "$expr": "clothSortHead"
-    },
+    "st": "aaaa1",
     "pickup": "hat"
   },
   "capBlack": {
@@ -759,9 +649,7 @@
     "bonus": 1,
     "wearLocation": "head",
     "rarity": 8,
-    "st": {
-      "$expr": "clothSortHead"
-    },
+    "st": "aaaa1",
     "pickup": "hat"
   },
   "capBlue": {
@@ -772,9 +660,7 @@
     "bonus": 1,
     "wearLocation": "head",
     "rarity": 5,
-    "st": {
-      "$expr": "clothSortHead"
-    },
+    "st": "aaaa1",
     "pickup": "hat"
   },
   "capRed": {
@@ -785,9 +671,7 @@
     "bonus": 1,
     "wearLocation": "head",
     "rarity": 5,
-    "st": {
-      "$expr": "clothSortHead"
-    },
+    "st": "aaaa1",
     "pickup": "hat"
   },
   "fedoraBlack": {
@@ -798,9 +682,7 @@
     "bonus": 1,
     "wearLocation": "head",
     "rarity": 12,
-    "st": {
-      "$expr": "clothSortHead"
-    },
+    "st": "aaaa1",
     "pickup": "hat"
   },
   "fedoraBrown": {
@@ -811,9 +693,7 @@
     "bonus": 1,
     "wearLocation": "head",
     "rarity": 10,
-    "st": {
-      "$expr": "clothSortHead"
-    }
+    "st": "aaaa1"
   },
   "fedoraGrey": {
     "ref": "fedoraGrey",
@@ -823,9 +703,7 @@
     "bonus": 1,
     "wearLocation": "head",
     "rarity": 10,
-    "st": {
-      "$expr": "clothSortHead"
-    },
+    "st": "aaaa1",
     "pickup": "hat"
   },
   "shoeBlack": {
@@ -836,9 +714,7 @@
     "bonus": 1,
     "wearLocation": "feet",
     "rarity": 1,
-    "st": {
-      "$expr": "clothSortShoes"
-    }
+    "st": "aaaa6"
   },
   "shoeBrown": {
     "ref": "shoeBrown",
@@ -848,9 +724,7 @@
     "bonus": 1,
     "wearLocation": "feet",
     "rarity": 3,
-    "st": {
-      "$expr": "clothSortShoes"
-    }
+    "st": "aaaa6"
   },
   "shoeWhite": {
     "ref": "shoeWhite",
@@ -860,9 +734,7 @@
     "bonus": 1,
     "wearLocation": "feet",
     "rarity": 4,
-    "st": {
-      "$expr": "clothSortShoes"
-    }
+    "st": "aaaa6"
   },
   "shoeArmy": {
     "ref": "shoeArmy",
@@ -872,8 +744,6 @@
     "bonus": 1,
     "wearLocation": "feet",
     "rarity": 20,
-    "st": {
-      "$expr": "clothSortShoes"
-    }
+    "st": "aaaa6"
   }
 }

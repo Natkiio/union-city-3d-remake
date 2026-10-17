@@ -32,9 +32,7 @@
     }
   },
   "b1": {
-    "name": {
-      "$expr": "\"10 \" + l1.b0.name"
-    },
+    "name": "10 JEFFERSON AVE",
     "f1": {
       "r1": {
         "name": "Apartment",
@@ -183,9 +181,7 @@
     }
   },
   "b2": {
-    "name": {
-      "$expr": "\"12 \" + l1.b0.name"
-    },
+    "name": "12 JEFFERSON AVE",
     "f1": {
       "r1": {
         "name": "Wharehouse",

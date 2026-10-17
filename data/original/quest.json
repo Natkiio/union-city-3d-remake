@@ -11,7 +11,11 @@
     "completed": false,
     "tracking": false,
     "longDesc": {
-      "$expr": "\"Something terrible is happening.\\r\\rI need to get to my apartment in Brookvale and find my \" + _root[player.sex + \"Partner\"] + \", \" + _root[player.sex + \"PartnerName\"] + \".\""
+      "template": "Something terrible is happening.\n\nI need to get to my apartment in Brookvale and find my {Partner}, {PartnerName}.",
+      "placeholders": [
+        "Partner",
+        "PartnerName"
+      ]
     },
     "loc": "section9"
   },
@@ -27,7 +31,10 @@
     "completed": false,
     "tracking": false,
     "longDesc": {
-      "$expr": "\"The apartment is a the end of the block in Brookvale. God I hope my \" + _root[player.sex + \"Partner\"] + \" is ok.\""
+      "template": "The apartment is a the end of the block in Brookvale. God I hope my {Partner} is ok.",
+      "placeholders": [
+        "Partner"
+      ]
     },
     "loc": "section9"
   },
@@ -36,7 +43,10 @@
     "owner": "Player",
     "desc": "Clues",
     "shortDesc": {
-      "$expr": "\"Find out where \" + _root[player.sex + \"PartnerNameShort\"] + \" went\""
+      "template": "Find out where {PartnerNameShort} went",
+      "placeholders": [
+        "PartnerNameShort"
+      ]
     },
     "type": "triggered",
     "XPreward": 50,
@@ -50,7 +60,11 @@
     ],
     "tracking": false,
     "longDesc": {
-      "$expr": "_root[player.sex + \"PartnerNameShort\"] + \" isn\\'t here, I need to find out where \" + _root[player.sex + \"PartnerSex\"] + \"\\'s gone\""
+      "template": "{PartnerNameShort} isn't here, I need to find out where {PartnerSex}'s gone",
+      "placeholders": [
+        "PartnerNameShort",
+        "PartnerSex"
+      ]
     },
     "loc": "section9"
   },
@@ -59,7 +73,10 @@
     "owner": "Player",
     "desc": "Hospital",
     "shortDesc": {
-      "$expr": "\"Find your \" + _root[player.sex + \"Partner\"] + \" in Canal Park\""
+      "template": "Find your {Partner} in Canal Park",
+      "placeholders": [
+        "Partner"
+      ]
     },
     "type": "triggered",
     "XPreward": 350,
@@ -68,7 +85,12 @@
     "completed": false,
     "tracking": false,
     "longDesc": {
-      "$expr": "\"My \" + _root[player.sex + \"Partner\"] + \" \" + _root[player.sex + \"PartnerNameShort\"] + \" left a note saying \" + _root[player.sex + \"PartnerSex\"] + \" went to the hospital to help out. Nearest Hospital is in Canal Park.\""
+      "template": "My {Partner} {PartnerNameShort} left a note saying {PartnerSex} went to the hospital to help out. Nearest Hospital is in Canal Park.",
+      "placeholders": [
+        "Partner",
+        "PartnerNameShort",
+        "PartnerSex"
+      ]
     },
     "loc": "section13"
   },
@@ -77,7 +99,10 @@
     "owner": "Player",
     "desc": "Searching",
     "shortDesc": {
-      "$expr": "\"Find \" + _root[player.sex + \"PartnerName\"] + \" in the Hospital\""
+      "template": "Find {PartnerName} in the Hospital",
+      "placeholders": [
+        "PartnerName"
+      ]
     },
     "type": "talk",
     "talkReq": "Shenice",
@@ -93,7 +118,11 @@
     "completed": false,
     "tracking": false,
     "longDesc": {
-      "$expr": "\"This hospital was where \" + _root[player.sex + \"PartnerName\"] + \" said \" + _root[player.sex + \"PartnerSex\"] + \"\\'d be.\""
+      "template": "This hospital was where {PartnerName} said {PartnerSex}'d be.",
+      "placeholders": [
+        "PartnerName",
+        "PartnerSex"
+      ]
     },
     "loc": "section13"
   },
@@ -109,7 +138,10 @@
     "completed": false,
     "tracking": false,
     "longDesc": {
-      "$expr": "\"One of the nurses said that they might\\'ve moved people to the Stadium, including \" + _root[player.sex + \"PartnerName\"] + \".\\r\\rTravel through Newtown and Uptown to get there.\""
+      "template": "One of the nurses said that they might've moved people to the Stadium, including {PartnerName}.\n\nTravel through Newtown and Uptown to get there.",
+      "placeholders": [
+        "PartnerName"
+      ]
     },
     "loc": "section5"
   },
@@ -125,7 +157,10 @@
     "completed": false,
     "tracking": false,
     "longDesc": {
-      "$expr": "\"The soldier at the gate told you to report to the registration officer at Stadium. Perhaps they have information on where \" + _root[player.sex + \"PartnerName\"] + \" is.\""
+      "template": "The soldier at the gate told you to report to the registration officer at Stadium. Perhaps they have information on where {PartnerName} is.",
+      "placeholders": [
+        "PartnerName"
+      ]
     },
     "loc": "section5"
   },
@@ -134,7 +169,10 @@
     "owner": "Player",
     "desc": "Relocated",
     "shortDesc": {
-      "$expr": "\"Find out what happened to \" + _root[player.sex + \"PartnerName\"]"
+      "template": "Find out what happened to {PartnerName}",
+      "placeholders": [
+        "PartnerName"
+      ]
     },
     "type": "triggered",
     "XPreward": 100,
@@ -143,7 +181,11 @@
     "completed": false,
     "tracking": false,
     "longDesc": {
-      "$expr": "\"The list says \" + _root[player.sex + \"PartnerName\"] + \" was relocated, find out where they sent \" + _root[player.sex + \"PartnerSexAddress\"] + \".\""
+      "template": "The list says {PartnerName} was relocated, find out where they sent {PartnerSexAddress}.",
+      "placeholders": [
+        "PartnerName",
+        "PartnerSexAddress"
+      ]
     },
     "loc": "section5"
   },
@@ -152,7 +194,10 @@
     "owner": "Player",
     "desc": "Disappeared",
     "shortDesc": {
-      "$expr": "\"Ask around about \" + _root[player.sex + \"PartnerName\"]"
+      "template": "Ask around about {PartnerName}",
+      "placeholders": [
+        "PartnerName"
+      ]
     },
     "type": "talk",
     "talkReq": "Barry",
@@ -162,7 +207,10 @@
     "completed": false,
     "tracking": false,
     "longDesc": {
-      "$expr": "\"Find someone in the stadium grounds that knows what happened to \" + _root[player.sex + \"PartnerName\"]"
+      "template": "Find someone in the stadium grounds that knows what happened to {PartnerName}",
+      "placeholders": [
+        "PartnerName"
+      ]
     },
     "loc": "section5"
   },
@@ -249,7 +297,10 @@
     "completed": false,
     "tracking": false,
     "longDesc": {
-      "$expr": "\"All evidence points to \" + _root[player.sex + \"PartnerName\"] + \" being at Union Park in Uptown. Go and meet Barry there!\""
+      "template": "All evidence points to {PartnerName} being at Union Park in Uptown. Go and meet Barry there!",
+      "placeholders": [
+        "PartnerName"
+      ]
     },
     "loc": "section11",
     "startRewards": [
@@ -261,7 +312,10 @@
     "owner": "Partner",
     "desc": "Break Out",
     "shortDesc": {
-      "$expr": "\"Find \" + _root[player.sex + \"PartnerName\"] + \" in Union Park\""
+      "template": "Find {PartnerName} in Union Park",
+      "placeholders": [
+        "PartnerName"
+      ]
     },
     "type": "talk",
     "talkReq": "Partner",
@@ -271,7 +325,10 @@
     "completed": false,
     "tracking": false,
     "longDesc": {
-      "$expr": "\"Use the key to break into the HERC compound at Union Park and find \" + _root[player.sex + \"PartnerName\"]"
+      "template": "Use the key to break into the HERC compound at Union Park and find {PartnerName}",
+      "placeholders": [
+        "PartnerName"
+      ]
     },
     "loc": "section11",
     "startRewards": [
@@ -283,7 +340,10 @@
     "owner": "Partner",
     "desc": "Alive",
     "shortDesc": {
-      "$expr": "\"Get the keys to release \" + _root[player.sex + \"PartnerName\"]"
+      "template": "Get the keys to release {PartnerName}",
+      "placeholders": [
+        "PartnerName"
+      ]
     },
     "type": "fetch",
     "itemReq": [
@@ -300,7 +360,10 @@
     "completed": false,
     "tracking": false,
     "longDesc": {
-      "$expr": "\"Use the key to break into the HERC compound at Union Park and find \" + _root[player.sex + \"PartnerName\"]"
+      "template": "Use the key to break into the HERC compound at Union Park and find {PartnerName}",
+      "placeholders": [
+        "PartnerName"
+      ]
     },
     "loc": "section11"
   },

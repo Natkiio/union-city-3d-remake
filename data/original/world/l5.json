@@ -443,9 +443,7 @@
       }
     },
     "b2": {
-      "name": {
-        "$expr": "\"12 \" + l5.s1.b0.name"
-      }
+      "name": "12 BALLPARK DRIVE"
     },
     "b3": {},
     "b4": {},

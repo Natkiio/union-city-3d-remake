@@ -16,14 +16,10 @@
       }
     },
     "b1": {
-      "name": {
-        "$expr": "\"10 \" + l4.s1.b0.name"
-      }
+      "name": "10 9TH STREET"
     },
     "b2": {
-      "name": {
-        "$expr": "\"12 \" + l4.s1.b0.name"
-      }
+      "name": "12 9TH STREET"
     },
     "b3": {},
     "b4": {},
