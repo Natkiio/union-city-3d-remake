@@ -9,13 +9,13 @@
   "action2": {
     "func": "displayWorldSpeech",
     "var1": "player",
-    "var2": "The docks.\\rWe\\'ll find a boat.",
+    "var2": "The docks.\nWe'll find a boat.",
     "timing": 3000
   },
   "action3": {
     "func": "displayWorldSpeech",
     "var1": "player",
-    "var2": "We need to get\roff the mainland.",
+    "var2": "We need to get\noff the mainland.",
     "timing": 6000
   }
 }

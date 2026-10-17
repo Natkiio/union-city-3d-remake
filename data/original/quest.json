@@ -426,7 +426,7 @@
     "activeQuest": false,
     "completed": false,
     "tracking": false,
-    "longDesc": "We\\'re going to need blocks of C4, blasting caps and a timer.",
+    "longDesc": "We're going to need blocks of C4, blasting caps and a timer.",
     "changeStateComplete": [
       "Jack"
     ],
@@ -471,7 +471,7 @@
       2
     ],
     "tracking": false,
-    "longDesc": "Ed is trying to get through the fence, it\\'s the only way into the Brookvale and my apartment.\\rHe needs bolt cutters to cut his way in.\\rHe said Ray at number 12 has some.",
+    "longDesc": "Ed is trying to get through the fence, it's the only way into the Brookvale and my apartment.\nHe needs bolt cutters to cut his way in.\nHe said Ray at number 12 has some.",
     "loc": "section16"
   },
   "quest003": {
@@ -495,7 +495,7 @@
       2
     ],
     "tracking": false,
-    "longDesc": "Ray says that he returned Ed\\'s boltcutters. I should go and tell Ed he must have them.",
+    "longDesc": "Ray says that he returned Ed's boltcutters. I should go and tell Ed he must have them.",
     "loc": "section16"
   },
   "quest004": {
@@ -533,7 +533,7 @@
   "quest002": {
     "ref": "002",
     "owner": "Hank",
-    "desc": "Find Hank\\'s Dad\\'s Rifle",
+    "desc": "Find Hank's Dad's Rifle",
     "type": "fetch",
     "itemReq": [
       "questHanksRifle",
@@ -553,7 +553,7 @@
       "hankKey"
     ],
     "tracking": false,
-    "longDesc": "Hank the gun shop owner needs me to find his rifle and bolt group for it. They\\'re in his apartment, number 202, down the street from his Canal Park shop. He gave me his neighbours key to get in.",
+    "longDesc": "Hank the gun shop owner needs me to find his rifle and bolt group for it. They're in his apartment, number 202, down the street from his Canal Park shop. He gave me his neighbours key to get in.",
     "loc": "section13"
   },
   "quest005": {
@@ -675,7 +675,7 @@
     "activeQuest": false,
     "completed": false,
     "tracking": false,
-    "longDesc": "Get the key off Richards\\' body and return to Union Security in Newtown to open the gun cage.",
+    "longDesc": "Get the key off Richards' body and return to Union Security in Newtown to open the gun cage.",
     "changeStateComplete": [
       "Keith",
       "Johnson"
@@ -705,7 +705,7 @@
     "activeQuest": false,
     "completed": false,
     "tracking": false,
-    "longDesc": "Kelly, the store clerk at Stan\\'s General Foods in Brookvale has lost her glasses, she can\\'t go anywhere without them.\\r\\rShe said she dropped them on the floor.",
+    "longDesc": "Kelly, the store clerk at Stan's General Foods in Brookvale has lost her glasses, she can't go anywhere without them.\n\nShe said she dropped them on the floor.",
     "loc": "section9"
   },
   "quest015": {
@@ -731,7 +731,7 @@
     "activeQuest": false,
     "completed": false,
     "tracking": false,
-    "longDesc": "Jeb, Paul and their \\'friends\\' are stranded with their van not working. They need gas and parts to get it running again.",
+    "longDesc": "Jeb, Paul and their 'friends' are stranded with their van not working. They need gas and parts to get it running again.",
     "changeStateComplete": [
       "Clarence",
       "Fern"
@@ -779,7 +779,7 @@
     "activeQuest": false,
     "completed": false,
     "tracking": false,
-    "longDesc": "Find 4 blood samples on corpses in the Whistler\\'s Forest nature reserve. Dr.Phillip Best thinks he can find out more about what\\'s going on from that.",
+    "longDesc": "Find 4 blood samples on corpses in the Whistler's Forest nature reserve. Dr.Phillip Best thinks he can find out more about what's going on from that.",
     "loc": "section15"
   },
   "quest500": {

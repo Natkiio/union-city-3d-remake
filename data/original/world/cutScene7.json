@@ -3,7 +3,7 @@
   "action1": {
     "func": "displayWorldSpeech",
     "var1": "npc_JackWall",
-    "var2": "Timer is set!\rHere we go!",
+    "var2": "Timer is set!\nHere we go!",
     "timing": 1
   },
   "action2": {
@@ -15,13 +15,13 @@
   "action3": {
     "func": "displayWorldSpeech",
     "var1": "npc_JackWall",
-    "var2": "Go through kid, we\\'ll hold them here.",
+    "var2": "Go through kid, we'll hold them here.",
     "timing": 5000
   },
   "action4": {
     "func": "displayWorldSpeech",
     "var1": "npc_ShawnWall",
-    "var2": "We\\'ll meet you at the monument!",
+    "var2": "We'll meet you at the monument!",
     "timing": 7000
   },
   "action5": {

@@ -54,10 +54,7 @@ def parse_value(raw):
     if NUMBER.match(raw):
         return float(raw) if "." in raw else int(raw)
     if len(raw) >= 2 and raw[0] == '"' and raw[-1] == '"' and '" + ' not in raw:
-        try:
-            return json.loads(raw)
-        except ValueError:
-            return raw[1:-1]
+        return unescape(raw[1:-1])
     return {"$expr": raw}
 
 

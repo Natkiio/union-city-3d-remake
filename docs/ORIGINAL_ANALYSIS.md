@@ -276,7 +276,7 @@ Data: `quest.json` (39), `npc.json` (59), `trig.json` (55 scripted triggers). Qu
 
 Quests can also **unlock map sections** (`unlocks`) and change NPC states (`changeState*` fields). NPC records carry appearance (clothing fields), dialogue tree by `state`, a weapon, and `enemy`/friendly flags; a handful (`Jeb`/`JebEnemy`, `Paul`/`PaulEnemy`, `Jane/Shawn/Dana` sacrifice and wall variants) are scripted story beats.
 
-> Quest text uses string concatenation with player-sex placeholders (`PartnerName`, `PartnerSex`…), so `longDesc` fields come through as `$expr` in the JSON.
+> Quest and NPC text is built by concatenating player-sex lookups (`_root[player.sex + "PartnerName"]`, `player.lastName`…). The extractor turns these into `{"template": "…{PartnerName}…", "placeholders": ["PartnerName", …]}`. Consumers fill the placeholders from player state; the JSON never guesses names. The only `$expr` nodes left are `npc.Partner.skinColour` and `npc.PartnerDocks.skinColour` (bare `player.skinColour`, a value rather than text).
 
 ## 12. World map
 

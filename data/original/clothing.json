@@ -11,7 +11,7 @@
   "TLStop": {
     "ref": "TLStop",
     "name": "Survivor Jacket [PREMIUM]",
-    "desc": "Popular survivor\\'s jacket",
+    "desc": "Popular survivor's jacket",
     "effect": "",
     "weight": 3,
     "bonus": 0.1,
@@ -23,7 +23,7 @@
   "TLSbottom": {
     "ref": "TLSbottom",
     "name": "Survivor Pants [PREMIUM]",
-    "desc": "Popular survivor\\'s pants",
+    "desc": "Popular survivor's pants",
     "effect": "",
     "weight": 3,
     "bonus": 1,
@@ -500,7 +500,7 @@
   "gasMask": {
     "ref": "gasMask",
     "name": "Gas Mask",
-    "desc": "Worn over the face to protect the wearer from \\'airborne pollutants\\' and toxic gases.",
+    "desc": "Worn over the face to protect the wearer from 'airborne pollutants' and toxic gases.",
     "effect": "",
     "weight": 1,
     "bonus": 1,
@@ -513,7 +513,7 @@
   "sunglassesBig": {
     "ref": "sunglassesBig",
     "name": "Sunglasses",
-    "desc": "UV Rating of 2. They\\'re those cheap ones you get at the drug store.",
+    "desc": "UV Rating of 2. They're those cheap ones you get at the drug store.",
     "effect": "",
     "weight": 0.1,
     "bonus": 1,

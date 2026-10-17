@@ -9,7 +9,7 @@
   "action2": {
     "func": "displayWorldSpeech",
     "var1": "player",
-    "var2": "Damnit, what\rthe hell was that?",
+    "var2": "Damnit, what\nthe hell was that?",
     "timing": 1500
   },
   "action3": {

@@ -3,7 +3,7 @@
   "action1": {
     "func": "displayWorldSpeech",
     "var1": "player",
-    "var2": "There\\'s a pier up ahead!",
+    "var2": "There's a pier up ahead!",
     "timing": 1
   },
   "action2": {
@@ -15,7 +15,7 @@
   "action3": {
     "func": "displayWorldSpeech",
     "var1": "player",
-    "var2": "They\\'re gone! Keep moving!",
+    "var2": "They're gone! Keep moving!",
     "timing": 8000
   }
 }

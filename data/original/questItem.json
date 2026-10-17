@@ -14,33 +14,33 @@
   },
   "kellyGlasses": {
     "ref": "kellyGlasses",
-    "name": "Kelly\\'s Glasses",
+    "name": "Kelly's Glasses",
     "desc": "[QUEST ITEM] Perscription Glasses, the name Kelly is engraved in the frame.",
     "weight": 0
   },
   "questHanksRifle": {
     "ref": "questHanksRifle",
-    "name": "Hank\\'s Rifle",
-    "desc": "[QUEST ITEM] Hank\\'s father\\'s rifle, useless without the bolt group.",
+    "name": "Hank's Rifle",
+    "desc": "[QUEST ITEM] Hank's father's rifle, useless without the bolt group.",
     "weight": 0
   },
   "questHanksRifleBolt": {
     "ref": "questHanksRifleBolt",
-    "name": "Hank\\'s Rifle Bolt",
-    "desc": "[QUEST ITEM] The bolt group for Hank\\'s father\\'s rifle, he\\'ll know how to assemble this.",
+    "name": "Hank's Rifle Bolt",
+    "desc": "[QUEST ITEM] The bolt group for Hank's father's rifle, he'll know how to assemble this.",
     "weight": 0
   },
   "hankKey": {
     "ref": "hankKey",
-    "name": "Hank\\'s Neighbor\\'s Key",
-    "desc": "[QUEST ITEM] Key belonging to Hank\\'s neighbor. Apartment 201.",
+    "name": "Hank's Neighbor's Key",
+    "desc": "[QUEST ITEM] Key belonging to Hank's neighbor. Apartment 201.",
     "weight": 0,
     "door": "l13_s1_b3_f3_r1_room100"
   },
   "edKey": {
     "ref": "edKey",
-    "name": "Ed\\'s Garage Key",
-    "desc": "[QUEST ITEM] Key to Ed\\'s Garage.",
+    "name": "Ed's Garage Key",
+    "desc": "[QUEST ITEM] Key to Ed's Garage.",
     "weight": 0,
     "door": "l16_s3_b4_f1_r1_door2"
   },
@@ -145,14 +145,14 @@
   "woodsWarehouseKey": {
     "ref": "woodsWarehouseKey",
     "name": "[KEY] Warehouse Key",
-    "desc": "Key to small warehouse at Whistler\\'s Forest",
+    "desc": "Key to small warehouse at Whistler's Forest",
     "weight": 0,
     "door": "l15_s6_b0_f0_r1_entr5"
   },
   "woodsSafeKey": {
     "ref": "woodsSafeKey",
     "name": "[KEY] Safe Key",
-    "desc": "Key to small safe at Whistler\\'s Forest",
+    "desc": "Key to small safe at Whistler's Forest",
     "weight": 0,
     "cont": "l15_s6_b4_f1_r1_cont1"
   },

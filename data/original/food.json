@@ -102,7 +102,7 @@
   "chocolate": {
     "ref": "chocolate",
     "name": "Chocolate",
-    "desc": "Bag of \\'fun sized\\' chocolate bars.",
+    "desc": "Bag of 'fun sized' chocolate bars.",
     "effect": "",
     "weight": 0.2,
     "bonus": 8,
@@ -241,7 +241,7 @@
   },
   "spam": {
     "ref": "spam",
-    "name": "Can\\'o\\'Ham",
+    "name": "Can'o'Ham",
     "desc": "A can of ham like meat.",
     "effect": "",
     "weight": 0.5,

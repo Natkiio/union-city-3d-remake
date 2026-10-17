@@ -26,7 +26,7 @@
     "facialHair": "none",
     "weapon": "none",
     "state": 1,
-    "content1": "Oh baby, you\\'re alive. I...I...Oh god you found me. I got bitten at the hospital, they were doing tests on people and I never saw them again, I heard gunshots, what...get me out, quickly.\\r\\rThe keys are on the wall.",
+    "content1": "Oh baby, you're alive. I...I...Oh god you found me. I got bitten at the hospital, they were doing tests on people and I never saw them again, I heard gunshots, what...get me out, quickly.\n\nThe keys are on the wall.",
     "confirm1": "ACCEPT",
     "decline1": "DECLINE",
     "reqMet1": "OK",
@@ -268,7 +268,7 @@
     "weapon": "none",
     "off": false,
     "state": 1,
-    "content1": "What\\'s happening out there? We\\'re being kept in the dark here.\\r\\rI keep asking the military guys what\\'s going on and they keep ignoring me.\\r\\rI\\'m sure it\\'s under control...I mean it has to be if people are still arriving.\\r\\rYeah, it means people are being brought in by the army, that\\'s what it means.",
+    "content1": "What's happening out there? We're being kept in the dark here.\n\nI keep asking the military guys what's going on and they keep ignoring me.\n\nI'm sure it's under control...I mean it has to be if people are still arriving.\n\nYeah, it means people are being brought in by the army, that's what it means.",
     "confirm1": "OK"
   },
   "Steve": {
@@ -291,7 +291,7 @@
     "weapon": "none",
     "off": false,
     "state": 1,
-    "content1": "They brought me and a few of the others in from Canal Park, you know, the hospital there.\\r\\rI went there looking for my brother, he\\'d been in a coma for years before all this started, lucky bastard.\\r\\rHe was long gone before I even got there, the place was crawling with those things.\\r\\rI fought my way in only to find him in pieces. Then the army showed up and dragged us here.",
+    "content1": "They brought me and a few of the others in from Canal Park, you know, the hospital there.\n\nI went there looking for my brother, he'd been in a coma for years before all this started, lucky bastard.\n\nHe was long gone before I even got there, the place was crawling with those things.\n\nI fought my way in only to find him in pieces. Then the army showed up and dragged us here.",
     "confirm1": "OK"
   },
   "Ryan": {
@@ -314,7 +314,7 @@
     "weapon": "none",
     "off": false,
     "state": 1,
-    "content1": "I\\'d pulled a 48 hour shift and was resting in one of the vacant rooms when one of the other nurses came down and woke me up.\\r\\rSomething was going on in the upper levels, we just booked it and got the hell out of there.\\r\\rRan to Newtown and then the Army found me and brought me here.\\r\\rProbably saved my life.",
+    "content1": "I'd pulled a 48 hour shift and was resting in one of the vacant rooms when one of the other nurses came down and woke me up.\n\nSomething was going on in the upper levels, we just booked it and got the hell out of there.\n\nRan to Newtown and then the Army found me and brought me here.\n\nProbably saved my life.",
     "confirm1": "OK"
   },
   "Anna": {
@@ -337,7 +337,7 @@
     "weapon": "none",
     "off": false,
     "state": 1,
-    "content1": "I\\'m just thankful to be alive.\\r\\rI was on the fourth floor of the hospital in Canal Park when everything went crazy, I shouldn\\'t have made it. I tried to get as many people out as I could, you know.\\r\\rSome were just too slow.",
+    "content1": "I'm just thankful to be alive.\n\nI was on the fourth floor of the hospital in Canal Park when everything went crazy, I shouldn't have made it. I tried to get as many people out as I could, you know.\n\nSome were just too slow.",
     "confirm1": "OK"
   },
   "Barry": {
@@ -373,24 +373,24 @@
     "reqNotMet1": "OK",
     "compResp1": "OK",
     "quest1": "909",
-    "content1active": "Meet me in the maintennance room in the back of the men\\'s bathroom, I\\'ll be there in a minute so it doesn\\'t look suspicious.\\r\\rWe need to hurry before they do another round of \\'relocations\\'.",
-    "content2": "Good, we can speak freely here.\\r\\rThey took my wife in the first round of relocations.\\r\\rDidn\\'t say where, didn\\'t say why.\\r\\rI trust the Army, but I want to know what HERC is up to. They have no good reason to separate us.\\r\\rHERC has a command post or something set up on the other side of the stadium. The door behind me leads to service areas all around the stadium, you\\'ll be able to get in through there.\\r\\rGet me some info and I\\'ll give you a way out of here.",
+    "content1active": "Meet me in the maintennance room in the back of the men's bathroom, I'll be there in a minute so it doesn't look suspicious.\n\nWe need to hurry before they do another round of 'relocations'.",
+    "content2": "Good, we can speak freely here.\n\nThey took my wife in the first round of relocations.\n\nDidn't say where, didn't say why.\n\nI trust the Army, but I want to know what HERC is up to. They have no good reason to separate us.\n\nHERC has a command post or something set up on the other side of the stadium. The door behind me leads to service areas all around the stadium, you'll be able to get in through there.\n\nGet me some info and I'll give you a way out of here.",
     "confirm2": "ACCEPT",
     "decline2": "DECLINE",
     "reqMet2": "OK",
     "reqNotMet2": "OK",
     "compResp2": "OK",
     "quest2": "911",
-    "content2active": "Go and find out what HERC is up to, then come and see me. Hopefully there\\'s some leads on where they\\'re taking people.",
-    "content2complete": "They\\'re taking them to Union Park?\\r\\r",
-    "content3": "They shot at you?! Jesus Christ. This\\' worse than I thought.\\r\\rThey\\'re at the park you say, ok, you go. I\\'ll leave in a few hours, so they don\\'t catch wind of us escaping.\\r\\rThere\\'s a sewer access in the boiler room at the end of the access tunnels, here\\'s the key. It leads out to the street.\\r\\rMeet me at Harrison and Harrison, I\\'ve got a way into the park from there.",
+    "content2active": "Go and find out what HERC is up to, then come and see me. Hopefully there's some leads on where they're taking people.",
+    "content2complete": "They're taking them to Union Park?\n\n",
+    "content3": "They shot at you?! Jesus Christ. This' worse than I thought.\n\nThey're at the park you say, ok, you go. I'll leave in a few hours, so they don't catch wind of us escaping.\n\nThere's a sewer access in the boiler room at the end of the access tunnels, here's the key. It leads out to the street.\n\nMeet me at Harrison and Harrison, I've got a way into the park from there.",
     "confirm3": "ACCEPT",
     "decline3": "DECLINE",
     "reqMet3": "OK",
     "reqNotMet3": "OK",
     "compResp3": "OK",
     "quest3": "913",
-    "content3active": "Good luck, meet me at Harrison and Harrison in Uptown.\r\rGo, get outta here and be careful!"
+    "content3active": "Good luck, meet me at Harrison and Harrison in Uptown.\n\nGo, get outta here and be careful!"
   },
   "Jack": {
     "name": "Jack",
@@ -411,18 +411,18 @@
     "weapon": "AK47",
     "off": true,
     "state": 1,
-    "content1": "Name is Jack, nice to meet you.\\r\\rI fought my way here for days, looking for some way off the mainland.\\r\\rHERC bastards sank every boat to contain the infection.\\r\\rI heard a radio transmission and started travelling here, started in Glendale, went all the way through, Whistler\\'s Grove, Jonestown, Fort Tran and then here.\\r\\rNothing to show for it. Nothing at all. Except these other survivors and handful of supplies.",
+    "content1": "Name is Jack, nice to meet you.\n\nI fought my way here for days, looking for some way off the mainland.\n\nHERC bastards sank every boat to contain the infection.\n\nI heard a radio transmission and started travelling here, started in Glendale, went all the way through, Whistler's Grove, Jonestown, Fort Tran and then here.\n\nNothing to show for it. Nothing at all. Except these other survivors and handful of supplies.",
     "confirm1": "OK",
     "changeState1": 2,
-    "content2": "The only boats left are the ones they have docked on Union Island.\\r\\rProblem is they dropped that huge concrete wall right over the entrance to the bridge.\\r\\rIf you can find something to blow a hole in it, we can get out of here.\\r\\rOne of the locals here says there\\'s a military base at Waterside, just north of here, maybe you can find something there.",
+    "content2": "The only boats left are the ones they have docked on Union Island.\n\nProblem is they dropped that huge concrete wall right over the entrance to the bridge.\n\nIf you can find something to blow a hole in it, we can get out of here.\n\nOne of the locals here says there's a military base at Waterside, just north of here, maybe you can find something there.",
     "confirm2": "ACCEPT",
     "decline2": "DECLINE",
     "reqMet2": "GOT IT",
     "reqNotMet2": "OK",
     "compResp2": "OK",
     "quest2": "917",
-    "content2active": "Go to the Military Base in Waterside.\\r\\rSee if you can\\'t find something to blow our way onto that island.",
-    "content3": "The only boats left are the ones they have docked on Union Island.\\r\\rProblem is they dropped that huge concrete wall right over the entrance to the bridge.\\r\\rIf you can find something to blow a hole in it, we can get out of here.\\r\\rOne of the locals here says there\\'s a military base at Waterside, just north of here, maybe you can find something there.",
+    "content2active": "Go to the Military Base in Waterside.\n\nSee if you can't find something to blow our way onto that island.",
+    "content3": "The only boats left are the ones they have docked on Union Island.\n\nProblem is they dropped that huge concrete wall right over the entrance to the bridge.\n\nIf you can find something to blow a hole in it, we can get out of here.\n\nOne of the locals here says there's a military base at Waterside, just north of here, maybe you can find something there.",
     "confirm3": "ACCEPT",
     "decline3": "DECLINE",
     "reqMet3": "YES",
@@ -430,15 +430,15 @@
     "compResp3": "OK",
     "quest3": "918",
     "content3active": "Did you find enough explosives to blow a hole in that wall?",
-    "content3complete": "Nice work finding those explosives, wasn\\'t sure you had it in you. Let\\'s getting to make our push, take that island and get out of here.\\r\\rTake this, I lifted it off some heavy set HERC soldier the other day, it\\'s not as reliable as my AK here, but you might like it.",
-    "content4": "I\\'ll head out and rig the explosives, meet me at the wall.",
+    "content3complete": "Nice work finding those explosives, wasn't sure you had it in you. Let's getting to make our push, take that island and get out of here.\n\nTake this, I lifted it off some heavy set HERC soldier the other day, it's not as reliable as my AK here, but you might like it.",
+    "content4": "I'll head out and rig the explosives, meet me at the wall.",
     "confirm4": "ACCEPT",
     "decline4": "DECLINE",
     "reqMet4": "OK LETS GO",
     "reqNotMet4": "NOT YET",
     "compResp4": "OK",
     "quest4": "919",
-    "content4active": "You go ahead, I\\'ll meet you out at the wall."
+    "content4active": "You go ahead, I'll meet you out at the wall."
   },
   "PartnerDocks": {
     "name": "PartnerDocks",
@@ -491,7 +491,7 @@
     "say1A": "Hey.",
     "off": false,
     "state": 1,
-    "content1": "Jack found me Whistler\\'s grove, he was hunting around the gas station there where I was holed up.\\r\\rFigured it\\'d safer if we stuck together.\\r\\rSome crazy story he has, he survived a helicopter crash you know!?",
+    "content1": "Jack found me Whistler's grove, he was hunting around the gas station there where I was holed up.\n\nFigured it'd safer if we stuck together.\n\nSome crazy story he has, he survived a helicopter crash you know!?",
     "confirm1": "OK"
   },
   "Dana": {
@@ -514,7 +514,7 @@
     "weapon": "M4A1",
     "off": false,
     "state": 1,
-    "content1": "Don\\'t come any closer.\\r\\rSpeak to Jack if you gotta speak to someone.",
+    "content1": "Don't come any closer.\n\nSpeak to Jack if you gotta speak to someone.",
     "confirm1": "OK"
   },
   "Shawn": {
@@ -537,7 +537,7 @@
     "weapon": "M1911",
     "off": false,
     "state": 1,
-    "content1": "Hey, Jack saved my butt more than a few times, I\\'ve only known the guy for a few days.\\r\\rI was fighting my way out of Jonestown, guy comes tearing through with an RPG over his shoulder, blowing those things to pieces.\\r\\rWanna rely on someone to keep you alive? Jack is your man.",
+    "content1": "Hey, Jack saved my butt more than a few times, I've only known the guy for a few days.\n\nI was fighting my way out of Jonestown, guy comes tearing through with an RPG over his shoulder, blowing those things to pieces.\n\nWanna rely on someone to keep you alive? Jack is your man.",
     "confirm1": "OK"
   },
   "JackWall": {
@@ -709,7 +709,7 @@
     },
     "off": false,
     "state": 1,
-    "content1": "Good to meet someone else with the stones to stand up to these things!\\r\\rI tell you what, I\\'ve got some ideas for some little tools to give us an advantage over these monsters.\\r\\rYou find me the materials and I\\'ll kit you out to smash some skulls.",
+    "content1": "Good to meet someone else with the stones to stand up to these things!\n\nI tell you what, I've got some ideas for some little tools to give us an advantage over these monsters.\n\nYou find me the materials and I'll kit you out to smash some skulls.",
     "confirm1": "ACCEPT",
     "decline1": "DECLINE",
     "reqMet1": "HERE THEY ARE",
@@ -717,8 +717,8 @@
     "compResp1": "Ok",
     "quest1": "006",
     "content1active": "Did you find the things I asked for?",
-    "content1complete": "Nice job, I filed down that weight and put it inside the pipe for you, should give it a nice swing.\\r\\rI\\'ve got some more ideas if you\\'re willing to find what I need.",
-    "content2": "How\\'s that pipe working out?\\r\\rI\\'ve got a great idea this time, something nasty. Reaaaal nasty <Darnel\\'s eye has a twitch about it and he smiles broadly>.\\r\\rIt\\'s a pretty simple build, but I think you\\'ll like it, here\\'s the list.",
+    "content1complete": "Nice job, I filed down that weight and put it inside the pipe for you, should give it a nice swing.\n\nI've got some more ideas if you're willing to find what I need.",
+    "content2": "How's that pipe working out?\n\nI've got a great idea this time, something nasty. Reaaaal nasty <Darnel's eye has a twitch about it and he smiles broadly>.\n\nIt's a pretty simple build, but I think you'll like it, here's the list.",
     "confirm2": "ACCEPT",
     "decline2": "DECLINE",
     "reqMet2": "HERE THEY ARE",
@@ -726,8 +726,8 @@
     "compResp2": "Ok",
     "quest2": "007",
     "content2active": "Got those parts?",
-    "content2complete": "Nice job!\\r\\rNow careful with this thing, those nails looked pretty darn rusty.\\r\\rI found plans for one more thing in my uhhh \\'handbook\\', going to need more materials though.\\r\\rThese might be tougher to find.",
-    "content3": "Alright, here\\'s the list. I need these things exactly. With this thing, they won\\'t even hear you coming.\\r\\rYou\\'ll be like some kinda ninja or somesuch.",
+    "content2complete": "Nice job!\n\nNow careful with this thing, those nails looked pretty darn rusty.\n\nI found plans for one more thing in my uhhh 'handbook', going to need more materials though.\n\nThese might be tougher to find.",
+    "content3": "Alright, here's the list. I need these things exactly. With this thing, they won't even hear you coming.\n\nYou'll be like some kinda ninja or somesuch.",
     "confirm3": "ACCEPT",
     "decline3": "DECLINE",
     "reqMet3": "HERE YOU GO",
@@ -735,7 +735,7 @@
     "compResp3": "Ok",
     "quest3": "008",
     "content3active": "Did you find everything?",
-    "content3complete": "Here she is, my finest work yet!\\r\\rYou\\'ll be poppin\\' heads in silence in no time.\\r\\rI\\'m gonna get back to work, gotta keep myself busy. Don\\'t worry about me, I\\'ll be fine. Made it through 3 tours in \\'nam no problems, think I can outlast a few shamblers",
+    "content3complete": "Here she is, my finest work yet!\n\nYou'll be poppin' heads in silence in no time.\n\nI'm gonna get back to work, gotta keep myself busy. Don't worry about me, I'll be fine. Made it through 3 tours in 'nam no problems, think I can outlast a few shamblers",
     "content4": {
       "template": "Just glad I could help, {Friendly}.",
       "placeholders": [
@@ -763,16 +763,16 @@
     "say1A": "Hello?!",
     "off": false,
     "state": 1,
-    "content1": "Oh god, please help, I\\'ve been stuck in here since it all started. I must have dropped my glasses on the floor somewhere in the store in all the confusion.\\r\\rI\\'m blind as a bat without them.\\r\\rIf you can find them, is it ok if I come with you?",
+    "content1": "Oh god, please help, I've been stuck in here since it all started. I must have dropped my glasses on the floor somewhere in the store in all the confusion.\n\nI'm blind as a bat without them.\n\nIf you can find them, is it ok if I come with you?",
     "confirm1": "ACCEPT",
     "decline1": "DECLINE",
     "reqMet1": "HERE THEY ARE",
     "reqNotMet1": "NO",
     "compResp1": "OK",
     "quest1": "011",
-    "content1active": "I can\\'t see anything without my glasses.\\r\\rI must have dropped them on the floor somewhere in the store.",
-    "content1complete": "Ok, I\\'ll stay here.",
-    "content2": "Ok, I\\'ll stay here, thanks for finding my glasses."
+    "content1active": "I can't see anything without my glasses.\n\nI must have dropped them on the floor somewhere in the store.",
+    "content1complete": "Ok, I'll stay here.",
+    "content2": "Ok, I'll stay here, thanks for finding my glasses."
   },
   "newBarry": {
     "name": "newBarry",
@@ -791,10 +791,10 @@
     "hair": "bald",
     "facialHair": "fullBeard",
     "weapon": "glock",
-    "say1A": "There\\'s a saferoom downstairs, go.",
+    "say1A": "There's a saferoom downstairs, go.",
     "off": true,
     "state": "off",
-    "content1": "Head into the saferoom downstairs, there\\'s a way into the park from there. Those HERC soldiers are going to be looking for us."
+    "content1": "Head into the saferoom downstairs, there's a way into the park from there. Those HERC soldiers are going to be looking for us."
   },
   "safeRoomBarry": {
     "name": "safeRoomBarry",
@@ -833,7 +833,7 @@
     "reqNotMet1": "Not yet",
     "compResp1": "OK",
     "quest1": "914",
-    "content1active": "Go through the sewer and into the HERC outpost, you\\'ll find your partner in there, I\\'m sure of it.",
+    "content1active": "Go through the sewer and into the HERC outpost, you'll find your partner in there, I'm sure of it.",
     "content1complete": {
       "template": "Oh, you found {PartnerSexAddress}. I'm happy for you, I really am.\n\nYou kids go, get out of here. I'm going to see if I can find my wife amongst the dead.\n\nHead to the Docks, get off the mainland if you can. Good luck, friend.",
       "placeholders": [
@@ -861,8 +861,8 @@
     "say1A": "Head upstairs, Stephens is in charge.",
     "off": false,
     "state": 1,
-    "content1": "You\\'ve got weapons, great. You might be able to help us out.\\r\\rHead up stairs and talk to Stephens, he\\'ll fill you in.",
-    "content2": "Nice job finding the key, man.\\r\\rHopefully now we can get organised and head to the Stadium with everyone else.\\r\\rI hear that\\'s where they\\'re evac\\'ing everyone."
+    "content1": "You've got weapons, great. You might be able to help us out.\n\nHead up stairs and talk to Stephens, he'll fill you in.",
+    "content2": "Nice job finding the key, man.\n\nHopefully now we can get organised and head to the Stadium with everyone else.\n\nI hear that's where they're evac'ing everyone."
   },
   "Keith": {
     "name": "Keith",
@@ -883,8 +883,8 @@
     "weapon": "none",
     "off": false,
     "state": 1,
-    "content1": "That bastard Richards left us to die here. Left us for dead. I\\'ll wring his damn neck if I ever get out of here.\\r\\rSwear to god.",
-    "content2": "Richards\\' dead? Good.\\r\\rRat bastard. We might make it out of here after all. Thanks for helping us out with the cage."
+    "content1": "That bastard Richards left us to die here. Left us for dead. I'll wring his damn neck if I ever get out of here.\n\nSwear to god.",
+    "content2": "Richards' dead? Good.\n\nRat bastard. We might make it out of here after all. Thanks for helping us out with the cage."
   },
   "Stephens": {
     "name": "Stephens",
@@ -918,9 +918,9 @@
     "reqNotMet1": "Not yet",
     "compResp1": "THANKS",
     "quest1": "009",
-    "content1active": "If you\\'ve got the key back, go ahead and help yourself to whatever you want in the cage.",
-    "content1complete": "Appreciate your help there, stranger.\r\rGo ahead and help yourself to your pick from the cage.",
-    "content2": "Thanks again for the help, we\\'ll get out of here once we get ourselves organised. Feel free to rest up here as long as you need to, it\\'s the least we can do."
+    "content1active": "If you've got the key back, go ahead and help yourself to whatever you want in the cage.",
+    "content1complete": "Appreciate your help there, stranger.\n\nGo ahead and help yourself to your pick from the cage.",
+    "content2": "Thanks again for the help, we'll get out of here once we get ourselves organised. Feel free to rest up here as long as you need to, it's the least we can do."
   },
   "King": {
     "name": "King",
@@ -939,10 +939,10 @@
     "hair": "long1",
     "facialHair": "fullBeard",
     "weapon": "none",
-    "say1A": "Hey hey, welcome to\rKing-O-Pawn.",
+    "say1A": "Hey hey, welcome to\nKing-O-Pawn.",
     "off": false,
     "state": 1,
-    "content1": "The King has what you need, friend.\\r\\rUnderstand that the King can only accept CASH. In these uncertain times, friend, money is...uhhh...King.\\r\\rNo trade-ins, no loans, no credit. It\\'s all cash cash cash, baby.\\r\\rSee something you like, go ahead and pick it out."
+    "content1": "The King has what you need, friend.\n\nUnderstand that the King can only accept CASH. In these uncertain times, friend, money is...uhhh...King.\n\nNo trade-ins, no loans, no credit. It's all cash cash cash, baby.\n\nSee something you like, go ahead and pick it out."
   },
   "Hank": {
     "name": "Hank",
@@ -964,15 +964,15 @@
     "say1A": "Just take whatever you want...",
     "off": false,
     "state": 1,
-    "content1": "Oh you\\'re not here to rob me?\\r\\rYou\\'d think that I\\'d have the arsenal to hold them off but there was too many, people looking real wild eyed.\\r\\rI\\'m not going anywhere without my Daddy\\'s rifle and bolt.\\r\\rThey\\'re in my gun cabinet in my apartment down the street, number 202. My place is boarded up, take this spare key my neighbor gave me, it\\'ll get you in.",
+    "content1": "Oh you're not here to rob me?\n\nYou'd think that I'd have the arsenal to hold them off but there was too many, people looking real wild eyed.\n\nI'm not going anywhere without my Daddy's rifle and bolt.\n\nThey're in my gun cabinet in my apartment down the street, number 202. My place is boarded up, take this spare key my neighbor gave me, it'll get you in.",
     "confirm1": "ACCEPT",
     "decline1": "DECLINE",
     "reqMet1": "HERE THEY ARE",
     "reqNotMet1": "NO",
     "compResp1": "OK",
     "quest1": "002",
-    "content1active": "I told you I\\'m not going anywhere without my Daddy\\'s rifle. Find it and the bolt.\\r\\rApartment 202, remember.",
-    "content1complete": "Great! Thanks, let\\'s get outta here.",
+    "content1active": "I told you I'm not going anywhere without my Daddy's rifle. Find it and the bolt.\n\nApartment 202, remember.",
+    "content1complete": "Great! Thanks, let's get outta here.",
     "content2": "Thanks so much, this should help me survive for a while at least. Good luck out there."
   },
   "Laura": {
@@ -994,7 +994,7 @@
     "weapon": "hunter_scope",
     "off": false,
     "state": 1,
-    "content1": "We\\'ve been here since it started.\\r\\rI was on break and heard trucks pull up outside, soldiers poured out of the back of them and into the hospital\\r\\rAt first it was just commotion, then...gunshots. So we hid in the storage cupboard.\\r\\rThe soldiers missed us and cleared out\\r\\rWhen we emerged, there were just dead people everywhere so we holed up here."
+    "content1": "We've been here since it started.\n\nI was on break and heard trucks pull up outside, soldiers poured out of the back of them and into the hospital\n\nAt first it was just commotion, then...gunshots. So we hid in the storage cupboard.\n\nThe soldiers missed us and cleared out\n\nWhen we emerged, there were just dead people everywhere so we holed up here."
   },
   "Shenice": {
     "name": "Shenice",
@@ -1099,15 +1099,15 @@
     "say1A": "Oh...hey",
     "off": false,
     "state": 1,
-    "content1": "Hey there...friend.\\r\\rMy brother and our other...friends here ran into some car troubles. There\\'s a small town just down the road a smidge, you wouldn\\'t mind goin\\' in and picking up some gas, a fan belt and some tools now would you?\\r\\rWe\\'d go but, we have to uhhhh protect our friends here.\\r\\rI\\'m sure our new friends can make it worth your while.",
+    "content1": "Hey there...friend.\n\nMy brother and our other...friends here ran into some car troubles. There's a small town just down the road a smidge, you wouldn't mind goin' in and picking up some gas, a fan belt and some tools now would you?\n\nWe'd go but, we have to uhhhh protect our friends here.\n\nI'm sure our new friends can make it worth your while.",
     "confirm1": "ACCEPT",
     "decline1": "DECLINE",
     "reqMet1": "HERE THEY ARE",
     "reqNotMet1": "Not yet",
     "compResp1": "OK",
     "quest1": "015",
-    "content1active": "Just keep heading east, the town is down the dirt track here, can\\'t miss it. Remember we need gas and a new fan belt, the old one is shot.",
-    "content1complete": "Heeeey, thanks friend.\\r\\rThese are exactly what we needed, guess we\\'ll be on our way."
+    "content1active": "Just keep heading east, the town is down the dirt track here, can't miss it. Remember we need gas and a new fan belt, the old one is shot.",
+    "content1complete": "Heeeey, thanks friend.\n\nThese are exactly what we needed, guess we'll be on our way."
   },
   "Paul": {
     "name": "Paul",
@@ -1129,7 +1129,7 @@
     "say1A": "Go on, ask.",
     "off": false,
     "state": 1,
-    "content1": "Talk to my brother, friend.\\r\\rPerhaps you can uhhh, help us out here, we\\'re in a real pickle."
+    "content1": "Talk to my brother, friend.\n\nPerhaps you can uhhh, help us out here, we're in a real pickle."
   },
   "Clarence": {
     "name": "Clarence",
@@ -1151,7 +1151,7 @@
     "say1A": "< cough >",
     "off": false,
     "state": 1,
-    "content1": "<Clarence doesn\\'t respond, he seems very on edge and gestures you away>",
+    "content1": "<Clarence doesn't respond, he seems very on edge and gestures you away>",
     "content2": {
       "template": "Oh thank goodness.\n\nYou saved our skins there, {Older}.\n\nWe broke down here a few hours ago and then those bumpkins set upon us out of the woods.\n\nThanks for getting the things we need to fix the van, keep the money they took from us, you deserve it, hopefully it's useful for you.",
       "placeholders": [
@@ -1181,7 +1181,7 @@
     "off": false,
     "state": 1,
     "content1": "<Fern looks down and away from you, glancing over at Paul>",
-    "content2": "Thankyou so much.\\r\\rLord knows what they would have done with us.\\r\\rWe appreciate your help, you\\'ve saved us.",
+    "content2": "Thankyou so much.\n\nLord knows what they would have done with us.\n\nWe appreciate your help, you've saved us.",
     "anim2": "idle",
     "face2": "left"
   },
@@ -1204,8 +1204,8 @@
     "weapon": "hellSlinger",
     "off": false,
     "state": 1,
-    "content1": "Did Lisa send you? How\\'d you find me out here. What\\'s the situation in Union City, soldier? Hmm! Tell me.\\r\\rNot a talker, huh? Ok, very well. I\\'ve been working on some improvised \\'hunting tools\\', if you\\'re going to be part of my platoon, you\\'d best be equipped for the job!",
-    "content2": "Thankyou so much.\\r\\rLord knows what they would have done with us.\\r\\rWe appreciate your help, you\\'ve saved us."
+    "content1": "Did Lisa send you? How'd you find me out here. What's the situation in Union City, soldier? Hmm! Tell me.\n\nNot a talker, huh? Ok, very well. I've been working on some improvised 'hunting tools', if you're going to be part of my platoon, you'd best be equipped for the job!",
+    "content2": "Thankyou so much.\n\nLord knows what they would have done with us.\n\nWe appreciate your help, you've saved us."
   },
   "Lisa": {
     "name": "Lisa",
@@ -1239,7 +1239,7 @@
     "compResp1": "OK",
     "quest1": "016",
     "content1active": "Like I said, just go left, up, then turn right at the pond. Go past the old fence and take the path up. Go left and take the second path. Look for the can on a stick.",
-    "content1complete": "Oh you found him, thank god.\\r\\rHe\\'s staying out there? Ok, he knows how to handle himself I guess, I\\'m just happy he\\'s alive."
+    "content1complete": "Oh you found him, thank god.\n\nHe's staying out there? Ok, he knows how to handle himself I guess, I'm just happy he's alive."
   },
   "Phillip": {
     "name": "Phillip",
@@ -1260,15 +1260,15 @@
     "weapon": "none",
     "off": false,
     "state": 1,
-    "content1": "I left the city and abandoned the HERC outpost I was assigned to. They\\'re doing terrible things to civilians, unspeakable things, I mean, I\\'m just a hematologist. I didn\\'t want to be a part of it.\\r\\rI\\'m trying to find some way to fix this, the infection originated out here somewhere and I think that maybe, just maybe, the answers are out here too - in the blood.\\r\\rHelp me gather samples from the corpses out in this area, would you?",
+    "content1": "I left the city and abandoned the HERC outpost I was assigned to. They're doing terrible things to civilians, unspeakable things, I mean, I'm just a hematologist. I didn't want to be a part of it.\n\nI'm trying to find some way to fix this, the infection originated out here somewhere and I think that maybe, just maybe, the answers are out here too - in the blood.\n\nHelp me gather samples from the corpses out in this area, would you?",
     "confirm1": "ACCEPT",
     "decline1": "DECLINE",
     "reqMet1": "I DID",
     "reqNotMet1": "Not yet",
     "compResp1": "OK",
     "quest1": "017",
-    "content1active": "I need at least 4 sample vials from corpses in the Whistler\\'s Forest area. Your help might help me get closer to finding out what caused all this.",
-    "content1complete": "Excellent work, these samples should help us get closer to finding out what\\'s started all this. When we initiated the martial law, we took over the clinics first. Take this key, it\\'s to the offices in the clinic in Uptown, hopefully you can find something of use there.",
+    "content1active": "I need at least 4 sample vials from corpses in the Whistler's Forest area. Your help might help me get closer to finding out what caused all this.",
+    "content1complete": "Excellent work, these samples should help us get closer to finding out what's started all this. When we initiated the martial law, we took over the clinics first. Take this key, it's to the offices in the clinic in Uptown, hopefully you can find something of use there.",
     "content2": "Thanks for your help, I wish I could tell you more but it could take weeks to analyse these samples. Good luck!"
   },
   "Jackson": {
@@ -1291,7 +1291,7 @@
     "say1A": "Oh, thank god.",
     "off": false,
     "state": 1,
-    "content1": "I\\'m sorry, I just moved in, are you one of the neighbours? I guess that doesn\\'t matter now. You\\'re safe here.\\r\\rThis all started a few days ago, people just...started killing each other. The ones they killed didn\\'t stay dead.\\r\\r< He takes a second to compose himself >\\r\\rStay here and rest up. I\\'ve got Sarah and Peter from next door staying in my room upstairs. You\\'re welcome sleep on the floor here if you need to."
+    "content1": "I'm sorry, I just moved in, are you one of the neighbours? I guess that doesn't matter now. You're safe here.\n\nThis all started a few days ago, people just...started killing each other. The ones they killed didn't stay dead.\n\n< He takes a second to compose himself >\n\nStay here and rest up. I've got Sarah and Peter from next door staying in my room upstairs. You're welcome sleep on the floor here if you need to."
   },
   "Ed": {
     "name": "Ed",
@@ -1310,26 +1310,26 @@
     "hair": "bald",
     "facialHair": "none",
     "weapon": "none",
-    "say1A": "It won\\'t open!",
+    "say1A": "It won't open!",
     "off": false,
     "state": 1,
-    "content1": "The military put this fence up a few days ago, blocking the road to Brookvale then abandoned it.\r\rWe need something to cut our way through.\r\rI know Ray at number 12 has a pair of bolt cutters, I borrowed them last month. Hurry!",
+    "content1": "The military put this fence up a few days ago, blocking the road to Brookvale then abandoned it.\n\nWe need something to cut our way through.\n\nI know Ray at number 12 has a pair of bolt cutters, I borrowed them last month. Hurry!",
     "confirm1": "ACCEPT",
     "decline1": "DECLINE",
     "reqMet1": "HERE THEY ARE",
     "reqNotMet1": "Not yet",
-    "compResp1": "Let\\'s go!",
+    "compResp1": "Let's go!",
     "quest1": "001",
     "content1active": "Go talk to Ray at number 12, he has a pair for sure.",
-    "content2": "What? I have them?\\r\\rHmmmm maybe I didn\\'t return them. Here\\'s the key to my garage, go find them for yourself and bring \\'em back.",
+    "content2": "What? I have them?\n\nHmmmm maybe I didn't return them. Here's the key to my garage, go find them for yourself and bring 'em back.",
     "confirm2": "ACCEPT",
     "decline2": "DECLINE",
     "reqMet2": "HERE THEY ARE",
     "reqNotMet2": "Not yet",
     "compResp2": "Great!",
     "quest2": "004",
-    "content2active": "Did you find those boltcutters yet?\\r\\rIt\\'s the only way we\\'re getting through here.",
-    "content2complete": "Great, hand them over.\r\rFinally we can make our way to safety."
+    "content2active": "Did you find those boltcutters yet?\n\nIt's the only way we're getting through here.",
+    "content2complete": "Great, hand them over.\n\nFinally we can make our way to safety."
   },
   "Ray": {
     "name": "Ray",
@@ -1349,15 +1349,15 @@
     "facialHair": "fullBeard",
     "weapon": "none",
     "say1A": "Argh! What do you want?!",
-    "say2A": "Where\\'d I put my gun...",
+    "say2A": "Where'd I put my gun...",
     "off": false,
     "state": 1,
-    "content1": "Damned shuffling rambling things.\\r\\rThey still down stairs?\\r\\rI\\'m too old for this business.",
+    "content1": "Damned shuffling rambling things.\n\nThey still down stairs?\n\nI'm too old for this business.",
     "confirm1": "Ok",
-    "content1active": "I\\'m staying right here, damnit.\\r\\rI was born in this here house and this\\' where I\\'ll die.",
-    "content2": "What\\'s that? That bastard Ed sent you, huh?\\r\\rBolt Cutters! He borrowed them weeks ago and never returned them!\\r\\rThey\\'re probably next door in his stinking garage!\\r\\rGo tell him that he\\'s still got the damn things.",
+    "content1active": "I'm staying right here, damnit.\n\nI was born in this here house and this' where I'll die.",
+    "content2": "What's that? That bastard Ed sent you, huh?\n\nBolt Cutters! He borrowed them weeks ago and never returned them!\n\nThey're probably next door in his stinking garage!\n\nGo tell him that he's still got the damn things.",
     "confirm2": "ACCEPT",
-    "content2active": "What? I told you, Ed never returned my damn bolt cutters. They\\'re probably in his garage.",
+    "content2active": "What? I told you, Ed never returned my damn bolt cutters. They're probably in his garage.",
     "decline2": "DECLINE",
     "reqMet2": "HERE THEY ARE",
     "reqNotMet2": "Not yet",
@@ -1368,7 +1368,7 @@
   "Sarah": {
     "name": "Sarah",
     "fullName": "Sarah Woodruff",
-    "title": "Peter\\'s Wife",
+    "title": "Peter's Wife",
     "sex": "female",
     "skinColour": "Olive",
     "hairColour": "Black",
@@ -1382,16 +1382,16 @@
     "hair": "ponytail1",
     "facialHair": "none",
     "weapon": "none",
-    "say1A": "We can\\'t leave yet, honey we need to wait it out.",
+    "say1A": "We can't leave yet, honey we need to wait it out.",
     "off": false,
     "state": 1,
-    "content1": "Oh, you\\'re not one of them, thank god.\\r\\rJackson was kind enough to take us in, he\\'s secured the place as best he could, I don\\'t think they\\'re getting in here any time soon.\\r\\rMy husband has lost it, he wants to leave, I think it\\'s best we stay here and wait this thing out, right?\\r\\rAnyway, good luck finding your way.",
+    "content1": "Oh, you're not one of them, thank god.\n\nJackson was kind enough to take us in, he's secured the place as best he could, I don't think they're getting in here any time soon.\n\nMy husband has lost it, he wants to leave, I think it's best we stay here and wait this thing out, right?\n\nAnyway, good luck finding your way.",
     "confirm1": "Sorry"
   },
   "Peter": {
     "name": "Peter",
     "fullName": "Peter Woodruff",
-    "title": "Sarah\\'s husband.",
+    "title": "Sarah's husband.",
     "sex": "male",
     "skinColour": "Olive",
     "hairColour": "Black",
@@ -1405,12 +1405,12 @@
     "hair": "short1",
     "facialHair": "none",
     "weapon": "none",
-    "say1B": "*sobbing* Oh god, we\\'re dead. We\\'re dead.",
+    "say1B": "*sobbing* Oh god, we're dead. We're dead.",
     "off": false,
     "state": 1,
-    "content1": "<The man looks visibly shaken>\\r\\rOoooh god, oh god, oh god. Why won\\'t they stop. Why is this happening, they already took my kids what do they waaant FROM ME!\\r\\rWe have to leave, we have to leave. The bags are packed and ready. We can go, we can go now.",
+    "content1": "<The man looks visibly shaken>\n\nOoooh god, oh god, oh god. Why won't they stop. Why is this happening, they already took my kids what do they waaant FROM ME!\n\nWe have to leave, we have to leave. The bags are packed and ready. We can go, we can go now.",
     "confirm1": "Sorry",
-    "content1active": "I\\'m staying right here, damnit.\\r\\rI was born in this here house and this\\' where I\\'ll die."
+    "content1active": "I'm staying right here, damnit.\n\nI was born in this here house and this' where I'll die."
   },
   "looter1": {
     "name": "Looter1",

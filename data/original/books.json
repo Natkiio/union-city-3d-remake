@@ -73,7 +73,7 @@
   },
   "searching": {
     "ref": "searching",
-    "name": "Where\\'s Wilmo?",
+    "name": "Where's Wilmo?",
     "desc": "I can never find this guy.",
     "effect": "to Searching",
     "weight": 0.5,

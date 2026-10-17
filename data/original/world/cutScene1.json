@@ -3,7 +3,7 @@
   "action1": {
     "func": "displayWorldSpeech",
     "var1": "partner",
-    "var2": "Quickly, we need to\rget out of here.",
+    "var2": "Quickly, we need to\nget out of here.",
     "timing": 1
   },
   "action2": {
@@ -15,7 +15,7 @@
   "action3": {
     "func": "displayWorldSpeech",
     "var1": "player",
-    "var2": "There\\'s a sewer access\\rout to the street.",
+    "var2": "There's a sewer access\nout to the street.",
     "timing": 4000
   }
 }

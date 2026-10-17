@@ -9,7 +9,7 @@
   "action2": {
     "func": "displayWorldSpeech",
     "var1": "player",
-    "var2": "You\\'ll be safer here.\\rBesides, you\\'re hurt.",
+    "var2": "You'll be safer here.\nBesides, you're hurt.",
     "timing": 3000
   },
   "action3": {

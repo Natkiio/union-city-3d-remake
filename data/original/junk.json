@@ -122,7 +122,7 @@
   "stamp": {
     "ref": "stamp",
     "name": "Stamp",
-    "desc": "\\'Invoiced\\' Stamp.",
+    "desc": "'Invoiced' Stamp.",
     "effect": "",
     "weight": 0.2,
     "location": "office"
@@ -338,7 +338,7 @@
   "toothBrush": {
     "ref": "toothBrush",
     "name": "Toothbrush",
-    "desc": "Someone else\\'s toothbrush.",
+    "desc": "Someone else's toothbrush.",
     "effect": "",
     "weight": 0.1,
     "location": "bathroom"
