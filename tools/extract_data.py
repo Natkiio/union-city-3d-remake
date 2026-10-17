@@ -22,6 +22,7 @@ SKIP_TABLES = {"ach", "Button"}  # achievement/UI plumbing, not gameplay
 WORLD_TABLE = re.compile(r"^(l\d+|lightTime\d+|cutScene\d+|shopSet\d+|fakeRoom)$")
 
 ASSIGN = re.compile(r"^([A-Za-z_]\w*(?:\.[A-Za-z_]\w*)+)\s*=\s*(.+?);\s*$")
+SCALAR = re.compile(r"^(?:var\s+)?([A-Za-z_]\w*)\s*=\s*(.+?);\s*$")
 NUMBER = re.compile(r"^-?\d+(?:\.\d+)?$")
 
 
@@ -61,8 +62,17 @@ def set_path(root, path, value):
 def main():
     src, out_dir = Path(sys.argv[1]), Path(sys.argv[2])
     tables = OrderedDict()
+    constants = OrderedDict()   # name -> last literal value assigned at top level
+    assigned = OrderedDict()    # name -> every literal value, to flag reassignments
     for line in src.read_text(encoding="utf-8", errors="replace").splitlines():
         if line[:1] in (" ", "\t", "}"):  # only top-level statements
+            continue
+        sm = SCALAR.match(line)
+        if sm:
+            val = parse_value(sm.group(2))
+            if isinstance(val, (int, float, bool, str)) and not isinstance(val, dict):
+                constants[sm.group(1)] = val
+                assigned.setdefault(sm.group(1), []).append(val)
             continue
         m = ASSIGN.match(line)
         if not m:
@@ -76,6 +86,11 @@ def main():
         set_path(tables, path, parse_value(m.group(2)))
 
     out_dir.mkdir(parents=True, exist_ok=True)
+    dupes = {k: v for k, v in assigned.items() if len(set(map(repr, v))) > 1}
+    out = {"constants": constants, "reassigned": dupes}
+    (out_dir / "constants.json").write_text(
+        json.dumps(out, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+    print(f"constants      {len(constants):4d} scalars, {len(dupes)} reassigned -> {out_dir / 'constants.json'}")
     for name, data in tables.items():
         # Skip one-off globals like `foo.bar = 3` that aren't real tables.
         if len(data) < 2 and not any(isinstance(v, dict) for v in data.values()):
