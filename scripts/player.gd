@@ -12,6 +12,8 @@ var health: float = MAX_HEALTH
 var attack_cooldown: float = 0.0
 const ATTACK_COOLDOWN_TIME: float = 0.5
 
+var facing_dir: float = 1.0
+
 @onready var mesh: MeshInstance3D = $MeshInstance3D
 @onready var attack_area: Area3D = $AttackArea
 
@@ -34,7 +36,9 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 	if input_dir != 0.0:
+		facing_dir = sign(input_dir)
 		mesh.rotation.y = 0.0 if input_dir > 0.0 else PI
+		attack_area.position.x = 0.9 * facing_dir
 
 	attack_cooldown = max(0.0, attack_cooldown - delta)
 	if Input.is_action_just_pressed("attack") and attack_cooldown <= 0.0:
