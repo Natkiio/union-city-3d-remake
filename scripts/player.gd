@@ -6,18 +6,20 @@ extends CharacterBody3D
 ## original game, where you aim with the cursor independently of which
 ## way you're walking.
 ##
-## Combat: the player holds a boxing guard (both fists up) at all
-## times. Each attack throws a punch with whichever arm is due next,
-## alternating left/right every click, extending that arm toward the
-## aim target and back to guard; the other arm stays in guard. No
-## separate floating prop — this is the model's own rigged arms.
+## Combat: the player holds a boxing guard (elbows bent, fists up) at
+## all times, and both arms continuously track the mouse's vertical
+## aim (not just the punching arm) so the whole stance visibly leans
+## up/down with the cursor. Each attack throws a punch with whichever
+## arm is due next, alternating left/right every click, straightening
+## that arm toward the aim target and back to guard; the other arm
+## stays bent in guard the whole time. No separate floating prop —
+## this is the model's own rigged arms.
 
 const SPEED: float = 6.0
 const ATTACK_DAMAGE: float = 25.0
 const MAX_HEALTH: float = 100.0
 const MAX_AIM_PITCH_DEG: float = 80.0
 
-const GUARD_UPPER_PITCH_DEG: float = 35.0
 const GUARD_FOREARM_BEND_DEG: float = 110.0
 const PUNCH_DURATION: float = 0.3
 
@@ -118,24 +120,25 @@ func _process(delta: float) -> void:
 				_apply_punch_damage()
 				punch_did_hit = true
 
-	var right_pitch := GUARD_UPPER_PITCH_DEG
+	# Both arms continuously track the mouse's vertical aim (the upper
+	# arm pitch), so the whole guard visibly leans toward the cursor;
+	# only the forearm bend (elbow tuck) differs between guard and a
+	# punch in progress.
+	var pitch_deg := rad_to_deg(aim_pitch)
 	var right_bend := GUARD_FOREARM_BEND_DEG
-	var left_pitch := GUARD_UPPER_PITCH_DEG
 	var left_bend := GUARD_FOREARM_BEND_DEG
 
 	if is_punching and punch_side == "R":
-		right_pitch = lerp(GUARD_UPPER_PITCH_DEG, rad_to_deg(aim_pitch), extension)
 		right_bend = lerp(GUARD_FOREARM_BEND_DEG, 0.0, extension)
 	elif is_punching and punch_side == "L":
-		left_pitch = lerp(GUARD_UPPER_PITCH_DEG, rad_to_deg(aim_pitch), extension)
 		left_bend = lerp(GUARD_FOREARM_BEND_DEG, 0.0, extension)
 
 	if upper_arm_r_idx >= 0:
-		skeleton.set_bone_pose_rotation(upper_arm_r_idx, _upper_arm_pose(right_pitch, false))
+		skeleton.set_bone_pose_rotation(upper_arm_r_idx, _upper_arm_pose(pitch_deg, false))
 	if forearm_r_idx >= 0:
 		skeleton.set_bone_pose_rotation(forearm_r_idx, _forearm_pose(right_bend))
 	if upper_arm_l_idx >= 0:
-		skeleton.set_bone_pose_rotation(upper_arm_l_idx, _upper_arm_pose(left_pitch, true))
+		skeleton.set_bone_pose_rotation(upper_arm_l_idx, _upper_arm_pose(pitch_deg, true))
 	if forearm_l_idx >= 0:
 		skeleton.set_bone_pose_rotation(forearm_l_idx, _forearm_pose(left_bend))
 
