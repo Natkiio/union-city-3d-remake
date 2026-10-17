@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://p5n4o3q6malebasicchar"]
+
+[ext_resource type="PackedScene" uid="uid://dljol74prurap" path="res://assets/characters/male_basic.glb" id="1"]
+
+[node name="MaleBasic" type="Node3D"]
+
+[node name="Model" parent="." instance=ExtResource("1")]
