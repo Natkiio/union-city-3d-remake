@@ -3,17 +3,23 @@ extends CharacterBody3D
 ## Movement is locked to the X axis to match the original flash game's
 ## left/right lane movement; Z stays fixed on the game's "street plane".
 ## Facing and aim are driven by the mouse, not movement — matching the
-## original game, where you aim your fist/weapon with the cursor
-## independently of which way you're walking. The actual right arm
-## bone is posed to point at the aim target every frame (not a
-## separate floating prop), so the model's own arm is the thing that
-## visibly aims.
+## original game, where you aim with the cursor independently of which
+## way you're walking.
+##
+## Combat: the player holds a boxing guard (both fists up) at all
+## times. Each attack throws a punch with whichever arm is due next,
+## alternating left/right every click, extending that arm toward the
+## aim target and back to guard; the other arm stays in guard. No
+## separate floating prop — this is the model's own rigged arms.
 
 const SPEED: float = 6.0
-const ATTACK_RANGE: float = 1.6
 const ATTACK_DAMAGE: float = 25.0
 const MAX_HEALTH: float = 100.0
 const MAX_AIM_PITCH_DEG: float = 80.0
+
+const GUARD_UPPER_PITCH_DEG: float = 35.0
+const GUARD_FOREARM_BEND_DEG: float = 110.0
+const PUNCH_DURATION: float = 0.3
 
 var health: float = MAX_HEALTH
 var is_dead: bool = false
@@ -23,22 +29,35 @@ const ATTACK_COOLDOWN_TIME: float = 0.5
 var facing_dir: float = 1.0
 var aim_pitch: float = 0.0
 
+var punch_side: String = "R" # which arm last punched / is currently punching
+var is_punching: bool = false
+var punch_timer: float = 0.0
+var punch_did_hit: bool = false
+
 @onready var model: Node3D = $Model
-@onready var attack_area: Area3D = $Model/MaleBasic_Armature/Skeleton3D/HandAttachment/AttackArea
+@onready var attack_area_r: Area3D = $Model/MaleBasic_Armature/Skeleton3D/HandAttachment_R/AttackArea_R
+@onready var attack_area_l: Area3D = $Model/MaleBasic_Armature/Skeleton3D/HandAttachment_L/AttackArea_L
 @onready var anim_player: AnimationPlayer = model.find_child("AnimationPlayer", true, false)
 @onready var skeleton: Skeleton3D = model.find_child("Skeleton3D", true, false)
 @onready var upper_arm_r_idx: int = skeleton.find_bone("UpperArm_R") if skeleton else -1
+@onready var forearm_r_idx: int = skeleton.find_bone("Forearm_R") if skeleton else -1
+@onready var upper_arm_l_idx: int = skeleton.find_bone("UpperArm_L") if skeleton else -1
+@onready var forearm_l_idx: int = skeleton.find_bone("Forearm_L") if skeleton else -1
 
-## UpperArm_R's rest pose hangs straight down. This rotates it onto a
-## forward "ready to punch" pose (local Z by -90 deg) then tilts that
-## by the aim pitch (local X) -- empirically determined in Godot at
-## runtime (with the body already yawed to face sideways), since bone
-## axes don't map to world axes the same way they do in Blender's own
-## Z-up space before import/yaw.
-func _arm_pose_for_pitch(pitch: float) -> Quaternion:
-	var raise_to_forward := Basis(Vector3(0, 0, 1), -PI / 2.0)
-	var pitch_basis := Basis(Vector3(1, 0, 0), pitch)
-	return (raise_to_forward * pitch_basis).get_rotation_quaternion()
+## Both UpperArm_L/R hang straight down at rest and need to be raised
+## to a forward-ish pose, but they need OPPOSITE sign Z rotations to
+## both end up pointing forward (their rest bone-roll isn't mirrored
+## the way their position is) -- confirmed empirically at runtime, not
+## assumed. The pitch (X) axis sign is the same for both sides, and
+## the forearm bend (also X) is the same sign for both sides too.
+func _upper_arm_pose(pitch_deg: float, is_left: bool) -> Quaternion:
+	var raise_angle := PI / 2.0 if is_left else -PI / 2.0
+	var raise_b := Basis(Vector3(0, 0, 1), raise_angle)
+	var pitch_b := Basis(Vector3(1, 0, 0), deg_to_rad(pitch_deg))
+	return (raise_b * pitch_b).get_rotation_quaternion()
+
+func _forearm_pose(bend_deg: float) -> Quaternion:
+	return Basis(Vector3(1, 0, 0), deg_to_rad(bend_deg)).get_rotation_quaternion()
 
 func _ready() -> void:
 	if GameState.has_pending_spawn:
@@ -50,9 +69,9 @@ func _ready() -> void:
 				anim_player.get_animation(anim_name).loop_mode = Animation.LOOP_PINGPONG
 		anim_player.play("Idle")
 	# AnimationPlayer also keyframes the arms (for the idle/walk swing);
-	# it updates during the default idle-process pass. Run our own arm
-	# aim override AFTER that in the same frame, or the animation would
-	# stomp it right back to the walk/idle pose every tick.
+	# it updates during the default idle-process pass. Run our own
+	# guard/punch pose override AFTER that in the same frame, or the
+	# animation would stomp it right back to the walk/idle pose.
 	set_process_priority(100)
 
 func _physics_process(delta: float) -> void:
@@ -78,12 +97,47 @@ func _physics_process(delta: float) -> void:
 
 	attack_cooldown = max(0.0, attack_cooldown - delta)
 	if Input.is_action_just_pressed("attack") and attack_cooldown <= 0.0:
-		_do_attack()
+		_start_punch()
 
 
-func _process(_delta: float) -> void:
-	if skeleton and upper_arm_r_idx >= 0:
-		skeleton.set_bone_pose_rotation(upper_arm_r_idx, _arm_pose_for_pitch(aim_pitch))
+func _process(delta: float) -> void:
+	if not skeleton:
+		return
+
+	var extension := 0.0
+	if is_punching:
+		punch_timer += delta
+		var t := punch_timer / PUNCH_DURATION
+		if t >= 1.0:
+			is_punching = false
+		else:
+			# Triangular curve: 0 -> 1 (fully extended) -> 0, so the
+			# punch snaps out toward the aim target and back to guard.
+			extension = 1.0 - abs(t - 0.5) * 2.0
+			if not punch_did_hit and t >= 0.45:
+				_apply_punch_damage()
+				punch_did_hit = true
+
+	var right_pitch := GUARD_UPPER_PITCH_DEG
+	var right_bend := GUARD_FOREARM_BEND_DEG
+	var left_pitch := GUARD_UPPER_PITCH_DEG
+	var left_bend := GUARD_FOREARM_BEND_DEG
+
+	if is_punching and punch_side == "R":
+		right_pitch = lerp(GUARD_UPPER_PITCH_DEG, rad_to_deg(aim_pitch), extension)
+		right_bend = lerp(GUARD_FOREARM_BEND_DEG, 0.0, extension)
+	elif is_punching and punch_side == "L":
+		left_pitch = lerp(GUARD_UPPER_PITCH_DEG, rad_to_deg(aim_pitch), extension)
+		left_bend = lerp(GUARD_FOREARM_BEND_DEG, 0.0, extension)
+
+	if upper_arm_r_idx >= 0:
+		skeleton.set_bone_pose_rotation(upper_arm_r_idx, _upper_arm_pose(right_pitch, false))
+	if forearm_r_idx >= 0:
+		skeleton.set_bone_pose_rotation(forearm_r_idx, _forearm_pose(right_bend))
+	if upper_arm_l_idx >= 0:
+		skeleton.set_bone_pose_rotation(upper_arm_l_idx, _upper_arm_pose(left_pitch, true))
+	if forearm_l_idx >= 0:
+		skeleton.set_bone_pose_rotation(forearm_l_idx, _forearm_pose(left_bend))
 
 
 func _update_aim() -> void:
@@ -103,7 +157,7 @@ func _update_aim() -> void:
 
 
 ## Given a world-space aim point, face the body toward it (left/right)
-## and store the pitch used to pose the arm. Split out from
+## and store the pitch used to pose the punching arm. Split out from
 ## _update_aim() so it can be tested directly without depending on
 ## screen/mouse plumbing.
 func _apply_aim(aim_point: Vector3) -> void:
@@ -118,14 +172,24 @@ func _apply_aim(aim_point: Vector3) -> void:
 	aim_pitch = clamp(atan2(dy, horiz), -deg_to_rad(MAX_AIM_PITCH_DEG), deg_to_rad(MAX_AIM_PITCH_DEG))
 
 
-func _do_attack() -> void:
+## Starts a punch with whichever arm is due next (always the opposite
+## of the last one thrown), so clicks alternate left/right every time.
+func _start_punch() -> void:
 	attack_cooldown = ATTACK_COOLDOWN_TIME
-	for body in attack_area.get_overlapping_bodies():
+	punch_side = "L" if punch_side == "R" else "R"
+	is_punching = true
+	punch_timer = 0.0
+	punch_did_hit = false
+	print("[Player] threw a %s punch" % punch_side)
+
+
+func _apply_punch_damage() -> void:
+	var area := attack_area_r if punch_side == "R" else attack_area_l
+	for body in area.get_overlapping_bodies():
 		if body == self:
 			continue # the hitbox sits on our own hand; never hit ourselves
 		if body.has_method("take_damage"):
 			body.take_damage(ATTACK_DAMAGE)
-	print("[Player] attack swung")
 
 
 func take_damage(amount: float) -> void:

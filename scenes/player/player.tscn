@@ -19,11 +19,20 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.9, 0)
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_1")
 
-[node name="HandAttachment" type="BoneAttachment3D" parent="Model/MaleBasic_Armature/Skeleton3D"]
+[node name="HandAttachment_R" type="BoneAttachment3D" parent="Model/MaleBasic_Armature/Skeleton3D"]
 bone_name = "Hand_R"
 use_external_skeleton = false
 
-[node name="AttackArea" type="Area3D" parent="Model/MaleBasic_Armature/Skeleton3D/HandAttachment"]
+[node name="AttackArea_R" type="Area3D" parent="Model/MaleBasic_Armature/Skeleton3D/HandAttachment_R"]
 
-[node name="AttackShape" type="CollisionShape3D" parent="Model/MaleBasic_Armature/Skeleton3D/HandAttachment/AttackArea"]
+[node name="AttackShape" type="CollisionShape3D" parent="Model/MaleBasic_Armature/Skeleton3D/HandAttachment_R/AttackArea_R"]
+shape = SubResource("BoxShape3D_1")
+
+[node name="HandAttachment_L" type="BoneAttachment3D" parent="Model/MaleBasic_Armature/Skeleton3D"]
+bone_name = "Hand_L"
+use_external_skeleton = false
+
+[node name="AttackArea_L" type="Area3D" parent="Model/MaleBasic_Armature/Skeleton3D/HandAttachment_L"]
+
+[node name="AttackShape" type="CollisionShape3D" parent="Model/MaleBasic_Armature/Skeleton3D/HandAttachment_L/AttackArea_L"]
 shape = SubResource("BoxShape3D_1")
