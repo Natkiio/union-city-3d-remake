@@ -1,0 +1,64 @@
+[gd_scene load_steps=9 format=3 uid="uid://l0j9k1m2carscene"]
+
+[ext_resource type="Script" path="res://scripts/car_trunk.gd" id="1"]
+
+[sub_resource type="BoxShape3D" id="Shape_Body"]
+size = Vector3(2.4, 0.9, 1.1)
+
+[sub_resource type="BoxMesh" id="Mesh_Body"]
+size = Vector3(2.4, 0.9, 1.1)
+
+[sub_resource type="StandardMaterial3D" id="Mat_Body"]
+albedo_color = Color(0.58, 0.6, 0.63, 1)
+metallic = 0.3
+roughness = 0.4
+
+[sub_resource type="CylinderMesh" id="Mesh_Wheel"]
+top_radius = 0.3
+bottom_radius = 0.3
+height = 0.25
+
+[sub_resource type="StandardMaterial3D" id="Mat_Wheel"]
+albedo_color = Color(0.08, 0.08, 0.08, 1)
+
+[sub_resource type="BoxShape3D" id="Shape_Trunk"]
+size = Vector3(1.0, 1.2, 1.4)
+
+[node name="Car" type="Node3D"]
+
+[node name="Body" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.45, 0)
+
+[node name="Collision" type="CollisionShape3D" parent="Body"]
+shape = SubResource("Shape_Body")
+
+[node name="Mesh" type="MeshInstance3D" parent="Body"]
+mesh = SubResource("Mesh_Body")
+surface_material_override/0 = SubResource("Mat_Body")
+
+[node name="WheelFrontLeft" type="MeshInstance3D" parent="."]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 1.0, 0.3, 0.55)
+mesh = SubResource("Mesh_Wheel")
+surface_material_override/0 = SubResource("Mat_Wheel")
+
+[node name="WheelFrontRight" type="MeshInstance3D" parent="."]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 1.0, 0.3, -0.55)
+mesh = SubResource("Mesh_Wheel")
+surface_material_override/0 = SubResource("Mat_Wheel")
+
+[node name="WheelRearLeft" type="MeshInstance3D" parent="."]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, -1.0, 0.3, 0.55)
+mesh = SubResource("Mesh_Wheel")
+surface_material_override/0 = SubResource("Mat_Wheel")
+
+[node name="WheelRearRight" type="MeshInstance3D" parent="."]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, -1.0, 0.3, -0.55)
+mesh = SubResource("Mesh_Wheel")
+surface_material_override/0 = SubResource("Mat_Wheel")
+
+[node name="TrunkTrigger" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.4, 0.6, 0)
+script = ExtResource("1")
+
+[node name="TriggerShape" type="CollisionShape3D" parent="TrunkTrigger"]
+shape = SubResource("Shape_Trunk")
