@@ -213,6 +213,7 @@ func _die() -> void:
 	Inventory.items.clear()
 	Inventory.inventory_changed.emit()
 	LootState.looted.clear()
+	LootState.trunk_contents.clear()
 	GameState.has_pending_spawn = false
 	get_tree().paused = true
 	call_deferred("_trigger_death_screen")

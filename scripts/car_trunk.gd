@@ -14,14 +14,16 @@ func _ready() -> void:
 	trunk_id = str(get_path())
 	body_entered.connect(_on_body_entered)
 	body_exited.connect(_on_body_exited)
-	if items.is_empty():
+	if LootState.has_saved_trunk_contents(trunk_id):
+		# A partial (or full) take happened before a scene reload --
+		# restore exactly what was left, not the full default list.
+		items = LootState.get_saved_trunk_contents(trunk_id)
+	elif items.is_empty():
 		items = [
 			{"name": "Spare Tire", "weight": 8.0},
 			{"name": "Tool Kit", "weight": 3.5},
 			{"name": "Road Flares", "weight": 1.0},
 		]
-	if LootState.is_looted(trunk_id):
-		items = []
 
 func suppress_interact(duration: float = 0.3) -> void:
 	reopen_cooldown = duration
@@ -45,10 +47,12 @@ func take_all() -> Array:
 	var taken: Array = items.duplicate()
 	items.clear()
 	LootState.mark_looted(trunk_id)
+	LootState.save_trunk_contents(trunk_id, items)
 	return taken
 
 func take_item(index: int) -> Dictionary:
 	var item: Dictionary = items.pop_at(index)
 	if items.is_empty():
 		LootState.mark_looted(trunk_id)
+	LootState.save_trunk_contents(trunk_id, items)
 	return item

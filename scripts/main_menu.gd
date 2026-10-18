@@ -21,4 +21,5 @@ func _reset_run_state() -> void:
 	Inventory.items.clear()
 	Inventory.inventory_changed.emit()
 	LootState.looted.clear()
+	LootState.trunk_contents.clear()
 	GameState.has_pending_spawn = false
