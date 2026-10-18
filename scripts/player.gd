@@ -23,6 +23,8 @@ const MAX_AIM_PITCH_DEG: float = 80.0
 const GUARD_FOREARM_BEND_DEG: float = 110.0
 const PUNCH_DURATION: float = 0.3
 
+const PISTOL_COOLDOWN_TIME: float = 0.3
+
 var health: float = MAX_HEALTH
 var is_dead: bool = false
 var attack_cooldown: float = 0.0
@@ -35,6 +37,11 @@ var punch_side: String = "R" # which arm last punched / is currently punching
 var is_punching: bool = false
 var punch_timer: float = 0.0
 var punch_did_hit: bool = false
+
+## "fist" (default boxing guard) or "pistol". Switches with equip_fists
+## / equip_pistol; pistol only equippable once the item is in Inventory.
+var equipped_weapon: String = "fist"
+const BulletScene := preload("res://scenes/weapons/bullet.tscn")
 
 @onready var model: Node3D = $Model
 @onready var attack_area_r: Area3D = $Model/MaleBasic_Armature/Skeleton3D/HandAttachment_R/AttackArea_R
@@ -98,8 +105,18 @@ func _physics_process(delta: float) -> void:
 			anim_player.play(desired)
 
 	attack_cooldown = max(0.0, attack_cooldown - delta)
+	if Input.is_action_just_pressed("equip_fists"):
+		equipped_weapon = "fist"
+		print("[Player] equipped fists")
+	if Input.is_action_just_pressed("equip_pistol") and Inventory.has_item("Pistol"):
+		equipped_weapon = "pistol"
+		print("[Player] equipped pistol")
+
 	if Input.is_action_just_pressed("attack") and attack_cooldown <= 0.0:
-		_start_punch()
+		if equipped_weapon == "pistol":
+			_fire_pistol()
+		else:
+			_start_punch()
 
 
 func _process(delta: float) -> void:
@@ -128,7 +145,11 @@ func _process(delta: float) -> void:
 	var right_bend := GUARD_FOREARM_BEND_DEG
 	var left_bend := GUARD_FOREARM_BEND_DEG
 
-	if is_punching and punch_side == "R":
+	if equipped_weapon == "pistol":
+		# Arm held straight out toward the aim point, not tucked into
+		# a guard -- this is what makes it visibly "aim with the gun".
+		right_bend = 0.0
+	elif is_punching and punch_side == "R":
 		right_bend = lerp(GUARD_FOREARM_BEND_DEG, 0.0, extension)
 	elif is_punching and punch_side == "L":
 		left_bend = lerp(GUARD_FOREARM_BEND_DEG, 0.0, extension)
@@ -184,6 +205,30 @@ func _start_punch() -> void:
 	punch_timer = 0.0
 	punch_did_hit = false
 	print("[Player] threw a %s punch" % punch_side)
+
+
+## Direction vector pointing at the current aim target, reconstructed
+## from the same facing_dir/aim_pitch the mouse-aim system already
+## maintains every frame -- so a bullet always flies exactly where the
+## arm is pointing (and where the cursor currently is).
+func _aim_direction() -> Vector3:
+	return Vector3(cos(aim_pitch) * facing_dir, sin(aim_pitch), 0.0).normalized()
+
+
+func _fire_pistol() -> void:
+	if not Inventory.has_item("Pistol Ammo"):
+		print("[Player] out of ammo")
+		return
+	attack_cooldown = PISTOL_COOLDOWN_TIME
+	Inventory.remove_item("Pistol Ammo", 1)
+
+	var bullet := BulletScene.instantiate()
+	get_parent().add_child(bullet)
+	bullet.global_position = attack_area_r.global_position
+	bullet.setup(_aim_direction(), self)
+
+	var ammo_left: int = Inventory.items.get("Pistol Ammo", {}).get("count", 0)
+	print("[Player] fired pistol toward %s, ammo left: %d" % [bullet.direction, ammo_left])
 
 
 func _apply_punch_damage() -> void:
