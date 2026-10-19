@@ -23,6 +23,7 @@ func _ready() -> void:
 			{"name": "Spare Tire", "weight": 8.0},
 			{"name": "Tool Kit", "weight": 3.5},
 			{"name": "Road Flares", "weight": 1.0},
+			{"name": "Pistol", "weight": 1.5},
 		]
 
 func suppress_interact(duration: float = 0.3) -> void:
