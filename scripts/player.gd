@@ -16,6 +16,7 @@ extends CharacterBody3D
 ## this is the model's own rigged arms.
 
 const SPEED: float = 6.0
+const JUMP_VELOCITY: float = 8.0
 const ATTACK_DAMAGE: float = 25.0
 const MAX_HEALTH: float = 100.0
 const MAX_AIM_PITCH_DEG: float = 80.0
@@ -92,6 +93,8 @@ func _physics_process(delta: float) -> void:
 
 	velocity.x = input_dir * SPEED
 	velocity.z = 0.0 # locked to the street plane, 2.5D style
+	if Input.is_action_just_pressed("jump") and is_on_floor():
+		velocity.y = JUMP_VELOCITY
 	if not is_on_floor():
 		velocity.y -= 20.0 * delta
 
