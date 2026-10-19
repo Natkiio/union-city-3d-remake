@@ -1,5 +1,12 @@
 extends CharacterBody3D
 ## Minimal zombie AI: shamble toward the player along X, bite on contact.
+## Baseline stats below are the basic zombie; `type_ref` picks a ZombieType
+## from the original's enemy table that scales them and sets how it moves.
+
+## Basic zombies limp: speed swings sinusoidally around SPEED (the average is
+## unchanged) on a fixed, predictable beat.
+const LIMP_AMPLITUDE: float = 0.6
+const LIMP_PERIOD: float = 1.2
 
 const SPEED: float = 2.2
 const BITE_DAMAGE: float = 10.0
@@ -10,7 +17,14 @@ const BITE_WINDUP_TIME: float = 0.4
 const STAGGER_TIME: float = 0.25
 const HIT_FLASH_TIME: float = 0.1
 
+@export var type_ref: String = "zombieSlow"
+
+var type: ZombieType
+var max_health: float = MAX_HEALTH
+var speed: float = SPEED
+var bite_damage: float = BITE_DAMAGE
 var health: float = MAX_HEALTH
+var move_time: float = 0.0
 var bite_cooldown: float = 0.0
 var player: Node3D = null
 var stagger_timer: float = 0.0
@@ -24,6 +38,12 @@ var flash_timer: float = 0.0
 var _flash_material := StandardMaterial3D.new()
 
 func _ready() -> void:
+	type = ZombieType.from_ref(type_ref)
+	if type != null:
+		max_health = MAX_HEALTH * type.health_scale
+		speed = SPEED * type.speed_scale
+		bite_damage = BITE_DAMAGE * type.damage_scale
+		health = max_health
 	_flash_material.albedo_color = Color.WHITE
 	_flash_material.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
 	player = get_tree().get_first_node_in_group("player")
@@ -41,7 +61,8 @@ func _physics_process(delta: float) -> void:
 			mesh.material_override = null
 
 	var dir: float = sign(player.global_position.x - global_position.x)
-	velocity.x = dir * SPEED
+	move_time += delta
+	velocity.x = dir * speed * _movement_mult()
 	if stagger_timer > 0.0:
 		stagger_timer -= delta
 		velocity.x = stagger_speed
@@ -62,13 +83,22 @@ func _physics_process(delta: float) -> void:
 				if windup_timer < 0.0:
 					windup_timer = BITE_WINDUP_TIME
 				elif windup_timer - delta <= 0.0:
-					body.take_damage(BITE_DAMAGE)
+					body.take_damage(bite_damage)
 					bite_cooldown = BITE_COOLDOWN_TIME
 					windup_timer = -1.0
 				else:
 					windup_timer -= delta
 		if not in_range:
 			windup_timer = -1.0
+
+
+## Speed multiplier for this kind's movement style at the current moment.
+func _movement_mult() -> float:
+	match type.movement if type != null else "steady":
+		"limp":
+			return 1.0 + LIMP_AMPLITUDE * sin(TAU * move_time / LIMP_PERIOD)
+		_:
+			return 1.0
 
 
 ## Pushes the zombie `distance` world units along X in `direction` (+1/-1)
