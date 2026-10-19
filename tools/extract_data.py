@@ -28,7 +28,11 @@ WORLD_TABLE = re.compile(r"^(l\d+|lightTime\d+|cutScene\d+|shopSet\d+|fakeRoom)$
 
 # Functions that fill data tables with indented `table.a.b = value;` lines
 # (quests, triggers, NPC dialogue). Their assignments are read like top-level ones.
-TABLE_FUNCTIONS = re.compile(r"^(setQuestContents|defineTriggers|setNPCLoc\d+)$")
+TABLE_FUNCTIONS = re.compile(
+    r"^(setQuestContents|defineTriggers|setNPCLoc\d+|setNoteContents|setupMapLocations|initDialogBoxes)$")
+# Numbered or prefixed globals written by those functions become one table each,
+# keyed by the suffix: note5 -> notes["5"], dialog_walkThrough -> dialogs["walkThrough"].
+GROUPED_PREFIXES = {"note": "notes", "section": "sections", "dialog_": "dialogs"}
 FUNC_DEF = re.compile(r"^function\s+(\w+)\s*\(")
 ARRAY = re.compile(r"^(?:new Array\((.*)\)|\[(.*)\])$")
 
@@ -56,6 +60,15 @@ def parse_value(raw):
     if len(raw) >= 2 and raw[0] == '"' and raw[-1] == '"' and '" + ' not in raw:
         return unescape(raw[1:-1])
     return {"$expr": raw}
+
+
+def group_path(path):
+    head = path[0]
+    for prefix, table in GROUPED_PREFIXES.items():
+        suffix = head[len(prefix):]
+        if head.startswith(prefix) and (prefix.endswith("_") or suffix.isdigit()):
+            return [table, suffix] + path[1:]
+    return path
 
 
 def set_path(root, path, value):
@@ -239,7 +252,7 @@ def main():
                 line = line.strip()
                 m = ASSIGN.match(line)
                 if m:
-                    set_path(tables, m.group(1).split("."), parse_value(m.group(2)))
+                    set_path(tables, group_path(m.group(1).split(".")), parse_value(m.group(2)))
             continue
         sm = SCALAR.match(line)
         if sm:

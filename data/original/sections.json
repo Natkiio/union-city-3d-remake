@@ -1,0 +1,126 @@
+{
+  "16": {
+    "name": "Pinedale",
+    "locations": [
+      "section9",
+      "section13"
+    ],
+    "locked": false
+  },
+  "1": {
+    "name": "Trenton",
+    "locations": [
+      "section3",
+      "section5"
+    ]
+  },
+  "2": {
+    "name": "Green Plains",
+    "locations": [
+      "section3",
+      "section4"
+    ]
+  },
+  "3": {
+    "name": "Northwood",
+    "locations": [
+      "section1",
+      "section2",
+      "section4",
+      "section5"
+    ]
+  },
+  "4": {
+    "name": "Uptown",
+    "locations": [
+      "section2",
+      "section3",
+      "section6"
+    ]
+  },
+  "5": {
+    "name": "Stadium",
+    "locations": [
+      "section1",
+      "section3",
+      "section6",
+      "section8"
+    ]
+  },
+  "6": {
+    "name": "Docks",
+    "locations": [
+      "section5",
+      "section4",
+      "section7",
+      "section10"
+    ]
+  },
+  "7": {
+    "name": "Union Island",
+    "locations": [
+      "section6"
+    ]
+  },
+  "8": {
+    "name": "Riverside",
+    "locations": [
+      "section5",
+      "section9"
+    ]
+  },
+  "9": {
+    "name": "Brookvale",
+    "locations": [
+      "section16",
+      "section8"
+    ]
+  },
+  "10": {
+    "name": "Downtown",
+    "locations": [
+      "section5",
+      "section6",
+      "section11"
+    ]
+  },
+  "11": {
+    "name": "Uptown",
+    "locations": [
+      "section10",
+      "section12"
+    ]
+  },
+  "12": {
+    "name": "Newtown",
+    "locations": [
+      "section11",
+      "section13",
+      "section14",
+      "section15"
+    ]
+  },
+  "13": {
+    "name": "Canal Park",
+    "locations": [
+      "section16",
+      "section12",
+      "section14"
+    ]
+  },
+  "14": {
+    "name": "Waterside",
+    "locations": [
+      "section13",
+      "section15",
+      "section12"
+    ]
+  },
+  "15": {
+    "name": "Whistler's Forest",
+    "locations": [
+      "section12",
+      "section14"
+    ]
+  }
+}
