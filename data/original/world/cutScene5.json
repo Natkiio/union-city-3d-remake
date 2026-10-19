@@ -1,0 +1,15 @@
+{
+  "lockControls": false,
+  "action1": {
+    "func": "displayWorldSpeech",
+    "var1": "npc_Jack",
+    "var2": "If you're looking\nfor a boat...",
+    "timing": 1
+  },
+  "action2": {
+    "func": "displayWorldSpeech",
+    "var1": "npc_Jack",
+    "var2": "They sank them all.",
+    "timing": 3000
+  }
+}

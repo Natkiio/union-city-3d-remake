@@ -1,0 +1,161 @@
+{
+  "walkThrough": {
+    "heading": "NEED SOME HELP?",
+    "body": "\nVIEW THE WALKTHROUGH\nFOR THIS GAME?",
+    "button1Active": true,
+    "button1Desc": "VIEW",
+    "button2Active": true,
+    "button2Desc": "CLOSE"
+  },
+  "getMoreStorage": {
+    "heading": "NEED MORE STORAGE?",
+    "body": "BUYING THE SURVIVAL KIT\nGIVES YOU 2x THE SPACE\n\nDO YOU WANT TO VIEW IT NOW?",
+    "button1Active": true,
+    "button2Active": true,
+    "button3Active": false,
+    "button1Desc": "VIEW INFO",
+    "button2Desc": "NO"
+  },
+  "premiumGameplay": {
+    "heading": "SURVIVAL KIT NEEDED",
+    "body": "TO PLAY WITH THESE OPTIONS\n YOU NEED TO GET THE SURVIVAL KIT\n\nDO YOU WANT TO VIEW IT NOW?",
+    "button1Active": true,
+    "button2Active": true,
+    "button3Active": false,
+    "button1Desc": "VIEW INFO",
+    "button2Desc": "NO"
+  },
+  "premiumAdded": {
+    "heading": "SURVIVAL KIT ADDED",
+    "body": "\nPREMIUM CONTENT GEAR\nHAS BEEN ADDED TO YOUR\nSTORAGE CONTAINER.",
+    "button1Active": false,
+    "button2Active": false,
+    "button3Active": true,
+    "button3Desc": "OK"
+  },
+  "achStar1": {
+    "heading": "ACHIEVEMENT REWARD",
+    "body": "\nYOU GOT THE\nBIOHAZARD OUTFIT\nCHECK YOUR STORAGE.",
+    "button1Active": false,
+    "button2Active": false,
+    "button3Active": true,
+    "button3Desc": "OK"
+  },
+  "achStar2": {
+    "heading": "ACHIEVEMENT REWARD",
+    "body": "\nYOU GOT THE\nBATTLE AXE\nCHECK YOUR STORAGE.",
+    "button1Active": false,
+    "button2Active": false,
+    "button3Active": true,
+    "button3Desc": "OK"
+  },
+  "achStar3": {
+    "heading": "ACHIEVEMENT REWARD",
+    "body": "\nYOU GOT THE\nM82 SNIPER RIFLE\nCHECK YOUR STORAGE.",
+    "button1Active": false,
+    "button2Active": false,
+    "button3Active": true,
+    "button3Desc": "OK"
+  },
+  "gameSaved": {
+    "heading": "GAME SAVED",
+    "body": "\nYOUR GAME HAS BEEN SAVED.",
+    "button1Active": false,
+    "button2Active": false,
+    "button3Active": true,
+    "button3Desc": "OK"
+  },
+  "gameSavedCloud": {
+    "heading": "GAME SAVED ONLINE",
+    "body": "\nYOUR SAVE GAME HAS\nBEEN UPLOADED ONLINE.",
+    "button1Active": false,
+    "button2Active": false,
+    "button3Active": true,
+    "button3Desc": "OK"
+  },
+  "notEnoughMoney": {
+    "heading": "NOT ENOUGH CASH",
+    "body": "\nYOU DON'T HAVE ENOUGH\nCASH TO PURCHASE THIS ITEM.",
+    "button1Active": false,
+    "button2Active": false,
+    "button3Active": true,
+    "button3Desc": "OK"
+  },
+  "noSleepHere": {
+    "heading": "YOU CANNOT SLEEP HERE",
+    "body": "IT'D BE SUICIDE TO SLEEP\nOUTSIDE OF A SECURE AREA.\n\nFIND A SAFEHOUSE.",
+    "button1Active": false,
+    "button2Active": false,
+    "button3Active": true,
+    "button3Desc": "OK"
+  },
+  "companionDown": {
+    "heading": "COMPANION DOWN!",
+    "body": "YOUR COMPANION NEEDS RESCUING.\nLEAVING THEM WILL RESULT\nIN THEIR DEATH.",
+    "button1Active": false,
+    "button2Active": false,
+    "button3Active": true,
+    "button3Desc": "OK"
+  },
+  "alreadyHaveCompanion": {
+    "heading": "NEW COMPANION?",
+    "body": "WOULD YOU LIKE TO REPLACE\nYOUR CURRENT COMPANION WITH\nTHIS PERSON?",
+    "button1Active": true,
+    "button2Active": true,
+    "button3Active": false,
+    "button1Desc": "YES",
+    "button2Desc": "NO"
+  },
+  "noPremade": {
+    "heading": "SELECT AN OCCUPATION",
+    "body": "YOU NEED TO SELECT\nAN OCCUPATION OR\nCREATE A CUSTOM ONE",
+    "button1Active": false,
+    "button2Active": false,
+    "button3Active": true,
+    "button3Desc": "OK"
+  },
+  "levelUpPoints": {
+    "heading": "POINTS REMAINING",
+    "body": "YOU STILL HAVE POINTS TO\nTHAT NEED TO BE ASSIGNED\nIN ORDER TO CONTINUE",
+    "button1Active": false,
+    "button2Active": false,
+    "button3Active": true,
+    "button3Desc": "OK"
+  },
+  "quitNoSave": {
+    "heading": "QUIT",
+    "body": "ALL PROGRESS SINCE YOUR LAST\n SAVE WILL BE LOST.\n\nDO YOU WANT TO QUIT?",
+    "button1Active": true,
+    "button2Active": true,
+    "button3Active": false,
+    "button1Desc": "YES",
+    "button2Desc": "NO"
+  },
+  "unspentPoints": {
+    "heading": "UNSPENT POINTS",
+    "body": "YOU HAVE NOT ASSIGNED ALL OF\n YOUR CHARACTER'S POINTS\n\nDO YOU WISH TO CONTINUE?",
+    "button1Active": true,
+    "button2Active": true,
+    "button3Active": false,
+    "button1Desc": "YES",
+    "button2Desc": "NO"
+  },
+  "overwriteSave": {
+    "heading": "START A NEW STORY",
+    "body": "THIS WILL OVERWRITE THE EXISTING\nCHARACTER IN THIS SAVE GAME\n\nARE YOU SURE?",
+    "button1Active": true,
+    "button2Active": true,
+    "button3Active": false,
+    "button1Desc": "YES",
+    "button2Desc": "NO"
+  },
+  "hardcoreMode": {
+    "heading": "HARDCORE?",
+    "body": "WOULD YOU LIKE TO\nTURN ON HARDCORE?\n\nYOUR CHARACTER WILL\nONLY HAVE ONE LIFE.",
+    "button1Active": true,
+    "button2Active": true,
+    "button3Active": false,
+    "button1Desc": "YES",
+    "button2Desc": "NO"
+  }
+}

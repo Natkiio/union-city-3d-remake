@@ -1,0 +1,13 @@
+{
+  "name": "lightTime6",
+  "lightLevel": "low",
+  "ra": 50,
+  "rb": 0,
+  "ga": 45,
+  "gb": 0,
+  "ba": 50,
+  "bg": 0,
+  "aa": 100,
+  "ab": 0,
+  "sightMod": 0.6
+}

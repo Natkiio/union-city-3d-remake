@@ -1,0 +1,46 @@
+{
+  "bandage": {
+    "ref": "bandage",
+    "name": "Bandages",
+    "desc": "Sterile wrapping to cover wounds.",
+    "effect": "Heals 5%",
+    "weight": 0.5,
+    "bonus": 5,
+    "pickup": "bandage",
+    "bonusStat": "health",
+    "rarity": 1
+  },
+  "pills": {
+    "ref": "pills",
+    "name": "Pain Pills",
+    "desc": "These will take the edge off.",
+    "effect": "Heals 15%",
+    "weight": 0.5,
+    "bonus": 15,
+    "bonusStat": "health",
+    "pickup": "pills",
+    "rarity": 3
+  },
+  "medkit": {
+    "ref": "medkit",
+    "name": "Medkit",
+    "desc": "Full first-aid kit.",
+    "effect": "Heals 30%",
+    "weight": 0.5,
+    "bonusStat": "health",
+    "bonus": 30,
+    "pickup": "medkit",
+    "rarity": 5
+  },
+  "noDoze": {
+    "ref": "noDoze",
+    "name": "No ZZZ",
+    "desc": "Pep-pills that reduce tiredness.",
+    "effect": "25%",
+    "weight": 0.1,
+    "bonusStat": "sleep",
+    "bonus": 2.5,
+    "pickup": "pills",
+    "rarity": 5
+  }
+}

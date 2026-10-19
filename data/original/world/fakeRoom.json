@@ -1,0 +1,10 @@
+{
+  "enemy": [
+    "JebEnemy",
+    "PaulEnemy"
+  ],
+  "enemyX": [
+    "550",
+    "950"
+  ]
+}

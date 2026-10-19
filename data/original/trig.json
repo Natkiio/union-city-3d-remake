@@ -1,0 +1,567 @@
+{
+  "trig1": {
+    "ref": "trig1",
+    "func1": "setActiveQuest",
+    "func1var1": "900",
+    "func2": "startCutScene",
+    "func2var1": "10",
+    "triggered": false,
+    "multi": false
+  },
+  "trig3": {
+    "ref": "trig3",
+    "func1": "displayWorldSpeech",
+    "func1var1": "player",
+    "func1var2": "What the hell is\ngoing on here?!",
+    "triggered": false,
+    "multi": false
+  },
+  "trig4": {
+    "ref": "trig4",
+    "func1": "showHelp",
+    "func1var1": "safehouse",
+    "func1var2": "6",
+    "func2": "unlockEndLoc",
+    "func2var1": "16",
+    "triggered": false,
+    "multi": false
+  },
+  "trig5": {
+    "ref": "trig5",
+    "func1": "showHelp",
+    "func1var1": "search",
+    "triggered": false,
+    "multi": false
+  },
+  "trig6": {
+    "ref": "trig6",
+    "func1": "displayWorldSpeech",
+    "func1var1": "player",
+    "func1var2": "Hello! Anybody home?!",
+    "triggered": false,
+    "multi": false
+  },
+  "trig7": {
+    "ref": "trig7",
+    "func1": "displayWorldSpeech",
+    "func1var1": "player",
+    "func1var2": "Damnit, empty.\nBest go further into town.",
+    "triggered": false,
+    "multi": false
+  },
+  "trig8": {
+    "ref": "trig8",
+    "func1": "completeQuest",
+    "func1var1": "900",
+    "func2": "displayWorldSpeech",
+    "func2var1": "player",
+    "func2var2": "Alright, it's just the next block over.",
+    "func3": "setActiveQuest",
+    "func3var1": "901",
+    "triggered": false,
+    "multi": false
+  },
+  "trig9": {
+    "ref": "trig9",
+    "func1": "completeQuest",
+    "func1var1": "901",
+    "func2": "displayWorldSpeech",
+    "func2var1": "player",
+    "func2var2": {
+      "template": "{PartnerSexStart}'s not here. Maybe {PartnerSex} left a note.",
+      "placeholders": [
+        "PartnerSexStart",
+        "PartnerSex"
+      ]
+    },
+    "func3": "setActiveQuest",
+    "func3var1": "902",
+    "triggered": false,
+    "multi": false
+  },
+  "trig10": {
+    "ref": "trig10",
+    "func1": "completeQuest",
+    "func1var1": "902",
+    "func2": "displayWorldSpeech",
+    "func2var1": "player",
+    "func2var2": "The hospital? That place is going to be a mess.",
+    "func3": "setActiveQuest",
+    "func3var1": "903",
+    "triggered": false,
+    "multi": false
+  },
+  "trig11": {
+    "ref": "trig11",
+    "func1": "completeQuest",
+    "func1var1": "903",
+    "func2": "displayWorldSpeech",
+    "func2var1": "player",
+    "func2var2": {
+      "template": "Ok, now to find {PartnerName}.",
+      "placeholders": [
+        "PartnerName"
+      ]
+    },
+    "func3": "setActiveQuest",
+    "func3var1": "904",
+    "triggered": false,
+    "multi": false
+  },
+  "trig12": {
+    "ref": "trig12",
+    "func1": "unlockAreas",
+    "func1var1": null,
+    "func1var2": "section11",
+    "func2": "unlockEndLoc",
+    "func2var1": "12",
+    "triggered": false,
+    "multi": false
+  },
+  "trig13": {
+    "ref": "trig13",
+    "func1": "displayWorldSpeech",
+    "func1var1": "player",
+    "func1var2": "That's the stadium down there, a few blocks more yet.",
+    "triggered": false,
+    "multi": false
+  },
+  "trig14": {
+    "ref": "trig14",
+    "func1": "displayWorldSpeech",
+    "func1var1": "player",
+    "func1var2": "Looks like Richards didn't make it.",
+    "func2": "completeQuest",
+    "func2var1": "009",
+    "func3": "setActiveQuest",
+    "func3var1": "010",
+    "triggered": true,
+    "multi": false
+  },
+  "trig15": {
+    "ref": "trig15",
+    "func1": "completeQuest",
+    "func1var1": "010",
+    "triggered": false,
+    "multi": false
+  },
+  "trig16": {
+    "ref": "trig16",
+    "func1": "displayWorldSpeech",
+    "func1var1": "player",
+    "func1var2": "Damnit, road to Uptown is blocked, looks like it's the subway route.",
+    "triggered": false,
+    "multi": false
+  },
+  "trig17": {
+    "ref": "trig17",
+    "func1": "displayWorldSpeech",
+    "func1var1": "player",
+    "func1var2": "Hank's rifle is somewhere amongst this mess.",
+    "triggered": false,
+    "multi": false
+  },
+  "trig18": {
+    "ref": "trig18",
+    "func1": "displayWorldSpeech",
+    "func1var1": "player",
+    "func1var2": {
+      "template": "Home. God I hope\n{PartnerName} is safe.",
+      "placeholders": [
+        "PartnerName"
+      ]
+    },
+    "func2": "unlockEndLoc",
+    "func2var1": "9",
+    "triggered": false,
+    "multi": false
+  },
+  "trig19": {
+    "ref": "trig19",
+    "func1": "unlockEndLoc",
+    "func1var1": "11",
+    "triggered": false,
+    "multi": false
+  },
+  "trig20": {
+    "ref": "trig20",
+    "func1": "unlockEndLoc",
+    "func1var1": "13",
+    "triggered": false,
+    "multi": false
+  },
+  "trig21": {
+    "ref": "trig21",
+    "func1": "unlockAreas",
+    "func1var1": null,
+    "func1var2": "section5",
+    "triggered": false,
+    "multi": false
+  },
+  "trig22": {
+    "ref": "trig22",
+    "func1": "displayWorldSpeech",
+    "func1var1": "player",
+    "func1var2": "Relocated!\nWhat the hell does that mean?",
+    "func2": "completeQuest",
+    "func2var1": "906",
+    "func3": "setActiveQuest",
+    "func3var1": "907",
+    "func4": "unlockDoor",
+    "func4var1": "room100",
+    "triggered": false,
+    "multi": false
+  },
+  "trig23": {
+    "ref": "trig23",
+    "func1": "completeQuest",
+    "func1var1": "905",
+    "func2": "setActiveQuest",
+    "func2var1": "906",
+    "triggered": false,
+    "multi": false
+  },
+  "trig24": {
+    "ref": "trig24",
+    "func1": "completeQuest",
+    "func1var1": "907",
+    "func2": "setActiveQuest",
+    "func2var1": "908",
+    "func3": "displayWorldSpeech",
+    "func3var1": "player",
+    "func3var2": {
+      "template": "That's {PartnerNameShort}'s bag.\nWhere the hell is {PartnerSex}",
+      "placeholders": [
+        "PartnerNameShort",
+        "PartnerSex"
+      ]
+    },
+    "triggered": false,
+    "multi": false
+  },
+  "trig25": {
+    "ref": "trig25",
+    "func1": "completeQuest",
+    "func1var1": "909",
+    "func2": "setActiveQuest",
+    "func2var1": "910",
+    "func3": "displayWorldSpeech",
+    "func3var1": "npc_Barry",
+    "func3var2": "Quickly, over here.",
+    "triggered": false,
+    "multi": false
+  },
+  "trig26": {
+    "ref": "trig26",
+    "func1": "displayWorldSpeech",
+    "func1var1": "human1",
+    "func1var2": "SECURITY!\nWe have a breach!",
+    "triggered": false,
+    "multi": false
+  },
+  "trig28": {
+    "ref": "trig28",
+    "func1": "displayWorldSpeech",
+    "func1var1": "human2",
+    "func1var2": {
+      "template": "Infected!\nTake {PlayerSexAddress} down!",
+      "placeholders": [
+        "PlayerSexAddress"
+      ]
+    },
+    "triggered": false,
+    "multi": false
+  },
+  "trig27": {
+    "ref": "trig27",
+    "func1": "completeQuest",
+    "func1var1": "911",
+    "func2": "displayWorldSpeech",
+    "func2var1": "player",
+    "func2var2": {
+      "template": "They must've moved {PartnerNameShort} to the park in Uptown.",
+      "placeholders": [
+        "PartnerNameShort"
+      ]
+    },
+    "func3": "setActiveQuest",
+    "func3var1": "912",
+    "triggered": false,
+    "multi": false
+  },
+  "trig29": {
+    "ref": "trig29",
+    "func1": "unlockEndLoc",
+    "func1var1": "5",
+    "func2": "turnOnNPC",
+    "func2var1": "newBarry",
+    "func3": "turnOnTrigger",
+    "func3var1": "trig31",
+    "func4": "turnOnNPC",
+    "func4var1": "safeRoomBarry",
+    "func5": "turnOnTrigger",
+    "func5var1": "trig36",
+    "triggered": false,
+    "multi": false
+  },
+  "trig30": {
+    "ref": "trig30",
+    "func1": "displayWorldSpeech",
+    "func1var1": "player",
+    "func1var2": "Oh my god.\nIs that even human?",
+    "triggered": false,
+    "multi": false
+  },
+  "trig31": {
+    "ref": "trig31",
+    "triggered": true,
+    "multi": false
+  },
+  "trig32": {
+    "ref": "trig32",
+    "func1": "turnOnTrigger",
+    "func1var1": "trig33",
+    "func2": "turnOnTrigger",
+    "func2var1": "trig34",
+    "func3": "turnOnTrigger",
+    "func3var1": "trig35",
+    "func4": "unlockArea",
+    "func4var1": "section6",
+    "triggered": false,
+    "multi": false
+  },
+  "trig33": {
+    "ref": "trig33",
+    "func1": "startCutScene",
+    "func1var1": "1",
+    "triggered": true,
+    "multi": false
+  },
+  "trig34": {
+    "ref": "trig34",
+    "func1": "startCutScene",
+    "func1var1": "2",
+    "triggered": true,
+    "multi": false
+  },
+  "trig35": {
+    "ref": "trig35",
+    "func1": "startCutScene",
+    "func1var1": "3",
+    "func2": "setActiveQuest",
+    "func2var1": "916",
+    "triggered": true,
+    "multi": false
+  },
+  "trig36": {
+    "ref": "trig36",
+    "func1": "turnOffNPC",
+    "func1var1": "newBarry",
+    "triggered": true,
+    "multi": false
+  },
+  "trig37": {
+    "ref": "trig37",
+    "func1": "displayWorldSpeech",
+    "func1var1": "player",
+    "func1var2": "What're these bastards doing?",
+    "triggered": false,
+    "multi": false
+  },
+  "trig38": {
+    "ref": "trig38",
+    "func1": "startCutScene",
+    "func1var1": "5",
+    "func2": "completeQuest",
+    "func2var1": "916",
+    "triggered": false,
+    "multi": false
+  },
+  "trig39": {
+    "ref": "trig39",
+    "func1": "completeQuest",
+    "func1var1": "917",
+    "func2": "displayWorldSpeech",
+    "func2var1": "player",
+    "func2var2": "Now to find\nsome explosives.",
+    "func3": "setActiveQuest",
+    "func3var1": "918",
+    "func4": "unlockEndLoc",
+    "func4var1": "14",
+    "triggered": false,
+    "multi": false
+  },
+  "trig40": {
+    "ref": "trig40",
+    "func1": "turnOffNPC",
+    "func1var1": "Jane",
+    "func2": "turnOffNPC",
+    "func2var1": "Dana",
+    "func3": "turnOffNPC",
+    "func3var1": "Shawn",
+    "func4": "turnOffNPC",
+    "func4var1": "Jack",
+    "func5": "turnOnTrigger",
+    "func5var1": "trig41",
+    "func6": "turnOnNPC",
+    "func6var1": "JaneWall",
+    "func7": "turnOnNPC",
+    "func7var1": "DanaWall",
+    "func8": "turnOnNPC",
+    "func8var1": "ShawnWall",
+    "func9": "turnOnNPC",
+    "func9var1": "JackWall",
+    "triggered": false,
+    "multi": false
+  },
+  "trig41": {
+    "ref": "trig41",
+    "func1": "startCutScene",
+    "func1var1": "7",
+    "func2": "completeQuest",
+    "func2var1": "919",
+    "func3": "unlockArea",
+    "func3var1": "section7",
+    "func4": "unlockEndLoc",
+    "func4var1": "6",
+    "triggered": true,
+    "multi": false
+  },
+  "trig42": {
+    "ref": "trig42",
+    "func1": "displayWorldSpeech",
+    "func1var1": "player",
+    "func1var2": {
+      "template": "I need to get\nhome to {PartnerNameShort}.",
+      "placeholders": [
+        "PartnerNameShort"
+      ]
+    },
+    "func2": "showHelp",
+    "func2var1": "sprint",
+    "triggered": false,
+    "multi": false
+  },
+  "trig43": {
+    "ref": "trig43",
+    "func2": "startCutScene",
+    "func2var1": "8",
+    "triggered": false,
+    "multi": false
+  },
+  "trig44": {
+    "ref": "trig44",
+    "func1": "addPartner",
+    "func1var1": "partner",
+    "func2": "turnOffNPC",
+    "func2var1": "PartnerDocks",
+    "func3": "removeNPC",
+    "func3var1": "PartnerDocks",
+    "triggered": false,
+    "multi": false
+  },
+  "trig45": {
+    "ref": "trig45",
+    "func1": "startEndingRush",
+    "func1var1": "true",
+    "func2": "startCutScene",
+    "func2var1": "9",
+    "triggered": false,
+    "multi": false
+  },
+  "trig46": {
+    "ref": "trig46",
+    "func1": "startEndingRush",
+    "func1var1": "true",
+    "func2": "startCutScene",
+    "func2var1": "11",
+    "triggered": false,
+    "multi": false
+  },
+  "trig47": {
+    "ref": "trig47",
+    "func1": "startEndingRush",
+    "func1var1": "true",
+    "triggered": false,
+    "multi": false
+  },
+  "trig48": {
+    "ref": "trig48",
+    "func1": "startEndingRush",
+    "func1var1": "true",
+    "func2": "startCutScene",
+    "func2var1": "12",
+    "triggered": false,
+    "multi": false
+  },
+  "trig49": {
+    "ref": "trig49",
+    "func1": "turnOnTrigger",
+    "func1var1": "trig14",
+    "triggered": false,
+    "multi": false
+  },
+  "trig51": {
+    "ref": "trig51",
+    "func1": "turnOffNPC",
+    "func1var1": "Jeb",
+    "func2": "turnOffNPC",
+    "func2var1": "Paul",
+    "func3": "removeNPC",
+    "func3var1": "Jeb",
+    "func4": "removeNPC",
+    "func4var1": "Paul",
+    "func5": "triggerJebAndPaul",
+    "func5var1": "true",
+    "func6": "displayWorldSpeech",
+    "func6var1": "human1",
+    "func6var2": "Get 'em Paul!",
+    "triggered": false,
+    "multi": false
+  },
+  "trig52": {
+    "ref": "trig52",
+    "func1": "displayWorldSpeech",
+    "func1var1": "player",
+    "func1var2": "This must be\nthe HERC outpost.",
+    "triggered": false,
+    "multi": false
+  },
+  "trig53": {
+    "ref": "trig53",
+    "func1": "displayWorldSpeech",
+    "func1var1": "player",
+    "func1var2": "These woods look confusing. I should get directions if I want to go in there.",
+    "triggered": false,
+    "multi": false
+  },
+  "trig60": {
+    "ref": "trig60",
+    "func1": "startCutScene",
+    "func1var1": "13",
+    "func2": "startEndingRush",
+    "func2var1": "true",
+    "triggered": false,
+    "multi": false
+  },
+  "trig61": {
+    "ref": "trig61",
+    "func1": "showEnding",
+    "triggered": false,
+    "multi": false
+  },
+  "trig70": {
+    "ref": "trig70",
+    "func1": "fixJack",
+    "triggered": false,
+    "multi": false
+  },
+  "trig99": {
+    "ref": "trig99",
+    "func1": "addAlert",
+    "func1var1": "TEST ALERT",
+    "func1var2": "white",
+    "triggered": false,
+    "multi": true
+  }
+}

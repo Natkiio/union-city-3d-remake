@@ -1,0 +1,21 @@
+{
+  "lockControls": false,
+  "action1": {
+    "func": "displayWorldSpeech",
+    "var1": "partner",
+    "var2": "Where do we go?",
+    "timing": 1
+  },
+  "action2": {
+    "func": "displayWorldSpeech",
+    "var1": "player",
+    "var2": "The docks.\nWe'll find a boat.",
+    "timing": 3000
+  },
+  "action3": {
+    "func": "displayWorldSpeech",
+    "var1": "player",
+    "var2": "We need to get\noff the mainland.",
+    "timing": 6000
+  }
+}

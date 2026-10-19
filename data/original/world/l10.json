@@ -1,0 +1,29 @@
+{
+  "s1": {
+    "ref": "section9",
+    "b0": {
+      "name": "9TH STREET",
+      "f0": {
+        "r1": {
+          "seed": 156,
+          "name": "Outside",
+          "lightReduction": 0,
+          "type": "anywhere",
+          "rand": "Trash",
+          "randRate": "heavy",
+          "outside": true
+        }
+      }
+    },
+    "b1": {
+      "name": "10 9TH STREET"
+    },
+    "b2": {
+      "name": "12 9TH STREET"
+    },
+    "b3": {},
+    "b4": {},
+    "b5": {},
+    "b6": {}
+  }
+}

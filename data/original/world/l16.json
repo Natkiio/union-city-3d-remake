@@ -1,0 +1,640 @@
+{
+  "music": "music_5",
+  "danger": 1,
+  "ref": "section16",
+  "startLoc": "l16_s1_b0_f0_r1",
+  "startLocName": "JEFFERSON AVE - CAR CRASH",
+  "endLoc": "l16_s3_b0_f0_r1",
+  "endLocName": "SMITH STREET - ARMY FENCE",
+  "s0": {
+    "danger": 0,
+    "b0": {
+      "f0": {
+        "r1": {
+          "seed": 32433,
+          "name": "Outside",
+          "lightReduction": 0,
+          "type": "anywhere",
+          "rand": "none",
+          "randRate": "none"
+        }
+      }
+    }
+  },
+  "s1": {
+    "danger": 0,
+    "b0": {
+      "name": "JEFFERSON AVE",
+      "f0": {
+        "r1": {
+          "seed": 32433,
+          "name": "Outside",
+          "lightReduction": 0,
+          "type": "anywhere",
+          "rand": "Trash",
+          "randRate": "light",
+          "outside": true,
+          "cont1": {
+            "desc": "Trunk",
+            "display": "blank",
+            "cnt": [
+              "tireIron_damaged",
+              "tauron_damaged",
+              "ammo9mm_5"
+            ],
+            "noJunk": true
+          },
+          "body1": {
+            "type": "civilian",
+            "pose": "deadLeg2",
+            "facing": "left"
+          }
+        }
+      }
+    },
+    "b1": {
+      "name": "10 JEFFERSON AVE"
+    },
+    "b2": {
+      "name": "12 JEFFERSON AVE"
+    },
+    "b3": {},
+    "b4": {},
+    "b5": {},
+    "b6": {}
+  },
+  "s2": {
+    "b0": {
+      "name": "OLD ROAD",
+      "f0": {
+        "r1": {
+          "seed": 1244,
+          "name": "Outside",
+          "lightReduction": 0,
+          "type": "anywhere",
+          "rand": "Trash",
+          "randRate": "medium",
+          "outside": true
+        }
+      }
+    },
+    "b1": {
+      "name": "OLD HOUSE",
+      "f1": {
+        "r1": {
+          "name": "Old House",
+          "lightReduction": 60,
+          "type": "kitchen",
+          "cont1": {
+            "desc": "Dresser",
+            "display": "blank",
+            "cnt": [
+              "tshirtBrown",
+              "woodBoard"
+            ]
+          },
+          "cont2": {
+            "desc": "Fridge",
+            "display": "blank",
+            "cnt": [
+              "orange",
+              "water"
+            ]
+          },
+          "rand": "Trash",
+          "randRate": "light"
+        }
+      },
+      "f2": {
+        "r1": {
+          "name": "Old House",
+          "lightReduction": 60,
+          "type": "anywhere",
+          "cont1": {
+            "desc": "Drawers",
+            "display": "blank",
+            "cnt": [
+              "ammo9mm_15"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "s3": {
+    "b0": {
+      "name": "SMITH ST",
+      "f0": {
+        "r1": {
+          "seed": 1244,
+          "name": "Outside",
+          "lightReduction": 0,
+          "type": "anywhere",
+          "rand": "Trash",
+          "randRate": "heavy",
+          "outside": true,
+          "NPCs": [
+            "Ed"
+          ],
+          "NPC_x": [
+            "3100"
+          ],
+          "NPCPose": [
+            "useStanding"
+          ],
+          "NPCFacing": [
+            "right"
+          ],
+          "enemy": [
+            "citizen1"
+          ],
+          "enemyX": [
+            "2900"
+          ]
+        }
+      }
+    },
+    "b1": {
+      "safeHouse": true,
+      "name": "8 SMITH ST",
+      "f1": {
+        "r1": {
+          "seed": 100,
+          "safeHouse": true,
+          "lightReduction": 30,
+          "type": "anywhere",
+          "cont1": {
+            "desc": "Suitcase",
+            "cnt": [
+              "tshirtWhite",
+              "cargoShorts",
+              "cash_5"
+            ]
+          },
+          "cont2": {
+            "desc": "Cupboard",
+            "cnt": []
+          },
+          "cont100": {
+            "desc": "Storage",
+            "cnt": []
+          },
+          "NPCs": [
+            "Jackson"
+          ],
+          "NPC_x": [
+            "350"
+          ],
+          "NPCPose": [
+            "idle"
+          ],
+          "NPCFacing": [
+            "left"
+          ]
+        },
+        "r2": {
+          "seed": 101,
+          "lightReduction": 30,
+          "type": "anywhere",
+          "cont1": {
+            "desc": "Cupboard",
+            "cnt": []
+          },
+          "cont2": {
+            "desc": "Cupboard",
+            "cnt": [
+              "kitchenKnife_dull"
+            ]
+          }
+        }
+      },
+      "f2": {
+        "r1": {
+          "seed": 101,
+          "lightReduction": 60,
+          "type": "anywhere",
+          "cont1": {
+            "desc": "Closet",
+            "cnt": [
+              "longSleeveRed",
+              "pantsBrown"
+            ]
+          },
+          "NPCs": [
+            "Sarah",
+            "Peter"
+          ],
+          "NPC_x": [
+            "310",
+            "65"
+          ],
+          "NPCPose": [
+            "idle",
+            "sit"
+          ],
+          "NPCFacing": [
+            "right",
+            "right"
+          ]
+        },
+        "r2": {
+          "seed": 101,
+          "lightReduction": 30,
+          "type": "anywhere",
+          "cont1": {
+            "desc": "Bookshelf",
+            "cnt": [
+              "survival",
+              "magazine"
+            ]
+          }
+        }
+      }
+    },
+    "b2": {
+      "name": "10 SMITH ST",
+      "f1": {
+        "r0": {
+          "seed": 100,
+          "lightReduction": 50,
+          "type": "office",
+          "rand": "Trash",
+          "randRate": "light",
+          "cont1": {
+            "desc": "Filing Cabinet",
+            "cnt": []
+          },
+          "cont2": {
+            "desc": "Drawers",
+            "cnt": [
+              "pocketKnife_sharpened"
+            ]
+          },
+          "cont3": {
+            "desc": "Bookshelf",
+            "cnt": [
+              "book",
+              "magazine"
+            ]
+          }
+        },
+        "r1": {
+          "lightReduction": 40,
+          "type": "anywhere",
+          "rand": "Trash",
+          "randRate": "light",
+          "cont1": {
+            "desc": "Bookshelf",
+            "cnt": [
+              "book",
+              "PPM9_damaged",
+              "ammo9mm_10"
+            ]
+          }
+        },
+        "r2": {
+          "lightReduction": 60,
+          "type": "kitchen",
+          "rand": "Trash",
+          "randRate": "light",
+          "cont1": {
+            "desc": "Fridge",
+            "cnt": [
+              "chocolate"
+            ],
+            "noJunk": true
+          },
+          "cont2": {
+            "desc": "Cupboard",
+            "cnt": [
+              "cereal"
+            ]
+          },
+          "cont3": {
+            "desc": "Cupboard",
+            "cnt": []
+          },
+          "cont4": {
+            "desc": "Cupboard",
+            "cnt": [
+              "pasta"
+            ]
+          },
+          "cont5": {
+            "desc": "Sink Cupboard",
+            "cnt": [
+              "dishLiquid"
+            ]
+          }
+        },
+        "r3": {
+          "lightReduction": 60,
+          "type": "anywhere",
+          "rand": "Trash",
+          "randRate": "light",
+          "cont1": {
+            "desc": "Sideboard",
+            "cnt": [
+              "tauron",
+              "ammo9mm_30"
+            ],
+            "locked": true,
+            "lockDiff": "very easy",
+            "noJunk": true
+          }
+        }
+      },
+      "f2": {
+        "r2": {
+          "lightReduction": 40,
+          "type": "anywhere",
+          "rand": "Trash",
+          "randRate": "light",
+          "cont1": {
+            "desc": "Closet",
+            "cnt": [
+              "pocketKnife",
+              "bat",
+              "football"
+            ]
+          },
+          "cont2": {
+            "desc": "Dresser",
+            "cnt": [
+              "magazine"
+            ]
+          }
+        },
+        "r3": {
+          "lightReduction": 40,
+          "type": "anywhere",
+          "rand": "Trash",
+          "randRate": "light",
+          "cont1": {
+            "desc": "Bookcase",
+            "cnt": []
+          },
+          "cont2": {
+            "desc": "Ammo Stockpile",
+            "cnt": [
+              "ammo9mm_45",
+              "ammo45_25",
+              "ammoshotgun_20"
+            ],
+            "noJunk": true
+          }
+        },
+        "r4": {
+          "lightReduction": 40,
+          "type": "bathroom",
+          "rand": "Trash",
+          "randRate": "light",
+          "cont1": {
+            "desc": "Washing Machine",
+            "cnt": [
+              "shirtBlue"
+            ],
+            "noJunk": true
+          },
+          "cont2": {
+            "desc": "Medicine Cabinet",
+            "cnt": [
+              "pills"
+            ]
+          }
+        }
+      }
+    },
+    "b3": {
+      "name": "12 SMITH ST",
+      "f0": {
+        "r1": {
+          "lightReduction": 80,
+          "type": "basement",
+          "cont1": {
+            "desc": "Shelf",
+            "cnt": [
+              "clawHammer",
+              "pipe"
+            ]
+          },
+          "cont2": {
+            "desc": "Washing Machine",
+            "cnt": [
+              "tshirtWhite"
+            ],
+            "noJunk": true
+          },
+          "cont3": {
+            "desc": "Suitcase",
+            "cnt": [
+              "PPM9_extendedMag"
+            ]
+          },
+          "cont4": {
+            "desc": "Sink Cupboard",
+            "cnt": []
+          }
+        }
+      },
+      "f1": {
+        "r1": {
+          "lightReduction": 70,
+          "type": "anywhere",
+          "rand": "Trash",
+          "randRate": "light",
+          "cont1": {
+            "desc": "Cabinet",
+            "cnt": [
+              "cash_20"
+            ]
+          }
+        }
+      },
+      "f2": {
+        "r1": {
+          "lightReduction": 70,
+          "type": "anywhere",
+          "rand": "Trash",
+          "randRate": "light",
+          "cont1": {
+            "desc": "Closet",
+            "cnt": []
+          },
+          "cont2": {
+            "desc": "Chest",
+            "cnt": []
+          },
+          "NPCs": [
+            "Ray"
+          ],
+          "NPC_x": [
+            "150"
+          ],
+          "NPCPose": [
+            "idle"
+          ],
+          "NPCFacing": [
+            "right"
+          ]
+        }
+      }
+    },
+    "b4": {
+      "name": "14 SMITH ST",
+      "f1": {
+        "r0": {
+          "lightReduction": 45,
+          "type": "basement",
+          "rand": "Trash",
+          "randRate": "light",
+          "cont1": {
+            "desc": "Stairs Cupboard",
+            "cnt": [
+              "hockeyStick",
+              "football"
+            ]
+          },
+          "cont2": {
+            "desc": "Sideboard",
+            "cnt": [
+              "cash_10",
+              "coins",
+              "scrapPaper"
+            ],
+            "noJunk": true
+          }
+        },
+        "r1": {
+          "lightReduction": 50,
+          "type": "anywhere",
+          "rand": "Trash",
+          "randRate": "light",
+          "cont1": {
+            "desc": "Gun Cabinet",
+            "cnt": [
+              "deathAdder_damaged",
+              "ammo45_12"
+            ],
+            "locked": true,
+            "lockDiff": "normal"
+          },
+          "cont2": {
+            "desc": "Cupboard",
+            "cnt": [
+              "ammo45_15",
+              "ammo9mm_8"
+            ]
+          },
+          "cont3": {
+            "desc": "Sideboard",
+            "cnt": [
+              "cash_15"
+            ]
+          },
+          "lockedDoors": [
+            "door2"
+          ],
+          "needsKey": [
+            true
+          ],
+          "lockDiff": [
+            "very hard"
+          ]
+        },
+        "r2": {
+          "lightReduction": 60,
+          "type": "basement",
+          "rand": "Trash",
+          "randRate": "light",
+          "cont1": {
+            "desc": "Crate",
+            "cnt": [
+              "crowbar",
+              "nails",
+              "tape"
+            ]
+          },
+          "cont2": {
+            "desc": "Boxes",
+            "cnt": [
+              "questBoltCutters"
+            ]
+          }
+        }
+      },
+      "f2": {
+        "r0": {
+          "lightReduction": 60,
+          "type": "anywhere",
+          "rand": "Trash",
+          "randRate": "light",
+          "cont1": {
+            "desc": "Chest",
+            "cnt": [
+              "cash_10"
+            ]
+          },
+          "cont2": {
+            "desc": "Bookshelf",
+            "cnt": [
+              "pistols"
+            ],
+            "noJunk": true
+          }
+        },
+        "r1": {
+          "lightReduction": 40,
+          "type": "kitchen",
+          "rand": "Trash",
+          "randRate": "light",
+          "cont1": {
+            "desc": "Cupboard",
+            "cnt": []
+          },
+          "cont2": {
+            "desc": "Cupboard",
+            "cnt": []
+          },
+          "cont3": {
+            "desc": "Top Cupboard",
+            "cnt": []
+          },
+          "cont4": {
+            "desc": "Top Cupboard",
+            "cnt": []
+          },
+          "cont5": {
+            "desc": "Top Cupboard",
+            "cnt": []
+          },
+          "cont6": {
+            "desc": "Low Cupboard",
+            "cnt": []
+          },
+          "cont7": {
+            "desc": "Low Cupboard",
+            "cnt": []
+          },
+          "cont8": {
+            "desc": "Low Cupboard",
+            "cnt": []
+          }
+        },
+        "r2": {
+          "lightReduction": 60,
+          "type": "anywhere",
+          "rand": "Trash",
+          "randRate": "light",
+          "cont1": {
+            "desc": "Closet",
+            "cnt": [
+              "PPM9",
+              "ammo9mm_24"
+            ]
+          }
+        }
+      }
+    }
+  }
+}

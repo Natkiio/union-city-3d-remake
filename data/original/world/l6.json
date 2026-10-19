@@ -1,0 +1,302 @@
+{
+  "ref": "section6",
+  "danger": 16,
+  "s1": {
+    "b0": {
+      "name": "MERCHANT ST",
+      "f0": {
+        "r1": {
+          "seed": 89562,
+          "name": "Outside",
+          "lightReduction": 0,
+          "type": "anywhere",
+          "rand": "Trash",
+          "randRate": "heavy",
+          "outside": true
+        }
+      }
+    },
+    "b1": {
+      "name": "Warehouse",
+      "f1": {
+        "r1": {
+          "seed": 5232,
+          "name": "Outside",
+          "lightReduction": 80,
+          "type": "office",
+          "rand": "Trash",
+          "randRate": "heavy",
+          "cont1": {
+            "desc": "Shelf",
+            "cnt": []
+          },
+          "cont2": {
+            "desc": "Boxes",
+            "cnt": []
+          },
+          "cont3": {
+            "desc": "Boxes",
+            "cnt": []
+          },
+          "cont4": {
+            "desc": "Stack of Boxes",
+            "cnt": []
+          },
+          "cont5": {
+            "desc": "Stack of Boxes",
+            "cnt": []
+          }
+        }
+      }
+    },
+    "b2": {
+      "name": "Abandoned Office",
+      "f1": {
+        "r1": {
+          "seed": 1454,
+          "name": "Outside",
+          "lightReduction": 80,
+          "type": "office",
+          "rand": "Trash",
+          "randRate": "heavy",
+          "cont1": {
+            "desc": "Filing Cabinet",
+            "cnt": []
+          },
+          "cont2": {
+            "desc": "Filing Cabinet",
+            "cnt": []
+          },
+          "cont3": {
+            "desc": "Drawer",
+            "cnt": [
+              "cash_50"
+            ]
+          }
+        }
+      },
+      "f2": {
+        "r1": {
+          "seed": 15543,
+          "name": "Outside",
+          "lightReduction": 80,
+          "type": "office",
+          "rand": "Trash",
+          "randRate": "heavy",
+          "cont1": {
+            "desc": "Filing Cabinet",
+            "cnt": []
+          },
+          "cont2": {
+            "desc": "Ammo Stockpile",
+            "cnt": [
+              "ammo556_40",
+              "ammo762_30",
+              "ammoshotgun_12"
+            ],
+            "noJunk": true
+          }
+        }
+      }
+    }
+  },
+  "s2": {
+    "b0": {
+      "name": "NORTH WHARF RD",
+      "f0": {
+        "r1": {
+          "seed": 51234,
+          "name": "Outside",
+          "lightReduction": 0,
+          "type": "anywhere",
+          "rand": "Trash",
+          "randRate": "heavy",
+          "outside": true
+        }
+      }
+    },
+    "b1": {
+      "name": "Warehouse",
+      "f1": {
+        "r1": {
+          "seed": 5232,
+          "name": "Outside",
+          "lightReduction": 40,
+          "type": "anywhere",
+          "rand": "Trash",
+          "randRate": "light",
+          "safeHouse": true,
+          "NPCs": [
+            "Jack",
+            "PartnerDocks",
+            "Dana",
+            "Jane",
+            "Shawn"
+          ],
+          "NPC_x": [
+            "450",
+            "650",
+            "80",
+            "1380",
+            "1150"
+          ],
+          "NPCPose": [
+            "sitCrate",
+            "idle",
+            "holdRifle",
+            "holdRifle",
+            "standPistol"
+          ],
+          "NPCFacing": [
+            "right",
+            "left",
+            "right",
+            "left",
+            "right"
+          ]
+        }
+      }
+    },
+    "b2": {
+      "name": "Abandoned Office"
+    },
+    "b3": {
+      "name": "Mechanics"
+    }
+  },
+  "s3": {
+    "b0": {
+      "name": "SEASIDE DRIVE",
+      "f0": {
+        "r1": {
+          "seed": 51234,
+          "name": "Outside",
+          "lightReduction": 0,
+          "type": "anywhere",
+          "rand": "Trash",
+          "randRate": "heavy",
+          "outside": true
+        }
+      }
+    },
+    "b1": {
+      "name": "Docks Office",
+      "f1": {
+        "r1": {
+          "seed": 4322,
+          "name": "Outside",
+          "lightReduction": 80,
+          "type": "office",
+          "rand": "Trash",
+          "randRate": "light",
+          "lockedDoors": [
+            "door1"
+          ],
+          "needsKey": [
+            false
+          ],
+          "lockDiff": [
+            "very hard"
+          ],
+          "cont1": {
+            "desc": "Desk",
+            "cnt": [
+              "docksKey",
+              "files"
+            ]
+          },
+          "cont2": {
+            "desc": "Filing Cabinet",
+            "cnt": []
+          },
+          "cont3": {
+            "desc": "Fridge",
+            "cnt": [
+              "spam",
+              "apple",
+              "orange",
+              "chocolate"
+            ],
+            "noJunk": true
+          }
+        },
+        "r2": {
+          "seed": 2331,
+          "name": "Outside",
+          "lightReduction": 0,
+          "type": "office",
+          "rand": "Trash",
+          "randRate": "medium",
+          "outside": true,
+          "cont1": {
+            "desc": "Shipping Container",
+            "cnt": [
+              "RPG",
+              "ammoRPG_5"
+            ],
+            "noJunk": true
+          }
+        }
+      }
+    },
+    "b2": {
+      "name": "Paper Company Offices"
+    },
+    "b3": {
+      "name": "Mechanics"
+    }
+  },
+  "s4": {
+    "b0": {
+      "name": "UNION ISLAND BRIDGE",
+      "f0": {
+        "r1": {
+          "seed": 51234,
+          "name": "Outside",
+          "lightReduction": 0,
+          "type": "anywhere",
+          "rand": "Trash",
+          "randRate": "heavy",
+          "outside": true,
+          "NPCs": [
+            "JackWall",
+            "DanaWall"
+          ],
+          "NPC_x": [
+            "1860",
+            "1780"
+          ],
+          "NPCPose": [
+            "crouchReady",
+            "holdRifle"
+          ],
+          "NPCFacing": [
+            "right",
+            "right"
+          ],
+          "enemy": [
+            "JaneWall",
+            "ShawnWall"
+          ],
+          "enemyX": [
+            "1690",
+            "1590"
+          ]
+        }
+      }
+    },
+    "b1": {
+      "name": "Earl of Burger"
+    },
+    "b2": {
+      "name": "Paper Company Offices"
+    },
+    "b3": {
+      "name": "Mechanics"
+    }
+  },
+  "startLoc": "l6_s1_b0_f0_r1",
+  "startLocName": "MERCHANT ST",
+  "endLoc": "l6_s4_b0_f0_r1",
+  "endLocName": "UNION ISLAND BRIDGE"
+}

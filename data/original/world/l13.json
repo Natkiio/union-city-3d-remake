@@ -1,0 +1,968 @@
+{
+  "music": "music_4",
+  "danger": 7,
+  "ref": "section13",
+  "s1": {
+    "b0": {
+      "name": "JEFFERSON AVE",
+      "f0": {
+        "r1": {
+          "seed": 32433,
+          "name": "Outside",
+          "lightReduction": 0,
+          "type": "anywhere",
+          "rand": "Trash",
+          "randRate": "heavy",
+          "outside": true
+        }
+      }
+    },
+    "b1": {
+      "name": "UNITED ARMS",
+      "f1": {
+        "r1": {
+          "seed": 32433,
+          "name": "United Arms",
+          "lightReduction": 60,
+          "type": "anywhere",
+          "rand": "Trash",
+          "randRate": "light",
+          "NPCs": [
+            "Hank"
+          ],
+          "NPC_x": [
+            "600"
+          ],
+          "NPCPose": [
+            "sit"
+          ],
+          "NPCFacing": [
+            "left"
+          ]
+        }
+      }
+    },
+    "b2": {
+      "name": "PAPER COMPANY",
+      "f1": {
+        "r1": {
+          "seed": 14223,
+          "name": "Warehouse",
+          "lightReduction": 60,
+          "type": "anywhere",
+          "rand": "Trash",
+          "randRate": "light"
+        },
+        "r2": {
+          "seed": 1233,
+          "name": "Warehouse",
+          "lightReduction": 60,
+          "type": "basement",
+          "rand": "Trash",
+          "randRate": "light",
+          "cont1": {
+            "desc": "Shelf",
+            "cnt": [
+              "scrapPaper"
+            ],
+            "noJunk": true
+          },
+          "cont2": {
+            "desc": "Shelf",
+            "cnt": [
+              "scrapPaper"
+            ]
+          },
+          "cont3": {
+            "desc": "Shelves",
+            "cnt": [
+              "pocketKnife_sharpened"
+            ]
+          },
+          "cont4": {
+            "desc": "Shelf",
+            "cnt": [
+              "scrapPaper"
+            ]
+          },
+          "cont5": {
+            "desc": "Shelf",
+            "cnt": [
+              "scrapPaper"
+            ]
+          }
+        }
+      }
+    },
+    "b3": {
+      "name": "APARTMENT BLOCK",
+      "f1": {
+        "r1": {
+          "seed": 32433,
+          "name": "Apartments",
+          "lightReduction": 40,
+          "type": "anywhere",
+          "rand": "Trash",
+          "randRate": "light"
+        }
+      },
+      "f2": {
+        "r1": {
+          "seed": 32433,
+          "name": "Apartments",
+          "lightReduction": 60,
+          "type": "anywhere",
+          "rand": "Trash",
+          "randRate": "light"
+        },
+        "r100": {
+          "seed": 32433,
+          "name": "Apartments",
+          "lightReduction": 60,
+          "type": "anywhere",
+          "rand": "Trash",
+          "randRate": "light",
+          "cont1": {
+            "desc": "Bookshelf",
+            "cnt": [
+              "searching",
+              "cash_20"
+            ]
+          }
+        },
+        "r101": {
+          "seed": 32433,
+          "name": "Apartments",
+          "lightReduction": 60,
+          "type": "kitchen",
+          "rand": "Trash",
+          "randRate": "light",
+          "cont1": {
+            "desc": "Closet",
+            "cnt": [
+              "longSleeveBlack"
+            ]
+          },
+          "cont2": {
+            "desc": "Bar Fridge",
+            "cnt": [
+              "sodaCan"
+            ],
+            "noJunk": true
+          },
+          "cont3": {
+            "desc": "Washing Machine",
+            "cnt": [
+              "pantsBrown",
+              "bandana"
+            ],
+            "noJunk": true
+          },
+          "cont4": {
+            "desc": "Kitchen Drawers",
+            "cnt": [
+              "cleaver"
+            ]
+          },
+          "cont5": {
+            "desc": "Cupboard",
+            "cnt": [
+              "cannedFruit"
+            ]
+          }
+        },
+        "r102": {
+          "seed": 32433,
+          "name": "Apartments",
+          "lightReduction": 60,
+          "type": "anywhere",
+          "rand": "Trash",
+          "randRate": "light",
+          "cont1": {
+            "desc": "Filing Cabinet",
+            "cnt": []
+          },
+          "cont2": {
+            "desc": "Bookshelf",
+            "cnt": [
+              "magazine",
+              "book"
+            ],
+            "noJunk": true
+          },
+          "cont3": {
+            "desc": "Cupboard",
+            "cnt": [
+              "sunglassesBig",
+              "jeansBlue"
+            ],
+            "noJunk": true
+          },
+          "cont4": {
+            "desc": "Bookshelf",
+            "cnt": [
+              "ammoshotgun_12"
+            ]
+          }
+        },
+        "r103": {
+          "seed": 1200,
+          "name": "Apartments",
+          "lightReduction": 60,
+          "type": "kitchen",
+          "rand": "Trash",
+          "randRate": "light",
+          "cont1": {
+            "desc": "Fridge",
+            "cnt": [
+              "sodaBottle"
+            ],
+            "noJunk": true
+          },
+          "cont2": {
+            "desc": "Kitchen Sink",
+            "cnt": []
+          },
+          "cont3": {
+            "desc": "Cupboard",
+            "cnt": []
+          }
+        },
+        "r104": {
+          "seed": 32433,
+          "name": "Apartments",
+          "lightReduction": 60,
+          "type": "anywhere",
+          "rand": "Trash",
+          "randRate": "light",
+          "cont1": {
+            "desc": "Suitcase",
+            "cnt": [
+              "M1911",
+              "ammo45_30",
+              "cash_50"
+            ]
+          }
+        },
+        "r105": {
+          "seed": 32433,
+          "name": "Apartments",
+          "lightReduction": 60,
+          "type": "anywhere",
+          "rand": "Trash",
+          "randRate": "light",
+          "cont1": {
+            "desc": "Bedside",
+            "cnt": [
+              "pills",
+              "noDoze"
+            ]
+          },
+          "cont2": {
+            "desc": "Bedside",
+            "cnt": []
+          },
+          "cont3": {
+            "desc": "Closet",
+            "cnt": [
+              "hoodyBlack"
+            ]
+          }
+        },
+        "r106": {
+          "seed": 32433,
+          "name": "Apartments",
+          "lightReduction": 60,
+          "type": "anywhere",
+          "rand": "Trash",
+          "randRate": "light",
+          "cont1": {
+            "desc": "Cupboard",
+            "cnt": [
+              "searching",
+              "automatics",
+              "longGuns",
+              "cash_30"
+            ],
+            "locked": true,
+            "lockDiff": "normal"
+          },
+          "cont2": {
+            "desc": "Bookshelf",
+            "cnt": []
+          }
+        },
+        "r107": {
+          "seed": 32433,
+          "name": "Apartments",
+          "lightReduction": 60,
+          "type": "anywhere",
+          "rand": "Trash",
+          "randRate": "light",
+          "cont1": {
+            "desc": "Fridge",
+            "cnt": [],
+            "noJunk": true
+          },
+          "cont2": {
+            "desc": "Kitchen Sink",
+            "cnt": [
+              "kitchenKnife_sharpened"
+            ]
+          }
+        }
+      },
+      "f3": {
+        "r1": {
+          "seed": 10332,
+          "name": "Apartments",
+          "lightReduction": 60,
+          "type": "anywhere",
+          "rand": "Trash",
+          "randRate": "medium",
+          "lockedDoors": [
+            "room100"
+          ],
+          "needsKey": [
+            true
+          ]
+        },
+        "r100": {
+          "seed": 32433,
+          "name": "Apartments",
+          "lightReduction": 60,
+          "type": "anywhere",
+          "rand": "Trash",
+          "randRate": "light",
+          "cont1": {
+            "desc": "Kitchen Cupboard",
+            "cnt": []
+          },
+          "cont2": {
+            "desc": "Kitchen Sink",
+            "cnt": [
+              "medkit"
+            ]
+          },
+          "cont3": {
+            "desc": "Fridge",
+            "cnt": [
+              "pickles"
+            ],
+            "noJunk": true
+          }
+        },
+        "r101": {
+          "seed": 32433,
+          "name": "Apartments",
+          "lightReduction": 60,
+          "type": "kitchen",
+          "rand": "Trash",
+          "randRate": "heavy",
+          "cont1": {
+            "desc": "Closet",
+            "cnt": [
+              "fedoraGrey",
+              "suitBlack"
+            ]
+          }
+        },
+        "r102": {
+          "seed": 32433,
+          "name": "Apartments",
+          "lightReduction": 60,
+          "type": "anywhere",
+          "rand": "Trash",
+          "randRate": "light",
+          "cont1": {
+            "desc": "Bookcase",
+            "cnt": []
+          },
+          "cont2": {
+            "desc": "Sideboard",
+            "cnt": [
+              "pills",
+              "cash_30"
+            ]
+          },
+          "cont3": {
+            "desc": "Gun Cabinet",
+            "cnt": [
+              "questHanksRifle",
+              "questHanksRifleBolt"
+            ],
+            "noJunk": true
+          }
+        },
+        "r103": {
+          "seed": 1200,
+          "name": "Apartments",
+          "lightReduction": 60,
+          "type": "kitchen",
+          "rand": "Trash",
+          "randRate": "light",
+          "cont1": {
+            "desc": "Cupboard",
+            "cnt": []
+          },
+          "cont2": {
+            "desc": "Wall Safe",
+            "cnt": [
+              "ammo45_50",
+              "deathAdder_scope",
+              "cash_100"
+            ],
+            "locked": true,
+            "lockDiff": "hard",
+            "noJunk": true
+          }
+        },
+        "r104": {
+          "seed": 32433,
+          "name": "Apartments",
+          "lightReduction": 60,
+          "type": "anywhere",
+          "rand": "Trash",
+          "randRate": "light",
+          "cont1": {
+            "desc": "Drawers",
+            "cnt": [
+              "cash_13"
+            ]
+          }
+        },
+        "r105": {
+          "seed": 32433,
+          "name": "Apartments",
+          "lightReduction": 60,
+          "type": "anywhere",
+          "rand": "Trash",
+          "randRate": "light",
+          "cont1": {
+            "desc": "Drawers",
+            "cnt": [
+              "ammoshotgun_8"
+            ]
+          },
+          "cont2": {
+            "desc": "Closet",
+            "cnt": [
+              "shotgun"
+            ]
+          }
+        },
+        "r106": {
+          "seed": 32433,
+          "name": "Apartments",
+          "lightReduction": 60,
+          "type": "anywhere",
+          "rand": "Trash",
+          "randRate": "light",
+          "cont1": {
+            "desc": "Briefcase",
+            "cnt": [
+              "cash_24"
+            ]
+          },
+          "cont2": {
+            "desc": "TV Cabinet",
+            "cnt": []
+          }
+        },
+        "r107": {
+          "seed": 32433,
+          "name": "Apartments",
+          "lightReduction": 60,
+          "type": "kitchen",
+          "rand": "Trash",
+          "randRate": "light",
+          "cont1": {
+            "desc": "Kitchen Cupboard",
+            "cnt": []
+          },
+          "cont2": {
+            "desc": "Kitchen Cupboard",
+            "cnt": []
+          }
+        }
+      }
+    },
+    "b4": {
+      "name": "WAREHOUSE",
+      "f1": {
+        "r1": {
+          "seed": 1112,
+          "name": "Warehouse",
+          "lightReduction": 60,
+          "type": "basement",
+          "rand": "Trash",
+          "randRate": "medium",
+          "cont1": {
+            "desc": "Crates",
+            "cnt": []
+          },
+          "cont2": {
+            "desc": "Boxes",
+            "cnt": []
+          },
+          "cont3": {
+            "desc": "Small Box",
+            "cnt": []
+          }
+        }
+      }
+    },
+    "b5": {},
+    "b6": {},
+    "b7": {},
+    "b8": {},
+    "b9": {},
+    "b10": {},
+    "b11": {},
+    "b12": {},
+    "b13": {},
+    "b14": {}
+  },
+  "s2": {
+    "b0": {
+      "name": "HOSPITAL",
+      "f0": {
+        "r1": {
+          "seed": 15632,
+          "name": "Outside",
+          "lightReduction": 0,
+          "type": "anywhere",
+          "rand": "Trash",
+          "randRate": "heavy",
+          "outside": true
+        }
+      }
+    },
+    "b1": {
+      "name": "HOSPITAL",
+      "f1": {
+        "r0": {
+          "seed": 1112,
+          "name": "Hospital",
+          "lightReduction": 30,
+          "type": "anywhere",
+          "rand": "Trash",
+          "randRate": "medium"
+        },
+        "r1": {
+          "seed": 1112,
+          "name": "Hospital",
+          "lightReduction": 30,
+          "type": "anywhere",
+          "rand": "Trash",
+          "randRate": "medium"
+        },
+        "r2": {
+          "seed": 1896,
+          "name": "Warehouse",
+          "lightReduction": 40,
+          "type": "anywhere",
+          "rand": "Trash",
+          "randRate": "medium",
+          "cont1": {
+            "desc": "Crates",
+            "cnt": []
+          }
+        },
+        "r100": {
+          "seed": 1256,
+          "name": "",
+          "lightReduction": 40,
+          "type": "anywhere",
+          "rand": "Gore",
+          "randRate": "veryLight",
+          "cont1": {
+            "desc": "Drawers",
+            "cnt": [
+              "pills"
+            ],
+            "noJunk": true
+          }
+        },
+        "r101": {
+          "seed": 6523,
+          "name": "",
+          "lightReduction": 40,
+          "type": "anywhere",
+          "rand": "Gore",
+          "randRate": "veryLight",
+          "cont1": {
+            "desc": "Drawers",
+            "cnt": [
+              "firstAid"
+            ],
+            "noJunk": true
+          }
+        },
+        "r102": {
+          "seed": 1866,
+          "name": "",
+          "lightReduction": 40,
+          "type": "anywhere",
+          "rand": "Gore",
+          "randRate": "veryLight",
+          "cont1": {
+            "desc": "Drawers",
+            "cnt": [],
+            "noJunk": true
+          }
+        },
+        "r3": {
+          "seed": 1896,
+          "name": "",
+          "lightReduction": 40,
+          "type": "anywhere",
+          "rand": "Trash",
+          "randRate": "medium"
+        }
+      },
+      "f2": {
+        "r0": {
+          "seed": 1112,
+          "name": "Hospital",
+          "lightReduction": 30,
+          "type": "anywhere",
+          "rand": "Trash",
+          "randRate": "medium"
+        },
+        "r1": {
+          "seed": 1112,
+          "name": "Hospital",
+          "lightReduction": 30,
+          "type": "anywhere",
+          "rand": "Trash",
+          "randRate": "medium"
+        },
+        "r2": {
+          "seed": 1112,
+          "name": "Hospital",
+          "lightReduction": 30,
+          "type": "anywhere",
+          "rand": "Trash",
+          "randRate": "medium",
+          "lockedDoors": [
+            "room202"
+          ],
+          "needsKey": [
+            false
+          ],
+          "lockDiff": [
+            "normal"
+          ]
+        },
+        "r201": {
+          "seed": 1112,
+          "name": "Janitor",
+          "lightReduction": 50,
+          "type": "anywhere",
+          "rand": "Trash",
+          "randRate": "light",
+          "cont1": {
+            "desc": "Boxes",
+            "cnt": [
+              "pocketKnife_sharpened"
+            ],
+            "noJunk": true
+          },
+          "cont2": {
+            "desc": "Cleaning Shelf",
+            "cnt": [],
+            "noJunk": true
+          }
+        },
+        "r202": {
+          "seed": 1112,
+          "name": "Storeroom",
+          "lightReduction": 50,
+          "type": "anywhere",
+          "rand": "Trash",
+          "randRate": "medium",
+          "cont1": {
+            "desc": "Shelf",
+            "cnt": [
+              "medicalMask"
+            ],
+            "noJunk": true
+          },
+          "cont2": {
+            "desc": "Shelf",
+            "cnt": [
+              "medkit",
+              "bandage",
+              "bandage",
+              "scrapPaper"
+            ],
+            "noJunk": true
+          }
+        },
+        "r3": {
+          "seed": 1112,
+          "name": "Hospital",
+          "lightReduction": 30,
+          "type": "anywhere",
+          "rand": "Trash",
+          "randRate": "medium"
+        }
+      },
+      "f3": {
+        "r0": {
+          "seed": 156,
+          "name": "Elevator Room",
+          "lightReduction": 30,
+          "type": "anywhere",
+          "rand": "Trash",
+          "randRate": "heavy"
+        },
+        "r1": {
+          "seed": 31156,
+          "name": "Nurse Station Room",
+          "lightReduction": 30,
+          "type": "anywhere",
+          "rand": "Trash",
+          "randRate": "medium",
+          "cont1": {
+            "desc": "Desk",
+            "cnt": [
+              "hospitalStore"
+            ],
+            "noJunk": true
+          }
+        },
+        "r300": {
+          "seed": 5523,
+          "name": "Nurse Station Room",
+          "lightReduction": 30,
+          "type": "anywhere",
+          "rand": "Trash",
+          "randRate": "medium",
+          "cont1": {
+            "desc": "Cupboard",
+            "cnt": [
+              "pills",
+              "pills"
+            ],
+            "noJunk": true
+          }
+        },
+        "r301": {
+          "seed": 223,
+          "name": "Hospital Room",
+          "lightReduction": 30,
+          "type": "anywhere",
+          "rand": "Trash",
+          "randRate": "medium",
+          "cont1": {
+            "desc": "Cupboard",
+            "cnt": [
+              "medicalMask",
+              "hoodyBlack"
+            ],
+            "noJunk": true
+          }
+        },
+        "r2": {
+          "seed": 189,
+          "name": "Ward",
+          "lightReduction": 30,
+          "type": "anywhere",
+          "rand": "Gore",
+          "randRate": "veryLight"
+        },
+        "r302": {
+          "seed": 5523,
+          "name": "Nurse Station Room",
+          "lightReduction": 30,
+          "type": "anywhere",
+          "rand": "Trash",
+          "randRate": "medium",
+          "cont1": {
+            "desc": "Cupboard",
+            "cnt": [
+              "suitBlack",
+              "fedoraBrown"
+            ],
+            "noJunk": true
+          }
+        },
+        "r303": {
+          "seed": 223,
+          "name": "Hospital Room",
+          "lightReduction": 30,
+          "type": "anywhere",
+          "rand": "Trash",
+          "randRate": "medium",
+          "cont1": {
+            "desc": "Cupboard",
+            "cnt": [
+              "cash_20"
+            ],
+            "noJunk": true
+          }
+        },
+        "r304": {
+          "seed": 223,
+          "name": "Hospital Room",
+          "lightReduction": 30,
+          "type": "anywhere",
+          "rand": "Trash",
+          "randRate": "medium",
+          "cont1": {
+            "desc": "Cupboard",
+            "cnt": [],
+            "noJunk": true
+          }
+        },
+        "r3": {
+          "seed": 1335,
+          "name": "Nurse Station Room",
+          "lightReduction": 30,
+          "type": "anywhere",
+          "rand": "Gore",
+          "randRate": "veryLight"
+        }
+      },
+      "f4": {
+        "r0": {
+          "seed": 7744,
+          "name": "Elevator Room",
+          "lightReduction": 30,
+          "type": "anywhere",
+          "rand": "Trash",
+          "randRate": "heavy"
+        },
+        "r1": {
+          "seed": 3546,
+          "name": "Elevator Room",
+          "lightReduction": 30,
+          "type": "anywhere",
+          "rand": "Trash",
+          "randRate": "heavy"
+        },
+        "r2": {
+          "seed": 2456,
+          "name": "Elevator Room",
+          "lightReduction": 30,
+          "type": "anywhere",
+          "rand": "Trash",
+          "randRate": "heavy"
+        },
+        "r405": {
+          "seed": 5453,
+          "name": "Hospital Room",
+          "lightReduction": 40,
+          "type": "anywhere",
+          "rand": "Trash",
+          "randRate": "medium"
+        },
+        "r406": {
+          "seed": 9898,
+          "name": "Hospital Room",
+          "lightReduction": 40,
+          "type": "anywhere",
+          "rand": "Trash",
+          "randRate": "medium"
+        },
+        "r3": {
+          "seed": 123456,
+          "name": "Elevator Room",
+          "lightReduction": 30,
+          "type": "anywhere",
+          "rand": "Trash",
+          "randRate": "heavy"
+        },
+        "r410": {
+          "safeHouse": true,
+          "seed": 223,
+          "name": "Hospital Room",
+          "lightReduction": 30,
+          "type": "anywhere",
+          "rand": "Trash",
+          "randRate": "medium",
+          "NPCs": [
+            "Laura",
+            "Shenice"
+          ],
+          "NPC_x": [
+            "580",
+            "75"
+          ],
+          "NPCPose": [
+            "idle",
+            "idle"
+          ],
+          "NPCFacing": [
+            "left",
+            "right"
+          ],
+          "cont1": {
+            "desc": "Vending Machine",
+            "cnt": [
+              "sodaCan",
+              "sodaCan",
+              "sodaCan",
+              "sodaCan",
+              "cash_53"
+            ],
+            "noJunk": true
+          }
+        }
+      }
+    },
+    "b2": {
+      "name": "HOSPITAL"
+    },
+    "b3": {
+      "name": "HOSPITAL"
+    }
+  },
+  "s3": {
+    "b0": {
+      "name": "FREEMAN ST",
+      "f0": {
+        "r1": {
+          "seed": 32433,
+          "name": "Outside",
+          "lightReduction": 0,
+          "type": "anywhere",
+          "rand": "Trash",
+          "randRate": "heavy",
+          "outside": true
+        }
+      }
+    },
+    "b1": {
+      "name": "KING-O-PAWN",
+      "f1": {
+        "r1": {
+          "seed": 8982,
+          "lightReduction": 40,
+          "type": "basement",
+          "isShop": true,
+          "shopSet": 1,
+          "safeHouse": true,
+          "NPCs": [
+            "King"
+          ],
+          "NPC_x": [
+            "720"
+          ],
+          "NPCPose": [
+            "idle"
+          ],
+          "NPCFacing": [
+            "left"
+          ]
+        }
+      }
+    }
+  },
+  "startLoc": "l13_s1_b0_f0_r1",
+  "startLocName": "JEFFERSON AVE - BRIDGE",
+  "endLoc": "l13_s3_b0_f0_r1",
+  "endLocName": "FREEMAN ST - PAWN SHOP"
+}

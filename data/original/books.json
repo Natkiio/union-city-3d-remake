@@ -1,0 +1,110 @@
+{
+  "blunt": {
+    "ref": "blunt",
+    "name": "Batter Up!",
+    "desc": "Batting instructional magazine.",
+    "effect": "to Blunt Weapons",
+    "weight": 0.5,
+    "bonus": 3,
+    "rarity": 3
+  },
+  "blades": {
+    "ref": "blades",
+    "name": "Martial Masters",
+    "desc": "Monthly martial arts weapons magazine.",
+    "effect": "to Bladed Weapons",
+    "weight": 0.5,
+    "bonus": 3,
+    "rarity": 3
+  },
+  "pistols": {
+    "ref": "pistols",
+    "name": "Handgun Owner",
+    "desc": "Annual guide to handgun ownership.",
+    "effect": "to Pistols",
+    "weight": 0.5,
+    "bonus": 3,
+    "rarity": 4
+  },
+  "longGuns": {
+    "ref": "longGuns",
+    "name": "Glendale Hunter",
+    "desc": "Hunters weapons guide from the small town of Glendale.",
+    "effect": "to Long Guns",
+    "weight": 0.5,
+    "bonus": 3,
+    "rarity": 6
+  },
+  "automatics": {
+    "ref": "automatics",
+    "name": "Defcon Force",
+    "desc": "Special Forces monthly magazine.",
+    "effect": "to Automatics",
+    "weight": 0.5,
+    "bonus": 3,
+    "rarity": 7
+  },
+  "specialWeapons": {
+    "ref": "specialWeapon",
+    "name": "Future Weaponry",
+    "desc": "Half of these weapons are old as heck.",
+    "effect": "to Special Weapons",
+    "weight": 0.5,
+    "bonus": 3,
+    "rarity": 9
+  },
+  "smarts": {
+    "ref": "smarts",
+    "name": "Businessman",
+    "desc": "Trade, Education and Training",
+    "effect": "to Smarts",
+    "weight": 0.5,
+    "bonus": 3,
+    "rarity": 11
+  },
+  "security": {
+    "ref": "security",
+    "name": "Nightwatchmen",
+    "desc": "Locks, surveillance and ladies on page 4.",
+    "effect": "to Security",
+    "weight": 0.5,
+    "bonus": 3,
+    "rarity": 7
+  },
+  "searching": {
+    "ref": "searching",
+    "name": "Where's Wilmo?",
+    "desc": "I can never find this guy.",
+    "effect": "to Searching",
+    "weight": 0.5,
+    "bonus": 3,
+    "rarity": 2
+  },
+  "firstAid": {
+    "ref": "firstAid",
+    "name": "Be Prepared",
+    "desc": "Beginners manual to first aid.",
+    "effect": "to First Aid",
+    "weight": 0.5,
+    "bonus": 3,
+    "rarity": 4
+  },
+  "fitness": {
+    "ref": "fitness",
+    "name": "JACKED UP",
+    "desc": "Scary fitness magazine, oily men everywhere.",
+    "effect": "to Fitness",
+    "weight": 0.5,
+    "bonus": 3,
+    "rarity": 3
+  },
+  "survival": {
+    "ref": "survival",
+    "name": "Wild Man",
+    "desc": "How to grow a beard and live in a tree, apparently.",
+    "effect": "to Survival",
+    "weight": 0.5,
+    "bonus": 3,
+    "rarity": 5
+  }
+}

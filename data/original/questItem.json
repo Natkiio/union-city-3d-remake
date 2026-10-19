@@ -1,0 +1,179 @@
+{
+  "testKey": {
+    "ref": "testKey",
+    "name": "Test Key",
+    "desc": "[KEY] Key to Test Door.",
+    "weight": 0,
+    "door": "l16_s3_b1_f1_r1_room2"
+  },
+  "questBoltCutters": {
+    "ref": "questBoltCutters",
+    "name": "Bolt Cutters",
+    "desc": "[QUEST ITEM] Useful for cutting fences, or bolts I guess.",
+    "weight": 0
+  },
+  "kellyGlasses": {
+    "ref": "kellyGlasses",
+    "name": "Kelly's Glasses",
+    "desc": "[QUEST ITEM] Perscription Glasses, the name Kelly is engraved in the frame.",
+    "weight": 0
+  },
+  "questHanksRifle": {
+    "ref": "questHanksRifle",
+    "name": "Hank's Rifle",
+    "desc": "[QUEST ITEM] Hank's father's rifle, useless without the bolt group.",
+    "weight": 0
+  },
+  "questHanksRifleBolt": {
+    "ref": "questHanksRifleBolt",
+    "name": "Hank's Rifle Bolt",
+    "desc": "[QUEST ITEM] The bolt group for Hank's father's rifle, he'll know how to assemble this.",
+    "weight": 0
+  },
+  "hankKey": {
+    "ref": "hankKey",
+    "name": "Hank's Neighbor's Key",
+    "desc": "[QUEST ITEM] Key belonging to Hank's neighbor. Apartment 201.",
+    "weight": 0,
+    "door": "l13_s1_b3_f3_r1_room100"
+  },
+  "edKey": {
+    "ref": "edKey",
+    "name": "Ed's Garage Key",
+    "desc": "[QUEST ITEM] Key to Ed's Garage.",
+    "weight": 0,
+    "door": "l16_s3_b4_f1_r1_door2"
+  },
+  "unionSecKey": {
+    "ref": "unionSecKey",
+    "name": "Union Sec Key",
+    "desc": "[QUEST ITEM] Key to gun cage at Union Security.",
+    "weight": 0,
+    "door": "l12_s1_b3_f2_r1_door2"
+  },
+  "hotelKey403": {
+    "ref": "hotelKey403",
+    "name": "[KEY] to 403",
+    "desc": "Room key for room 403.",
+    "weight": 0,
+    "door": "l11_s1_b2_f4_r1_room403"
+  },
+  "EOBbathroomKey": {
+    "ref": "EOBbathroomKey",
+    "name": "[KEY] to Ladies Room",
+    "desc": "Key to the ladies at Earl of Burger.",
+    "weight": 0,
+    "door": "l12_s2_b1_f1_r2_room101"
+  },
+  "UCPDcageKey": {
+    "ref": "UCPDcageKey",
+    "name": "[KEY] UCPD - Gun Cage",
+    "desc": "Key to the UCPD Gun Cage.",
+    "weight": 0,
+    "door": "l11_s4_b2_f2_r0_room1101"
+  },
+  "stadiumKey": {
+    "ref": "stadiumKey",
+    "name": "[KEY] Stadium Sewer",
+    "desc": "Sewer access at Stadium.",
+    "weight": 0,
+    "door": "l5_s1_b1_f1_r4062_room4063"
+  },
+  "sewerKey": {
+    "ref": "sewerKey",
+    "name": "[KEY] H&H Sewer",
+    "desc": "Sewer access to Union Park.",
+    "weight": 0,
+    "door": "l11_s3_b1_f0_r3_room500"
+  },
+  "docksKey": {
+    "ref": "docksKey",
+    "name": "[KEY] Docks Office",
+    "desc": "Key to office door at Docks.",
+    "weight": 0,
+    "door": "l6_s3_b1_f1_r1_door1"
+  },
+  "questHERCkey": {
+    "ref": "questHERCkey",
+    "name": "Key to HERC cell",
+    "desc": "[QUEST ITEM] Key to HERC cell holding your partner.",
+    "weight": 0
+  },
+  "hospitalStore": {
+    "ref": "hospitalStore",
+    "name": "[KEY] Storage Key",
+    "desc": "Key to Hospital Storage Room",
+    "weight": 0,
+    "door": "l13_s2_b1_f2_r2_room202"
+  },
+  "explosivesC4": {
+    "ref": "explosivesC4",
+    "name": "C4 Block",
+    "desc": "[QUEST ITEM] A block of C4 explosive.",
+    "weight": 0
+  },
+  "explosivesBlastingCap": {
+    "ref": "explosivesBlastingCap",
+    "name": "C4 Blasting Cap",
+    "desc": "[QUEST ITEM] Blasting cap for the C4.",
+    "weight": 0
+  },
+  "explosivesTimer": {
+    "ref": "explosivesTimer",
+    "name": "C4 Timer",
+    "desc": "[QUEST ITEM] Time delay system for blowing the C4.",
+    "weight": 0
+  },
+  "gas": {
+    "ref": "gas",
+    "name": "Gallon of Gas",
+    "desc": "[QUEST ITEM] One gallon of gas.",
+    "weight": 0
+  },
+  "fanBelt": {
+    "ref": "fanBelt",
+    "name": "Fan Belt",
+    "desc": "[QUEST ITEM] A fan belt that should fit a large people mover.",
+    "weight": 0
+  },
+  "socketSet": {
+    "ref": "socketSet",
+    "name": "Socket Set",
+    "desc": "[QUEST ITEM] Cheap socket set and shifter.",
+    "weight": 0
+  },
+  "woodsWarehouseKey": {
+    "ref": "woodsWarehouseKey",
+    "name": "[KEY] Warehouse Key",
+    "desc": "Key to small warehouse at Whistler's Forest",
+    "weight": 0,
+    "door": "l15_s6_b0_f0_r1_entr5"
+  },
+  "woodsSafeKey": {
+    "ref": "woodsSafeKey",
+    "name": "[KEY] Safe Key",
+    "desc": "Key to small safe at Whistler's Forest",
+    "weight": 0,
+    "cont": "l15_s6_b4_f1_r1_cont1"
+  },
+  "bloodSample": {
+    "ref": "bloodSample",
+    "name": "Blood Sample",
+    "desc": "[QUEST ITEM] Sample of infected blood.",
+    "weight": 0
+  },
+  "doctorOfficeKey": {
+    "ref": "doctorOfficeKey",
+    "name": "[KEY] to Clinic Office",
+    "desc": "Key to the clinic office in Uptown.",
+    "weight": 0,
+    "door": "l11_s3_b2_f1_r2_room202"
+  },
+  "armyCageKey": {
+    "ref": "armyCageKey",
+    "name": "[KEY] Military Cage Key",
+    "desc": "Key to the weapons cage at the military base",
+    "weight": 0,
+    "cont": "l14_s2_b1_f2_r100_cont3"
+  }
+}

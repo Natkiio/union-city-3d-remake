@@ -1,0 +1,759 @@
+{
+  "danger": 10,
+  "ref": "section15",
+  "startLoc": "l15_s1_b0_f0_r1",
+  "startLocName": "ROAD OUT OF TOWN",
+  "endLoc": "l15_s5_b0_f0_r1",
+  "endLocName": "WHISTLER'S FOREST TOWNSHIP",
+  "s0": {
+    "b0": {
+      "f0": {
+        "r1": {
+          "seed": 32433,
+          "name": "Outside",
+          "lightReduction": 0,
+          "type": "anywhere",
+          "rand": "none",
+          "randRate": "none"
+        }
+      }
+    }
+  },
+  "s1": {
+    "danger": 0,
+    "b0": {
+      "name": "HIGHWAY",
+      "f0": {
+        "r1": {
+          "seed": 1235,
+          "name": "Outside",
+          "lightReduction": 0,
+          "type": "anywhere",
+          "rand": "Trash",
+          "randRate": "light",
+          "outside": true
+        }
+      }
+    },
+    "b1": {
+      "name": "10 HIGHWAY"
+    },
+    "b2": {
+      "name": "12 HIGHWAY"
+    },
+    "b3": {},
+    "b4": {},
+    "b5": {},
+    "b6": {}
+  },
+  "s2": {
+    "danger": 0,
+    "b0": {
+      "name": "HIGHWAY",
+      "f0": {
+        "r1": {
+          "seed": 2334,
+          "name": "Outside",
+          "lightReduction": 0,
+          "type": "anywhere",
+          "rand": "Trash",
+          "randRate": "light",
+          "outside": true,
+          "NPCs": [
+            "Jeb",
+            "Paul",
+            "Clarence",
+            "Fern"
+          ],
+          "NPC_x": [
+            "550",
+            "950",
+            "700",
+            "760"
+          ],
+          "NPCPose": [
+            "holdRifle",
+            "standPistol",
+            "sit",
+            "sit"
+          ],
+          "NPCFacing": [
+            "left",
+            "right",
+            "left",
+            "right"
+          ]
+        }
+      }
+    },
+    "b1": {
+      "name": "10 HIGHWAY"
+    },
+    "b2": {
+      "name": "12 HIGHWAY"
+    },
+    "b3": {},
+    "b4": {},
+    "b5": {},
+    "b6": {}
+  },
+  "s3": {
+    "b0": {
+      "name": "RESERVE ENTRANCE",
+      "f0": {
+        "r1": {
+          "seed": 6786,
+          "name": "Outside",
+          "lightReduction": 0,
+          "type": "anywhere",
+          "rand": "Trash",
+          "randRate": "light",
+          "gotoRooms": true,
+          "outside": true
+        },
+        "r98": {
+          "seed": 23,
+          "name": "Outside",
+          "lightReduction": 0,
+          "type": "anywhere",
+          "rand": "Trash",
+          "randRate": "light",
+          "outside": true,
+          "cont1": {
+            "desc": "Bag",
+            "cnt": [
+              "ammoshotgun_50",
+              "ammo556_40",
+              "ammo9mm_50"
+            ],
+            "noJunk": true
+          },
+          "body1": {
+            "type": "civilian",
+            "pose": "dead3",
+            "facing": "left"
+          },
+          "cont2": {
+            "desc": "Corpse",
+            "cnt": [
+              "bloodSample"
+            ]
+          }
+        },
+        "r99": {
+          "seed": 23345,
+          "name": "Outside",
+          "lightReduction": 0,
+          "type": "anywhere",
+          "rand": "Trash",
+          "randRate": "light",
+          "outside": true
+        },
+        "r100": {
+          "seed": 6786,
+          "name": "Outside",
+          "lightReduction": 0,
+          "type": "anywhere",
+          "rand": "Trash",
+          "randRate": "light",
+          "outside": true
+        },
+        "r101": {
+          "seed": 23412,
+          "name": "Outside",
+          "lightReduction": 0,
+          "type": "anywhere",
+          "rand": "Trash",
+          "randRate": "light",
+          "body1": {
+            "type": "civilian",
+            "pose": "dead2",
+            "facing": "left"
+          },
+          "cont1": {
+            "desc": "Corpse",
+            "cnt": [
+              "bloodSample"
+            ]
+          },
+          "outside": true
+        },
+        "r200": {
+          "seed": 23412,
+          "name": "Outside",
+          "lightReduction": 0,
+          "type": "anywhere",
+          "rand": "Trash",
+          "randRate": "light",
+          "body1": {
+            "type": "civilian",
+            "pose": "dead1",
+            "facing": "right"
+          },
+          "cont1": {
+            "desc": "Corpse",
+            "cnt": [
+              "bloodSample"
+            ]
+          },
+          "outside": true
+        },
+        "r201": {
+          "seed": 7777,
+          "name": "Outside",
+          "lightReduction": 0,
+          "type": "anywhere",
+          "rand": "Trash",
+          "randRate": "light",
+          "cont1": {
+            "desc": "Military Drop Box",
+            "cnt": [
+              "M4A1",
+              "ammo556_50",
+              "ammo556_50"
+            ]
+          },
+          "outside": true
+        },
+        "r202": {
+          "seed": 12347,
+          "name": "Outside",
+          "lightReduction": 0,
+          "type": "anywhere",
+          "rand": "Trash",
+          "randRate": "light",
+          "outside": true
+        },
+        "r299": {
+          "seed": 126,
+          "name": "Outside",
+          "lightReduction": 0,
+          "type": "anywhere",
+          "rand": "Trash",
+          "randRate": "light",
+          "outside": true
+        },
+        "r300": {
+          "seed": 33445,
+          "name": "Outside",
+          "lightReduction": 0,
+          "type": "anywhere",
+          "rand": "Trash",
+          "randRate": "light",
+          "body1": {
+            "type": "civilian",
+            "pose": "dead1",
+            "facing": "right"
+          },
+          "cont1": {
+            "desc": "Corpse",
+            "cnt": [
+              "bloodSample"
+            ]
+          },
+          "outside": true
+        },
+        "r301": {
+          "seed": 9998,
+          "name": "Outside",
+          "lightReduction": 0,
+          "type": "anywhere",
+          "rand": "Trash",
+          "randRate": "light",
+          "cont1": {
+            "desc": "Rusty Fridge",
+            "cnt": [
+              "ammoarrow_30",
+              "machete_sharpened"
+            ]
+          },
+          "outside": true
+        },
+        "r498": {
+          "seed": 6765,
+          "name": "Outside",
+          "lightReduction": 0,
+          "type": "anywhere",
+          "rand": "Trash",
+          "randRate": "light",
+          "outside": true
+        },
+        "r499": {
+          "seed": 34526,
+          "name": "Outside",
+          "lightReduction": 0,
+          "type": "anywhere",
+          "rand": "Trash",
+          "randRate": "light",
+          "body1": {
+            "type": "civilian",
+            "pose": "dead1",
+            "facing": "right"
+          },
+          "cont1": {
+            "desc": "Corpse",
+            "cnt": [
+              "bloodSample"
+            ]
+          },
+          "outside": true
+        },
+        "r500": {
+          "seed": 2314,
+          "name": "Outside",
+          "lightReduction": 0,
+          "type": "anywhere",
+          "rand": "Trash",
+          "randRate": "light",
+          "outside": true
+        },
+        "r600": {
+          "seed": 65533,
+          "name": "Outside",
+          "lightReduction": 0,
+          "type": "anywhere",
+          "rand": "Trash",
+          "randRate": "light",
+          "cont1": {
+            "desc": "Metal Box",
+            "cnt": []
+          },
+          "outside": true
+        },
+        "r601": {
+          "seed": 41223,
+          "name": "Outside",
+          "lightReduction": 60,
+          "type": "anywhere",
+          "rand": "Trash",
+          "randRate": "light",
+          "cont1": {
+            "desc": "Bookshelf",
+            "cnt": [
+              "survival",
+              "fitness"
+            ]
+          },
+          "NPCs": [
+            "Terry"
+          ],
+          "NPC_x": [
+            "200"
+          ],
+          "NPCPose": [
+            "holdRifle"
+          ],
+          "NPCFacing": [
+            "right"
+          ]
+        }
+      }
+    },
+    "b1": {
+      "name": "10 RESERVE ENTRANCE"
+    },
+    "b2": {
+      "name": "12 RESERVE ENTRANCE"
+    },
+    "b3": {},
+    "b4": {},
+    "b5": {},
+    "b6": {}
+  },
+  "s4": {
+    "b0": {
+      "name": "TOWN RD",
+      "f0": {
+        "r1": {
+          "seed": 57438,
+          "name": "Outside",
+          "lightReduction": 0,
+          "type": "anywhere",
+          "rand": "Trash",
+          "randRate": "light",
+          "gotoRooms": true,
+          "outside": true
+        }
+      }
+    },
+    "b1": {
+      "name": "10 TOWN RD"
+    },
+    "b2": {
+      "name": "12 TOWN RD"
+    },
+    "b3": {},
+    "b4": {},
+    "b5": {},
+    "b6": {}
+  },
+  "s5": {
+    "b0": {
+      "name": "TOWN RD",
+      "f0": {
+        "r1": {
+          "seed": 52278,
+          "name": "Outside",
+          "lightReduction": 0,
+          "type": "anywhere",
+          "rand": "Trash",
+          "randRate": "light",
+          "gotoRooms": true,
+          "outside": true
+        }
+      }
+    },
+    "b1": {
+      "name": "10 TOWN RD",
+      "f1": {
+        "r0": {
+          "seed": 88423,
+          "name": "Outside",
+          "lightReduction": 60,
+          "type": "kitchen",
+          "rand": "Trash",
+          "randRate": "light",
+          "cont1": {
+            "desc": "Cupboard",
+            "cnt": [
+              "pasta",
+              "cannedBeans"
+            ]
+          },
+          "cont2": {
+            "desc": "Kitchen Sink",
+            "cnt": [
+              "socketSet"
+            ]
+          }
+        },
+        "r1": {
+          "seed": 5667,
+          "name": "Outside",
+          "lightReduction": 60,
+          "type": "anywhere",
+          "rand": "Trash",
+          "randRate": "light",
+          "cont1": {
+            "desc": "Chest",
+            "cnt": [
+              "pasta",
+              "cannedBeans"
+            ]
+          },
+          "cont2": {
+            "desc": "Bookcase",
+            "cnt": [
+              "survival",
+              "firstAid"
+            ]
+          }
+        }
+      },
+      "f2": {
+        "r1": {
+          "seed": 1563,
+          "name": "Outside",
+          "lightReduction": 60,
+          "type": "anywhere",
+          "rand": "Trash",
+          "randRate": "light",
+          "cont1": {
+            "desc": "Closet",
+            "cnt": [
+              "pantsBrown",
+              "camoCargo",
+              "woodsSafeKey"
+            ]
+          },
+          "cont2": {
+            "desc": "Desk",
+            "cnt": [
+              "longGuns"
+            ]
+          }
+        }
+      }
+    },
+    "b2": {
+      "name": "12 TOWN RD",
+      "f1": {
+        "r1": {
+          "seed": 14553,
+          "name": "Outside",
+          "lightReduction": 60,
+          "type": "anywhere",
+          "rand": "Trash",
+          "randRate": "light",
+          "cont1": {
+            "desc": "Boxes",
+            "cnt": [
+              "cannedCorn",
+              "cannedCorn"
+            ]
+          },
+          "cont2": {
+            "desc": "Shelf",
+            "cnt": [
+              "pickles"
+            ]
+          },
+          "cont3": {
+            "desc": "Shelf",
+            "cnt": [
+              "cookies"
+            ]
+          },
+          "cont4": {
+            "desc": "Shelf",
+            "cnt": [
+              "soupBeef",
+              "soupChicken"
+            ]
+          },
+          "cont5": {
+            "desc": "Cash Register",
+            "cnt": [
+              "cash_50"
+            ],
+            "noJunk": true
+          },
+          "cont6": {
+            "desc": "Shelf",
+            "cnt": [
+              "gas"
+            ]
+          }
+        }
+      }
+    },
+    "b3": {
+      "f1": {
+        "r0": {
+          "seed": 14424,
+          "name": "Outside",
+          "lightReduction": 60,
+          "type": "anywhere",
+          "rand": "Trash",
+          "randRate": "light"
+        },
+        "r1": {
+          "seed": 14423,
+          "name": "Outside",
+          "lightReduction": 60,
+          "type": "anywhere",
+          "rand": "Trash",
+          "randRate": "light",
+          "cont1": {
+            "desc": "Cupboard",
+            "cnt": [
+              "ammoshotgun_30",
+              "shotgun"
+            ]
+          }
+        }
+      }
+    },
+    "b4": {},
+    "b5": {},
+    "b6": {}
+  },
+  "s6": {
+    "b0": {
+      "name": "MAIN ST",
+      "f0": {
+        "r1": {
+          "seed": 243,
+          "name": "Outside",
+          "lightReduction": 0,
+          "type": "anywhere",
+          "rand": "Trash",
+          "randRate": "light",
+          "gotoRooms": true,
+          "lockedDoors": [
+            "entr5"
+          ],
+          "needsKey": [
+            true
+          ],
+          "lockDiff": [
+            "very hard"
+          ],
+          "outside": true
+        }
+      }
+    },
+    "b1": {
+      "name": "10 MAIN ST",
+      "safeHouse": true,
+      "f1": {
+        "r1": {
+          "seed": 9873,
+          "name": "Outside",
+          "lightReduction": 60,
+          "type": "anywhere",
+          "rand": "Trash",
+          "randRate": "light",
+          "NPCs": [
+            "Lisa"
+          ],
+          "NPC_x": [
+            "95"
+          ],
+          "NPCPose": [
+            "idle"
+          ],
+          "NPCFacing": [
+            "right"
+          ]
+        }
+      },
+      "f2": {
+        "r1": {
+          "seed": 9873,
+          "name": "Outside",
+          "lightReduction": 60,
+          "type": "anywhere",
+          "rand": "Trash",
+          "randRate": "light",
+          "cont1": {
+            "desc": "Cupboard",
+            "cnt": [
+              "ammo45_30",
+              "ammo9mm_50",
+              "ammo556_60",
+              "jerky",
+              "jerky",
+              "water"
+            ]
+          },
+          "NPCs": [
+            "Phillip"
+          ],
+          "NPC_x": [
+            "90"
+          ],
+          "NPCPose": [
+            "useStanding"
+          ],
+          "NPCFacing": [
+            "left"
+          ]
+        }
+      }
+    },
+    "b2": {
+      "name": "12 MAIN ST",
+      "f1": {
+        "r1": {
+          "seed": 433,
+          "name": "Outside",
+          "lightReduction": 60,
+          "type": "basement",
+          "rand": "Trash",
+          "randRate": "light",
+          "cont1": {
+            "desc": "Shelf",
+            "cnt": [
+              "tireIron",
+              "pipe",
+              "gas"
+            ]
+          },
+          "cont2": {
+            "desc": "Boxes",
+            "cnt": [
+              "fanBelt",
+              "fanBelt"
+            ]
+          },
+          "cont3": {
+            "desc": "Shelf",
+            "cnt": [
+              "clawHammer",
+              "sledge"
+            ]
+          }
+        }
+      }
+    },
+    "b3": {
+      "f1": {
+        "r0": {
+          "seed": 2378,
+          "name": "Outside",
+          "lightReduction": 60,
+          "type": "anywhere",
+          "rand": "Trash",
+          "randRate": "light",
+          "cont1": {
+            "desc": "Chest",
+            "cnt": []
+          },
+          "cont2": {
+            "desc": "Bookcase",
+            "cnt": [
+              "fitness"
+            ]
+          }
+        },
+        "r1": {
+          "seed": 24431,
+          "name": "Outside",
+          "lightReduction": 60,
+          "type": "anywhere",
+          "rand": "Trash",
+          "randRate": "light",
+          "cont1": {
+            "desc": "Sideboard",
+            "cnt": [
+              "deathAdder",
+              "ammo45_50"
+            ]
+          }
+        }
+      }
+    },
+    "b4": {
+      "f1": {
+        "r1": {
+          "seed": 95554,
+          "name": "Outside",
+          "lightReduction": 60,
+          "type": "anywhere",
+          "rand": "Trash",
+          "randRate": "light",
+          "cont1": {
+            "desc": "Safe",
+            "cnt": [
+              "woodsWarehouseKey",
+              "cash_350"
+            ],
+            "locked": true,
+            "hasKey": true,
+            "lockDiff": "very hard"
+          }
+        }
+      }
+    },
+    "b5": {
+      "f1": {
+        "r1": {
+          "seed": 8754,
+          "name": "Outside",
+          "lightReduction": 60,
+          "type": "anywhere",
+          "rand": "Trash",
+          "randRate": "light",
+          "cont1": {
+            "desc": "Shelf",
+            "cnt": [
+              "gas"
+            ]
+          }
+        }
+      }
+    },
+    "b6": {}
+  }
+}

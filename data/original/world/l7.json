@@ -1,0 +1,154 @@
+{
+  "ref": "section7",
+  "danger": 25,
+  "s1": {
+    "b0": {
+      "name": "BRIDGE",
+      "f0": {
+        "r1": {
+          "seed": 89562,
+          "name": "Outside",
+          "lightReduction": 0,
+          "type": "anywhere",
+          "rand": "Trash",
+          "randRate": "heavy",
+          "outside": true
+        }
+      }
+    },
+    "b1": {
+      "name": "U-Conbank"
+    },
+    "b2": {
+      "name": "The Red Rum"
+    },
+    "b3": {
+      "name": "Union Security"
+    },
+    "b4": {
+      "name": "Warehouse"
+    },
+    "b5": {
+      "name": "King-o-Pawn"
+    },
+    "b6": {}
+  },
+  "s2": {
+    "b0": {
+      "name": "MAIN PARK",
+      "f0": {
+        "r1": {
+          "seed": 51234,
+          "name": "Outside",
+          "lightReduction": 0,
+          "type": "anywhere",
+          "rand": "Trash",
+          "randRate": "heavy",
+          "outside": true
+        }
+      }
+    },
+    "b1": {
+      "name": "Earl of Burger"
+    },
+    "b2": {
+      "name": "Paper Company Offices"
+    },
+    "b3": {
+      "name": "Mechanics"
+    }
+  },
+  "s3": {
+    "b0": {
+      "name": "UNION ISLAND",
+      "f0": {
+        "r1": {
+          "seed": 51234,
+          "name": "Outside",
+          "lightReduction": 0,
+          "type": "anywhere",
+          "rand": "Trash",
+          "randRate": "heavy",
+          "outside": true
+        }
+      }
+    },
+    "b1": {
+      "name": "Earl of Burger"
+    },
+    "b2": {
+      "name": "Paper Company Offices"
+    },
+    "b3": {
+      "name": "Mechanics"
+    }
+  },
+  "s4": {
+    "b0": {
+      "name": "MONUMENT",
+      "f0": {
+        "r1": {
+          "seed": 51234,
+          "name": "Outside",
+          "lightReduction": 0,
+          "type": "anywhere",
+          "rand": "Trash",
+          "randRate": "heavy",
+          "outside": true,
+          "enemy": [
+            "HERCsoldierHeavy",
+            "HERCsoldierHeavy"
+          ],
+          "enemyX": [
+            "970",
+            "1050"
+          ]
+        },
+        "r100": {
+          "seed": 51234,
+          "name": "Outside",
+          "lightReduction": 0,
+          "type": "anywhere",
+          "rand": "Trash",
+          "randRate": "heavy",
+          "outside": true,
+          "enemy": [
+            "JaneSacrifice",
+            "ShawnSacrifice",
+            "DanaWall"
+          ],
+          "enemyX": [
+            "450",
+            "500",
+            "600"
+          ],
+          "NPCs": [
+            "JackWall"
+          ],
+          "NPC_x": [
+            "700"
+          ],
+          "NPCPose": [
+            "holdRifle"
+          ],
+          "NPCFacing": [
+            "right"
+          ]
+        }
+      }
+    },
+    "b1": {
+      "name": "Earl of Burger"
+    },
+    "b2": {
+      "name": "Paper Company Offices"
+    },
+    "b3": {
+      "name": "Mechanics"
+    }
+  },
+  "startLoc": "l7_s1_b0_f0_r1",
+  "startLocName": "BRIDGE",
+  "endLoc": "l7_s2_b0_f0_r103",
+  "endLocName": "SUBWAY EXIT"
+}

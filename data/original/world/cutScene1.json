@@ -1,0 +1,21 @@
+{
+  "lockControls": false,
+  "action1": {
+    "func": "displayWorldSpeech",
+    "var1": "partner",
+    "var2": "Quickly, we need to\nget out of here.",
+    "timing": 1
+  },
+  "action2": {
+    "func": "displayWorldSpeech",
+    "var1": "player",
+    "var2": "Ok, follow me.",
+    "timing": 2000
+  },
+  "action3": {
+    "func": "displayWorldSpeech",
+    "var1": "player",
+    "var2": "There's a sewer access\nout to the street.",
+    "timing": 4000
+  }
+}

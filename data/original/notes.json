@@ -1,0 +1,173 @@
+{
+  "1": {
+    "style": "herc",
+    "content": "QUARANTINE NOTICE: \n\nThis facility has been QUARANTINED by Homeland Environmental Risk Control.\nAttempts to leave the quarantine zone will be met with SEVERE CONSEQUENCES.\n\n\nAny persons who have been in contact with the affected should present themselves to the nearest HERC Emergency station."
+  },
+  "2": {
+    "style": "wall",
+    "content": "\n\nWell that quarantine went well, HUH!?."
+  },
+  "3": {
+    "style": "file",
+    "content": "PATIENT: Con Johnson.\nD.O.B: 8-8-1979\n\nADDRESS: 1250 8th Avenue, Glendale.\n\nPatient walked into emergency on May 15 showing signs of severe fatigue.\nOn inspection by Dr.Burkman, patient's BP and HR were slightly elevated, hydration was severely lacking. Suspected that patient walked from his home in Glendale.\n\nPatient had what appears to be an animal bite on his left calf. Possible rabies is present."
+  },
+  "4": {
+    "style": "notePad",
+    "content": "Nurses,\nHad a patient walk into the hospital today, literally walk, from Glendale. It's 100 miles from here! His shoes were torn apart, clothing ragged. He looked at deaths door.\n\nOn top of all that he was nursing a bite on his leg. It didn't appear to bleed much, though it showed some strange coagulation around the site.\n\nKeep an eye on him please, something going on there!"
+  },
+  "5": {
+    "style": "wall",
+    "content": {
+      "template": "\n\n{playerFirstName},\n\nI've gone to the hospital to help out where I can. Come meet me there.\n\nLove {PartnerNameShort}",
+      "placeholders": [
+        "playerFirstName",
+        "PartnerNameShort"
+      ]
+    },
+    "trigger": "trig10"
+  },
+  "6": {
+    "style": "notePad",
+    "content": "Tony,\n\nI called the pizza place but got some really weird answer so I'm going down there to get the pizza."
+  },
+  "7": {
+    "style": "wall",
+    "content": "Dave,\n\nYou aren't here. You gave me your word you would be there for me.\n\nYou lied. How am I going to get out of here? I HATE YOU!"
+  },
+  "8": {
+    "style": "notePad",
+    "content": "Dear Mommy,\n\nNana says I have to write goodbi to you but I dont no why I keep hearing screams and I hope the pepol are ok\n\nI miss you Mommy!\n\nJulia"
+  },
+  "9": {
+    "style": "wall",
+    "content": "Tiffany, I love you.\nOh God what wouldn't I give to be able to tell you this one last time.\nTo hold you in my arms; I would give myself to Death if that assured your safety. I wonder if you're thinking about me right now. If you ever find this Tiffany, know that I love you\n- Carson"
+  },
+  "10": {
+    "style": "notePad",
+    "content": "Dear Annoying Prick,\nWith this whole thing going on, I thought you might stop trying to get in my pants. But no. You kept at it. I wish I could just kill you, but I'm too nice for that. So I'm sabotaging your little escape plan.\n\nHave fun with your burning boat.\n- Violet <3"
+  },
+  "11": {
+    "style": "wall",
+    "content": "Dear Jenny,\nIf you're reading this, I fear my life will soon end. I know the chances of you finding this note are very slim. Please don't worry about me. Just try to get the kids out of Union City. Know that I love you and the kids dearly. Not a moment goes by I don't think about you.\n- John"
+  },
+  "12": {
+    "style": "notePad",
+    "content": "Roxanne,\n\nWent looking for Tommy at his school. I found him, he was with friends, all turned into those 'things'. Bit me good in the hand.\n\nDON'T COME LOOKING FOR US.\n\nI'm sorry, I tried.\n\nLove, John."
+  },
+  "13": {
+    "style": "wall",
+    "content": "\n\n\nRelease the souls of the blessed and the damned. I am not your keeper. Oh God forgive me, for I have sinned."
+  },
+  "14": {
+    "style": "wall",
+    "content": "\n\n\nThe flaws in the air are excelling, expanding, the rain is turning more sour by the day, I long for a home, for peace.\n\nI'm free now, from this wretched hell.\n\n-Valentine"
+  },
+  "15": {
+    "style": "wall",
+    "content": "Dear Carly,\nJessie left, she went East after hearing that broadcast, the old house is bad news, there is alot of them around it now so I set out North, I hear it's much safer up there. I hope you understand I thought alot of you and I wish you never went back for Jake, watch yourself.\nLove Curtis"
+  },
+  "16": {
+    "style": "wall",
+    "content": "\n\nIt 's the government. I know it's the government. It's always the government. They want to kill us all. They will declare martial law and erase our rights. They are in cahoots with the aliens and communists. I've always known it. Who's the fool now?"
+  },
+  "17": {
+    "style": "wall",
+    "content": "\n\nThis place is not safe! Nowhere is safe!\n\nYou will die just like the rest of us. Abandon hope. Abandon god like he abandoned us."
+  },
+  "18": {
+    "style": "wall",
+    "content": "\n\nHoney,\nThey closed the store with me in it here! It's been days and all I've heard is screaming.\n\nI'm fairly sure no-one is coming for me, I guess this is goodbye.\n\nI love you, baby."
+  },
+  "19": {
+    "style": "wall",
+    "content": "\n\nWhats goin' on first 'Cult murders' then 'cannibals' now they tell everyone to go here or there telling different people different things.\n\nGod, the army isnt even giving their own soldiers orders. WHAT THE HELL IS HAPPENING?"
+  },
+  "20": {
+    "style": "book",
+    "content": "Note:\nMorality Today's not the day for that. It's every man for himself now. Survival instinct overrides compassion and reason. Don't hesitate behind the trigger- those things just aren't people anymore. We can cry when this is all over."
+  },
+  "21": {
+    "style": "wall",
+    "content": "\n\n\n\n                   SCAN ME"
+  },
+  "22": {
+    "style": "notePad",
+    "content": "Hey Jon,\n\nI've got a store up online in return for all the artwork you used in that vampire Future Splash game you're making.\n\nYou can check it out here: tinyurl.com/boothtique\n\nIf you could link to it in the game somehow that'd be great.\n\nCheers, Boothy."
+  },
+  "23": {
+    "style": "book",
+    "content": "\n\nSaw a woman with her baby today. She was was feasting on her. Put both out of their misery without a flinch...What's happening to me?"
+  },
+  "24": {
+    "style": "wall",
+    "content": "\nRoger,\nHeading north, heard it was safe. I dont know though. Ive been to so many 'Safe Havens' that were overrun by Them. I dont know what to do anymore. the kids are scared. Im not the religious one, but i tell yeah, Ive prayed so much my hands hurt. Hope it helps. God be with us?\nGood Luck, Aaron"
+  },
+  "25": {
+    "style": "wall",
+    "content": "\n\nAlbert,\n\nThings have gone horribly wrong. Meet me in Africa.\n\nLove, Jill."
+  },
+  "26": {
+    "style": "wall",
+    "content": "\nTommy,\nRemember what I told you and always respect, protect and obey your father and always remember that I love you so much. I am going to leave you forever because I am too sick to go on. Bless you my Son and when your time comes to go. You will find me waiting for you.\nMom."
+  },
+  "27": {
+    "style": "book",
+    "content": "\n\nNote to self: Trust costs food. \n\nNext chump who knocks at my door looking for a place to stay has to pay up. I can't afford to give everyone a free pass, especially after that last guy turned on me in the middle of the night. --Eli"
+  },
+  "28": {
+    "style": "wall",
+    "content": "To anyone who reads this: I see it everywhere. I can't get rid of it. It tells me to kill and I do, hoping it goes away. But no mattter how many of those things I kill it comes back. Words, thoughts, death, always in my head. I end it all to protect people like you and to stop it. Goodbye."
+  },
+  "29": {
+    "style": "book",
+    "content": "Dear Diary,\n Yesterday a strange man bit me on the arm. It's starting to really hurt and it smells really really bad, Hopefully mummy won't notice it and send me away like she did daddy. Mummy says we are leaving to go on a short holiday tomorrow, it sounds like fun but I wish daddy was coming with us."
+  },
+  "30": {
+    "style": "wall",
+    "content": "\n\nR.I.P.- Gino Genson\n\nFought off and killed 21 infected before succumbing to his wounds"
+  },
+  "31": {
+    "style": "wall",
+    "content": "If civilians would've defended the city instead of falling into panic, it would'nt be lost."
+  },
+  "35": {
+    "style": "book",
+    "content": "Finally decided to kill him. Collect insurance to pay off my apartment. Put pills in his coffee. Went to loot whatever food I could find. Was up when I got home. Bastard bit me. Beat him to death again with a hammer. Can feel the death in my veins, almost turning. Horrible time for an apocalypse, God. I deserve it."
+  },
+  "36": {
+    "style": "wall",
+    "content": "Nina,\n\nEverything went to hell. The apartment is just a wrecked mess. I hid in the closet, but your not going to find me here, leave while you can.\n\nJust leave across the sea now!\n\nGood-bye Nina, Love Chris"
+  },
+  "37": {
+    "style": "",
+    "content": "This is the way the world ends\nThis is the way the world ends\nThis is the way the world ends\nNot with a bang but a moan"
+  },
+  "38": {
+    "style": "book",
+    "content": "And the LORD will send a plague on all the nations.\nTheir people will become like walking corpses, their flesh rotting away.\nTheir eyes will rot in their sockets, and their tongues will rot in their mouths.\nOn that day they will be terrified, stricken by the LORD with great panic."
+  },
+  "32": {
+    "style": "herc",
+    "content": "EMERGENCY REG. LIST #001 - EVAL.CENTER \n\nAshley Wayans\nRoger Wayans\nPeter Wright\nHarley Donald - RELOCATED\nMarissa Chan - RELOCATED\nPhillip Stevens\nRolando Estevez\nRosa Estevez\nVincent Caravella\nSteven Jones\nKate Scott"
+  },
+  "33": {
+    "style": "herc",
+    "content": {
+      "template": "EMERGENCY REG. LIST #002 - EVAL.CENTER \n\nSteve Hutton\nCarol Dawes\nRyan Taylor\nAnna Williams\n{PartnerName} {playerLastName} - RELOCATED\nBarry Wilmott\nElsa Lee - RELOCATED\nLuke Lee - RELOCATED",
+      "placeholders": [
+        "PartnerName",
+        "playerLastName"
+      ]
+    },
+    "trigger": "trig22"
+  },
+  "34": {
+    "style": "herc",
+    "content": "RELOCATION ORDERS - #240\n\nSubjects that have been pre-screened and show signs underlined in Standard 101A are to be relocated to the temporary facility established within Union Park at Uptown.\n\nAll requests by civilians for information regarding location of those relocated is to be DENIED as a matter of Homeland Security.",
+    "trigger": "trig27"
+  },
+  "50": {
+    "style": "wall",
+    "content": "Honey I'll be back by the time you get back.\n\nI locked the keys to the warehouse inside the safe, now I can't find the damn things, going back to the house to find them.\n\nWait here!"
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "lockControls": false,
+  "action1": {
+    "func": "displayWorldSpeech",
+    "var1": "player",
+    "var2": "What?! How'd you...",
+    "timing": 1
+  },
+  "action2": {
+    "func": "displayWorldSpeech",
+    "var1": "npc_JackWall",
+    "var2": "There's no time,\nget on the boat!",
+    "timing": 3000
+  },
+  "action3": {
+    "func": "displayWorldSpeech",
+    "var1": "npc_JackWall",
+    "var2": "We'll find another\nway out, go!",
+    "timing": 6000
+  }
+}

@@ -1,0 +1,47 @@
+{
+  "item1": {
+    "ref": "M16A2_scope",
+    "cost": 600,
+    "num": 1
+  },
+  "item2": {
+    "ref": "UZI_specOps",
+    "cost": 750,
+    "num": 2
+  },
+  "item3": {
+    "ref": "mace",
+    "cost": 500,
+    "num": 3
+  },
+  "item4": {
+    "ref": "deathAdder_scope",
+    "cost": 375,
+    "num": 4
+  },
+  "item5": {
+    "ref": "hatchet_sharpened",
+    "cost": 350,
+    "num": 5
+  },
+  "item6": {
+    "ref": "medkit",
+    "cost": 75,
+    "num": 6
+  },
+  "item7": {
+    "ref": "ammo556_50",
+    "cost": 65,
+    "num": 7
+  },
+  "item8": {
+    "ref": "ammo45_50",
+    "cost": 50,
+    "num": 8
+  },
+  "item9": {
+    "ref": "ammoarrow_30",
+    "cost": 30,
+    "num": 9
+  }
+}

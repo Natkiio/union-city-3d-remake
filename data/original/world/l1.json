@@ -1,0 +1,258 @@
+{
+  "name": "UPTOWN",
+  "b0": {
+    "name": "JEFFERSON AVE",
+    "f0": {
+      "r1": {
+        "seed": 156,
+        "name": "Outside",
+        "lightReduction": 0,
+        "type": "anywhere",
+        "rand": "Trash",
+        "randRate": "medium",
+        "outside": true,
+        "cont1": {
+          "desc": "Trash Can",
+          "display": "blank",
+          "cnt": []
+        },
+        "cont2": {
+          "desc": "Trash Can",
+          "display": "blank",
+          "cnt": []
+        },
+        "cont3": {
+          "desc": "Newspaper Stand",
+          "display": "blank",
+          "cnt": [
+            "magazine"
+          ]
+        }
+      }
+    }
+  },
+  "b1": {
+    "name": "10 JEFFERSON AVE",
+    "f1": {
+      "r1": {
+        "name": "Apartment",
+        "lightReduction": 30,
+        "type": "anywhere",
+        "cont1": {
+          "desc": "Bookshelf",
+          "display": "blank",
+          "cnt": [
+            "longGuns"
+          ]
+        },
+        "cont2": {
+          "desc": "Cupboard",
+          "display": "blank",
+          "cnt": [
+            "cargoShorts",
+            "singletBlack"
+          ]
+        },
+        "cont3": {
+          "desc": "Bookshelf",
+          "display": "blank",
+          "cnt": [
+            "tshirtBrown",
+            "tshirtWhite"
+          ]
+        },
+        "rand": "Trash",
+        "randRate": "light"
+      },
+      "r2": {
+        "name": "Apartment",
+        "lightReduction": 50,
+        "type": "anywhere",
+        "cont1": {
+          "desc": "Bookshelf",
+          "display": "blank",
+          "cnt": [
+            "bandana"
+          ]
+        },
+        "cont2": {
+          "desc": "Closet",
+          "display": "blank",
+          "cnt": [
+            "suitBlack",
+            "jeansBlack",
+            "shoeBlack",
+            "sodaCan"
+          ]
+        }
+      },
+      "r3": {
+        "name": "Apartment",
+        "lightReduction": 70,
+        "type": "anywhere",
+        "cont1": {
+          "desc": "Cupboard",
+          "display": "blank",
+          "cnt": [
+            "bandage",
+            "medkit",
+            "water"
+          ]
+        },
+        "cont2": {
+          "desc": "Bookshelf",
+          "display": "blank",
+          "cnt": [
+            "glock",
+            "bat"
+          ]
+        },
+        "cont3": {
+          "desc": "Bookshelf",
+          "display": "blank",
+          "cnt": [
+            "pistols",
+            "fitness"
+          ]
+        },
+        "cont4": {
+          "desc": "Closet",
+          "display": "blank",
+          "cnt": [
+            "longSleeveWhite",
+            "M1911",
+            "water"
+          ]
+        }
+      }
+    },
+    "f2": {
+      "r3": {
+        "name": "Apartment",
+        "lightReduction": 70,
+        "type": "anywhere",
+        "cont1": {
+          "desc": "Cupboard",
+          "display": "blank",
+          "cnt": [
+            "compoundBow"
+          ]
+        },
+        "cont2": {
+          "desc": "Bookshelf",
+          "display": "blank",
+          "cnt": [
+            "book"
+          ]
+        },
+        "cont3": {
+          "desc": "Bookshelf",
+          "display": "blank",
+          "cnt": [
+            "magazine"
+          ]
+        },
+        "cont4": {
+          "desc": "Closet",
+          "display": "blank",
+          "cnt": []
+        },
+        "NPCs": [
+          "Jonah",
+          "Darren",
+          "Alex"
+        ],
+        "NPC_x": [
+          "300",
+          "60",
+          "650"
+        ],
+        "NPCPose": [
+          "idle",
+          "sit",
+          "idle"
+        ],
+        "NPCFacing": [
+          "right",
+          "right",
+          "left"
+        ]
+      }
+    }
+  },
+  "b2": {
+    "name": "12 JEFFERSON AVE",
+    "f1": {
+      "r1": {
+        "name": "Wharehouse",
+        "lightReduction": 80,
+        "type": "anywhere",
+        "rand": "Trash",
+        "randRate": "light"
+      },
+      "r2": {
+        "name": "Wharehouse",
+        "lightReduction": 80,
+        "type": "anywhere",
+        "cont1": {
+          "desc": "Boxes",
+          "display": "blank",
+          "cnt": [
+            "vector"
+          ]
+        },
+        "cont2": {
+          "desc": "Boxes",
+          "display": "blank",
+          "cnt": [
+            "cannedCorn",
+            "cannedTomato"
+          ]
+        },
+        "cont3": {
+          "desc": "Boxes",
+          "display": "blank",
+          "cnt": [
+            "spam",
+            "crackers",
+            "sardines"
+          ]
+        },
+        "cont4": {
+          "desc": "Boxes",
+          "display": "blank",
+          "cnt": [
+            "searching",
+            "MP5"
+          ]
+        },
+        "cont5": {
+          "desc": "Boxes",
+          "display": "blank",
+          "cnt": [
+            "soupBeef",
+            "soupVegetable"
+          ]
+        },
+        "rand": "Trash",
+        "randRate": "light",
+        "NPCs": [
+          "Matt"
+        ],
+        "NPC_x": [
+          "950"
+        ],
+        "NPCPose": [
+          "sit"
+        ],
+        "NPCFacing": [
+          "left"
+        ]
+      }
+    }
+  },
+  "b3": {},
+  "b4": {},
+  "b5": {},
+  "b6": {}
+}

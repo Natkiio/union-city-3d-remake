@@ -1,0 +1,92 @@
+{
+  "strength": {
+    "title": "STRENGTH",
+    "desc": "Physical strength. How much damage you can do with melee weapons and how much you can carry. Also increases shove distance."
+  },
+  "endurance": {
+    "title": "ENDURANCE",
+    "desc": "Personal endurance. Determines your maximum health as well as how little food and sleep you need."
+  },
+  "precision": {
+    "title": "PRECISION",
+    "desc": "Your agility and deftness. How well you can handle most fire arms."
+  },
+  "intellect": {
+    "title": "INTELLECT",
+    "desc": "General intelligence. Helps with everything from first aid to smarts and security."
+  },
+  "luck": {
+    "title": "LUCK",
+    "desc": "You believe in luck, right? It helps with just about every task, even in getting a critical shot."
+  },
+  "blunt": {
+    "title": "BLUNT",
+    "desc": "Skill with blunt weapons such as bats, clubs and hammers. Determines damage with these weapons.",
+    "attr": "strength"
+  },
+  "blades": {
+    "title": "BLADES",
+    "desc": "Skill with bladed weapons such as knives, axes and chainsaws. Determines damage with these weapons.",
+    "attr": "strength"
+  },
+  "pistols": {
+    "title": "PISTOLS",
+    "desc": "Skill with handguns including semi-automatics and revolvers. Determines accuracy and damage with these weapons.",
+    "attr": "precision"
+  },
+  "longGuns": {
+    "title": "LONG GUNS",
+    "desc": "Skill with long barrelled weapons including rifles and shotguns. Determines accuracy and damage with these weapons.",
+    "attr": "precision"
+  },
+  "automatics": {
+    "title": "AUTOMATICS",
+    "desc": "Skill with automatics, assault rifles and sub machine guns. Determines accuracy and damage with these weapons.",
+    "attr": "precision"
+  },
+  "specialWeapons": {
+    "title": "SPECIAL WEAPONS",
+    "desc": "Skill with special weapons including launchers. Determines accuracy and damage with these weapons.",
+    "attr": "precision"
+  },
+  "sneak": {
+    "title": "SNEAK",
+    "desc": "Ability to move silently without being detected.",
+    "attr": "precision"
+  },
+  "smarts": {
+    "title": "SMARTS",
+    "desc": "General mental ability. Helps with trade, getting more benefit from books and earning extra XP.",
+    "attr": "intellect"
+  },
+  "security": {
+    "title": "SECURITY",
+    "desc": "Ability to get past security of all types including locked doors and digital security.",
+    "attr": "intellect"
+  },
+  "searching": {
+    "title": "SEARCHING",
+    "desc": "Ability to find additional items when searching. Reduces the amount of junk found.",
+    "attr": "intellect"
+  },
+  "speech": {
+    "title": "SPEECH",
+    "desc": "Ability to convince others to come around to your point of view.",
+    "attr": "intellect"
+  },
+  "firstAid": {
+    "title": "FIRST AID",
+    "desc": "Ability to treat wounds effectively and quickly. Increases benefit from health items.",
+    "attr": "intellect"
+  },
+  "survival": {
+    "title": "SURVIVAL",
+    "desc": "General endurance for withstanding a survival situation. Reduces requirements for food and increases damage resistance.",
+    "attr": "endurance"
+  },
+  "fitness": {
+    "title": "FITNESS",
+    "desc": "Physical fitness ability. Reduces the amount of stamina used when shoving, jumping and using melee weapons.",
+    "attr": "endurance"
+  }
+}
