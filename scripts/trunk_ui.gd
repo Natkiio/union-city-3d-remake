@@ -40,7 +40,7 @@ func _refresh() -> void:
 		var row := Button.new()
 		row.flat = true
 		row.alignment = HORIZONTAL_ALIGNMENT_LEFT
-		row.text = "[%d] %s  —  %.1f lbs" % [i + 1, item["name"], item["weight"]]
+		row.text = "[%d] %s  %s  —  %.1f lbs" % [i + 1, _label_for(item), _tag_text(item["name"]), item["weight"]]
 		_style_row(row)
 		row.pressed.connect(_take_single.bind(i))
 		items_list.add_child(row)
@@ -51,6 +51,17 @@ func _refresh() -> void:
 		items_list.add_child(empty_row)
 	total_weight_label.text = "Total weight: %.1f lbs" % total
 	take_all_button.disabled = current_trunk.items.is_empty()
+
+## Trunk entries can stack (e.g. a box of ammo), so show the count when it's more than one.
+func _label_for(item: Dictionary) -> String:
+	var count: int = item.get("count", 1)
+	if count > 1:
+		return "%s x%d" % [item["name"], count]
+	return item["name"]
+
+func _tag_text(item_name: String) -> String:
+	var tag := Inventory.tag_for(item_name)
+	return "[%s]" % tag if tag != "" else ""
 
 func _style_row(row: Button) -> void:
 	var normal := StyleBoxFlat.new()
@@ -84,7 +95,7 @@ func _take_all() -> void:
 		return
 	var taken: Array = current_trunk.take_all()
 	for item in taken:
-		Inventory.add_item(item["name"], item["weight"])
+		Inventory.add_item(item["name"], item["weight"], item.get("count", 1))
 	print("[Trunk] took %d items" % taken.size())
 	_refresh()
 
@@ -92,6 +103,6 @@ func _take_single(index: int) -> void:
 	if current_trunk == null or index < 0 or index >= current_trunk.items.size():
 		return
 	var item: Dictionary = current_trunk.take_item(index)
-	Inventory.add_item(item["name"], item["weight"])
+	Inventory.add_item(item["name"], item["weight"], item.get("count", 1))
 	print("[Trunk] took 1 item: %s" % item["name"])
 	_refresh()

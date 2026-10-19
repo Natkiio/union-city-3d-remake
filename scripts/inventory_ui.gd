@@ -65,7 +65,9 @@ func _refresh() -> void:
 			row.toggle_mode = true
 			row.button_group = button_group
 			row.alignment = HORIZONTAL_ALIGNMENT_LEFT
-			row.text = "%s  x%d  —  %.1f lbs" % [item_name, data["count"], data["weight"] * data["count"]]
+			var tag := Inventory.tag_for(item_name)
+			var tag_text := "  [%s]" % tag if tag != "" else ""
+			row.text = "%s  x%d%s  —  %.1f lbs" % [item_name, data["count"], tag_text, data["weight"] * data["count"]]
 			row.button_pressed = (item_name == selected_item)
 			_style_row(row)
 			row.pressed.connect(_on_row_pressed.bind(item_name))

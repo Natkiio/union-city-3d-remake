@@ -221,6 +221,19 @@ Positive mods add +2 rarity (rarer drops).
 
 **Shops** (`shopSet1..6`, `data/original/world/shopSet*.json`): up to 9 fixed items with a cost each; `discountCost = ceil(cost × (100 − smarts/2)/100)`, so Smarts 100 halves prices.
 
+### Magazines, reserve ammo and reloading (`fireWeapon`, `startReload`, `reloadWeapon`)
+
+- **Two ammo layers.** Each firearm has a loaded magazine, tracked per weapon instance (`inventory[ID].ammo`, up to `maxAmmo`). Reserve ammo is a shared pool per ammo type (`ammo9mm`, `ammo45`, ...). Reloading moves rounds from the pool into the magazine.
+- **One round per trigger pull.** `fireWeapon` decrements the magazine once per call. Pellets (`roundsPerShot`, e.g. shotgun 3) are extra projectiles from that one round.
+- **Full reload.** `reloadWeapon("full")` tops the magazine up from the pool in one go, or takes what is left if the pool is short.
+- **Pump action reload.** Shells go in one at a time (`reloadWeapon("shotgun")` per loop of `pumpAction_loop`). Pressing fire mid-reload raises the pump and interrupts the reload (`setupFireButton`).
+- **Auto-reload.** With `autoReload = true` (line 26033), firing an empty gun starts a reload if the pool is not empty. A click with an empty pool plays a dry-fire sound.
+- **Reload time.** The reload bar fills across `reloadTime` frames (`reloadBar_OFF`), so the reload lasts about `reloadTime / 30` seconds (**verify**: the arm animation may set the real length).
+- **Skill reload (not reproduced).** A keypress inside the target zone (sized from the weapon skill) sets `skillReloaded`, but both branches of the zone check in `skillReload_OFF` reset the bar the same way. Whether it gives any bonus is **(verify)**.
+- **Fire rate (not in the data).** A shot is triggered by the fire animation (`<weaponType>_fire`), so the cadence comes from the animation length, not `weapon.json`. Per-type intervals in the remake are placeholders (**verify**).
+- **Trigger mode.** Holding fire keeps `firing` true until release. `fireMode = "auto"` (venom only in the table) is the only explicit auto flag; the remake holds to fire only for auto and clicks otherwise (**verify**).
+- **Bursts.** `roundsPerBurst` gives rounds per pull for venom (3), M16A2 (3), FAL/hellSlinger (1). Each round in a burst spends one round of ammo (**verify**).
+
 ## 8. Zombie AI (`zombieAIRoutines`)
 
 Each zombie is a state machine: `idle` (risers/crawlers start here, lying down), `wander`, `chase`, `grab`, `attack`, `stumble`. Everything is 1-D along the street (x only), with a few px of y jitter.
@@ -294,5 +307,4 @@ Quests can also **unlock map sections** (`unlocks`) and change NPC states (`chan
 - Achievements (skipped on purpose; Armor Games hooks)
 - Rarity lists and exact container loot tables per room (data is in `world/l*.json`; the generation code is mostly §6)
 - Safehouse behaviour (`checkIfSafeHouse`, sleeping/waiting in `sleepWait`)
-- Ammo pools and magazine rules (`startReload`, `reloadWeapon`; reload timing bar and "skill reload")
 - Flashlight and stealth (`sneak` skill is not yet traced)
