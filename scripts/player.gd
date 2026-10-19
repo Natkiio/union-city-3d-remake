@@ -24,12 +24,24 @@ const MAX_AIM_PITCH_DEG: float = 80.0
 const GUARD_FOREARM_BEND_DEG: float = 110.0
 const PUNCH_DURATION: float = 0.3
 
+## Stagger pushes in world units (the spec's 30 + damage + strength + fitness/5
+## px needs stats we don't have yet). Shove always staggers, for 1 damage.
+const SHOVE_KNOCKBACK: float = 2.0
+const PUNCH_KNOCKBACK: float = 0.8
+const SHOVE_DAMAGE: float = 1.0
+## Horizontal reach in front of the player; the hand hitbox is too pose-dependent.
+const SHOVE_RANGE: float = 1.6
+const SHOVE_COOLDOWN_TIME: float = 0.6
+const HIT_STOP_FRAMES: int = 3
+
 ## Half-angle of the scatter for shotgun pellets (verify against the original).
 const PELLET_SPREAD_RAD: float = 0.12
 
 var health: float = MAX_HEALTH
 var is_dead: bool = false
 var attack_cooldown: float = 0.0
+var shove_cooldown: float = 0.0
+var _hit_stopping: bool = false
 ## Firearm state. Cleared whenever the equipped gun changes.
 var reloading: bool = false
 var reload_timer: float = 0.0
@@ -114,6 +126,9 @@ func _physics_process(delta: float) -> void:
 			anim_player.play(desired)
 
 	attack_cooldown = max(0.0, attack_cooldown - delta)
+	shove_cooldown = max(0.0, shove_cooldown - delta)
+	if Input.is_action_just_pressed("shove") and shove_cooldown <= 0.0:
+		_shove()
 	if Input.is_action_just_pressed("equip_fists"):
 		_set_equipped("fist")
 		print("[Player] equipped fists")
@@ -332,13 +347,44 @@ func _reserve(gun: Weapon) -> int:
 	return Inventory.items.get(gun.ammo_item_name(), {}).get("count", 0)
 
 
+## Short-range push with no weapon needed: 1 damage, always staggers.
+func _shove() -> void:
+	shove_cooldown = SHOVE_COOLDOWN_TIME
+	print("[Player] shoved")
+	var targets: Array[Node3D] = []
+	for node in get_parent().get_children():
+		var dx: float = node.global_position.x - global_position.x if node is Node3D else INF
+		if node != self and node.has_method("apply_stagger") and dx * facing_dir > 0.0 and absf(dx) <= SHOVE_RANGE:
+			targets.append(node)
+	_hit_targets(targets, SHOVE_DAMAGE, SHOVE_KNOCKBACK)
+
+
 func _apply_punch_damage() -> void:
 	var area := attack_area_r if punch_side == "R" else attack_area_l
-	for body in area.get_overlapping_bodies():
+	_hit_targets(area.get_overlapping_bodies(), ATTACK_DAMAGE, PUNCH_KNOCKBACK)
+
+
+func _hit_targets(bodies: Array, damage: float, knockback: float) -> void:
+	for body in bodies:
 		if body == self:
 			continue # the hitbox sits on our own hand; never hit ourselves
 		if body.has_method("take_damage"):
-			body.take_damage(ATTACK_DAMAGE)
+			body.take_damage(damage)
+			if body.has_method("apply_stagger") and is_instance_valid(body):
+				body.apply_stagger(sign(body.global_position.x - global_position.x), knockback)
+			_hit_stop()
+
+
+## Freezes the game for HIT_STOP_FRAMES rendered frames to sell the hit.
+func _hit_stop() -> void:
+	if _hit_stopping:
+		return
+	_hit_stopping = true
+	Engine.time_scale = 0.0
+	for i in HIT_STOP_FRAMES:
+		await get_tree().process_frame
+	Engine.time_scale = 1.0
+	_hit_stopping = false
 
 
 func take_damage(amount: float) -> void:
