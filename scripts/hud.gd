@@ -7,8 +7,8 @@ extends CanvasLayer
 @onready var weapon_label: Label = $WeaponLabel
 
 var player = null
-var shown_weapon: String = ""
-var shown_ammo: int = -1
+## Last drawn state: [weapon ref, loaded rounds, reserve rounds, reloading].
+var shown_state: Array = []
 
 func _ready() -> void:
 	Inventory.item_added.connect(_on_item_added)
@@ -21,14 +21,17 @@ func _process(_delta: float) -> void:
 	if player == null:
 		return
 	var weapon: String = player.equipped_weapon
-	var ammo: int = -1
+	var loaded := -1
+	var reserve := 0
+	var reloading: bool = player.reloading
 	var gun := Weapon.from_ref(weapon)
 	if gun != null:
-		ammo = Inventory.items.get(gun.ammo_item_name(), {}).get("count", 0)
-	if weapon == shown_weapon and ammo == shown_ammo:
+		loaded = Inventory.get_magazine(gun.display_name, gun.mag_size)
+		reserve = Inventory.items.get(gun.ammo_item_name(), {}).get("count", 0)
+	var state := [weapon, loaded, reserve, reloading]
+	if state == shown_state:
 		return
-	shown_weapon = weapon
-	shown_ammo = ammo
+	shown_state = state
 	_refresh_weapon()
 
 func _on_item_added(item_name: String) -> void:
@@ -44,10 +47,14 @@ func _refresh(last_item: String) -> void:
 	label.text = text
 
 func _refresh_weapon() -> void:
-	var gun := Weapon.from_ref(shown_weapon)
+	var gun := Weapon.from_ref(shown_state[0])
 	if gun != null:
-		weapon_label.text = "%s\nAmmo: %d" % [gun.display_name, shown_ammo]
-		if shown_ammo == 0:
+		var loaded: int = shown_state[1]
+		var reserve: int = shown_state[2]
+		var reloading: bool = shown_state[3]
+		var status := "  RELOADING" if reloading else ""
+		weapon_label.text = "%s\nAmmo: %d / %d%s" % [gun.display_name, loaded, reserve, status]
+		if loaded + reserve == 0:
 			weapon_label.add_theme_color_override("font_color", Color.RED)
 		else:
 			weapon_label.remove_theme_color_override("font_color")

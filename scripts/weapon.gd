@@ -91,6 +91,38 @@ static func ammo_name_for(type: String) -> String:
 func ammo_item_name() -> String:
 	return Weapon.ammo_name_for(ammo_type)
 
+## The original runs on 30 fps frames, and reloadTime is in those frames.
+const ORIGINAL_FPS: float = 30.0
+
+## Seconds to reload: the whole magazine, or one shell for pump actions.
+func reload_seconds() -> float:
+	return reload_time / ORIGINAL_FPS
+
+## Pump actions load one shell at a time and can be interrupted by firing.
+## Everything else reloads the whole magazine in one go.
+func reloads_per_round() -> bool:
+	return weapon_type == "pumpAction"
+
+## Seconds between shots. The original's cadence lives in its arm
+## animations, not in weapon.json, so these per-type values are our own
+## placeholders (verify against the running original).
+func fire_interval() -> float:
+	match weapon_type:
+		"pistolAutomatic":
+			return 0.3
+		"revolver":
+			return 0.5
+		"smg", "bullpup", "assaultRifle", "lmg", "chainsaw":
+			return 0.1
+		"assaultRifleSlow":
+			return 0.4
+		"pumpAction":
+			return 0.6
+		"boltAction", "bigRifle", "bow":
+			return 1.0
+		_:
+			return 0.5
+
 ## Refs in table order. Pass "firearm" or "melee" to filter, or "" for all 57.
 static func all_refs(weapon_class_filter: String = "") -> Array[String]:
 	var refs: Array[String] = []

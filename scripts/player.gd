@@ -24,11 +24,16 @@ const MAX_AIM_PITCH_DEG: float = 80.0
 const GUARD_FOREARM_BEND_DEG: float = 110.0
 const PUNCH_DURATION: float = 0.3
 
-const FIREARM_COOLDOWN_TIME: float = 0.3
+## Half-angle of the scatter for shotgun pellets (verify against the original).
+const PELLET_SPREAD_RAD: float = 0.12
 
 var health: float = MAX_HEALTH
 var is_dead: bool = false
 var attack_cooldown: float = 0.0
+## Firearm state. Cleared whenever the equipped gun changes.
+var reloading: bool = false
+var reload_timer: float = 0.0
+var burst_left: int = 0
 const ATTACK_COOLDOWN_TIME: float = 0.5
 
 var facing_dir: float = 1.0
@@ -110,19 +115,19 @@ func _physics_process(delta: float) -> void:
 
 	attack_cooldown = max(0.0, attack_cooldown - delta)
 	if Input.is_action_just_pressed("equip_fists"):
-		equipped_weapon = "fist"
+		_set_equipped("fist")
 		print("[Player] equipped fists")
 	if Input.is_action_just_pressed("equip_gun"):
 		var gun := _first_firearm_in_inventory()
 		if gun != null:
-			equipped_weapon = gun.ref
+			_set_equipped(gun.ref)
 			print("[Player] equipped %s" % gun.display_name)
 
-	if Input.is_action_just_pressed("attack") and attack_cooldown <= 0.0:
-		if equipped_weapon != "fist":
-			_fire_firearm(Weapon.from_ref(equipped_weapon))
-		else:
+	if equipped_weapon == "fist":
+		if Input.is_action_just_pressed("attack") and attack_cooldown <= 0.0:
 			_start_punch()
+	else:
+		_update_firearm(delta)
 
 
 func _process(delta: float) -> void:
@@ -221,6 +226,14 @@ func _aim_direction() -> Vector3:
 	return Vector3(cos(aim_pitch) * facing_dir, sin(aim_pitch), 0.0).normalized()
 
 
+## Switching weapons drops any reload or burst in progress.
+func _set_equipped(weapon_ref: String) -> void:
+	if weapon_ref != equipped_weapon:
+		reloading = false
+		burst_left = 0
+	equipped_weapon = weapon_ref
+
+
 ## First firearm found in Inventory, or null. Inventory keys firearms by
 ## their original display name, so each key is looked up in the weapon table.
 func _first_firearm_in_inventory() -> Weapon:
@@ -231,21 +244,92 @@ func _first_firearm_in_inventory() -> Weapon:
 	return null
 
 
-func _fire_firearm(weapon: Weapon) -> void:
-	var ammo := weapon.ammo_item_name()
-	if not Inventory.has_item(ammo):
-		print("[Player] out of %s" % ammo)
+## Firearm loop: reload key, trigger (hold for auto, click otherwise),
+## burst rounds, and the fire-rate cooldown. Rounds come from the loaded
+## magazine; reserve ammo is only touched by reloading.
+func _update_firearm(delta: float) -> void:
+	var gun := Weapon.from_ref(equipped_weapon)
+	if gun == null:
 		return
-	attack_cooldown = FIREARM_COOLDOWN_TIME
-	Inventory.remove_item(ammo, 1)
+	if Input.is_action_just_pressed("reload"):
+		_start_reload(gun)
+	if reloading:
+		_tick_reload(delta, gun)
 
-	var bullet := BulletScene.instantiate()
-	get_parent().add_child(bullet)
-	bullet.global_position = attack_area_r.global_position
-	bullet.setup(_aim_direction(), self, weapon.damage)
+	var pulled := Input.is_action_pressed("attack") if gun.fire_mode == "auto" else Input.is_action_just_pressed("attack")
+	if pulled and burst_left == 0 and attack_cooldown <= 0.0:
+		if reloading:
+			# Only a pump action can be interrupted, the way the original's pump
+			# raise works. Any other reload blocks the trigger.
+			if not (gun.reloads_per_round() and _loaded_rounds(gun) > 0):
+				return
+			reloading = false
+		if _loaded_rounds(gun) <= 0:
+			print("[Player] %s is empty" % gun.display_name)
+			_start_reload(gun)
+			return
+		burst_left = maxi(gun.burst_size, 1)
 
-	var ammo_left: int = Inventory.items.get(ammo, {}).get("count", 0)
-	print("[Player] fired %s toward %s, %s left: %d" % [weapon.display_name, bullet.direction, ammo, ammo_left])
+	if burst_left > 0 and attack_cooldown <= 0.0:
+		if _loaded_rounds(gun) <= 0:
+			burst_left = 0
+			return
+		_fire_round(gun)
+		burst_left -= 1
+
+
+func _fire_round(gun: Weapon) -> void:
+	var loaded := _loaded_rounds(gun) - 1
+	Inventory.set_magazine(gun.display_name, loaded)
+	attack_cooldown = gun.fire_interval()
+
+	var aim := _aim_direction()
+	for i in gun.rounds_per_shot:
+		var dir := aim
+		if gun.rounds_per_shot > 1:
+			# Pellets from one shell scatter; the shell is still one round.
+			dir = aim.rotated(Vector3.BACK, randf_range(-PELLET_SPREAD_RAD, PELLET_SPREAD_RAD))
+		var bullet := BulletScene.instantiate()
+		get_parent().add_child(bullet)
+		bullet.global_position = attack_area_r.global_position
+		bullet.setup(dir, self, gun.damage)
+	print("[Player] fired %s, %d/%d loaded, %d in reserve" % [gun.display_name, loaded, gun.mag_size, _reserve(gun)])
+
+
+func _start_reload(gun: Weapon) -> void:
+	if reloading or _loaded_rounds(gun) >= gun.mag_size or _reserve(gun) <= 0:
+		return
+	reloading = true
+	reload_timer = gun.reload_seconds()
+	burst_left = 0
+	print("[Player] reloading %s" % gun.display_name)
+
+
+## Full reloads finish in one go. Pump actions add one shell per reload
+## cycle until the magazine is full or the reserve runs out.
+func _tick_reload(delta: float, gun: Weapon) -> void:
+	reload_timer -= delta
+	if reload_timer > 0.0:
+		return
+	var room := gun.mag_size - _loaded_rounds(gun)
+	var take := mini(1 if gun.reloads_per_round() else room, mini(room, _reserve(gun)))
+	if take > 0:
+		Inventory.remove_item(gun.ammo_item_name(), take)
+		Inventory.set_magazine(gun.display_name, _loaded_rounds(gun) + take)
+	var done := take == 0 or not gun.reloads_per_round() or _loaded_rounds(gun) >= gun.mag_size or _reserve(gun) <= 0
+	if done:
+		reloading = false
+		print("[Player] reloaded %s, %d/%d loaded" % [gun.display_name, _loaded_rounds(gun), gun.mag_size])
+	else:
+		reload_timer = gun.reload_seconds()
+
+
+func _loaded_rounds(gun: Weapon) -> int:
+	return Inventory.get_magazine(gun.display_name, gun.mag_size)
+
+
+func _reserve(gun: Weapon) -> int:
+	return Inventory.items.get(gun.ammo_item_name(), {}).get("count", 0)
 
 
 func _apply_punch_damage() -> void:

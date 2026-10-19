@@ -14,6 +14,17 @@ const USE_EFFECTS := {
 
 var items: Dictionary = {}
 
+## Rounds loaded in each firearm, keyed by the firearm's item name. Reserve
+## ammo is the ammo item's count in items. A firearm with no entry yet is
+## treated as full by the player.
+var magazines: Dictionary = {}
+
+func get_magazine(item_name: String, default_rounds: int) -> int:
+	return magazines.get(item_name, default_rounds)
+
+func set_magazine(item_name: String, rounds: int) -> void:
+	magazines[item_name] = rounds
+
 func add_item(item_name: String, weight: float = 1.0, count: int = 1) -> void:
 	if items.has(item_name):
 		items[item_name]["count"] += count
