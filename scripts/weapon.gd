@@ -65,6 +65,32 @@ static func from_ref(weapon_ref: String) -> Weapon:
 		return null
 	return _from_dict(table[weapon_ref])
 
+## The Weapon whose display name matches, e.g. "G17 Pistol". Inventory keys
+## weapons by this name, so this is how an inventory entry maps back to data.
+static func find_by_name(display: String) -> Weapon:
+	var table := _load_table()
+	for key in table:
+		if table[key].get("name", "") == display:
+			return _from_dict(table[key])
+	return null
+
+## Inventory name for this weapon's ammo, following the original's
+## naming ("9mm Ammo", ".45 Ammo", "5.56 Ammo"). Ammo types the original
+## names differently fall back to "<type> Ammo" (verify).
+static func ammo_name_for(type: String) -> String:
+	match type:
+		"9mm":
+			return "9mm Ammo"
+		"45":
+			return ".45 Ammo"
+		"556":
+			return "5.56 Ammo"
+		_:
+			return "%s Ammo" % type
+
+func ammo_item_name() -> String:
+	return Weapon.ammo_name_for(ammo_type)
+
 ## Refs in table order. Pass "firearm" or "melee" to filter, or "" for all 57.
 static func all_refs(weapon_class_filter: String = "") -> Array[String]:
 	var refs: Array[String] = []

@@ -24,7 +24,7 @@ const MAX_AIM_PITCH_DEG: float = 80.0
 const GUARD_FOREARM_BEND_DEG: float = 110.0
 const PUNCH_DURATION: float = 0.3
 
-const PISTOL_COOLDOWN_TIME: float = 0.3
+const FIREARM_COOLDOWN_TIME: float = 0.3
 
 var health: float = MAX_HEALTH
 var is_dead: bool = false
@@ -39,8 +39,9 @@ var is_punching: bool = false
 var punch_timer: float = 0.0
 var punch_did_hit: bool = false
 
-## "fist" (default boxing guard) or "pistol". Switches with equip_fists
-## / equip_pistol; pistol only equippable once the item is in Inventory.
+## "fist" (default boxing guard) or the Weapon ref of an equipped firearm,
+## e.g. "glock". Switches with equip_fists / equip_gun; a firearm is only
+## equippable once one is in Inventory.
 var equipped_weapon: String = "fist"
 const BulletScene := preload("res://scenes/weapons/bullet.tscn")
 
@@ -111,13 +112,15 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("equip_fists"):
 		equipped_weapon = "fist"
 		print("[Player] equipped fists")
-	if Input.is_action_just_pressed("equip_pistol") and Inventory.has_item("Pistol"):
-		equipped_weapon = "pistol"
-		print("[Player] equipped pistol")
+	if Input.is_action_just_pressed("equip_gun"):
+		var gun := _first_firearm_in_inventory()
+		if gun != null:
+			equipped_weapon = gun.ref
+			print("[Player] equipped %s" % gun.display_name)
 
 	if Input.is_action_just_pressed("attack") and attack_cooldown <= 0.0:
-		if equipped_weapon == "pistol":
-			_fire_pistol()
+		if equipped_weapon != "fist":
+			_fire_firearm(Weapon.from_ref(equipped_weapon))
 		else:
 			_start_punch()
 
@@ -148,7 +151,7 @@ func _process(delta: float) -> void:
 	var right_bend := GUARD_FOREARM_BEND_DEG
 	var left_bend := GUARD_FOREARM_BEND_DEG
 
-	if equipped_weapon == "pistol":
+	if equipped_weapon != "fist":
 		# Arm held straight out toward the aim point, not tucked into
 		# a guard -- this is what makes it visibly "aim with the gun".
 		right_bend = 0.0
@@ -218,20 +221,31 @@ func _aim_direction() -> Vector3:
 	return Vector3(cos(aim_pitch) * facing_dir, sin(aim_pitch), 0.0).normalized()
 
 
-func _fire_pistol() -> void:
-	if not Inventory.has_item("Pistol Ammo"):
-		print("[Player] out of ammo")
+## First firearm found in Inventory, or null. Inventory keys firearms by
+## their original display name, so each key is looked up in the weapon table.
+func _first_firearm_in_inventory() -> Weapon:
+	for item_name in Inventory.items:
+		var weapon := Weapon.find_by_name(item_name)
+		if weapon != null and weapon.is_firearm():
+			return weapon
+	return null
+
+
+func _fire_firearm(weapon: Weapon) -> void:
+	var ammo := weapon.ammo_item_name()
+	if not Inventory.has_item(ammo):
+		print("[Player] out of %s" % ammo)
 		return
-	attack_cooldown = PISTOL_COOLDOWN_TIME
-	Inventory.remove_item("Pistol Ammo", 1)
+	attack_cooldown = FIREARM_COOLDOWN_TIME
+	Inventory.remove_item(ammo, 1)
 
 	var bullet := BulletScene.instantiate()
 	get_parent().add_child(bullet)
 	bullet.global_position = attack_area_r.global_position
-	bullet.setup(_aim_direction(), self)
+	bullet.setup(_aim_direction(), self, weapon.damage)
 
-	var ammo_left: int = Inventory.items.get("Pistol Ammo", {}).get("count", 0)
-	print("[Player] fired pistol toward %s, ammo left: %d" % [bullet.direction, ammo_left])
+	var ammo_left: int = Inventory.items.get(ammo, {}).get("count", 0)
+	print("[Player] fired %s toward %s, %s left: %d" % [weapon.display_name, bullet.direction, ammo, ammo_left])
 
 
 func _apply_punch_damage() -> void:

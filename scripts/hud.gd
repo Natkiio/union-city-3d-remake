@@ -1,7 +1,7 @@
 extends CanvasLayer
 ## Tiny HUD: inventory count, weight, and last picked up item.
 ## Press "toggle_inventory" (I) for the full inventory screen.
-## Bottom-right: equipped weapon, plus pistol ammo when the pistol is out.
+## Bottom-right: equipped weapon, plus the ammo that weapon uses.
 
 @onready var label: Label = $Label
 @onready var weapon_label: Label = $WeaponLabel
@@ -22,8 +22,9 @@ func _process(_delta: float) -> void:
 		return
 	var weapon: String = player.equipped_weapon
 	var ammo: int = -1
-	if weapon == "pistol":
-		ammo = Inventory.items.get("Pistol Ammo", {}).get("count", 0)
+	var gun := Weapon.from_ref(weapon)
+	if gun != null:
+		ammo = Inventory.items.get(gun.ammo_item_name(), {}).get("count", 0)
 	if weapon == shown_weapon and ammo == shown_ammo:
 		return
 	shown_weapon = weapon
@@ -43,8 +44,9 @@ func _refresh(last_item: String) -> void:
 	label.text = text
 
 func _refresh_weapon() -> void:
-	if shown_weapon == "pistol":
-		weapon_label.text = "Pistol\nAmmo: %d" % shown_ammo
+	var gun := Weapon.from_ref(shown_weapon)
+	if gun != null:
+		weapon_label.text = "%s\nAmmo: %d" % [gun.display_name, shown_ammo]
 		if shown_ammo == 0:
 			weapon_label.add_theme_color_override("font_color", Color.RED)
 		else:

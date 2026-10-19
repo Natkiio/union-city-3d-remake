@@ -12,13 +12,6 @@ const USE_EFFECTS := {
 	"Bandages": {"type": "heal", "amount": 15.0},
 }
 
-## Short category tags shown next to item names in the trunk and
-## inventory menus. Items not listed here have no tag.
-const ITEM_TAGS := {
-	"Pistol": "WEAPON",
-	"Pistol Ammo": "AMMO",
-}
-
 var items: Dictionary = {}
 
 func add_item(item_name: String, weight: float = 1.0, count: int = 1) -> void:
@@ -43,8 +36,15 @@ func remove_item(item_name: String, count: int = 1) -> void:
 func has_item(item_name: String) -> bool:
 	return items.has(item_name)
 
+## Short category tag shown next to an item name in the trunk and inventory
+## menus: WEAPON for firearms, AMMO for ammo, "" for everything else.
 func tag_for(item_name: String) -> String:
-	return ITEM_TAGS.get(item_name, "")
+	var weapon := Weapon.find_by_name(item_name)
+	if weapon != null and weapon.is_firearm():
+		return "WEAPON"
+	if item_name.ends_with(" Ammo"):
+		return "AMMO"
+	return ""
 
 func is_usable(item_name: String) -> bool:
 	return USE_EFFECTS.has(item_name)
