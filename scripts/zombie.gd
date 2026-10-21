@@ -33,9 +33,24 @@ var windup_timer: float = -1.0
 var flash_timer: float = 0.0
 
 @onready var bite_area: Area3D = $BiteArea
-@onready var mesh: MeshInstance3D = $MeshInstance3D
+@onready var model: Node3D = $Model
+@onready var mesh: MeshInstance3D = _find_by_class(model, "MeshInstance3D")
+@onready var anim_player: AnimationPlayer = model.find_child("AnimationPlayer", true, false)
 
 var _flash_material := StandardMaterial3D.new()
+
+## Recursively find the first descendant of `root` whose Godot class
+## matches `class_name_str` (used instead of find_child-by-name since
+## imported glTF meshes keep their Blender object names, e.g.
+## "ZombieBasic_Mesh", not a generic "MeshInstance3D").
+static func _find_by_class(root: Node, class_name_str: String) -> Node:
+	for child in root.get_children():
+		if child.get_class() == class_name_str:
+			return child
+		var found := _find_by_class(child, class_name_str)
+		if found != null:
+			return found
+	return null
 
 func _ready() -> void:
 	type = ZombieType.from_ref(type_ref)
@@ -47,6 +62,11 @@ func _ready() -> void:
 	_flash_material.albedo_color = Color.WHITE
 	_flash_material.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
 	player = get_tree().get_first_node_in_group("player")
+	if anim_player:
+		for anim_name in ["Idle", "Walk"]:
+			if anim_player.has_animation(anim_name):
+				anim_player.get_animation(anim_name).loop_mode = Animation.LOOP_PINGPONG
+		anim_player.play("Idle")
 
 func _physics_process(delta: float) -> void:
 	if health <= 0.0:
@@ -70,6 +90,17 @@ func _physics_process(delta: float) -> void:
 	if not is_on_floor():
 		velocity.y -= 20.0 * delta
 	move_and_slide()
+
+	# Same left/right facing convention as the player: -PI/2 points the
+	# model's front toward world +X, +PI/2 toward world -X (confirmed
+	# empirically for this rig/export pipeline via test_facing.gd at
+	# the time, and reused here since it's the same build conventions).
+	if abs(velocity.x) > 0.01:
+		model.rotation.y = -PI / 2.0 if velocity.x > 0.0 else PI / 2.0
+	if anim_player:
+		var desired := "Walk" if abs(velocity.x) > 0.01 else "Idle"
+		if anim_player.current_animation != desired:
+			anim_player.play(desired)
 
 	bite_cooldown = max(0.0, bite_cooldown - delta)
 	if stagger_timer > 0.0:
