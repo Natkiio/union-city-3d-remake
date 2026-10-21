@@ -1,4 +1,4 @@
-[gd_scene load_steps=2 format=3 uid="uid://c7p2k9x4zombiebasicchar"]
+[gd_scene format=3 uid="uid://lw6hxqgwmgjt"]
 
 [ext_resource type="PackedScene" uid="uid://d00qnhvbd0h8l" path="res://assets/characters/zombie_basic.glb" id="1"]
 
