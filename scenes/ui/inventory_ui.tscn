@@ -58,11 +58,15 @@ offset_bottom = 288.0
 visible = false
 
 [node name="UseButton" type="Button" parent="Panel/ActionRow"]
-custom_minimum_size = Vector2(220, 30)
+custom_minimum_size = Vector2(150, 30)
 text = "[Use]"
 
+[node name="EquipButton" type="Button" parent="Panel/ActionRow"]
+custom_minimum_size = Vector2(150, 30)
+text = "[Equip]"
+
 [node name="DropButton" type="Button" parent="Panel/ActionRow"]
-custom_minimum_size = Vector2(220, 30)
+custom_minimum_size = Vector2(150, 30)
 text = "[Drop]"
 
 [node name="TotalWeightLabel" type="Label" parent="Panel"]

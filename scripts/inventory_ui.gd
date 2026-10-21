@@ -9,6 +9,7 @@ extends CanvasLayer
 @onready var total_weight_label: Label = $Panel/TotalWeightLabel
 @onready var action_row: HBoxContainer = $Panel/ActionRow
 @onready var use_button: Button = $Panel/ActionRow/UseButton
+@onready var equip_button: Button = $Panel/ActionRow/EquipButton
 @onready var drop_button: Button = $Panel/ActionRow/DropButton
 
 var selected_item: String = ""
@@ -18,6 +19,7 @@ func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	visible = false
 	use_button.pressed.connect(_on_use_pressed)
+	equip_button.pressed.connect(_on_equip_pressed)
 	drop_button.pressed.connect(_on_drop_pressed)
 	Inventory.inventory_changed.connect(_on_inventory_changed)
 
@@ -58,6 +60,7 @@ func _refresh() -> void:
 		empty_row.text = "(empty)"
 		items_list.add_child(empty_row)
 	else:
+		var player := get_tree().get_first_node_in_group("player")
 		for item_name in Inventory.items.keys():
 			var data: Dictionary = Inventory.items[item_name]
 			var row := Button.new()
@@ -67,6 +70,8 @@ func _refresh() -> void:
 			row.alignment = HORIZONTAL_ALIGNMENT_LEFT
 			var tag := Inventory.tag_for(item_name)
 			var tag_text := "  [%s]" % tag if tag != "" else ""
+			if tag == "WEAPON" and _is_equipped(player, item_name):
+				tag_text += "  (equipped)"
 			row.text = "%s  x%d%s  —  %.1f lbs" % [item_name, data["count"], tag_text, data["weight"] * data["count"]]
 			row.button_pressed = (item_name == selected_item)
 			_style_row(row)
@@ -80,6 +85,26 @@ func _refresh() -> void:
 		use_button.text = "[Use] %s" % selected_item
 		use_button.disabled = not Inventory.is_usable(selected_item)
 		drop_button.text = "[Drop] %s" % selected_item
+
+		var selected_weapon := Weapon.find_by_name(selected_item)
+		var is_weapon: bool = selected_weapon != null and selected_weapon.is_firearm()
+		equip_button.visible = is_weapon
+		if is_weapon:
+			var player := get_tree().get_first_node_in_group("player")
+			if _is_equipped(player, selected_item):
+				equip_button.text = "[Unequip] %s" % selected_item
+			else:
+				equip_button.text = "[Equip] %s" % selected_item
+	else:
+		equip_button.visible = false
+
+
+## True if `item_name` is the weapon the player currently has equipped.
+func _is_equipped(player: Node, item_name: String) -> bool:
+	if player == null or not ("equipped_weapon" in player) or player.equipped_weapon == "fist":
+		return false
+	var weapon := Weapon.find_by_name(item_name)
+	return weapon != null and weapon.ref == player.equipped_weapon
 
 func _style_row(row: Button) -> void:
 	var normal := StyleBoxFlat.new()
@@ -113,6 +138,23 @@ func _on_use_pressed() -> void:
 		player.heal(effect.get("amount", 0.0))
 	Inventory.remove_item(selected_item, 1)
 	print("[Inventory] used 1 %s" % selected_item)
+
+func _on_equip_pressed() -> void:
+	if selected_item == "" or not Inventory.has_item(selected_item):
+		return
+	var player := get_tree().get_first_node_in_group("player")
+	if player == null or not player.has_method("_set_equipped"):
+		return
+	if _is_equipped(player, selected_item):
+		player._set_equipped("fist")
+		print("[Inventory] unequipped %s" % selected_item)
+	else:
+		var weapon := Weapon.find_by_name(selected_item)
+		if weapon == null:
+			return
+		player._set_equipped(weapon.ref)
+		print("[Inventory] equipped %s" % selected_item)
+	_refresh()
 
 func _on_drop_pressed() -> void:
 	if selected_item == "" or not Inventory.has_item(selected_item):
