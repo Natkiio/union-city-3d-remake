@@ -17,6 +17,7 @@ const MANUAL_SLOTS := 3
 const LOAD_ORDER: Array[String] = [
 	"Stats", "Clock", "Survival", "Inventory", "LootState", "Quests", "Director", "World",
 ]
+const LAST_LOADED := "World"
 ## Minimum real seconds between event-driven autosaves.
 const AUTOSAVE_MIN_INTERVAL := 5.0
 
@@ -298,17 +299,22 @@ func apply(data: Dictionary) -> void:
 	_loading = false
 
 
+## LOAD_ORDER first, then unlisted systems alphabetically, and World always
+## last (it rebuilds the room from everything else, e.g. Companions).
 func _ordered_names(names: Array) -> Array:
 	var out: Array = []
 	for n in LOAD_ORDER:
-		if names.has(n):
+		if names.has(n) and n != LAST_LOADED:
 			out.append(n)
 	var rest: Array = []
 	for n in names:
-		if not LOAD_ORDER.has(n):
+		if not LOAD_ORDER.has(n) and n != LAST_LOADED:
 			rest.append(n)
 	rest.sort()
-	return out + rest
+	out += rest
+	if names.has(LAST_LOADED):
+		out.append(LAST_LOADED)
+	return out
 
 
 func _read_text(path: String) -> String:

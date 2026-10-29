@@ -31,6 +31,9 @@ func run() -> void:
 	await test_settings()
 	await test_player_provider()
 	await test_quick_keys()
+	await test_off_npc()
+	test_load_order()
+	await test_continue_button()
 	await test_menu_reset()
 
 
@@ -346,3 +349,54 @@ func test_menu_reset() -> void:
 	check("quit to menu frees run overlays", not is_instance_valid(box))
 	check("quit to menu goes to the menu scene", changed == [GameFlow.MENU_SCENE])
 	GameFlow.scene_changer = Callable()
+
+
+func test_off_npc() -> void:
+	var q := autoload("Quests")
+	world.enter_room("l11_s3_b0_f0_r1")
+	await frames(2)
+	var barry := _npc("newBarry")
+	check("an NPC whose state is off is placed but hidden", barry != null and not barry.visible)
+	q.set_npc_on("newBarry", true)
+	await frames(1)
+	check("turnOnNPC shows it", barry.visible)
+	q.set_npc_on("newBarry", false)
+
+
+func test_load_order() -> void:
+	var order: Array = autoload("SaveGame")._ordered_names(["World", "Companions", "Stats", "Quests", "Zeta"])
+	check("World loads last, after unlisted systems", order.back() == "World" and order.front() == "Stats", str(order))
+
+
+## Continue on the title screen: slot list -> SaveGame.load_slot -> the run
+## scene opens with the saved room and player.
+func test_continue_button() -> void:
+	var sg := autoload("SaveGame")
+	world.enter_room("l16_s3_b2_f1_r1", "x:300")
+	await frames(2)
+	sg.save_slot(3)
+	var changed: Array = []
+	GameFlow.scene_changer = func(p: String): changed.append(p)
+	var menu: Control = load("res://scenes/ui/main_menu.tscn").instantiate()
+	root.add_child(menu)
+	await frames(2)
+	check("Continue is enabled with a save", not menu.continue_button.disabled)
+	world.enter_room("l16_s1_b0_f0_r1")
+	scn.queue_free()
+	await frames(2)
+	menu.continue_button.pressed.emit()
+	await frames(2)
+	var slots: SlotList = menu.overlay
+	check("the slot list shows the autosave row and slot 3", slots.body.get_node_or_null("Slot0") != null
+			and not slots.body.get_node("Slot3").disabled)
+	slots.body.get_node("Slot3").pressed.emit()
+	await frames(2)
+	check("Continue loads the slot and opens the run scene", changed == [GameFlow.RUN_SCENE] and world.room_id == "l16_s3_b2_f1_r1",
+			"%s %s" % [changed, world.room_id])
+	menu.queue_free()
+	scn = await load_scene("res://scenes/main.tscn")
+	await frames(3)
+	player = scn.get_player()
+	check("the run scene puts the player where the save was", absf(player.global_position.x - 3.0) < 0.05, str(player.global_position.x))
+	GameFlow.scene_changer = Callable()
+	sg.delete_slot(3)

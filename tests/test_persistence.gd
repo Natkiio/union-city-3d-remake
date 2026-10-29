@@ -147,7 +147,7 @@ func run() -> void:
 
 	# --- load order ---
 	var order: Array = sg._ordered_names(["World", "Zed", "Stats", "Director", "Aaa", "Clock"])
-	check("load order", order == ["Stats", "Clock", "Director", "World", "Aaa", "Zed"], str(order))
+	check("load order: listed, then unlisted, World always last", order == ["Stats", "Clock", "Director", "Aaa", "Zed", "World"], str(order))
 	check("World last of listed", sg.LOAD_ORDER[-1] == "World" and sg.LOAD_ORDER[0] == "Stats")
 
 	# --- missing and unknown systems ---
