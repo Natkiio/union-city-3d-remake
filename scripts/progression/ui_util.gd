@@ -33,6 +33,16 @@ static func backdrop(root: Control) -> VBoxContainer:
 	return box
 
 
+## Wraps a long panel so it scrolls instead of running off the screen.
+static func scrolled(content: Control) -> ScrollContainer:
+	var sc := ScrollContainer.new()
+	sc.size_flags_vertical = Control.SIZE_EXPAND_FILL
+	sc.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
+	content.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	sc.add_child(content)
+	return sc
+
+
 static func clear(node: Node) -> void:
 	for c in node.get_children():
 		node.remove_child(c)
