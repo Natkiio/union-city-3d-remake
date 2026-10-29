@@ -1,14 +1,18 @@
 extends CanvasLayer
-## Trunk inventory menu: pauses the game, lists the trunk's items.
+## Container panel (car trunk, bins, lockers, ...): pauses the game, lists the
+## container's items. The container is any node with `items` (Array of
+## {name, weight per unit, count}), take_item(i), take_all() and optionally
+## `title` and suppress_interact().
 ## Each item row is clickable (takes that one item). [Take All] and
 ## [Exit] are also clickable buttons. Keyboard still works:
 ## [1-9] takes a numbered item, [A] takes everything, [E] exits.
 
 var current_trunk: Node = null
 
-@onready var items_list: VBoxContainer = $TrunkPanel/ItemsList
+@onready var items_list: VBoxContainer = $TrunkPanel/Scroll/ItemsList
 @onready var total_weight_label: Label = $TrunkPanel/TotalWeightLabel
 @onready var take_all_button: Button = $TrunkPanel/ActionRow/TakeAllButton
+@onready var title_label: Label = $TrunkPanel/Title
 @onready var exit_button: Button = $TrunkPanel/ActionRow/ExitButton
 
 func _ready() -> void:
@@ -18,6 +22,7 @@ func _ready() -> void:
 
 func open(trunk: Node) -> void:
 	current_trunk = trunk
+	title_label.text = str(trunk.get("title") if trunk.get("title") != null else "TRUNK").to_upper()
 	_refresh()
 	visible = true
 	get_tree().paused = true
@@ -35,22 +40,35 @@ func _refresh() -> void:
 	for child in items_list.get_children():
 		child.queue_free()
 	var total := 0.0
+	var carried := Inventory.total_weight()
+	var limit := Inventory.carry_limit()
+	var running := carried
 	for i in range(current_trunk.items.size()):
 		var item: Dictionary = current_trunk.items[i]
 		var row := Button.new()
 		row.flat = true
 		row.alignment = HORIZONTAL_ALIGNMENT_LEFT
-		row.text = "[%d] %s  %s  —  %.1f lbs" % [i + 1, _label_for(item), _tag_text(item["name"]), item["weight"]]
+		var line_weight := _line_weight(item)
+		running += line_weight
+		var over := " (over limit)" if running > limit else ""
+		var lucky := " *" if item.get("lucky", false) else ""
+		row.text = "[%d] %s%s  %s  —  %.1f lbs%s" % [i + 1, _label_for(item), lucky, _tag_text(item), line_weight, over]
 		_style_row(row)
 		row.pressed.connect(_take_single.bind(i))
 		items_list.add_child(row)
-		total += item["weight"]
+		total += line_weight
 	if current_trunk.items.is_empty():
 		var empty_row := Label.new()
 		empty_row.text = "(empty)"
 		items_list.add_child(empty_row)
-	total_weight_label.text = "Total weight: %.1f lbs" % total
+	total_weight_label.text = "Here: %.1f lbs   Carrying: %.1f / %.0f lbs" % [total, carried, limit]
+	var after := carried + total
+	total_weight_label.add_theme_color_override("font_color",
+		Color(0.8, 0.1, 0.1) if (carried > limit or after > limit) else Color(0.5, 0.12, 0.1))
 	take_all_button.disabled = current_trunk.items.is_empty()
+
+func _line_weight(item: Dictionary) -> float:
+	return float(item.get("weight", 0.0)) * int(item.get("count", 1))
 
 ## Trunk entries can stack (e.g. a box of ammo), so show the count when it's more than one.
 func _label_for(item: Dictionary) -> String:
@@ -59,8 +77,10 @@ func _label_for(item: Dictionary) -> String:
 		return "%s x%d" % [item["name"], count]
 	return item["name"]
 
-func _tag_text(item_name: String) -> String:
-	var tag := Inventory.tag_for(item_name)
+func _tag_text(item: Dictionary) -> String:
+	var tag := Inventory.tag_for(item["name"])
+	if tag == "" and item.get("kind", "") == "cash":
+		tag = "CASH"
 	return "[%s]" % tag if tag != "" else ""
 
 func _style_row(row: Button) -> void:
