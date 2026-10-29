@@ -100,8 +100,8 @@ func from_dict(d: Dictionary) -> void:
 
 ## Opens the run scene if it is not already showing (after a load from a menu).
 func resume() -> void:
-	if _run == null and room_id != "":
-		get_tree().change_scene_to_file(RUN_SCENE)
+	if not has_run_scene() and room_id != "" and is_inside_tree():
+		_open_run_scene()
 
 
 # --- run scene --------------------------------------------------------------
@@ -151,10 +151,26 @@ func player_x_px() -> float:
 func start_new_game() -> void:
 	reset()
 	_set_location(WorldData.start_room(START_SECTION), "")
+	# The story starts with the run (trig1: quest 900 and the opening cutscene).
+	var q := get_node_or_null("/root/Quests")
+	if q != null and q.has_method("begin_story"):
+		q.begin_story()
+	Events.run_started.emit()
 	if has_run_scene():
 		_build()
 	elif is_inside_tree():
-		get_tree().change_scene_to_file.call_deferred(RUN_SCENE)
+		_open_run_scene()
+
+
+## After SaveGame.load_slot from a menu: opens the run scene, which builds
+## the restored room. In the run scene already, World.from_dict rebuilt it.
+func enter_loaded_game() -> void:
+	resume()
+
+
+func _open_run_scene() -> void:
+	# Through GameFlow so tests can intercept the scene change.
+	GameFlow.change_scene.call_deferred(get_tree(), RUN_SCENE)
 
 
 ## Enters a section at its start (or, with at_end, its endLoc when it has one).
@@ -187,7 +203,8 @@ func enter_room(room_path: String, spawn_at: String = "") -> bool:
 ## Map travel (sec. 12): only to an unlocked section that is on the map; costs
 ## round(manhattan map distance / 200) hours, which Clock turns into hunger
 ## and sleep. Returns false when the trip is not allowed.
-func travel_to(section_id: String) -> bool:
+## With at_end the trip ends at the section's endLoc (when it has one).
+func travel_to(section_id: String, at_end: bool = false) -> bool:
 	var sec := WorldData.norm_section(section_id)
 	if not WorldData.is_travelable(sec) or not is_section_unlocked(sec):
 		return false
@@ -195,7 +212,7 @@ func travel_to(section_id: String) -> bool:
 	var hours := WorldData.travel_hours(from, sec)
 	if hours > 0:
 		Clock.advance(hours * 60)
-	return enter_location(sec)
+	return enter_location(sec, at_end)
 
 
 func travel_hours_to(section_id: String) -> int:
@@ -224,6 +241,7 @@ func map_nodes() -> Array:
 			"connections": WorldData.connections(sec),
 			"desc": str(Data.entry("sections", sec).get("desc", "")),
 			"current": sec == str(current.get("section", "")),
+			"has_end": WorldData.end_room(sec) != "",
 		})
 	return out
 
@@ -237,7 +255,12 @@ func is_safehouse() -> bool:
 func is_door_locked(link: Dictionary) -> bool:
 	if not link.get("locked", false):
 		return false
-	return bool(door_locks.get(link.get("door_id", ""), true))
+	var door_id: String = link.get("door_id", "")
+	# Quests open doors too (unlocksDoor); their state is saved with Quests.
+	var q := get_node_or_null("/root/Quests")
+	if q != null and q.has_method("is_door_unlocked") and q.is_door_unlocked(door_id):
+		return false
+	return bool(door_locks.get(door_id, true))
 
 
 func unlock_door(door_id: String) -> void:
@@ -257,6 +280,9 @@ func use_link(link: Dictionary) -> void:
 	var kind: String = link.get("kind", "")
 	if kind == "bed":
 		bed_used.emit()
+		return
+	if kind == "shop":
+		open_shop(int(link.get("shop_set", 1)))
 		return
 	if is_door_locked(link) and not _try_unlock(link):
 		return
@@ -298,13 +324,20 @@ func _try_unlock(link: Dictionary) -> bool:
 	var locks: Variant = _locks()
 	if locks != null:
 		# Result: 0 opened, 1 minigame started (the callback unlocks later), 2 denied.
+		# After a picked lock (the minigame answers later) the player walks on
+		# through; an immediate answer is handled by the caller.
+		var answered_now := [true]
 		var on_done := func(ok: bool) -> void:
 			if ok:
 				unlock_door(door_id)
+				if not answered_now[0]:
+					use_link(link)
 			else:
-				door_refused.emit(door_id, "needs key" if def.needs_key else "locked")
+				var why: String = str(locks.get("last_denied_reason")) if "last_denied_reason" in locks else ""
+				door_refused.emit(door_id, "needs key" if def.needs_key else (why.to_lower() if why != "" else "locked"))
 				_sfx("dry_click")
 		var result: int = locks.call("try_open", def, self, on_done)
+		answered_now[0] = false
 		return result == 0
 	if link.get("needs_key", false):
 		door_refused.emit(door_id, "needs key")
@@ -341,6 +374,19 @@ func _locks() -> Variant:
 	return null
 
 
+## Opens the shop screen for a shopSet (scenes/ui/shop.tscn, owned by loot).
+## The screen pauses the game and is freed when it closes.
+func open_shop(shop_set: int) -> Node:
+	var scn: PackedScene = load("res://scenes/ui/shop.tscn")
+	var ui: Node = scn.instantiate()
+	get_tree().root.add_child(ui)
+	ui.visibility_changed.connect(func():
+		if not ui.visible:
+			ui.queue_free())
+	ui.open(shop_set)
+	return ui
+
+
 func _open_map() -> void:
 	if not map_requested.get_connections().is_empty():
 		map_requested.emit()
@@ -348,7 +394,7 @@ func _open_map() -> void:
 	# No map screen yet (ui workstream): go to the first open neighbour.
 	for sec in WorldData.connections(current.get("section", START_SECTION)):
 		if WorldData.is_travelable(sec) and is_section_unlocked(sec):
-			print("[World] no map screen; travelling to section %s" % sec)
+			DebugLog.say("World", "no map screen; travelling to section %s" % sec)
 			_transition(func(): travel_to(sec))
 			return
 

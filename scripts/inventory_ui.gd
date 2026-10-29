@@ -152,9 +152,9 @@ func _on_use_pressed() -> void:
 	if selected_item == "" or not Inventory.has_item(selected_item):
 		return
 	if Inventory.use_item(selected_item):
-		print("[Inventory] used 1 %s" % selected_item)
+		DebugLog.say("Inventory", "used 1 %s" % selected_item)
 	else:
-		print("[Inventory] %s cannot be used now" % selected_item)
+		DebugLog.say("Inventory", "%s cannot be used now" % selected_item)
 
 ## Sets or clears a weapon slot for the selected item. Setting the primary
 ## also takes it in hand; setting the secondary only readies it (key 3).
@@ -168,12 +168,12 @@ func _on_slot_pressed(slot: String) -> void:
 		Inventory.clear_slot(slot)
 		if _is_equipped(player, selected_item):
 			player._set_equipped("fist")
-		print("[Inventory] cleared %s slot" % slot)
+		DebugLog.say("Inventory", "cleared %s slot" % slot)
 	else:
 		Inventory.assign_slot(slot, selected_item)
 		if slot == "primary":
 			player.equip_slot("primary")
-		print("[Inventory] %s -> %s slot" % [selected_item, slot])
+		DebugLog.say("Inventory", "%s -> %s slot" % [selected_item, slot])
 	_refresh()
 
 func _on_drop_pressed() -> void:
@@ -185,4 +185,4 @@ func _on_drop_pressed() -> void:
 	Inventory.remove_item(selected_item, 1)
 	if was_equipped and not Inventory.has_item(dropped) and player.has_method("_set_equipped"):
 		player._set_equipped("fist")
-	print("[Inventory] dropped 1 %s" % dropped)
+	DebugLog.say("Inventory", "dropped 1 %s" % dropped)

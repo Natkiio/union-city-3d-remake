@@ -344,6 +344,16 @@ func _build_extras(root: Node3D, links_root: Node3D, id: String, w: float, level
 			add_link(links_root, {"name": m.name, "kind": "bed", "target": "", "label": "USE BED",
 					"locked": false, "x": m.x}, x, z, mesh)
 			break
+	# Shop counter: one link at the first shop<N> slot (the original lays the
+	# stock out on up to nine slots; the shop screen lists them instead).
+	var shop_set := WorldData.shop_set(id)
+	if shop_set > 0:
+		var slots := WorldData.markers(id, "shop")
+		var sx := px(float(slots[0].x)) if not slots.is_empty() else w * 0.5
+		sx = clampf(sx, 1.0, maxf(w - 1.0, 1.0))
+		var counter := dressing.container_prop(root, sx, z, "SHOP COUNTER", 0.0)
+		add_link(links_root, {"name": "shop", "kind": "shop", "target": "", "label": "SHOP",
+				"locked": false, "x": sx * WorldData.PX_PER_UNIT, "shop_set": shop_set}, sx, z, counter)
 	var bi := 0
 	for m in WorldData.markers(id, "body"):
 		dressing.dead_body(root, clampf(px(m.x), 0.5, w - 0.5), z + 0.3 + 0.05 * bi)

@@ -42,6 +42,10 @@ func _ready() -> void:
 	Events.run_started.connect(func(): _dead = false)
 	if "sleep_finished" in Survival or Survival.has_signal("sleep_finished"):
 		Survival.connect("sleep_finished", notify_rest_finished)
+	PlayerProvider.register(self)
+	# A pending player restore never outlives its run (reset_run runs before
+	# providers are applied, so a load is unaffected).
+	Events.run_reset.connect(Callable(PlayerProvider, "clear_pending"))
 
 
 func _process(delta: float) -> void:
@@ -191,12 +195,32 @@ func save_slot(n: int) -> bool:
 	return true
 
 
+## Quick save to slot 1. Refused outside a run (menus) and while dead.
 func quick_save() -> bool:
-	return save_slot(1)
+	if _dead or get_tree().get_first_node_in_group("player") == null:
+		_last_error = "no run to save"
+		return false
+	var ok := save_slot(1)
+	_toast("Quick saved." if ok else "Quick save failed.")
+	return ok
 
 
+## Quick load of slot 1, from the run or a menu: the room is rebuilt (or the
+## run scene opened) with the player restored.
 func quick_load() -> bool:
-	return load_slot(1)
+	if not load_slot(1):
+		_toast("No quick save to load.")
+		return false
+	if World.has_method("enter_loaded_game"):
+		World.enter_loaded_game()
+	_toast("Quick loaded.")
+	return true
+
+
+func _toast(text: String) -> void:
+	var hud := get_tree().get_first_node_in_group("hud")
+	if hud != null and hud.has_method("toast"):
+		hud.toast(text)
 
 
 func _make_header() -> Dictionary:

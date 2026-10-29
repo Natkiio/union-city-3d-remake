@@ -5,7 +5,7 @@ extends Area3D
 ## the player's Z=0 lane (it has no solid body). World decides what happens
 ## when the player presses interact inside it: see World.use_link().
 
-## Resolved link from WorldData.links() (plus "kind": "bed" for beds).
+## Resolved link from WorldData.links() (plus "kind": "bed" for beds and "shop" for shop counters).
 var link: Dictionary = {}
 var player_in_range: Node3D = null
 var prompt: Label3D = null
@@ -40,7 +40,7 @@ func in_range() -> bool:
 
 ## Prompt text in the original's style: "[E] OPEN", "[E] LOCKED"...
 func prompt_text() -> String:
-	if link.get("kind", "") != "bed" and link.get("target", "") == "":
+	if not link.get("kind", "") in ["bed", "shop"] and link.get("target", "") == "":
 		return "[E] BLOCKED"
 	if link.get("locked", false):
 		return "[E] LOCKED"

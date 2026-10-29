@@ -23,14 +23,20 @@ func build() -> void:
 		api_ok = sg != null and sg.has_method("save_slot")
 	if not api_ok:
 		body.add_child(UITheme.label("Saving is not available yet.", UITheme.FS_BODY, UITheme.TEXT_DIM))
-	for n in GameFlow.SLOT_COUNT:
-		var text := "Slot %d   (empty)" % (n + 1)
+	# Slot 0 is the autosave (load only); 1..SLOT_COUNT are manual slots.
+	for n in range(0 if mode == "load" else 1, GameFlow.SLOT_COUNT + 1):
+		var label := "Autosave" if n == 0 else "Slot %d" % n
+		var text := "%s   (empty)" % label
 		var filled := false
 		if api_ok and sg.has_method("has_slot") and sg.has_slot(n):
 			filled = true
 			var info: Dictionary = sg.slot_info(n) if sg.has_method("slot_info") else {}
-			text = "Slot %d   %s  Lv %s  %s  %s" % [n + 1, info.get("name", "Survivor"),
-				info.get("level", "?"), info.get("location", ""), info.get("clock", "")]
+			if info.get("corrupt", false):
+				filled = false
+				text = "%s   (damaged)" % label
+			else:
+				text = "%s   %s  Lv %s  %s  %s" % [label, info.get("name", "Survivor"),
+					info.get("level", "?"), info.get("location", ""), info.get("clock_text", info.get("clock", ""))]
 		var b := UITheme.button(text, func(): _choose(n))
 		b.alignment = HORIZONTAL_ALIGNMENT_LEFT
 		b.disabled = (not api_ok) or (mode == "load" and not filled)
@@ -47,4 +53,4 @@ func _choose(n: int) -> void:
 		if not GameFlow.load_game(get_tree(), n):
 			_msg.text = "Could not load that save."
 	else:
-		_msg.text = "Saved to slot %d." % (n + 1) if GameFlow.save_game(n) else "Save failed."
+		_msg.text = "Saved to slot %d." % n if GameFlow.save_game(n) else "Save failed."

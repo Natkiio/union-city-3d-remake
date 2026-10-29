@@ -70,8 +70,17 @@ static func reload() -> void:
 	_loaded = false
 
 
+## Brightness setting (0..1, 0.5 = unchanged) as an environment brightness
+## multiplier, 0.6..1.4. The original adds setting x 4 to every colour channel.
+static func brightness_factor() -> float:
+	return 0.6 + 0.8 * clampf(float(get_value("brightness")), 0.0, 1.0)
+
+
 ## Pushes settings into the systems that own the live state.
 static func apply(tree: SceneTree) -> void:
+	for n in tree.get_nodes_in_group("brightness_target"):
+		if n.has_method("apply_brightness"):
+			n.apply_brightness(brightness_factor())
 	var sfx := tree.root.get_node_or_null("Sfx")
 	if sfx != null and sfx.has_method("set_volume"):
 		for b in BUSES:

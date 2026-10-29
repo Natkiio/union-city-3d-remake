@@ -20,6 +20,8 @@ var selected_id: String = ""
 var canvas: Control
 var info: Label
 var travel_button: Button
+## "Arrive at the far end": only for sections with an endLoc (World.enter_location(id, true)).
+var end_check: CheckBox
 var last_error: String = ""
 
 
@@ -75,6 +77,10 @@ func build() -> void:
 	body.add_child(canvas)
 	info = UITheme.label("Pick a place on the map.", UITheme.FS_BODY, UITheme.TEXT_DIM)
 	body.add_child(info)
+	end_check = CheckBox.new()
+	end_check.text = "Arrive at the far end"
+	end_check.visible = false
+	body.add_child(end_check)
 	var row := HBoxContainer.new()
 	travel_button = UITheme.button("Travel", travel)
 	travel_button.disabled = true
@@ -109,16 +115,26 @@ func select(id: String) -> void:
 		return
 	selected_id = id
 	var unlocked: bool = bool(n.get("unlocked", true))
+	var reachable: bool = bool(n.get("travelable", true))
 	var txt := "%s   danger %d" % [n.get("name", id), int(n.get("danger", 0))]
+	var h := cost_to(id)
 	if id == current_id:
 		txt += "\nYou are here."
 	elif not unlocked:
 		txt += "\nNot open to you yet."
+	elif not reachable:
+		txt += "\nThere is no way there from the map."
 	else:
-		var h := cost_to(id)
 		txt += "\nTravel time: %d hour%s" % [h, "" if h == 1 else "s"]
+	var desc := str(n.get("desc", ""))
+	if desc != "":
+		txt += "\n" + desc
 	info.text = txt
-	travel_button.disabled = (not unlocked) or id == current_id
+	travel_button.disabled = (not unlocked) or (not reachable) or id == current_id
+	travel_button.text = "Travel" if travel_button.disabled else "Travel (%d h)" % h
+	end_check.visible = not travel_button.disabled and bool(n.get("has_end", false))
+	if not end_check.visible:
+		end_check.button_pressed = false
 	canvas.queue_redraw()
 
 
@@ -131,7 +147,10 @@ func travel() -> bool:
 		info.text = last_error
 		return false
 	var id := selected_id
-	w.travel_to(id)
+	if end_check != null and end_check.visible and end_check.button_pressed:
+		w.travel_to(id, true)
+	else:
+		w.travel_to(id)
 	travelled.emit(id)
 	close()
 	return true

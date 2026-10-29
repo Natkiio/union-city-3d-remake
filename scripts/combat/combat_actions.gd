@@ -15,6 +15,9 @@ static func deal_damage(target: Node, amount: float, zone: String = "chest", sou
 	if target == null or not target.has_method("take_damage"):
 		return false
 	var before: float = target.get("health") if "health" in target else 1.0
+	# "Head shots only" (a setting): any non-head hit on a zombie does 1 damage.
+	if zone != "head" and target.is_in_group("zombie") and bool(Settings.get_value("head_shots_only")):
+		amount = 1.0
 	if _arg_count(target, "take_damage") >= 4:
 		target.take_damage(amount, zone, source, knockback)
 	else:

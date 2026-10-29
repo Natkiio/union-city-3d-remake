@@ -8,6 +8,7 @@ extends RefCounted
 const MENU_SCENE := "res://scenes/ui/main_menu.tscn"
 const CREATE_SCENE := "res://scenes/ui/character_create.tscn"
 const RUN_SCENE := "res://scenes/main.tscn"
+## Manual save slots 1..SLOT_COUNT; slot 0 is the autosave.
 const SLOT_COUNT := 3
 
 ## Callable(path: String); empty means SceneTree.change_scene_to_file.
@@ -85,7 +86,7 @@ static func any_slot() -> bool:
 	if not saves_available():
 		return false
 	var sg := save_api()
-	for n in SLOT_COUNT:
+	for n in SLOT_COUNT + 1:
 		if sg.has_slot(n):
 			return true
 	return false
@@ -112,6 +113,15 @@ static func save_game(n: int) -> bool:
 	return sg != null and sg.has_method("save_slot") and bool(sg.save_slot(n))
 
 
+## Back to the title screen with a clean slate: every stateful system
+## (World included) is reset, so nothing of the run leaks into the menu.
 static func to_main_menu(tree: SceneTree) -> void:
 	tree.paused = false
+	Engine.time_scale = 1.0
+	var gs := _autoload(tree, "GameState")
+	if gs != null and gs.has_method("reset_run"):
+		gs.reset_run()
+	var sfx := tree.root.get_node_or_null("Sfx")
+	if sfx != null and sfx.has_method("stop_all"):
+		sfx.stop_all()
 	change_scene(tree, MENU_SCENE)

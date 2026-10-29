@@ -26,7 +26,7 @@ func open(trunk: Node) -> void:
 	_refresh()
 	visible = true
 	get_tree().paused = true
-	print("[Trunk] opened, %d items" % current_trunk.items.size())
+	DebugLog.say("Trunk", "opened, %d items" % current_trunk.items.size())
 
 func close() -> void:
 	if current_trunk and current_trunk.has_method("suppress_interact"):
@@ -34,7 +34,7 @@ func close() -> void:
 	visible = false
 	current_trunk = null
 	get_tree().paused = false
-	print("[Trunk] closed")
+	DebugLog.say("Trunk", "closed")
 
 func _refresh() -> void:
 	for child in items_list.get_children():
@@ -116,7 +116,7 @@ func _take_all() -> void:
 	var taken: Array = current_trunk.take_all()
 	for item in taken:
 		Inventory.add_item(item["name"], item["weight"], item.get("count", 1))
-	print("[Trunk] took %d items" % taken.size())
+	DebugLog.say("Trunk", "took %d items" % taken.size())
 	_refresh()
 
 func _take_single(index: int) -> void:
@@ -124,5 +124,5 @@ func _take_single(index: int) -> void:
 		return
 	var item: Dictionary = current_trunk.take_item(index)
 	Inventory.add_item(item["name"], item["weight"], item.get("count", 1))
-	print("[Trunk] took 1 item: %s" % item["name"])
+	DebugLog.say("Trunk", "took 1 item: %s" % item["name"])
 	_refresh()

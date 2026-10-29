@@ -6,6 +6,13 @@ extends RefCounted
 ## Quests merges these into Data.table("npc") at startup when absent. Put him
 ## in the Ballincollig street (section 16, street 2) in the level data.
 
+## Where those NPCs stand: room id -> [{npc_id, x (Flash px), facing}].
+## Fred waits near the west end of Old Road (section 16, street 2), the street
+## his kill quest (killStreet 2) is about.
+const PLACEMENTS := {
+	"l16_s2_b0_f0_r1": [{"npc_id": "Fred", "x": 520.0, "facing": "right", "pose": "idle"}],
+}
+
 const NPCS := {
 	"Fred": {
 		"name": "Fred", "fullName": "Fred Dineen", "title": "Neighbour", "sex": "male",
