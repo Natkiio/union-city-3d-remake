@@ -126,6 +126,17 @@ func _ready() -> void:
 	Events.level_up.connect(_on_level_up)
 	if GameState.has_pending_spawn:
 		global_position.x = GameState.consume_spawn()
+	# Restore the weapon that was equipped before this scene reload
+	# (entering/exiting a building, etc.) instead of defaulting back to
+	# fists -- but only if that exact weapon is still actually in
+	# Inventory, in case it was somehow lost in between.
+	var restored_gun := Weapon.from_ref(GameState.equipped_weapon)
+	if GameState.equipped_weapon != "fist" and restored_gun != null \
+			and Inventory.has_item(restored_gun.display_name):
+		equipped_weapon = GameState.equipped_weapon
+	else:
+		equipped_weapon = "fist"
+		GameState.equipped_weapon = "fist"
 	model.rotation.y = -PI / 2.0 if facing_dir > 0.0 else PI / 2.0
 	if anim_player:
 		for anim_name in ["Idle", "Walk"]:
@@ -400,6 +411,7 @@ func _set_equipped(weapon_ref: String) -> void:
 		reloading = false
 		burst_left = 0
 	equipped_weapon = weapon_ref
+	GameState.equipped_weapon = weapon_ref
 
 
 ## First firearm found in Inventory, or null. Inventory keys firearms by

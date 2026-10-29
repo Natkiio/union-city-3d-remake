@@ -81,7 +81,9 @@ var _pause_timer: float = 0.0
 var _riot_timer: float = 0.0
 var _dead: bool = false
 
-@onready var mesh: MeshInstance3D = $Visual
+@onready var model: Node3D = $Model
+@onready var mesh: MeshInstance3D = _find_by_class(model, "MeshInstance3D")
+@onready var anim_player: AnimationPlayer = model.find_child("AnimationPlayer", true, false)
 
 var _flash_material := StandardMaterial3D.new()
 var _body_material := StandardMaterial3D.new()
@@ -104,6 +106,19 @@ static func spawn(parent: Node, ref: String, danger: int, x: float) -> Zombie:
 	return z
 
 
+## Recursively find the first descendant of `root` whose Godot class
+## matches `class_name_str` (used instead of find_child-by-name since
+## imported glTF meshes keep their Blender object names, e.g.
+## "ZombieBasic_Mesh", not a generic "MeshInstance3D").
+static func _find_by_class(root: Node, class_name_str: String) -> Node:
+	for child in root.get_children():
+		if child.get_class() == class_name_str:
+			return child
+		var found := _find_by_class(child, class_name_str)
+		if found != null:
+			return found
+	return null
+
 func _ready() -> void:
 	_flash_material.albedo_color = Color.WHITE
 	_flash_material.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
@@ -111,6 +126,11 @@ func _ready() -> void:
 	configure(type_ref, danger_level)
 	player = get_tree().get_first_node_in_group("player")
 	_sys("Events").shot_fired.connect(_on_shot_fired)
+	if anim_player:
+		for anim_name in ["Idle", "Walk"]:
+			if anim_player.has_animation(anim_name):
+				anim_player.get_animation(anim_name).loop_mode = Animation.LOOP_PINGPONG
+		anim_player.play("Idle")
 
 
 ## (Re)builds stats, look and starting state for an enemy kind and danger.
@@ -138,11 +158,14 @@ func configure(ref: String, danger: int) -> void:
 
 
 func _apply_look() -> void:
+	# The rigged model is a near-white placeholder: tint it per kind (surface
+	# overrides, so the hit flash still takes over while it lasts) and size it.
 	_body_material.albedo_color = EnemyLook.color_for(type_ref)
-	mesh.set_surface_override_material(0, _body_material)
+	for i in mesh.mesh.get_surface_count():
+		mesh.set_surface_override_material(i, _body_material)
 	var s := EnemyLook.scale_for(type_ref)
-	mesh.scale = s
-	mesh.position.y = -0.9 * (1.0 - s.y) # keep the feet on the ground
+	model.scale = s
+	model.position.y = -0.9 * s.y # keep the feet on the ground
 
 
 ## round((round(danger * 5) + 5) * xpBonus)
@@ -225,6 +248,12 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 	global_position.z = 0.0
 
+	# Face the way the zombie is facing; walk while it moves, idle otherwise.
+	model.rotation.y = -PI / 2.0 if facing > 0.0 else PI / 2.0
+	if anim_player:
+		var desired := "Walk" if absf(velocity.x) > 0.01 else "Idle"
+		if anim_player.current_animation != desired:
+			anim_player.play(desired)
 
 # --- perception -------------------------------------------------------------
 

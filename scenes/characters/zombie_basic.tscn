@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://lw6hxqgwmgjt"]
+
+[ext_resource type="PackedScene" uid="uid://d00qnhvbd0h8l" path="res://assets/characters/zombie_basic.glb" id="1"]
+
+[node name="ZombieBasic" type="Node3D"]
+
+[node name="Model" parent="." instance=ExtResource("1")]
