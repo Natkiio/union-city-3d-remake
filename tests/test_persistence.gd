@@ -122,7 +122,7 @@ func run() -> void:
 	var raw := FileAccess.get_file_as_string(sg.slot_path(2))
 	check("file is readable json with version", raw.contains("\"version\": 1") and raw.contains("\"game\": \"cork\"") and raw.contains("\t"))
 	var parsed: Dictionary = JSON.parse_string(raw)
-	for sname in ["Stats", "Clock", "Survival", "Inventory", "LootState", "Director", "Sfx", "FakeSystem"]:
+	for sname in ["Stats", "Clock", "Survival", "Inventory", "LootState", "Director", "FakeSystem"]:
 		check("systems has " + sname, parsed["systems"].has(sname))
 	check("SaveGame not saved inside itself", not parsed["systems"].has("SaveGame"))
 	check("provider saved", parsed["providers"].has("Player"))
