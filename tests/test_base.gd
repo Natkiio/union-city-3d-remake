@@ -48,6 +48,11 @@ func run() -> void:
 
 func _initialize() -> void:
 	await frames(2) # autoloads are not inside the tree yet during _initialize
+	# Tests must never write real saves: no autosaves, and a throwaway directory.
+	var sg: Node = root.get_node_or_null("SaveGame")
+	if sg != null:
+		sg.autosave_enabled = false
+		sg.save_dir = "user://test_saves"
 	await run()
 	var fails := 0
 	for r in results:
