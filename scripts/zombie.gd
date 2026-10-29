@@ -31,7 +31,6 @@ const ATTACK_RANGE_VAR_PX: int = 30
 const ALERT_RAND_RANGE: int = 500
 const ALERT_BASE_CHANCE: int = 5
 const ALERT_MELEE_HIT: int = 300
-const ALERT_SHOT_HIT: int = 300
 const ALERT_SIGHTED: int = 300
 const ALERT_SENSED: int = 100
 const ALERT_PER_NOISE: int = 15
@@ -155,6 +154,11 @@ func xp_value() -> int:
 ## kind has no armor there). Piercing weapons ignore it.
 func armor_for(zone: String) -> float:
 	return type.armor.get(zone, 1.0) if type != null else 1.0
+
+
+## True if the kind defines armor for `zone` (even at 1.0).
+func has_armor(zone: String) -> bool:
+	return type != null and type.armor.has(zone)
 
 
 func is_dead() -> bool:
@@ -370,11 +374,7 @@ func _bite(mult: float) -> void:
 
 
 func _damage_player(amount: float) -> void:
-	# The player's take_damage may or may not accept (amount, zone, source).
-	if Callable(player, "take_damage").get_argument_count() > 1:
-		player.take_damage(amount, "chest", self)
-	else:
-		player.take_damage(amount)
+	player.take_damage(amount, "chest", self)
 
 
 # --- grab and struggle ------------------------------------------------------

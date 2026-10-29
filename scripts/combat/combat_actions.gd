@@ -35,6 +35,10 @@ static func deal_damage(target: Node, amount: float, zone: String = "chest", sou
 ## Emits Events.enemy_killed when the target exposes enemy_ref, danger_level
 ## and xp_value(); otherwise does nothing (the zombies workstream adds them).
 static func report_kill(target: Node) -> void:
+	# Targets with their own `died` signal (zombies) announce their death on
+	# the bus themselves; reporting here too would pay the XP twice.
+	if target.has_signal("died"):
+		return
 	if not ("enemy_ref" in target and "danger_level" in target and target.has_method("xp_value")):
 		return
 	# Looked up by path so this script also compiles in -s test runs, where
@@ -73,8 +77,15 @@ static func zone_at(body: Node3D, hit_y: float) -> String:
 
 
 ## Armor multiplier a target has for a zone, or -1 when it has none. Targets
-## expose armor as a Dictionary `armor` (zone -> multiplier).
+## expose armor either as a method `armor_for(zone)` (zombies; 1.0 = none) or
+## as a Dictionary `armor` (zone -> multiplier).
 static func armor_for(target: Node, zone: String) -> float:
+	if target.has_method("armor_for"):
+		# A zone the kind defines at 1.0 (zombieArmy head) still goes through the
+		# armor rounding and minimum of 1, so ask whether it is defined at all.
+		if target.has_method("has_armor") and not target.has_armor(zone):
+			return -1.0
+		return float(target.armor_for(zone))
 	if "armor" in target and target.get("armor") is Dictionary:
 		return float((target.get("armor") as Dictionary).get(zone, -1.0))
 	return -1.0

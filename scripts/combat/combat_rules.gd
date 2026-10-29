@@ -109,7 +109,8 @@ static func ranged_damage(rng: RandomNumberGenerator, weapon_damage: float, zone
 	if armor_mult >= 0.0 and not piercing:
 		d = maxf(1.0, roundf(d * armor_mult))
 	if is_player:
-		d += roundf(SKILL_DAMAGE_MOD * (adjusted_skill - SKILL_DAMAGE_BASE))
+		# A skill under 50 gives a negative bonus; never let it turn a hit into healing.
+		d = maxf(1.0, d + roundf(SKILL_DAMAGE_MOD * (adjusted_skill - SKILL_DAMAGE_BASE)))
 		if crit:
 			d *= CRIT_DAMAGE
 	return d
