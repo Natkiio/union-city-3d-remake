@@ -17,28 +17,50 @@ extends CharacterBody3D
 
 const SPEED: float = 6.0
 const JUMP_VELOCITY: float = 8.0
-const ATTACK_DAMAGE: float = 25.0
-const MAX_HEALTH: float = 100.0
+## Fallback for scripts that still read player.MAX_HEALTH (the HUD does). The
+## real ceiling is `max_health`, from Stats.max_health().
+const MAX_HEALTH: float = 55.0
+const RUN_SPEED_MULT: float = 1.5
+const CROUCH_SPEED_DIV: float = 2.0
 const MAX_AIM_PITCH_DEG: float = 80.0
 
 const GUARD_FOREARM_BEND_DEG: float = 110.0
 const PUNCH_DURATION: float = 0.3
 
-## Stagger pushes in world units (the spec's 30 + damage + strength + fitness/5
-## px needs stats we don't have yet). Shove always staggers, for 1 damage.
-const SHOVE_KNOCKBACK: float = 2.0
-const PUNCH_KNOCKBACK: float = 0.8
-const SHOVE_DAMAGE: float = 1.0
 ## Horizontal reach in front of the player; the hand hitbox is too pose-dependent.
 const SHOVE_RANGE: float = 1.6
 const SHOVE_COOLDOWN_TIME: float = 0.6
 const HIT_STOP_FRAMES: int = 3
 
-## Half-angle of the scatter for shotgun pellets (verify against the original).
-const PELLET_SPREAD_RAD: float = 0.12
+## Extra half-angle of scatter for shotgun pellets on top of the accuracy
+## spread (our own tuning, verify against the original).
+const PELLET_SCATTER_RAD: float = 0.06
+## Seconds without firing before the consecutive-round spread penalty resets (verify).
+const SPREAD_RESET_TIME: float = 0.6
+## One stamina / regen tick is 5 original frames; run cost applies per frame.
+const STAMINA_TICK: float = 5.0 / 30.0
+const STAMINA_FRAME: float = 1.0 / 30.0
+## Crouch has no input action yet; read this key directly (Blocked: ask lead).
+const CROUCH_KEY: Key = KEY_C
+const RUN_KEY: Key = KEY_SHIFT
 
 var health: float = MAX_HEALTH
+## Ceiling that regen can restore health to; drops by damage/1.85 per hit.
+var perm_health: float = MAX_HEALTH
+var max_health: float = MAX_HEALTH
+var stamina: float = 0.0
+var stamina_max: float = 0.0
+var crouched: bool = false
+var running: bool = false
+var consecutive_rounds: int = 0
+var rng := RandomNumberGenerator.new()
 var is_dead: bool = false
+var _regen_delay_ticks: int = 0
+var _regen_clock: float = 0.0
+var _stamina_delay_ticks: int = 0
+var _stamina_clock: float = 0.0
+var _run_cost_clock: float = 0.0
+var _since_shot: float = 99.0
 var attack_cooldown: float = 0.0
 var shove_cooldown: float = 0.0
 var _hit_stopping: bool = false
@@ -46,7 +68,6 @@ var _hit_stopping: bool = false
 var reloading: bool = false
 var reload_timer: float = 0.0
 var burst_left: int = 0
-const ATTACK_COOLDOWN_TIME: float = 0.5
 
 var facing_dir: float = 1.0
 var aim_pitch: float = 0.0
@@ -88,6 +109,11 @@ func _forearm_pose(bend_deg: float) -> Quaternion:
 	return Basis(Vector3(1, 0, 0), deg_to_rad(bend_deg)).get_rotation_quaternion()
 
 func _ready() -> void:
+	rng.randomize()
+	refresh_vitals()
+	health = max_health
+	perm_health = max_health
+	stamina = stamina_max
 	if GameState.has_pending_spawn:
 		global_position.x = GameState.consume_spawn()
 	model.rotation.y = -PI / 2.0 if facing_dir > 0.0 else PI / 2.0
@@ -109,14 +135,27 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_pressed("move_right"):
 		input_dir += 1.0
 
-	velocity.x = input_dir * SPEED
+	crouched = Input.is_key_pressed(CROUCH_KEY) and is_on_floor()
+	running = Input.is_key_pressed(RUN_KEY) and input_dir != 0.0 and not crouched and stamina > 0.0
+	var speed := SPEED
+	if crouched:
+		speed /= CROUCH_SPEED_DIV
+	elif running:
+		speed *= RUN_SPEED_MULT
+		_run_cost_clock += delta
+		while _run_cost_clock >= STAMINA_FRAME:
+			_run_cost_clock -= STAMINA_FRAME
+			_use_stamina(CombatRules.STAMINA_COST_RUN)
+	velocity.x = input_dir * speed
 	velocity.z = 0.0 # locked to the street plane, 2.5D style
-	if Input.is_action_just_pressed("jump") and is_on_floor():
+	if Input.is_action_just_pressed("jump") and is_on_floor() and not crouched and stamina > 0.0:
 		velocity.y = JUMP_VELOCITY
+		_use_stamina(CombatRules.STAMINA_COST_JUMP)
 	if not is_on_floor():
 		velocity.y -= 20.0 * delta
 
 	move_and_slide()
+	_tick_vitals(delta)
 
 	_update_aim()
 
@@ -127,7 +166,7 @@ func _physics_process(delta: float) -> void:
 
 	attack_cooldown = max(0.0, attack_cooldown - delta)
 	shove_cooldown = max(0.0, shove_cooldown - delta)
-	if Input.is_action_just_pressed("shove") and shove_cooldown <= 0.0:
+	if Input.is_action_just_pressed("shove") and shove_cooldown <= 0.0 and stamina > 0.0:
 		_shove()
 	if Input.is_action_just_pressed("equip_fists"):
 		_set_equipped("fist")
@@ -138,7 +177,11 @@ func _physics_process(delta: float) -> void:
 			_set_equipped(gun.ref)
 			print("[Player] equipped %s" % gun.display_name)
 
-	if equipped_weapon == "fist":
+	_since_shot += delta
+	if _since_shot > SPREAD_RESET_TIME:
+		consecutive_rounds = 0
+	var gun := Weapon.from_ref(equipped_weapon)
+	if gun == null or not gun.is_firearm():
 		if Input.is_action_just_pressed("attack") and attack_cooldown <= 0.0:
 			_start_punch()
 	else:
@@ -171,7 +214,7 @@ func _process(delta: float) -> void:
 	var right_bend := GUARD_FOREARM_BEND_DEG
 	var left_bend := GUARD_FOREARM_BEND_DEG
 
-	if equipped_weapon != "fist":
+	if _equipped_firearm() != null:
 		# Arm held straight out toward the aim point, not tucked into
 		# a guard -- this is what makes it visibly "aim with the gun".
 		right_bend = 0.0
@@ -225,7 +268,7 @@ func _apply_aim(aim_point: Vector3) -> void:
 ## Starts a punch with whichever arm is due next (always the opposite
 ## of the last one thrown), so clicks alternate left/right every time.
 func _start_punch() -> void:
-	attack_cooldown = ATTACK_COOLDOWN_TIME
+	attack_cooldown = _melee_weapon().melee_interval()
 	punch_side = "L" if punch_side == "R" else "R"
 	is_punching = true
 	punch_timer = 0.0
@@ -271,7 +314,7 @@ func _update_firearm(delta: float) -> void:
 	if reloading:
 		_tick_reload(delta, gun)
 
-	var pulled := Input.is_action_pressed("attack") if gun.fire_mode == "auto" else Input.is_action_just_pressed("attack")
+	var pulled := Input.is_action_pressed("attack") if gun.is_auto() else Input.is_action_just_pressed("attack")
 	if pulled and burst_left == 0 and attack_cooldown <= 0.0:
 		if reloading:
 			# Only a pump action can be interrupted, the way the original's pump
@@ -297,17 +340,38 @@ func _fire_round(gun: Weapon) -> void:
 	var loaded := _loaded_rounds(gun) - 1
 	Inventory.set_magazine(gun.display_name, loaded)
 	attack_cooldown = gun.fire_interval()
+	_since_shot = 0.0
 
-	var aim := _aim_direction()
+	var moving := absf(velocity.x) > 0.1
+	var raw := CombatRules.spread_skill(Stats.skill(gun.skill), crouched, moving, not is_on_floor())
+	var spread := CombatRules.spread_degrees(raw, gun.accuracy, consecutive_rounds)
+	consecutive_rounds += 1
+	var ctx := {
+		"adjusted_skill": Stats.adjusted_skill(gun.skill),
+		"luck": Stats.attr("luck"),
+		"strength": Stats.attr("strength"),
+		"fitness": Stats.adjusted_skill("fitness"),
+		"crouched": crouched,
+		"piercing": gun.has_piercing,
+		"knockback": gun.knockback,
+		"never_miss": gun.never_misses(),
+		"is_player": true,
+		"speed": gun.bullet_speed(),
+		"splash_damage": gun.splash_damage,
+		"splash_size": gun.splash_size,
+		"rng": rng,
+	}
+	var aim := _aim_direction().rotated(Vector3.BACK, CombatRules.spread_offset(rng, spread))
 	for i in gun.rounds_per_shot:
 		var dir := aim
 		if gun.rounds_per_shot > 1:
 			# Pellets from one shell scatter; the shell is still one round.
-			dir = aim.rotated(Vector3.BACK, randf_range(-PELLET_SPREAD_RAD, PELLET_SPREAD_RAD))
+			dir = aim.rotated(Vector3.BACK, rng.randf_range(-PELLET_SCATTER_RAD, PELLET_SCATTER_RAD))
 		var bullet := BulletScene.instantiate()
 		get_parent().add_child(bullet)
 		bullet.global_position = attack_area_r.global_position
-		bullet.setup(dir, self, gun.damage)
+		bullet.setup(dir, self, gun.damage, ctx)
+	Events.shot_fired.emit(gun.ref, gun.weapon_noise, attack_area_r.global_position)
 	print("[Player] fired %s, %d/%d loaded, %d in reserve" % [gun.display_name, loaded, gun.mag_size, _reserve(gun)])
 
 
@@ -347,32 +411,44 @@ func _reserve(gun: Weapon) -> int:
 	return Inventory.items.get(gun.ammo_item_name(), {}).get("count", 0)
 
 
-## Short-range push with no weapon needed: 1 damage, always staggers.
+## Short-range push with no weapon needed. Always staggers.
 func _shove() -> void:
 	shove_cooldown = SHOVE_COOLDOWN_TIME
+	_use_stamina(CombatRules.STAMINA_COST_SHOVE)
 	print("[Player] shoved")
 	var targets: Array[Node3D] = []
 	for node in get_parent().get_children():
 		var dx: float = node.global_position.x - global_position.x if node is Node3D else INF
 		if node != self and node.has_method("apply_stagger") and dx * facing_dir > 0.0 and absf(dx) <= SHOVE_RANGE:
 			targets.append(node)
-	_hit_targets(targets, SHOVE_DAMAGE, SHOVE_KNOCKBACK)
+	_melee_strike(targets, CombatRules.shove_base(Stats.attr("strength")), "blunt", true)
 
 
 func _apply_punch_damage() -> void:
 	var area := attack_area_r if punch_side == "R" else attack_area_l
-	_hit_targets(area.get_overlapping_bodies(), ATTACK_DAMAGE, PUNCH_KNOCKBACK)
+	var weapon := _melee_weapon()
+	var base := CombatRules.melee_base(weapon.damage if weapon.damage > 0.0 else -1.0,
+			Stats.attr("strength"), Stats.adjusted_skill(weapon.skill))
+	_melee_strike(area.get_overlapping_bodies(), base, weapon.skill, false, weapon.knockback)
 
 
-func _hit_targets(bodies: Array, damage: float, knockback: float) -> void:
+## Resolves a melee hit on each body: shave, crit, armor, damage, then stumble.
+## Shoves always stagger; swings stagger on a crit or a knockback roll.
+func _melee_strike(bodies: Array, base: float, skill_name: String, always_stagger: bool, weapon_knockback: float = 0.0) -> void:
+	var adjusted := Stats.adjusted_skill(skill_name)
 	for body in bodies:
 		if body == self:
 			continue # the hitbox sits on our own hand; never hit ourselves
-		if body.has_method("take_damage"):
-			body.take_damage(damage)
-			if body.has_method("apply_stagger") and is_instance_valid(body):
-				body.apply_stagger(sign(body.global_position.x - global_position.x), knockback)
-			_hit_stop()
+		if not body.has_method("take_damage"):
+			continue
+		var crit := CombatRules.roll_crit(rng, Stats.attr("luck"), adjusted)
+		var dmg := CombatRules.melee_final(rng, base, crit, CombatActions.armor_for(body, "chest"))
+		var stagger := always_stagger or crit or CombatRules.roll_knockback(rng, weapon_knockback)
+		var kb := 0.0
+		if stagger:
+			kb = CombatRules.px_to_units(CombatRules.stumble_px(dmg, Stats.attr("strength"), Stats.adjusted_skill("fitness")))
+		CombatActions.deal_damage(body, dmg, "chest", self, kb)
+		_hit_stop()
 
 
 ## Freezes the game for HIT_STOP_FRAMES rendered frames to sell the hit.
@@ -387,26 +463,80 @@ func _hit_stop() -> void:
 	_hit_stopping = false
 
 
-func take_damage(amount: float) -> void:
+## The equipped firearm, or null when fists or a melee weapon are out.
+func _equipped_firearm() -> Weapon:
+	var gun := Weapon.from_ref(equipped_weapon)
+	return gun if gun != null and gun.is_firearm() else null
+
+
+## The weapon a swing uses: the equipped melee weapon, else bare hands.
+func _melee_weapon() -> Weapon:
+	var weapon := Weapon.from_ref(equipped_weapon)
+	if weapon != null and not weapon.is_firearm():
+		return weapon
+	return Weapon.from_ref("hands")
+
+
+# --- Vitals ---------------------------------------------------------------
+
+## Re-reads the ceilings from Stats (level-ups, endurance changes). Keeps the
+## current fractions of health/perm_health/stamina.
+func refresh_vitals() -> void:
+	max_health = Stats.max_health()
+	stamina_max = CombatRules.stamina_max(Stats.level, Stats.attr("endurance"), 0.0, Stats.adjusted_skill("fitness"))
+	health = minf(health, max_health)
+	perm_health = minf(perm_health, max_health)
+	stamina = minf(stamina, stamina_max)
+
+
+func _use_stamina(base_cost: float) -> void:
+	stamina = maxf(0.0, stamina - CombatRules.stamina_cost(base_cost, Stats.adjusted_skill("fitness")))
+	_stamina_delay_ticks = CombatRules.STAMINA_REGEN_DELAY_TICKS
+
+
+func _tick_vitals(delta: float) -> void:
 	if is_dead:
 		return
-	health = max(0.0, health - amount)
-	print("[Player] took %.1f damage, health now %.1f" % [amount, health])
+	_stamina_clock += delta
+	_regen_clock += delta
+	while _stamina_clock >= STAMINA_TICK:
+		_stamina_clock -= STAMINA_TICK
+		_stamina_delay_ticks -= 1
+		if _stamina_delay_ticks < 0 and stamina < stamina_max:
+			stamina = minf(stamina_max, stamina + CombatRules.stamina_regen(Stats.attr("endurance"), Stats.adjusted_skill("fitness")))
+	while _regen_clock >= STAMINA_TICK:
+		_regen_clock -= STAMINA_TICK
+		_regen_delay_ticks -= 1
+		if _regen_delay_ticks < 0 and health < perm_health:
+			health = minf(perm_health, health + CombatRules.regen_per_tick(max_health, Stats.attr("endurance"), Stats.skill("survival")))
+
+
+## Contract signature shared by every combat entity. Zone and knockback are
+## accepted for parity; the player is not knocked back yet.
+func take_damage(amount: float, _zone: String = "chest", source: Node = null, _knockback: float = 0.0) -> void:
+	if is_dead:
+		return
+	health = maxf(0.0, health - amount)
+	perm_health = maxf(0.0, perm_health - CombatRules.perm_health_loss(amount))
+	_regen_delay_ticks = CombatRules.STAMINA_REGEN_DELAY_TICKS
+	Events.player_damaged.emit(amount, source)
+	print("[Player] took %.1f damage, health now %.1f (perm %.1f)" % [amount, health, perm_health])
 	if health <= 0.0:
 		_die()
 
+
+## Healing restores both layers, as meds and food do in the original.
 func heal(amount: float) -> void:
-	health = min(MAX_HEALTH, health + amount)
+	perm_health = minf(max_health, perm_health + amount)
+	health = minf(perm_health, health + amount)
 	print("[Player] healed %.1f, health now %.1f" % [amount, health])
+
 
 func _die() -> void:
 	is_dead = true
 	print("[Player] died - showing death screen")
-	Inventory.items.clear()
-	Inventory.inventory_changed.emit()
-	LootState.looted.clear()
-	LootState.trunk_contents.clear()
-	GameState.has_pending_spawn = false
+	Events.player_died.emit()
+	GameState.reset_run()
 	get_tree().paused = true
 	call_deferred("_trigger_death_screen")
 

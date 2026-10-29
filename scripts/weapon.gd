@@ -42,6 +42,9 @@ var mag_size: int = 0
 ## Lower is more accurate (spread scales with it in the original).
 var accuracy: float = 0.0
 var piercing: int = 0
+## True when the table defines `piercing` at all. The original only checks that
+## the field exists, so even a value of 0 (grenades) ignores armor.
+var has_piercing: bool = false
 var recoil: float = 0.0
 ## Noise is what alerts zombies. Compared against constants noiseRange*.
 var weapon_noise: float = 0.0
@@ -103,25 +106,56 @@ func reload_seconds() -> float:
 func reloads_per_round() -> bool:
 	return weapon_type == "pumpAction"
 
-## Seconds between shots. The original's cadence lives in its arm
-## animations, not in weapon.json, so these per-type values are our own
-## placeholders (verify against the running original).
+## Seconds between shots per weaponType. The original's cadence lives in its
+## arm animations, not in weapon.json, so these are our own placeholders
+## (verify against the running original).
+const FIRE_INTERVALS := {
+	"pistolAutomatic": 0.3,
+	"revolver": 0.5,
+	"smg": 0.1,
+	"bullpup": 0.1,
+	"assaultRifle": 0.12,
+	"lmg": 0.1,
+	"chainsaw": 0.1,
+	"assaultRifleSlow": 0.4,
+	"pumpAction": 0.6,
+	"boltAction": 1.0,
+	"bigRifle": 1.0,
+	"bow": 1.0,
+	"handGrenade": 1.0,
+	"grenadeLauncher": 1.0,
+	"RPG": 1.0,
+}
+const DEFAULT_FIRE_INTERVAL: float = 0.5
+## Seconds between melee swings (placeholders, verify).
+const MELEE_INTERVALS := {"fists": 0.5, "oneHand": 0.4, "twoHand": 0.6}
+## Types that keep firing while the trigger is held, besides fireMode "auto"
+## (venom). The doc only flags venom; the rest are placeholders (verify).
+const HOLD_TO_FIRE_TYPES: Array[String] = ["smg", "bullpup", "lmg", "chainsaw"]
+## Bullet world speed per unit of the table's roundSpeed (70 -> 30 u/s).
+const ROUND_SPEED_SCALE: float = 30.0 / 70.0
+
+
 func fire_interval() -> float:
-	match weapon_type:
-		"pistolAutomatic":
-			return 0.3
-		"revolver":
-			return 0.5
-		"smg", "bullpup", "assaultRifle", "lmg", "chainsaw":
-			return 0.1
-		"assaultRifleSlow":
-			return 0.4
-		"pumpAction":
-			return 0.6
-		"boltAction", "bigRifle", "bow":
-			return 1.0
-		_:
-			return 0.5
+	return FIRE_INTERVALS.get(weapon_type, DEFAULT_FIRE_INTERVAL)
+
+
+func melee_interval() -> float:
+	return MELEE_INTERVALS.get(weapon_type, 0.5)
+
+
+## True when holding the trigger keeps firing.
+func is_auto() -> bool:
+	return fire_mode == "auto" or weapon_type in HOLD_TO_FIRE_TYPES
+
+
+## The chainsaw never misses (original special case).
+func never_misses() -> bool:
+	return ref == "chainsaw"
+
+
+func bullet_speed() -> float:
+	return round_speed * ROUND_SPEED_SCALE if round_speed > 0.0 else 30.0
 
 ## Refs in table order. Pass "firearm" or "melee" to filter, or "" for all 57.
 static func all_refs(weapon_class_filter: String = "") -> Array[String]:
@@ -172,6 +206,7 @@ static func _from_dict(data: Dictionary) -> Weapon:
 	weapon.mag_size = int(data.get("maxAmmo", 0))
 	weapon.accuracy = float(data.get("accuracy", 0.0))
 	weapon.piercing = int(data.get("piercing", 0))
+	weapon.has_piercing = data.has("piercing")
 	weapon.recoil = float(data.get("recoil", 0.0))
 	weapon.weapon_noise = float(data.get("weaponNoise", 0.0))
 	weapon.reload_time = int(data.get("reloadTime", 0))
