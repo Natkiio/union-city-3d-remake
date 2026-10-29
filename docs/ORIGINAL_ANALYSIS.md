@@ -32,7 +32,7 @@ python3 -I tools/extract_data.py reference/scripts/scripts/frame_4/DoAction.as d
 adjustedSkill(s) = round( skill[s] + attribute[ skill.attr ] * 1.6 - 5 )
 ```
 
-(`attributeMod` = 1.6, `attributeBase` = 5). So an attribute of 5 adds nothing; each attribute point above 5 adds 1.6 effective skill to every skill that uses it.
+(`attributeMod` = 1.6, `attributeBase` = 5). The `- 5` is the constant, not `attributeBase`, so a base attribute of 5 adds 3 (skill 7 → 10) and each attribute point adds 1.6 effective skill to every skill that uses it. Confirmed against `adjustedSkill` in the source (progression workstream).
 
 **Level up**: cap 30. Each level grants **1 attribute point** and **10 skill points** (`playerAttPoints`, `playerSkillPoints`).
 
