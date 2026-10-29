@@ -1,0 +1,42 @@
+{
+  "s1": {
+    "b0": {
+      "name": "THE MARDYKE"
+    },
+    "b1": {
+      "name": "CROWLEY GUNS & TACKLE",
+      "f1": {
+        "r1": {
+          "name": "Crowley Guns & Tackle"
+        }
+      }
+    },
+    "b2": {
+      "name": "LEE PAPER CO."
+    }
+  },
+  "s2": {
+    "b0": {
+      "name": "MERCY HOSPITAL"
+    },
+    "b1": {
+      "name": "MERCY HOSPITAL"
+    },
+    "b2": {
+      "name": "MERCY HOSPITAL"
+    },
+    "b3": {
+      "name": "MERCY HOSPITAL"
+    }
+  },
+  "s3": {
+    "b0": {
+      "name": "WESTERN ROAD"
+    },
+    "b1": {
+      "name": "KING'S PAWNBROKERS"
+    }
+  },
+  "startLocName": "THE MARDYKE - BRIDGE",
+  "endLocName": "WESTERN ROAD - PAWNBROKERS"
+}

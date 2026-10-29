@@ -1,0 +1,21 @@
+{
+  "noSleepHere": {
+    "heading": "YOU CANNOT SLEEP HERE",
+    "body": "YOU'D BE MAD TO SLEEP\nOUTSIDE OF A SECURE AREA.\n\nFIND A SAFEHOUSE."
+  },
+  "companionDown": {
+    "body": "YOUR COMPANION NEEDS HELP.\nLEAVING THEM WILL RESULT\nIN THEIR DEATH."
+  },
+  "notEnoughMoney": {
+    "body": "\nYOU DON'T HAVE ENOUGH\nCASH FOR THAT ONE."
+  },
+  "hardcoreMode": {
+    "body": "WOULD YOU LIKE TO\nTURN ON HARDCORE?\n\nYOU'LL ONLY GET\nTHE ONE LIFE."
+  },
+  "overwriteSave": {
+    "body": "THIS WILL OVERWRITE THE EXISTING\nCHARACTER IN THIS SAVE GAME\n\nARE YOU SURE NOW?"
+  },
+  "quitNoSave": {
+    "body": "ALL PROGRESS SINCE YOUR LAST\n SAVE WILL BE LOST.\n\nDO YOU WANT TO QUIT?"
+  }
+}

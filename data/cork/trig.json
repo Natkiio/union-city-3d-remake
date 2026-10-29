@@ -1,0 +1,114 @@
+{
+  "trig3": {
+    "func1var2": "What the hell is\ngoing on here?!"
+  },
+  "trig6": {
+    "func1var2": "Hello! Anybody home?!"
+  },
+  "trig7": {
+    "func1var2": "Damn it, empty.\nBest go further into town."
+  },
+  "trig8": {
+    "func2var2": "Right, it's just the next block over."
+  },
+  "trig9": {
+    "func2var2": {
+      "template": "{PartnerSexStart}'s not here. Maybe {PartnerSex} left a note.",
+      "placeholders": [
+        "PartnerSexStart",
+        "PartnerSex"
+      ]
+    }
+  },
+  "trig10": {
+    "func2var2": "The Mercy? That place is going to be a mess."
+  },
+  "trig11": {
+    "func2var2": {
+      "template": "Ok, now to find {PartnerName}.",
+      "placeholders": [
+        "PartnerName"
+      ]
+    }
+  },
+  "trig13": {
+    "func1var2": "That's Páirc Uí Chaoimh down there, a few blocks more yet."
+  },
+  "trig14": {
+    "func1var2": "Looks like Duggan didn't make it."
+  },
+  "trig16": {
+    "func1var2": "Damn it, the road to Shandon is blocked, looks like I'll have to go under the city."
+  },
+  "trig17": {
+    "func1var2": "Hank's da's rifle is somewhere in this mess."
+  },
+  "trig18": {
+    "func1var2": {
+      "template": "Home. God, I hope\n{PartnerName} is safe.",
+      "placeholders": [
+        "PartnerName"
+      ]
+    }
+  },
+  "trig22": {
+    "func1var2": "Relocated!\nWhat the hell does that mean?"
+  },
+  "trig24": {
+    "func3var2": {
+      "template": "That's {PartnerNameShort}'s bag.\nWhere the hell is {PartnerSex}?",
+      "placeholders": [
+        "PartnerNameShort",
+        "PartnerSex"
+      ]
+    }
+  },
+  "trig25": {
+    "func3var2": "Quickly, over here."
+  },
+  "trig26": {
+    "func1var2": "SECURITY!\nWe have a breach!"
+  },
+  "trig27": {
+    "func2var2": {
+      "template": "They must've moved {PartnerNameShort} to the Butter Exchange in Shandon.",
+      "placeholders": [
+        "PartnerNameShort"
+      ]
+    }
+  },
+  "trig28": {
+    "func1var2": {
+      "template": "Infected!\nTake {PlayerSexAddress} down!",
+      "placeholders": [
+        "PlayerSexAddress"
+      ]
+    }
+  },
+  "trig30": {
+    "func1var2": "Oh my God.\nIs that even human?"
+  },
+  "trig37": {
+    "func1var2": "What are these bastards doing?"
+  },
+  "trig39": {
+    "func2var2": "Now to find\nsome explosives."
+  },
+  "trig42": {
+    "func1var2": {
+      "template": "I need to get\nhome to {PartnerNameShort}.",
+      "placeholders": [
+        "PartnerNameShort"
+      ]
+    }
+  },
+  "trig51": {
+    "func6var2": "Get 'em Paudie!"
+  },
+  "trig52": {
+    "func1var2": "This must be\nthe ERC compound."
+  },
+  "trig53": {
+    "func1var2": "These woods look confusing. I should get directions if I want to go in there."
+  }
+}

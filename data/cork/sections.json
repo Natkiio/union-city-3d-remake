@@ -1,0 +1,66 @@
+{
+  "1": {
+    "name": "Mahon Point",
+    "desc": "Retail parks and a motorway junction. Nothing here but a way through."
+  },
+  "2": {
+    "name": "Rochestown",
+    "desc": "Suburban link road, hedges and cul-de-sacs. Quiet in the wrong way."
+  },
+  "3": {
+    "name": "Douglas",
+    "desc": "The village and its shopping centre, shutters down."
+  },
+  "4": {
+    "name": "Passage West",
+    "desc": "Narrow streets above the old shipyard on the water."
+  },
+  "5": {
+    "name": "Páirc Uí Chaoimh",
+    "desc": "Blackrock and the ground by the river. The Army's registration centre."
+  },
+  "6": {
+    "name": "Cobh",
+    "desc": "The harbour town. Quays, terraces and the sunk ferries."
+  },
+  "7": {
+    "name": "Spike Island",
+    "desc": "The old fort in the harbour. The last boat is here."
+  },
+  "8": {
+    "name": "Tramore Valley",
+    "desc": "Park and ring road between Bishopstown and Blackrock."
+  },
+  "9": {
+    "name": "Bishopstown",
+    "desc": "Wilton Road and the estates around it. Home."
+  },
+  "10": {
+    "name": "Kent Station",
+    "desc": "Lower Glanmire Road and the line out to Cobh."
+  },
+  "11": {
+    "name": "Shandon",
+    "desc": "The north side, steep streets under the bells. The Butter Exchange is walled off."
+  },
+  "12": {
+    "name": "City Centre",
+    "desc": "St Patrick's Street, Grand Parade and the Market. The island between the two channels."
+  },
+  "13": {
+    "name": "The Mardyke",
+    "desc": "The college, the walk along the Lee and the Mercy hospital."
+  },
+  "14": {
+    "name": "Ringaskiddy",
+    "desc": "The harbour road and Haulbowline Naval Base, behind the fence."
+  },
+  "15": {
+    "name": "Carrigaline",
+    "desc": "Airport road, the roundabout and the woods outside town."
+  },
+  "16": {
+    "name": "Ballincollig",
+    "desc": "Where it starts. Main Street, the Macroom road and an army fence."
+  }
+}

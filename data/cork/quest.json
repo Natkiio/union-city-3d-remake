@@ -1,0 +1,267 @@
+{
+  "quest900": {
+    "desc": "Breaking Through",
+    "shortDesc": "Find a way into Bishopstown",
+    "longDesc": {
+      "template": "Something terrible is happening. The whole of Ballincollig is screaming.\n\nI need to get to our flat in Bishopstown and find my {Partner}, {PartnerName}.",
+      "placeholders": [
+        "Partner",
+        "PartnerName"
+      ]
+    }
+  },
+  "quest901": {
+    "desc": "Get Home",
+    "shortDesc": "Go to your flat",
+    "longDesc": {
+      "template": "The flat is at the end of the terrace off Curraheen Road. Please God let my {Partner} be ok.",
+      "placeholders": [
+        "Partner"
+      ]
+    }
+  },
+  "quest902": {
+    "desc": "Clues",
+    "shortDesc": {
+      "template": "Find out where {PartnerNameShort} went",
+      "placeholders": [
+        "PartnerNameShort"
+      ]
+    },
+    "longDesc": {
+      "template": "{PartnerNameShort} isn't here. I need to find out where {PartnerSex} has gone.",
+      "placeholders": [
+        "PartnerNameShort",
+        "PartnerSex"
+      ]
+    }
+  },
+  "quest903": {
+    "desc": "Hospital",
+    "shortDesc": {
+      "template": "Find your {Partner} at the Mercy",
+      "placeholders": [
+        "Partner"
+      ]
+    },
+    "longDesc": {
+      "template": "My {Partner} {PartnerNameShort} left a note saying {PartnerSex} went in to help out. CUH is behind an Army cordon, so it has to be the Mercy, over on the Mardyke side.",
+      "placeholders": [
+        "Partner",
+        "PartnerNameShort",
+        "PartnerSex"
+      ]
+    }
+  },
+  "quest904": {
+    "desc": "Searching",
+    "shortDesc": {
+      "template": "Find {PartnerName} in the hospital",
+      "placeholders": [
+        "PartnerName"
+      ]
+    },
+    "longDesc": {
+      "template": "The Mercy was where {PartnerName} said {PartnerSex}'d be.",
+      "placeholders": [
+        "PartnerName",
+        "PartnerSex"
+      ]
+    }
+  },
+  "quest905": {
+    "desc": "Get to Páirc Uí Chaoimh",
+    "shortDesc": "Work your way out to Páirc Uí Chaoimh",
+    "longDesc": {
+      "template": "One of the nurses said the Army took everyone out to Páirc Uí Chaoimh, {PartnerName} included.\n\nGo through the City Centre and Shandon, past Kent Station, and out to Blackrock.",
+      "placeholders": [
+        "PartnerName"
+      ]
+    }
+  },
+  "quest906": {
+    "desc": "Registration",
+    "shortDesc": "Check inside the ground",
+    "longDesc": {
+      "template": "The soldier at the gate told you to report to the registration officer. Maybe they have a record of where {PartnerName} is.",
+      "placeholders": [
+        "PartnerName"
+      ]
+    }
+  },
+  "quest907": {
+    "desc": "Relocated",
+    "shortDesc": {
+      "template": "Find out what happened to {PartnerName}",
+      "placeholders": [
+        "PartnerName"
+      ]
+    },
+    "longDesc": {
+      "template": "The list says {PartnerName} was relocated. Find out where they sent {PartnerSexAddress}.",
+      "placeholders": [
+        "PartnerName",
+        "PartnerSexAddress"
+      ]
+    }
+  },
+  "quest908": {
+    "desc": "Disappeared",
+    "shortDesc": {
+      "template": "Ask around about {PartnerName}",
+      "placeholders": [
+        "PartnerName"
+      ]
+    },
+    "longDesc": {
+      "template": "Find someone in the ground who knows what happened to {PartnerName}.",
+      "placeholders": [
+        "PartnerName"
+      ]
+    }
+  },
+  "quest909": {
+    "desc": "The Gents",
+    "shortDesc": "Meet Barry in the Gents",
+    "longDesc": "Barry asked you to meet him in the maintenance room behind the Gents at the ground."
+  },
+  "quest910": {
+    "desc": "Talk to Barry",
+    "longDesc": "Talk to Barry to find out what the plan is."
+  },
+  "quest911": {
+    "desc": "Conspiracy Theory",
+    "shortDesc": "Investigate the ERC Command Post",
+    "longDesc": "Barry wants you to find out what the Emergency Response Command is really at in the ground."
+  },
+  "quest912": {
+    "desc": "Theory Proven",
+    "shortDesc": "Return to Barry with the info",
+    "longDesc": "You have papers that say the relocated are going to the Butter Exchange in Shandon. Go and tell Barry."
+  },
+  "quest913": {
+    "desc": "Another Way In",
+    "shortDesc": "Go to Shandon",
+    "longDesc": {
+      "template": "All the evidence says {PartnerName} is in the Butter Exchange in Shandon. Go and meet Barry above in Hegarty's Hardware.",
+      "placeholders": [
+        "PartnerName"
+      ]
+    }
+  },
+  "quest914": {
+    "desc": "Break Out",
+    "shortDesc": {
+      "template": "Find {PartnerName} in the Butter Exchange",
+      "placeholders": [
+        "PartnerName"
+      ]
+    },
+    "longDesc": {
+      "template": "Use the culvert key to get under the wall of the ERC compound at the Butter Exchange and find {PartnerName}.",
+      "placeholders": [
+        "PartnerName"
+      ]
+    }
+  },
+  "quest915": {
+    "desc": "Alive",
+    "shortDesc": {
+      "template": "Get the keys to release {PartnerName}",
+      "placeholders": [
+        "PartnerName"
+      ]
+    },
+    "longDesc": {
+      "template": "{PartnerName} is locked in a cell. Take the cell key off the ERC guard and get them out.",
+      "placeholders": [
+        "PartnerName"
+      ]
+    }
+  },
+  "quest916": {
+    "desc": "Seabound",
+    "shortDesc": "Find a boat to escape",
+    "longDesc": "Go to the quays in Cobh and find a boat."
+  },
+  "quest917": {
+    "desc": "Naval Base",
+    "shortDesc": "Enter the base",
+    "longDesc": "Go to Haulbowline Naval Base, out past Ringaskiddy, and find some explosives."
+  },
+  "quest918": {
+    "desc": "Explosive Components",
+    "shortDesc": "Find explosive parts",
+    "longDesc": "We're going to need blocks of C4, blasting caps and a timer."
+  },
+  "quest919": {
+    "desc": "Tear it down",
+    "shortDesc": "Go to the wall",
+    "longDesc": "Go to the container wall on the pier road with Jack and get ready for the final push."
+  },
+  "quest001": {
+    "desc": "Talk to Ray",
+    "shortDesc": "Ask about bolt cutters",
+    "longDesc": "Ed is trying to get through the Army fence. It's the only way into Bishopstown and our flat.\nHe needs bolt cutters to get through.\nHe says Ray at number 12 has a pair."
+  },
+  "quest003": {
+    "desc": "Return to Ed",
+    "shortDesc": "Talk to Ed again",
+    "longDesc": "Ray says Ed never gave back his bolt cutters. I should go and tell Ed he has them."
+  },
+  "quest004": {
+    "desc": "Find Bolt Cutters",
+    "longDesc": "Ed gave me the key to his garage at number 14. The bolt cutters should be in there somewhere."
+  },
+  "quest002": {
+    "desc": "Find Hank's Da's Rifle",
+    "longDesc": "Hank Crowley, who owns the gun shop on Western Road, needs me to find his da's rifle and the bolt group for it. They're in his flat, number 202, down the road from the shop. He gave me his neighbour's key to get in."
+  },
+  "quest005": {
+    "longDesc": "The soldier will follow you if you talk to him."
+  },
+  "quest006": {
+    "desc": "Heavy, Boy",
+    "longDesc": "Dinny says he can make you something to crack skulls if you find him the materials."
+  },
+  "quest007": {
+    "desc": "Something Spiky",
+    "longDesc": "Dinny has plans for something fierce nasty, if you can find the materials."
+  },
+  "quest008": {
+    "desc": "Keeping it Quiet",
+    "longDesc": "Dinny has plans for a suppressed pistol. Not sure where a tinkerer from Bishopstown learned to make something like this."
+  },
+  "quest009": {
+    "desc": "Security Failure",
+    "shortDesc": "Find Duggan",
+    "longDesc": "Lee Security staff are stuck in their offices on St Patrick's Street. They need the weapons from their cage, and a young lad named Duggan took the key and headed for Shandon. Find the key and bring it back to Lee Security."
+  },
+  "quest010": {
+    "desc": "Security Failure",
+    "shortDesc": "Open the cage",
+    "longDesc": "Get the key off Duggan's body and bring it back to Lee Security on St Patrick's Street to open the cage."
+  },
+  "quest011": {
+    "desc": "Help Kelly",
+    "shortDesc": "Find her glasses",
+    "longDesc": "Kelly, who works in Dinny's Corner Shop in Bishopstown, has lost her glasses and can't go anywhere without them.\n\nShe thinks she dropped them on the floor."
+  },
+  "quest015": {
+    "desc": "The Mechanic",
+    "longDesc": "Jer, Paudie and their 'friends' are stranded with the van not working. They need petrol and parts to get it going again."
+  },
+  "quest016": {
+    "desc": "Into the Woods",
+    "shortDesc": "Find Terry",
+    "longDesc": "Directions to the cabin: Go left, up, turn right at the pond. Go past the old fence and take the path up. Go left and take the second path. Look for the can on a stick."
+  },
+  "quest017": {
+    "desc": "Blood Samples",
+    "longDesc": "Find 4 blood samples on corpses in Ballea Woods. Dr Philip Hurley thinks he can find out more about what's going on from that."
+  },
+  "quest500": {
+    "desc": "Kill 3 Gone",
+    "longDesc": "Clear the road ahead of the Gone for Fred."
+  }
+}

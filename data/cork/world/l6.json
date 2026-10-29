@@ -1,0 +1,45 @@
+{
+  "s1": {
+    "b0": {
+      "name": "WESTBOURNE PLACE"
+    }
+  },
+  "s2": {
+    "b0": {
+      "name": "HARBOUR ROW"
+    },
+    "b3": {
+      "name": "Motor Garage"
+    }
+  },
+  "s3": {
+    "b0": {
+      "name": "ROSSLYN STREET"
+    },
+    "b1": {
+      "name": "Harbour Office"
+    },
+    "b2": {
+      "name": "Lee Paper Co. Offices"
+    },
+    "b3": {
+      "name": "Motor Garage"
+    }
+  },
+  "s4": {
+    "b0": {
+      "name": "SPIKE ISLAND FERRY PIER"
+    },
+    "b1": {
+      "name": "The Golden Cod"
+    },
+    "b2": {
+      "name": "Lee Paper Co. Offices"
+    },
+    "b3": {
+      "name": "Motor Garage"
+    }
+  },
+  "startLocName": "WESTBOURNE PLACE",
+  "endLocName": "SPIKE ISLAND FERRY PIER"
+}

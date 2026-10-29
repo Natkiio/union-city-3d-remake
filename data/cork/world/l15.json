@@ -1,0 +1,70 @@
+{
+  "startLocName": "KINSALE ROAD ROUNDABOUT",
+  "endLocName": "CARRIGALINE VILLAGE",
+  "s1": {
+    "b0": {
+      "name": "AIRPORT ROAD"
+    },
+    "b1": {
+      "name": "10 AIRPORT ROAD"
+    },
+    "b2": {
+      "name": "12 AIRPORT ROAD"
+    }
+  },
+  "s2": {
+    "b0": {
+      "name": "AIRPORT ROAD"
+    },
+    "b1": {
+      "name": "10 AIRPORT ROAD"
+    },
+    "b2": {
+      "name": "12 AIRPORT ROAD"
+    }
+  },
+  "s3": {
+    "b0": {
+      "name": "BALLEA WOODS ENTRANCE"
+    },
+    "b1": {
+      "name": "10 BALLEA WOODS ENTRANCE"
+    },
+    "b2": {
+      "name": "12 BALLEA WOODS ENTRANCE"
+    }
+  },
+  "s4": {
+    "b0": {
+      "name": "CARRIGALINE ROAD"
+    },
+    "b1": {
+      "name": "10 CARRIGALINE ROAD"
+    },
+    "b2": {
+      "name": "12 CARRIGALINE ROAD"
+    }
+  },
+  "s5": {
+    "b0": {
+      "name": "CARRIGALINE ROAD"
+    },
+    "b1": {
+      "name": "10 CARRIGALINE ROAD"
+    },
+    "b2": {
+      "name": "12 CARRIGALINE ROAD"
+    }
+  },
+  "s6": {
+    "b0": {
+      "name": "MAIN STREET"
+    },
+    "b1": {
+      "name": "10 MAIN STREET"
+    },
+    "b2": {
+      "name": "12 MAIN STREET"
+    }
+  }
+}
