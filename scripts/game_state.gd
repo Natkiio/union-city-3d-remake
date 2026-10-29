@@ -28,4 +28,18 @@ func reset_run() -> void:
 	equipped_weapon = "fist"
 	for node in get_tree().get_nodes_in_group("stateful"):
 		node.reset()
+	_close_run_overlays()
 	Events.run_reset.emit()
+
+
+## Screens that belong to a run and live under the root (dialogue, cutscene,
+## lockpick, shop) go with it; the autoload panels are closed.
+func _close_run_overlays() -> void:
+	for node in get_tree().get_nodes_in_group("run_overlay"):
+		node.queue_free()
+	var trunk := get_node_or_null("/root/TrunkUI")
+	if trunk != null and trunk.visible and trunk.has_method("close"):
+		trunk.close()
+	var inv_ui := get_node_or_null("/root/InventoryUI")
+	if inv_ui != null and inv_ui.visible and inv_ui.has_method("_close"):
+		inv_ui._close()

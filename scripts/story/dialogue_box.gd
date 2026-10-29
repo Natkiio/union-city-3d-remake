@@ -33,6 +33,7 @@ static func create() -> DialogueBox:
 
 
 func _ready() -> void:
+	add_to_group("run_overlay") # freed by GameState.reset_run
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	layer = 60
 	_build()

@@ -352,6 +352,9 @@ func _kill_matches(q: Dictionary, enemy_ref: String) -> bool:
 
 
 func _num(v: Variant) -> int:
+	# JSON numbers load as floats: str(16.0) is "16.0", whose digits read 160.
+	if v is int or v is float:
+		return int(v)
 	var digits := ""
 	for c in str(v):
 		if c >= "0" and c <= "9":
