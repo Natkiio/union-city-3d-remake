@@ -11,6 +11,7 @@ func enter(id: String, outdoors: bool = false) -> int:
 		level.queue_free()
 	level = Node3D.new()
 	root.add_child(level)
+	d.remember_area()
 	d.attach(level, player)
 	d.set_bounds(-50.0, 50.0)
 	var n: int = d.begin_area(10, 3000.0, outdoors, false, id)

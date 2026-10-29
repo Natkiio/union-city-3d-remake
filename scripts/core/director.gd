@@ -172,9 +172,13 @@ func _count_meds() -> int:
 
 # --- area -------------------------------------------------------------------
 
-func attach(root: Node3D, player_node: Node3D) -> void:
-	# The old level is going away: remember who was alive in it.
+## Remember who is alive in the current room. World calls this before it tears
+## the old level down (positions are unreadable once the zombies leave the tree).
+func remember_area() -> void:
 	zombie_state.capture(area_id, zombies, now())
+
+
+func attach(root: Node3D, player_node: Node3D) -> void:
 	spawn_root = root
 	player = player_node
 	zombies.clear()

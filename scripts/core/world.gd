@@ -387,6 +387,7 @@ func _build() -> void:
 	if _builder == null:
 		_builder = LevelBuilder.new()
 	var root: Node3D = _run.get_level_root()
+	Director.remember_area()
 	if _level != null and is_instance_valid(_level):
 		_level.get_parent().remove_child(_level)
 		_level.queue_free()

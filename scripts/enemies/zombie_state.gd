@@ -36,7 +36,7 @@ func capture(id: String, zombies: Array, minute: float) -> void:
 	var e := _entry(id)
 	var alive := []
 	for z in zombies:
-		if is_instance_valid(z) and not z.is_dead():
+		if is_instance_valid(z) and z.is_inside_tree() and not z.is_dead():
 			alive.append({"kind": z.enemy_ref, "health": z.health, "x": z.global_position.x})
 	e["alive"] = alive
 	e["t"] = minute
