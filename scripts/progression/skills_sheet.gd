@@ -5,17 +5,16 @@ signal closed
 
 
 func _ready() -> void:
-	var box := ProgUI.backdrop(self)
-	var head := HBoxContainer.new()
-	head.add_child(ProgUI.label("%s  (%s)" % [Stats.player_name if Stats.player_name != "" else "Survivor", Stats.background], 24))
-	var spacer := Control.new()
-	spacer.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	head.add_child(spacer)
-	head.add_child(ProgUI.button("Close", func(): closed.emit()))
-	box.add_child(head)
+	var box := ProgUI.sheet(self, Vector2(1260, 0))
 	var p := PointsPanel.new()
 	p.allow_spend = false
-	box.add_child(ProgUI.scrolled(p))
+	box.add_child(p)
+	var btn := UITheme.button("Close", func(): closed.emit())
+	btn.custom_minimum_size = Vector2(320, 52)
+	btn.add_theme_font_size_override("font_size", 22)
+	btn.size_flags_horizontal = Control.SIZE_SHRINK_CENTER
+	box.add_child(btn)
+	btn.grab_focus.call_deferred()
 
 
 func _unhandled_input(event: InputEvent) -> void:
