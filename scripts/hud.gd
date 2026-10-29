@@ -34,8 +34,7 @@ func _process(_delta: float) -> void:
 	_update_weapon()
 
 func _update_health() -> void:
-	# Player has no max-health property yet, so read the script constant.
-	var max_health: float = player.MAX_HEALTH
+	var max_health: float = player.max_health
 	if player.health == shown_health and max_health == shown_max_health:
 		return
 	shown_health = player.health
