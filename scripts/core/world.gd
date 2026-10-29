@@ -513,7 +513,8 @@ func interact_target() -> Node3D:
 	_target = link
 	for node in get_tree().get_nodes_in_group("world_interactable"):
 		if node is Node3D and node.has_method("wants_interact") and node.wants_interact():
-			var d := absf(node.global_position.x - px)
+			var d: float = node.reach_distance(px) if node.has_method("reach_distance") \
+					else absf(node.global_position.x - px)
 			if d <= best_d:
 				best_d = d
 				_target = node

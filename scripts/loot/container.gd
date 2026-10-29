@@ -67,19 +67,31 @@ func wants_interact() -> bool:
 			and _is_nearest_in_range()
 
 
-## Neighbouring containers can have overlapping triggers; only the one closest
-## to the player reacts to the interact key.
+## Horizontal distance from `px` to this container's body: 0 while the player
+## stands in front of it, so the box you face beats a neighbour whose centre is closer.
+func reach_distance(px: float) -> float:
+	var half: float = visual_for(title)["size"].x * width_scale * 0.5
+	return maxf(0.0, absf(global_position.x - px) - half)
+
+
+## Neighbouring containers can have overlapping triggers; only the one the
+## player faces (then the nearest, then the front row) reacts to the interact key.
 func _is_nearest_in_range() -> bool:
 	if player_in_range == null:
 		return false
 	var px: float = player_in_range.global_position.x
-	var mine := absf(global_position.x - px)
+	var mine := reach_distance(px)
 	for other in get_tree().get_nodes_in_group("world_interactable"):
 		if other == self or not other.has_method("_is_nearest_in_range") or other.player_in_range == null:
 			continue
-		var d := absf(other.global_position.x - px)
-		if d < mine or (is_equal_approx(d, mine) and other.get_instance_id() < get_instance_id()):
+		var d: float = other.reach_distance(px)
+		if d < mine - 0.001:
 			return false
+		if absf(d - mine) <= 0.001:
+			if other.recess_z > recess_z + 0.001:
+				return false
+			if absf(other.recess_z - recess_z) <= 0.001 and other.get_instance_id() < get_instance_id():
+				return false
 	return true
 
 
@@ -273,7 +285,7 @@ func _build() -> void:
 	var tshape := CollisionShape3D.new()
 	tshape.name = "Shape"
 	var tbox := BoxShape3D.new()
-	tbox.size = Vector3(size.x + 0.3, 2.0, absf(recess_z) + 1.0)
+	tbox.size = Vector3(size.x + 0.1, 2.0, absf(recess_z) + 1.0)
 	tshape.shape = tbox
 	_trigger.position = Vector3(0, 1.0, recess_z * 0.5)
 	_trigger.add_child(tshape)
