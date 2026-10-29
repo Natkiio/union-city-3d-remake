@@ -129,9 +129,13 @@ func now() -> float:
 	return _fallback_minutes
 
 
-## Test hook for the fallback clock.
+## Skips game time: through Clock when it provides game_minutes, else the
+## fallback counter. Used by tests and by sleep/travel callers.
 func advance_minutes(minutes: float) -> void:
-	_fallback_minutes += minutes
+	if _has_clock_minutes():
+		Clock.advance(int(ceil(minutes)))
+	else:
+		_fallback_minutes += minutes
 
 
 func _health_pct() -> int:
