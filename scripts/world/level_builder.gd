@@ -85,6 +85,7 @@ func build(id: String) -> Level:
 	_build_links(level, links_root, id, w)
 	_build_containers(things, id, w, level.outdoors)
 	_build_npcs(things, id, w)
+	_place_actors(level, id)
 	_build_extras(dressing_root, links_root, id, w, level)
 	return level
 
@@ -332,6 +333,15 @@ func _build_npcs(root: Node3D, id: String, w: float) -> void:
 			root.add_child(marker)
 			var display := str(WorldData._data().entry("npc", n.npc_id).get("name", n.npc_id))
 			dressing.npc_marker(marker, 0.0, 0.0, display if display != "" else n.npc_id, facing)
+
+
+## Human enemies from the room's `enemy` list and the active companions
+## (companions workstream; see docs/companions.md).
+func _place_actors(level: Level, id: String) -> void:
+	var tree := Engine.get_main_loop() as SceneTree
+	var comp := tree.root.get_node_or_null("Companions") if tree != null else null
+	if comp != null:
+		comp.populate_level(level, id)
 
 
 ## Beds (safehouses only, like the original), dead bodies and story triggers.
