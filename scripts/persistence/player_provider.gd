@@ -80,8 +80,8 @@ static func apply_pending(p: Node) -> void:
 		p.equipped_weapon = ref
 	var pos: Array = d.get("position", [])
 	if pos.size() == 3:
-		# x only: World places y on the floor, z is the lane.
-		p.global_position.x = float(pos[0])
+		# z is always the lane.
+		p.global_position = Vector3(float(pos[0]), float(pos[1]), 0.0)
 		if "velocity" in p:
 			p.velocity = Vector3.ZERO
 	if d.has("facing") and "facing_dir" in p:

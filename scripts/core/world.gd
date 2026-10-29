@@ -55,6 +55,8 @@ var _builder: LevelBuilder = null
 var _busy: bool = false
 var _fade_layer: CanvasLayer = null
 var _fade_rect: ColorRect = null
+var _target: Node3D = null
+var _target_frame: int = -1
 
 
 func _ready() -> void:
@@ -95,7 +97,13 @@ func from_dict(d: Dictionary) -> void:
 		reset()
 		return
 	var x: float = float(d.get("player_x_px", -1.0))
+	# Re-entering the room on load must not count as a new visit: keep the
+	# saved visit times (ours and the Director's repopulation clock).
+	var saved_visited := visited.duplicate()
+	var director_visits: Dictionary = Director.area_visits.duplicate()
 	enter_room(rid, "x:%f" % x if x >= 0.0 else "")
+	visited = saved_visited
+	Director.area_visits = director_visits
 
 
 ## Opens the run scene if it is not already showing (after a load from a menu).
@@ -479,17 +487,44 @@ func _process(_delta: float) -> void:
 	if not has_run_scene() or _busy or get_tree().paused:
 		return
 	if Input.is_action_just_pressed("interact"):
-		var link := nearest_link_in_range()
-		var px: float = player().global_position.x
-		var link_d: float = absf(link.global_position.x - px) if link != null else INF
-		# Containers and NPCs handle the key themselves; when one is at least as
-		# close as the door trigger overlapping it, the key is theirs.
-		for node in get_tree().get_nodes_in_group("world_interactable"):
-			if node.has_method("wants_interact") and node.wants_interact() \
-					and absf(node.global_position.x - px) <= link_d:
-				return
-		if link != null:
-			use_link(link.link)
+		var target := interact_target()
+		if target is WorldLink:
+			use_link(target.link)
+
+
+## The one thing an interact press acts on: the nearest of the in-range links
+## and the containers / NPCs that want the key (group "world_interactable",
+## wants_interact()). On a tie the container or NPC wins. Worked out once per
+## frame, before anything reacts, so a press never opens two things.
+## Containers and NPCs handle the key themselves only when this is them.
+func interact_target() -> Node3D:
+	var frame := Engine.get_process_frames()
+	if frame == _target_frame:
+		return _target if is_instance_valid(_target) else null
+	_target_frame = frame
+	_target = null
+	var p := player()
+	if p == null:
+		return null
+	var px: float = p.global_position.x
+	var link := nearest_link_in_range()
+	var best_d: float = absf(link.global_position.x - px) if link != null else INF
+	_target = link
+	for node in get_tree().get_nodes_in_group("world_interactable"):
+		if node is Node3D and node.has_method("wants_interact") and node.wants_interact():
+			var d := absf(node.global_position.x - px)
+			if d <= best_d:
+				best_d = d
+				_target = node
+	return _target
+
+
+## For containers and NPCs: may `node` act on this interact press? True when
+## no run scene is up (tests, menus) so they keep working on their own.
+func is_interact_target(node: Node) -> bool:
+	if not has_run_scene():
+		return true
+	return interact_target() == node
 
 
 ## The in-range WorldLink nearest the player, or null.

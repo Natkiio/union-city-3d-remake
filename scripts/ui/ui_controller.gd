@@ -46,7 +46,23 @@ func close(screen: Control) -> void:
 	if is_instance_valid(screen):
 		screen.queue_free()
 	if stack.is_empty():
-		get_tree().paused = _was_paused
+		# Stay paused only if whatever paused the game before us is still up
+		# (a dialogue that paused first may have closed in the meantime).
+		get_tree().paused = _was_paused and _other_pauser_open()
+
+
+## True while a screen outside this controller holds the game paused: the
+## container or inventory panel, the death screen, or a visible run overlay
+## (dialogue box, lockpick, shop).
+func _other_pauser_open() -> bool:
+	for n in ["TrunkUI", "InventoryUI", "DeathScreen"]:
+		var node := get_node_or_null("/root/" + n)
+		if node != null and "visible" in node and node.visible:
+			return true
+	for node in get_tree().get_nodes_in_group("run_overlay"):
+		if node is CanvasLayer and node.visible and (not ("model" in node) or node.model.get("pause", true)):
+			return true
+	return false
 
 
 func close_all() -> void:

@@ -188,7 +188,8 @@ func begin_area(new_danger: int, width: float, is_outdoors: bool, is_safehouse: 
 	safehouse = is_safehouse
 	area_id = id
 	_refresh_limits()
-	if id == "" or max_zombies <= 0 or _live_count() > 0:
+	# A disabled Director (tests, scripted scenes) spawns nothing at all.
+	if not enabled or id == "" or max_zombies <= 0 or _live_count() > 0:
 		return 0
 	var last = area_visits.get(id)
 	if last != null and now() - float(last) <= DirectorRules.repop_time(outdoors):
