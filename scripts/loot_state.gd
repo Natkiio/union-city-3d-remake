@@ -10,6 +10,12 @@ extends Node
 
 var looted: Dictionary = {}
 var trunk_contents: Dictionary = {}
+## Searched containers by container id: {"searched": bool, "items": Array}.
+## `items` is the exact remaining contents after any partial takes.
+var containers: Dictionary = {}
+## Lock state by lock id (container id, or "<room path>_<door>"):
+## {"unlocked": bool, "broken": bool}.
+var locks: Dictionary = {}
 
 func _ready() -> void:
 	add_to_group("stateful")
@@ -17,13 +23,18 @@ func _ready() -> void:
 func reset() -> void:
 	looted.clear()
 	trunk_contents.clear()
+	containers.clear()
+	locks.clear()
 
 func to_dict() -> Dictionary:
-	return {"looted": looted.duplicate(true), "trunk_contents": trunk_contents.duplicate(true)}
+	return {"looted": looted.duplicate(true), "trunk_contents": trunk_contents.duplicate(true),
+		"containers": containers.duplicate(true), "locks": locks.duplicate(true)}
 
 func from_dict(d: Dictionary) -> void:
 	looted = d.get("looted", {}).duplicate(true)
 	trunk_contents = d.get("trunk_contents", {}).duplicate(true)
+	containers = d.get("containers", {}).duplicate(true)
+	locks = d.get("locks", {}).duplicate(true)
 
 func mark_looted(loot_id: String) -> void:
 	looted[loot_id] = true
@@ -41,3 +52,19 @@ func has_saved_trunk_contents(trunk_id: String) -> bool:
 
 func get_saved_trunk_contents(trunk_id: String) -> Array:
 	return trunk_contents.get(trunk_id, []).duplicate(true)
+
+## Searched-container record, or {} if it has never been searched.
+func get_container(container_id: String) -> Dictionary:
+	return containers.get(container_id, {}).duplicate(true)
+
+func has_container(container_id: String) -> bool:
+	return containers.has(container_id)
+
+func set_container(container_id: String, record: Dictionary) -> void:
+	containers[container_id] = record.duplicate(true)
+
+func get_lock(lock_id: String) -> Dictionary:
+	return locks.get(lock_id, {}).duplicate()
+
+func set_lock(lock_id: String, state: Dictionary) -> void:
+	locks[lock_id] = state.duplicate()
