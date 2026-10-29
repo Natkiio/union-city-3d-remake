@@ -56,7 +56,24 @@ func _ready() -> void:
 ## True while the player stands at this container and interact would act on it
 ## (World checks this so a door trigger behind it does not steal the key).
 func wants_interact() -> bool:
-	return player_in_range != null and not TrunkUI.visible and reopen_cooldown <= 0.0
+	return player_in_range != null and not TrunkUI.visible and reopen_cooldown <= 0.0 \
+			and _is_nearest_in_range()
+
+
+## Neighbouring containers can have overlapping triggers; only the one closest
+## to the player reacts to the interact key.
+func _is_nearest_in_range() -> bool:
+	if player_in_range == null:
+		return false
+	var px: float = player_in_range.global_position.x
+	var mine := absf(global_position.x - px)
+	for other in get_tree().get_nodes_in_group("world_interactable"):
+		if other == self or not other.has_method("_is_nearest_in_range") or other.player_in_range == null:
+			continue
+		var d := absf(other.global_position.x - px)
+		if d < mine or (is_equal_approx(d, mine) and other.get_instance_id() < get_instance_id()):
+			return false
+	return true
 
 
 func _restore() -> void:
@@ -169,7 +186,7 @@ func _process(delta: float) -> void:
 		return
 	if player_in_range == null or TrunkUI.visible or reopen_cooldown > 0.0:
 		return
-	if Input.is_action_just_pressed("interact"):
+	if Input.is_action_just_pressed("interact") and _is_nearest_in_range():
 		interact()
 
 
