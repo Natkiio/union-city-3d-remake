@@ -236,7 +236,7 @@ func _update_weapon() -> void:
 	if gun != null:
 		loaded = Inventory.get_magazine(gun.display_name, gun.mag_size)
 		reserve = Inventory.items.get(gun.ammo_item_name(), {}).get("count", 0)
-	var state := [weapon, loaded, reserve, reloading]
+	var state := [weapon, loaded, reserve, reloading, Inventory.slots.duplicate()]
 	if state == shown_state:
 		return
 	shown_state = state
@@ -247,6 +247,22 @@ func _update_weapon() -> void:
 	else:
 		weapon_label.text = "Fists"
 		weapon_label.add_theme_color_override("font_color", UITheme.TEXT)
+	var slots_line := _slots_line(gun)
+	if slots_line != "":
+		weapon_label.text += "\n" + slots_line
+
+
+## "2 G17 Pistol   3 Shotgun" for the readied slots, the one in hand marked with >.
+func _slots_line(held: Weapon) -> String:
+	var parts: Array = []
+	var keys := {"primary": "2", "secondary": "3"}
+	for slot in Inventory.SLOTS:
+		var item_name: String = Inventory.slots[slot]
+		if item_name == "":
+			continue
+		var mark := ">" if held != null and held.display_name == item_name else " "
+		parts.append("%s%s %s" % [mark, keys[slot], item_name])
+	return "   ".join(parts)
 
 
 func _on_item_added(item_name: String) -> void:

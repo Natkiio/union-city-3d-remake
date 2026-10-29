@@ -190,10 +190,17 @@ func _physics_process(delta: float) -> void:
 		_set_equipped("fist")
 		print("[Player] equipped fists")
 	if Input.is_action_just_pressed("equip_gun"):
-		var gun := _first_firearm_in_inventory()
-		if gun != null:
-			_set_equipped(gun.ref)
-			print("[Player] equipped %s" % gun.display_name)
+		if Inventory.slots["primary"] == "":
+			# Nothing readied yet: take the first firearm carried and ready it.
+			var first := _first_firearm_in_inventory()
+			if first != null:
+				Inventory.assign_slot("primary", first.display_name)
+		equip_slot("primary")
+	if Input.is_action_just_pressed("equip_secondary"):
+		equip_slot("secondary")
+	if Input.is_action_just_pressed("swap_weapon"):
+		var current: String = Inventory.slot_of(_equipped_item_name())
+		equip_slot("secondary" if current != "secondary" else "primary")
 
 	_since_shot += delta
 	if _since_shot > SPREAD_RESET_TIME:
@@ -365,6 +372,26 @@ func _held_material(color: Color) -> StandardMaterial3D:
 	m.albedo_color = color
 	m.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
 	return m
+
+
+## Equips the weapon readied in "primary" or "secondary" (key 2 / key 3). Does
+## nothing if the slot is empty or the item is no longer carried.
+func equip_slot(slot: String) -> bool:
+	var item_name: String = Inventory.slots.get(slot, "")
+	if item_name == "" or not Inventory.has_item(item_name):
+		return false
+	var weapon := Weapon.find_by_name(item_name)
+	if weapon == null:
+		return false
+	_set_equipped(weapon.ref)
+	print("[Player] equipped %s (%s)" % [weapon.display_name, slot])
+	return true
+
+
+## Inventory name of the equipped weapon, or "" for fists.
+func _equipped_item_name() -> String:
+	var weapon := Weapon.from_ref(equipped_weapon) if equipped_weapon != "fist" else null
+	return weapon.display_name if weapon != null else ""
 
 
 ## Switching weapons drops any reload or burst in progress.

@@ -26,27 +26,59 @@ var book_points: Dictionary = {}
 ## belongs to the player; this is the flag it reads.
 var overweight: bool = false
 
+## Weapons readied for the number keys: item names (or "") for key 2 and key 3.
+const SLOTS := ["primary", "secondary"]
+var slots: Dictionary = {"primary": "", "secondary": ""}
+
 func _ready() -> void:
 	add_to_group("stateful")
 	Events.stats_changed.connect(_update_overweight)
+
+## Puts a carried weapon in a slot (a weapon can sit in only one slot).
+func assign_slot(slot: String, item_name: String) -> bool:
+	if not SLOTS.has(slot) or not items.has(item_name):
+		return false
+	for other in SLOTS:
+		if slots[other] == item_name:
+			slots[other] = ""
+	slots[slot] = item_name
+	inventory_changed.emit()
+	return true
+
+func clear_slot(slot: String) -> void:
+	if SLOTS.has(slot) and slots[slot] != "":
+		slots[slot] = ""
+		inventory_changed.emit()
+
+## "primary", "secondary" or "" for the slot this item sits in.
+func slot_of(item_name: String) -> String:
+	for slot in SLOTS:
+		if slots[slot] == item_name:
+			return slot
+	return ""
 
 func reset() -> void:
 	items.clear()
 	magazines.clear()
 	equipped_clothing.clear()
 	book_points.clear()
+	slots = {"primary": "", "secondary": ""}
 	_update_overweight()
 	inventory_changed.emit()
 
 func to_dict() -> Dictionary:
 	return {"items": items.duplicate(true), "magazines": magazines.duplicate(true),
-		"equipped_clothing": equipped_clothing.duplicate(), "book_points": book_points.duplicate()}
+		"equipped_clothing": equipped_clothing.duplicate(), "book_points": book_points.duplicate(),
+		"slots": slots.duplicate()}
 
 func from_dict(d: Dictionary) -> void:
 	items = d.get("items", {}).duplicate(true)
 	magazines = d.get("magazines", {}).duplicate(true)
 	equipped_clothing = d.get("equipped_clothing", {}).duplicate()
 	book_points = d.get("book_points", {}).duplicate()
+	slots = {"primary": "", "secondary": ""}
+	for slot in SLOTS:
+		slots[slot] = str(d.get("slots", {}).get(slot, ""))
 	_update_overweight()
 	inventory_changed.emit()
 
@@ -76,6 +108,9 @@ func remove_item(item_name: String, count: int = 1) -> void:
 	items[item_name]["count"] -= count
 	if items[item_name]["count"] <= 0:
 		items.erase(item_name)
+		for slot in SLOTS:
+			if slots[slot] == item_name:
+				slots[slot] = ""
 	_update_overweight()
 	inventory_changed.emit()
 	print("[Inventory] removed: %s x%d" % [item_name, count])

@@ -10,7 +10,8 @@ extends CanvasLayer
 @onready var weight_bar: ProgressBar = $Panel/WeightBar
 @onready var action_row: HBoxContainer = $Panel/ActionRow
 @onready var use_button: Button = $Panel/ActionRow/UseButton
-@onready var equip_button: Button = $Panel/ActionRow/EquipButton
+@onready var equip_button: Button = $Panel/ActionRow/EquipButton # primary slot
+var secondary_button: Button
 @onready var drop_button: Button = $Panel/ActionRow/DropButton
 
 var selected_item: String = ""
@@ -20,7 +21,13 @@ func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	visible = false
 	use_button.pressed.connect(_on_use_pressed)
-	equip_button.pressed.connect(_on_equip_pressed)
+	equip_button.pressed.connect(_on_slot_pressed.bind("primary"))
+	secondary_button = Button.new()
+	secondary_button.name = "SecondaryButton"
+	secondary_button.theme = equip_button.theme
+	secondary_button.pressed.connect(_on_slot_pressed.bind("secondary"))
+	action_row.add_child(secondary_button)
+	action_row.move_child(secondary_button, equip_button.get_index() + 1)
 	drop_button.pressed.connect(_on_drop_pressed)
 	Inventory.inventory_changed.connect(_on_inventory_changed)
 
@@ -71,7 +78,10 @@ func _refresh() -> void:
 			row.alignment = HORIZONTAL_ALIGNMENT_LEFT
 			var tag := Inventory.tag_for(item_name)
 			var tag_text := "  [%s]" % tag if tag != "" else ""
-			if tag == "WEAPON" and _is_equipped(player, item_name):
+			var slot: String = Inventory.slot_of(item_name)
+			if slot != "":
+				tag_text += "  [%s]" % slot.to_upper()
+			if Weapon.find_by_name(item_name) != null and _is_equipped(player, item_name):
 				tag_text += "  (equipped)"
 			row.text = "%s  x%d%s  —  %.1f lbs" % [item_name, data["count"], tag_text, data["weight"] * data["count"]]
 			row.button_pressed = (item_name == selected_item)
@@ -87,17 +97,15 @@ func _refresh() -> void:
 		use_button.disabled = not Inventory.is_usable(selected_item)
 		drop_button.text = "[Drop] %s" % selected_item
 
-		var selected_weapon := Weapon.find_by_name(selected_item)
-		var is_weapon: bool = selected_weapon != null and selected_weapon.is_firearm()
+		var is_weapon: bool = Weapon.find_by_name(selected_item) != null
 		equip_button.visible = is_weapon
+		secondary_button.visible = is_weapon
 		if is_weapon:
-			var player := get_tree().get_first_node_in_group("player")
-			if _is_equipped(player, selected_item):
-				equip_button.text = "[Unequip] %s" % selected_item
-			else:
-				equip_button.text = "[Equip] %s" % selected_item
+			equip_button.text = ("[Clear Primary]" if Inventory.slot_of(selected_item) == "primary" else "[Set Primary]")
+			secondary_button.text = ("[Clear Secondary]" if Inventory.slot_of(selected_item) == "secondary" else "[Set Secondary]")
 	else:
 		equip_button.visible = false
+		secondary_button.visible = false
 
 
 func _refresh_weight() -> void:
@@ -148,26 +156,33 @@ func _on_use_pressed() -> void:
 	else:
 		print("[Inventory] %s cannot be used now" % selected_item)
 
-func _on_equip_pressed() -> void:
+## Sets or clears a weapon slot for the selected item. Setting the primary
+## also takes it in hand; setting the secondary only readies it (key 3).
+func _on_slot_pressed(slot: String) -> void:
 	if selected_item == "" or not Inventory.has_item(selected_item):
 		return
 	var player := get_tree().get_first_node_in_group("player")
 	if player == null or not player.has_method("_set_equipped"):
 		return
-	if _is_equipped(player, selected_item):
-		player._set_equipped("fist")
-		print("[Inventory] unequipped %s" % selected_item)
+	if Inventory.slot_of(selected_item) == slot:
+		Inventory.clear_slot(slot)
+		if _is_equipped(player, selected_item):
+			player._set_equipped("fist")
+		print("[Inventory] cleared %s slot" % slot)
 	else:
-		var weapon := Weapon.find_by_name(selected_item)
-		if weapon == null:
-			return
-		player._set_equipped(weapon.ref)
-		print("[Inventory] equipped %s" % selected_item)
+		Inventory.assign_slot(slot, selected_item)
+		if slot == "primary":
+			player.equip_slot("primary")
+		print("[Inventory] %s -> %s slot" % [selected_item, slot])
 	_refresh()
 
 func _on_drop_pressed() -> void:
 	if selected_item == "" or not Inventory.has_item(selected_item):
 		return
 	var dropped := selected_item
+	var player := get_tree().get_first_node_in_group("player")
+	var was_equipped := _is_equipped(player, dropped)
 	Inventory.remove_item(selected_item, 1)
+	if was_equipped and not Inventory.has_item(dropped) and player.has_method("_set_equipped"):
+		player._set_equipped("fist")
 	print("[Inventory] dropped 1 %s" % dropped)
