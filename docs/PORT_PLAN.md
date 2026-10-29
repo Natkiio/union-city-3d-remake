@@ -5,7 +5,7 @@ Rebuild *The Last Stand: Union City* in Godot as a Cork City, Ireland zombie sur
 ## Decisions (from Robert)
 
 - Target: **full skeleton plus one deep slice**. Every system exists and is data-driven; one Cork district with 2-3 buildings is playable end to end.
-- Visuals: **flat 2D cutouts in 3D**. Characters and props are layered flat polygons (unshaded, outlined) placed in the 3D scene; no imported art. Backdrops are flat parallax layers.
+- Visuals: **Nathan's direction, rigged 3D models from Blender** (`blender_source/*.blend` exported to `assets/characters/*.glb` with Idle/Walk animations, wrapped in `scenes/characters/*.tscn`). The player and the basic zombie already use this. New characters follow the same pipeline; variants (zombie kinds, NPCs) tint and scale the base rigs until dedicated models exist. The earlier flat-cutout rig (`scripts/visual/`, `docs/cutout.md`) was built as an alternative and is **not used by the game**; it stays in the repo for reference and can be deleted.
 - Code boundaries: restructure freely, work on `dev`, **nothing is pushed**.
 - Setting: **real Cork map and a new story** in the original's shape (see `docs/CORK_BIBLE.md` once written).
 
@@ -43,7 +43,9 @@ A system with state that must survive scene changes, be reset on death and be sa
 - Combat entities share this interface: `take_damage(amount: float, zone: String = "chest", source: Node = null, knockback: float = 0.0)`, `apply_stagger(direction: float, distance: float)`. Zones: `head`, `chest`, `belly`, `legs`.
 - The Z=0 lane rule holds (see `ROADMAP.md`): only zombies and the player share the lane.
 
-### Visual rig contract (cutout workstream)
+### Visual rig contract (superseded; see Decisions)
+
+This contract belonged to the cutout rig, which the game does not use. Characters are Blender models with an `AnimationPlayer` (Idle, Walk); gameplay only picks the animation from velocity and state, and never touches parts. Kept for reference:
 
 `scripts/visual/cutout_rig.gd` on a Node3D: `apply_look(look: Dictionary)` (keys follow `npc.json`/`pre.json`: `skinColour`, `hair`, `hairColour`, `clothesTop`, `clothesBottom`, `clothesShoe`, `backpack`, `weapon`), `play(anim: String)` (`idle walk run punch shove aim hurt die`), `set_facing(dir: float)`, `set_aim(pitch: float)`. Gameplay code never touches rig parts.
 

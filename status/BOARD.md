@@ -10,7 +10,7 @@ Branch `dev`. Wave 1 merged. Wave 2: all merged except world (Opus, running).
 | survival | 1 | sonnet | merged |
 | cork | 1 | sonnet | merged |
 | audio | 1 | haiku | merged |
-| cutout | 1 | sonnet | merged |
+| cutout | 1 | sonnet | merged, not used (Blender models chosen) |
 | world | 2 | opus | started |
 | loot | 2 | sonnet | merged |
 | story | 2 | sonnet | merged |
@@ -18,4 +18,6 @@ Branch `dev`. Wave 1 merged. Wave 2: all merged except world (Opus, running).
 | persistence | 2 | sonnet | merged |
 | gameplay | 2 | sonnet | merged |
 
-Wave 3: integrate-visuals, companions, balance and playthrough, polish.
+Wave 3 (paused after a usage limit; partial work in worktrees, nothing merged): integrate, companions. `visuals` cancelled: characters use Nathan's Blender rigs, not the cutout rig.
+
+Next: resume integrate and companions; extend the Blender rigs to NPCs and zombie kinds; world art stays placeholder until models exist.

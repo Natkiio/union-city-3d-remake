@@ -1,3 +1,5 @@
+> **Not used by the game.** The project went with Nathan's Blender-model pipeline (see `docs/PORT_PLAN.md`, Decisions). This rig is kept as a reference and can be deleted.
+
 # Cutout visuals
 
 Flat 2D cutouts living in the 3D scene: characters are flat polygon parts (head, torso, 2 arms x 2 segments, 2 legs x 2 segments + feet, weapon, backpack) with a dark outline, unshaded, side-on. Everything is generated in code; no imported art. Physics bodies stay 3D, the rig is only their visual child.
