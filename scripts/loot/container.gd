@@ -11,7 +11,7 @@ extends Node3D
 ## The panel talks to the same `items` / `take_item` / `take_all` interface as
 ## the car trunk.
 
-const SEARCH_TIME := 0.8
+const SEARCH_TIME := 0.35
 const RECESS_Z := -1.4
 const PROMPT_HEIGHT := 1.6
 
