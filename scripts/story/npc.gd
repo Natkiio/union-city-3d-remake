@@ -5,8 +5,11 @@ extends Area3D
 ## the player's body can enter it without colliding. Layer 2 is the hover pick
 ## layer used by HoverSystem; the mask watches the player on layer 1.
 ##
-## setup(npc_id) reads npc.json (merged with Cork). The child "Visual" is a
-## plain coloured silhouette that the cutout rig will replace.
+## setup(npc_id) reads npc.json (merged with Cork). The child "Visual" holds
+## "Model", an instance of the shared male_basic rig dressed by CharacterLook
+## from the NPC record. Its feet are on the NPC origin, the head top is at
+## head_top_y() (a quest marker belongs about 0.4 above that), and the name
+## label floats there too.
 
 signal talked(npc_id: String)
 
@@ -24,12 +27,13 @@ var friendly: bool = true
 var companion_kind: String = ""
 
 @onready var visual: Node3D = $Visual
-var _body: MeshInstance3D
-var _head: MeshInstance3D
+const TURN_RANGE := 6.0 ## faces the player when closer than this (metres)
+const LABEL_GAP := 0.3
+
+var model: Node3D
 var _label: Label3D
-var _mat: StandardMaterial3D
-var _base_color := Color(0.5, 0.5, 0.55)
-var _t: float = 0.0
+var _anim: AnimationPlayer
+var _built: bool = false
 
 
 ## World calls this right after instantiating (before or after add_child).
@@ -59,43 +63,38 @@ func _ready() -> void:
 
 
 func _apply() -> void:
-	if _body == null:
+	if not _built:
 		_build_visual()
 	var ctx := StoryNames.context()
 	_label.text = _sys("Data").text(def.get("fullName", def.get("name", npc_id)), ctx).strip_edges()
-	_base_color = _color_for(str(def.get("clothesTop", "")))
-	_mat.albedo_color = _base_color
+	_label.modulate = Color(1.0, 0.45, 0.4) if enemy_flag else Color.WHITE
+	CharacterLook.apply(model, def)
+	_label.position.y = head_top_y() + LABEL_GAP
 	_refresh_active()
 
 
+## Height of the head top above the NPC origin (feet), hair and hats included.
+func head_top_y() -> float:
+	if model == null:
+		return 1.8
+	return CharacterLook.top_y(model) * model.scale.y
+
+
 func _build_visual() -> void:
-	_mat = StandardMaterial3D.new()
-	_mat.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
-	_mat.albedo_color = _base_color
-	_body = MeshInstance3D.new()
-	var box := BoxMesh.new()
-	box.size = Vector3(0.6, 1.3, 0.08)
-	_body.mesh = box
-	_body.position.y = 0.65
-	_body.material_override = _mat
-	visual.add_child(_body)
-	_head = MeshInstance3D.new()
-	var sphere := SphereMesh.new()
-	sphere.radius = 0.2
-	sphere.height = 0.4
-	_head.mesh = sphere
-	_head.position.y = 1.5
-	var head_mat := StandardMaterial3D.new()
-	head_mat.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
-	head_mat.albedo_color = _skin_color(str(def.get("skinColour", "White")))
-	_head.material_override = head_mat
-	visual.add_child(_head)
+	_built = true
+	model = visual.get_node("Model") as Node3D
+	_anim = model.find_child("AnimationPlayer", true, false) as AnimationPlayer
+	if _anim != null and _anim.has_animation("Idle"):
+		_anim.get_animation("Idle").loop_mode = Animation.LOOP_PINGPONG
+		_anim.play("Idle")
+		_anim.seek(randf() * _anim.current_animation_length, true) # crowds do not sync
 	_label = Label3D.new()
 	_label.billboard = BaseMaterial3D.BILLBOARD_ENABLED
 	_label.pixel_size = 0.006
-	_label.position.y = 2.0
+	_label.position.y = 2.1
 	_label.visible = false
 	add_child(_label)
+	_turn()
 
 
 func _refresh_active() -> void:
@@ -122,14 +121,29 @@ func _on_body_exited(body: Node3D) -> void:
 		player_in_range = null
 
 
-func _process(delta: float) -> void:
-	_t += delta
-	if visual != null:
-		visual.scale.y = 1.0 + sin(_t * 1.6) * 0.012 # idle breathing
-		visual.scale.x = facing
+func _process(_delta: float) -> void:
 	if player_in_range != null and visible and Input.is_action_just_pressed("interact") \
 			and not get_tree().paused:
 		interact()
+	if _built and visible:
+		var p := _player_near()
+		if p != null:
+			facing = signf(p.global_position.x - global_position.x) if p.global_position.x != global_position.x else facing
+		_turn()
+
+
+func _player_near() -> Node3D:
+	if player_in_range != null:
+		return player_in_range
+	var p := get_tree().get_first_node_in_group("player") as Node3D
+	if p != null and absf(p.global_position.x - global_position.x) < TURN_RANGE:
+		return p
+	return null
+
+
+func _turn() -> void:
+	# Same convention as the player: -PI/2 faces +X.
+	model.rotation.y = -PI / 2.0 if facing > 0.0 else PI / 2.0
 
 
 ## True while the player is in range and could talk (World checks this so a
@@ -153,24 +167,11 @@ func set_facing(dir: float) -> void:
 ## Called by HoverSystem.
 func set_highlighted(value: bool) -> void:
 	hovered = value
-	if _mat == null:
+	if model == null:
 		return
-	_mat.albedo_color = Color.WHITE if value else _base_color
+	CharacterLook.set_highlight(model, value)
 	_label.visible = value
 
-
-func _color_for(clothes: String) -> Color:
-	var h := clothes.hash()
-	return Color.from_hsv(float(h % 360) / 360.0, 0.35, 0.6)
-
-
-func _skin_color(skin: String) -> Color:
-	match skin:
-		"Black":
-			return Color(0.35, 0.24, 0.17)
-		"Brown", "Tan":
-			return Color(0.62, 0.45, 0.32)
-	return Color(0.9, 0.74, 0.62)
 
 static func _sys(system: String) -> Node:
 	return (Engine.get_main_loop() as SceneTree).root.get_node(system)
