@@ -141,7 +141,7 @@ func _lane_intruders(level: Node) -> Array:
 	for body in level.find_children("*", "CollisionObject3D", true, false):
 		if body is Area3D or body.is_in_group("level_floor") or body.is_in_group("level_bounds"):
 			continue
-		if body is CharacterBody3D and (body.is_in_group("player") or body is Zombie):
+		if body is CharacterBody3D and (body.is_in_group("player") or body is Zombie or body is HumanBody):
 			continue
 		for cs in body.find_children("*", "CollisionShape3D", true, false):
 			if cs.shape == null or cs.disabled:

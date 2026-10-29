@@ -80,6 +80,7 @@ var _attack_reach: float = 1.2
 var _pause_timer: float = 0.0
 var _riot_timer: float = 0.0
 var _dead: bool = false
+var _retarget_t: float = 0.0
 
 @onready var model: Node3D = $Model
 @onready var mesh: MeshInstance3D = _find_by_class(model, "MeshInstance3D")
@@ -201,6 +202,7 @@ func _roll_attack_reach() -> void:
 func _physics_process(delta: float) -> void:
 	if _dead:
 		return
+	_retarget(delta)
 	if player == null or not is_instance_valid(player):
 		player = get_tree().get_first_node_in_group("player")
 		if player == null:
@@ -254,6 +256,26 @@ func _physics_process(delta: float) -> void:
 		var desired := "Walk" if absf(velocity.x) > 0.01 else "Idle"
 		if anim_player.current_animation != desired:
 			anim_player.play(desired)
+
+## Companions register in group "zombie_targets". Every half second the zombie
+## aims at the nearest living target (the player included); mid-grab it keeps
+## its victim. (Added for the companions workstream.)
+func _retarget(delta: float) -> void:
+	_retarget_t -= delta
+	if _retarget_t > 0.0 or state == "grab":
+		return
+	_retarget_t = 0.5
+	var best: Node3D = get_tree().get_first_node_in_group("player")
+	var best_d: float = absf(best.global_position.x - global_position.x) if best != null else INF
+	for t in get_tree().get_nodes_in_group("zombie_targets"):
+		if t is Node3D and is_instance_valid(t):
+			var d: float = absf((t as Node3D).global_position.x - global_position.x)
+			if d < best_d:
+				best = t
+				best_d = d
+	if best != null:
+		player = best
+
 
 # --- perception -------------------------------------------------------------
 
