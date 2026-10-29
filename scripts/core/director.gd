@@ -81,6 +81,9 @@ func reset() -> void:
 	spawned_since_break = 0
 	droppers = 0
 	ending_rush = false
+	rush_start = 0.0
+	break_start = 0.0
+	break_length = 0
 	area_visits.clear()
 	area_id = ""
 	zombies.clear()

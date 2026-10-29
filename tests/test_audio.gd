@@ -137,4 +137,4 @@ func run() -> void:
 	sfx.play("pistol_shot")
 	sfx.reset()
 	check("reset stops every sound", sfx.pool_stats()["playing"] == 0 and not sfx.is_ambient_playing())
-	check("Sfx joins the stateful group", sfx.is_in_group("stateful"))
+	check("Sfx is not in the stateful group (volumes are settings)", not sfx.is_in_group("stateful"))
