@@ -450,6 +450,7 @@ func _build() -> void:
 		old.queue_free()
 	_level = _builder.build(room_id)
 	root.add_child(_level)
+	_level.add_child(SelectionUX.new())
 	for t in _level.find_children("Trigger_*", "Area3D", true, false):
 		t.body_entered.connect(_on_trigger_body.bind(str(t.get_meta("trigger_id", ""))))
 	var x := WorldData.PX_PER_UNIT
@@ -498,6 +499,21 @@ func _process(_delta: float) -> void:
 ## wants_interact()). On a tie the container or NPC wins. Worked out once per
 ## frame, before anything reacts, so a press never opens two things.
 ## Containers and NPCs handle the key themselves only when this is them.
+## Two refinements for readable selection: the mouse wins while it recently
+## moved and rests on an in-range target, and the previous target is kept while
+## a rival is not clearly nearer (HYSTERESIS metres), so the choice never
+## flip-flops at an equal distance. Standing in front of something (0 m) beats both.
+const HYSTERESIS := 0.12
+const MOUSE_ACTIVE_MS := 2500
+var _mouse_ms: int = -100000
+var _prev_target: Node3D = null
+
+
+func _input(event: InputEvent) -> void:
+	if event is InputEventMouseMotion:
+		_mouse_ms = Time.get_ticks_msec()
+
+
 func interact_target() -> Node3D:
 	var frame := Engine.get_process_frames()
 	if frame == _target_frame:
@@ -508,17 +524,48 @@ func interact_target() -> Node3D:
 	if p == null:
 		return null
 	var px: float = p.global_position.x
+	var cands := {} # node -> distance
 	var link := nearest_link_in_range()
-	var best_d: float = absf(link.global_position.x - px) if link != null else INF
-	_target = link
+	if link != null:
+		cands[link] = absf(link.global_position.x - px)
 	for node in get_tree().get_nodes_in_group("world_interactable"):
 		if node is Node3D and node.has_method("wants_interact") and node.wants_interact():
-			var d: float = node.reach_distance(px) if node.has_method("reach_distance") \
+			cands[node] = node.reach_distance(px) if node.has_method("reach_distance") \
 					else absf(node.global_position.x - px)
-			if d <= best_d:
-				best_d = d
-				_target = node
+	var best_d := INF
+	for n in cands:
+		# Links first in the dict, so `<=` lets a container or NPC win a tie.
+		if cands[n] <= best_d:
+			best_d = cands[n]
+			_target = n
+	if _target != null and best_d > 0.001 and _prev_target != null and cands.has(_prev_target) \
+			and cands[_prev_target] <= best_d + HYSTERESIS:
+		_target = _prev_target
+	var hov := hovered_target()
+	if hov != null and cands.has(hov) and mouse_recent():
+		_target = hov
+	_prev_target = _target
 	return _target
+
+
+func mouse_recent() -> bool:
+	return Time.get_ticks_msec() - _mouse_ms < MOUSE_ACTIVE_MS
+
+
+## The selectable thing under the mouse (container, link, NPC), in range or not.
+func hovered_target() -> Node3D:
+	var hs := get_node_or_null("/root/HoverSystem")
+	if hs == null:
+		return null
+	var h: Variant = hs.get("current_hovered")
+	if h == null or not is_instance_valid(h):
+		return null
+	if h.has_method("select_info"):
+		return h
+	var par: Node = h.get_parent()
+	if par != null and par.has_method("select_info"):
+		return par
+	return null
 
 
 ## For containers and NPCs: may `node` act on this interact press? True when

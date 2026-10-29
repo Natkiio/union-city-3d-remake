@@ -204,8 +204,6 @@ func _process(delta: float) -> void:
 			_refresh_prompt()
 		return
 	# Neighbouring triggers can overlap: only the nearest container shows its prompt.
-	if _label != null and player_in_range != null:
-		_label.visible = _is_nearest_in_range()
 	if player_in_range == null or TrunkUI.visible or reopen_cooldown > 0.0:
 		return
 	if Input.is_action_just_pressed("interact") and _is_nearest_in_range() and World.is_interact_target(self):
@@ -227,7 +225,7 @@ func _on_body_exited(body: Node3D) -> void:
 func _refresh_prompt() -> void:
 	if _label == null:
 		return
-	_label.visible = player_in_range != null
+	_label.visible = false # SelectionUX shows the one active prompt
 	if search_left >= 0.0:
 		return
 	var text := "[E] %s" % title
@@ -237,6 +235,29 @@ func _refresh_prompt() -> void:
 	elif searched and items.is_empty():
 		text = "%s (empty)" % title
 	_label.text = text
+
+
+## Selection feedback (see SelectionUX): what E would do here, in the kind colour.
+func select_info() -> Dictionary:
+	var verb := "Open" if searched else "Search"
+	var text := "[E] %s %s" % [verb, title.capitalize()]
+	var kind := "container"
+	if search_left >= 0.0 and _label != null:
+		text = _label.text
+	elif is_locked():
+		kind = "locked"
+		text = "[E] Open %s\n(locked: needs lockpick)" % title.capitalize()
+	elif searched and items.is_empty():
+		kind = "empty"
+		text = "%s (empty)" % title.capitalize()
+	return {"kind": kind, "text": text, "bounds": _select_bounds(), "in_range": player_in_range != null}
+
+
+func _select_bounds() -> AABB:
+	if _body == null:
+		return AABB(global_position, Vector3(0.6, 0.6, 0.2))
+	var size: Vector3 = (_body.mesh as BoxMesh).size
+	return AABB(_body.global_position - size * 0.5, size)
 
 
 ## desc -> [size (w, h, d), colour]. Matched by keyword, first hit wins.

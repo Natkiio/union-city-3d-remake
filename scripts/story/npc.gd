@@ -163,6 +163,14 @@ func set_facing(dir: float) -> void:
 	facing = -1.0 if dir < 0.0 else 1.0
 
 
+## Selection feedback (see SelectionUX).
+func select_info() -> Dictionary:
+	var h := head_top_y()
+	var who: String = _label.text if _label != null else npc_id
+	var b := AABB(global_position + Vector3(-0.45, 0.0, -0.2), Vector3(0.9, h, 0.4))
+	return {"kind": "person", "text": "[E] Talk to " + who, "bounds": b, "in_range": player_in_range != null and visible}
+
+
 ## Called by HoverSystem.
 func set_highlighted(value: bool) -> void:
 	hovered = value
