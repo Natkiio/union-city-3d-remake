@@ -5,7 +5,7 @@ Rebuild *The Last Stand: Union City* in Godot as a Cork City, Ireland zombie sur
 ## Decisions (from Robert)
 
 - Target: **full skeleton plus one deep slice**. Every system exists and is data-driven; one Cork district with 2-3 buildings is playable end to end.
-- Visuals: **Nathan's direction, rigged 3D models from Blender** (`blender_source/*.blend` exported to `assets/characters/*.glb` with Idle/Walk animations, wrapped in `scenes/characters/*.tscn`). The player and the basic zombie already use this. New characters follow the same pipeline; variants (zombie kinds, NPCs) tint and scale the base rigs until dedicated models exist. The earlier flat-cutout rig (`scripts/visual/`, `docs/cutout.md`) was built as an alternative and is **not used by the game**; it stays in the repo for reference and can be deleted.
+- Visuals: **Nathan's direction, rigged 3D models from Blender** (`blender_source/*.blend` exported to `assets/characters/*.glb` with Idle/Walk animations, wrapped in `scenes/characters/*.tscn`). The player and the basic zombie already use this. New characters follow the same pipeline; variants (zombie kinds, NPCs) tint and scale the base rigs until dedicated models exist. The earlier flat-cutout rig (`scripts/visual/`) was built as an alternative and is **not used by the game**; it stays in the repo for reference and can be deleted.
 - Code boundaries: restructure freely, work on `dev`, **nothing is pushed**.
 - Setting: **real Cork map and a new story** in the original's shape (see `docs/CORK_BIBLE.md` once written).
 
@@ -84,7 +84,7 @@ Done: `integrate` ([docs/integration.md](integration.md)): the seams between wav
 - Tests: add `tests/test_<name>.gd` (extends `tests/test_base.gd`). `tools/run_tests.sh` must pass before every commit, for the whole project, not only your file.
 - Do not edit `project.godot`, `tests/test_base.gd`, `tools/run_tests.sh` or `scripts/core/events.gd` beyond adding signals at the end of a section. Need an autoload or input action? Put it in your status file under Blocked and keep going with a local workaround.
 - Commits: small, on your branch. **Never** add a `Co-Authored-By` trailer, a "Generated with" line, or any mention of Claude or AI tooling. Never push or merge.
-- Status: keep `/Users/robertobrien/code/games/union-city-3d-remake/status/<name>.md` current per `status/README.md`. Terse.
+- Progress notes live in the final report of the work, not in status files.
 - Seeing your work: tests prove logic; for visuals you may run the game windowed for a few seconds with a script that saves `get_viewport().get_texture().get_image()` to a PNG in the scratchpad and quits, then read the PNG. Always quit automatically.
 - Keep scope to your row. Better a complete small thing than a sprawling half-thing. List follow-ups in your final report instead of building them.
 

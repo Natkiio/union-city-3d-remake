@@ -1,5 +1,5 @@
 extends SceneTree
-## NOT a test. Windowed screenshot tool for the cutout demo (see docs/cutout.md).
+## NOT a test. Windowed screenshot tool for the cutout demo.
 ##   godot --path . -s tests/capture_demo.gd [-- out_dir [backdrop_preset]]
 ## Saves stage_<name>.png for every demo stage to out_dir (default: user://) and quits.
 
