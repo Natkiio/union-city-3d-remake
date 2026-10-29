@@ -81,3 +81,26 @@ Integration, balance pass against the doc's numbers, end-to-end playthrough test
 - Status: keep `/Users/robertobrien/code/games/union-city-3d-remake/status/<name>.md` current per `status/README.md`. Terse.
 - Seeing your work: tests prove logic; for visuals you may run the game windowed for a few seconds with a script that saves `get_viewport().get_texture().get_image()` to a PNG in the scratchpad and quits, then read the PNG. Always quit automatically.
 - Keep scope to your row. Better a complete small thing than a sprawling half-thing. List follow-ups in your final report instead of building them.
+
+## Wave 2 contracts
+
+Wave 1 is merged into `dev` (progression, combat, zombies, survival, cork, audio; cutout pending). Wave 2 workstreams build against these interfaces so they can run in parallel. Read the real code of the merged systems before relying on them.
+
+| Name | Owns | Role |
+|---|---|---|
+| `world` | `scripts/core/world.gd`, `scripts/world/`, `scenes/world/`, `scenes/main.tscn`, `scripts/camera_rig.gd`, `scripts/door_trigger.gd`, `scenes/house/`, `scenes/car/`, `scenes/building/` | builds playable levels from `data/original/world/l*.json` merged with Cork, scrolling streets, buildings, floors, rooms, doors, stairs, safehouses; owns the run scene `scenes/main.tscn` (player, HUD, camera, level container) |
+| `loot` | `scripts/loot/`, `scenes/loot/`, `scripts/interactable.gd`, `scripts/car_trunk.gd`, `scripts/trunk_ui.gd`, `scenes/ui/trunk_ui.tscn`, `scripts/loot_state.gd` | containers, searching rules (sec. 6), loot rarity lists, locks and lockpicking (sec. 10), keys, shops (`shopSet*`), cash |
+| `story` | `scripts/core/quests.gd`, `scripts/story/`, `scenes/story/` | quests (all 39), NPC state machines, dialogue box, triggers (`trig.json`), cutscenes (`cutScene*.json`), unlocks, companions' data hooks |
+| `ui` | `scripts/main_menu.gd`, `scripts/hud.gd`, `scripts/death_screen.gd`, `scripts/ui/`, `scenes/ui/` (except inventory, trunk and the progression screens) | main menu to character creation to game flow, HUD (health, stamina, hunger, sleep, XP, clock, weapon and ammo), pause, settings, map and travel screen, sleep/wait dialog, death screen, level-up popup wiring |
+| `persistence` | `scripts/core/save_game.gd`, `scripts/persistence/`, `scenes/ui/save_slots*` | save and load of every stateful system, slots, autosave, versioned format, corruption handling |
+| `gameplay` | `scripts/player.gd`, `scripts/zombie.gd`, `scripts/combat/`, `scripts/enemies/` | glue between combat, zombies, stats and items: grab and struggle on the player, armor, kill XP end to end, overweight slowdown, run and crouch actions, perm health with items and sleep, balance pass |
+
+Agreed seams (implement your side; code against the other side's signature and guard with `has_method` until it lands):
+
+- **World API**: `World.start_new_game()`, `World.enter_location(section_id: String)`, `World.enter_room(room_path: String, spawn_at: String)`, `World.travel_to(section_id: String)`, `World.current: Dictionary` with keys `section, street, building, floor, room, danger, width_px, outdoors, safehouse`. It calls `Director.begin_area(...)` and `Director.attach(...)`, emits `Events.location_entered`, and spawns the player and camera. `to_dict`/`from_dict` restore the exact room.
+- **Containers**: `scripts/loot/container.gd` with `setup(container_id: String, def: Dictionary, room_type: String, danger: int)` and `scenes/loot/container.tscn`. `def` is one `contN` entry from the room data. World instantiates one per entry; Loot owns everything after that. Interaction goes through the existing interact action.
+- **NPCs**: `scenes/story/npc.tscn` and `scripts/story/npc.gd` with `setup(npc_id: String)`; World instantiates NPCs from the room's NPC list. Dialogue opens through `Quests`/story code only.
+- **Game flow**: ui owns `main menu -> character creation -> World.start_new_game()` and `death -> main menu`. Load goes through `SaveGame.load_slot(n)` then `World.from_dict`.
+- **Save API**: `SaveGame.save_slot(n: int) -> bool`, `load_slot(n: int) -> bool`, `has_slot(n)`, `slot_info(n) -> Dictionary` (name, level, location, clock, playtime), `autosave()`. Saves `to_dict()` of every node in group `stateful`, keyed by autoload name, plus a version number.
+- **Safehouse sleep and wait**: `Survival.sleep_hours` / `wait_hours` exist; the ui dialog calls them and `World` knows which rooms are safehouses.
+- Input actions already added: `run`, `crouch`, `pause`, `open_map`, `open_skills`, `quick_save`, `quick_load`, `sleep_wait` (plus the earlier ones). Need another? Put it in your status under Blocked.

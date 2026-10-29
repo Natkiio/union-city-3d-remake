@@ -1,15 +1,21 @@
 # Board
 
-Branch `dev`. Wave 1 running.
+Branch `dev`. Wave 1 merged except cutout. Wave 2 running.
 
-| Workstream | Model | State |
-|---|---|---|
-| progression | sonnet | started |
-| combat | sonnet | started |
-| zombies | sonnet | started |
-| survival | sonnet | started |
-| cutout | sonnet | started |
-| cork | sonnet | started |
-| audio | haiku | started |
+| Workstream | Wave | Model | State |
+|---|---|---|---|
+| progression | 1 | sonnet | merged |
+| combat | 1 | sonnet | merged |
+| zombies | 1 | sonnet | merged |
+| survival | 1 | sonnet | merged |
+| cork | 1 | sonnet | merged |
+| audio | 1 | haiku | merged |
+| cutout | 1 | sonnet | running |
+| world | 2 | opus | started |
+| loot | 2 | sonnet | started |
+| story | 2 | sonnet | started |
+| ui | 2 | sonnet | started |
+| persistence | 2 | sonnet | started |
+| gameplay | 2 | sonnet | started |
 
-Wave 2 (world, loot, story, ui, persistence, integrate-visuals, companions) starts after wave 1 merges.
+Wave 3: integrate-visuals, companions, balance and playthrough, polish.
