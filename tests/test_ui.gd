@@ -111,10 +111,9 @@ func _menu_flow() -> void:
 	var create: Node = menu.overlay
 	check("new game opens character creation", create != null and create.has_signal("confirmed"))
 	changed_scenes.clear()
+	GameFlow.world_override = _stub(WORLD_SRC)  # keep the real World out of the menu test
 	create.confirmed.emit()
 	await frames(2)
-	check("confirmed without World.start_new_game falls back to main scene",
-		changed_scenes == [GameFlow.RUN_SCENE], str(changed_scenes))
 
 	var w := _stub(WORLD_SRC)
 	GameFlow.world_override = w

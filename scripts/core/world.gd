@@ -292,20 +292,20 @@ func _try_unlock(link: Dictionary) -> bool:
 		Inventory.remove_item(key)
 		unlock_door(door_id)
 		return true
-	var def := {"door_id": door_id, "name": link.get("name", ""), "room_id": room_id,
-			"needs_key": link.get("needs_key", false), "lock_diff": link.get("lock_diff", "")}
+	var def := {"id": "door:" + door_id, "door_id": door_id, "name": link.get("name", ""),
+			"room_id": room_id, "locked": true,
+			"needs_key": link.get("needs_key", false), "lock_diff": link.get("lock_diff", "normal")}
 	var locks: Variant = _locks()
 	if locks != null:
-		var ok: Variant = locks.call("try_open", def)
-		if ok is bool and ok:
-			unlock_door(door_id)
-			return true
-		# false, or a minigame that calls World.unlock_door() later
-		if not (ok is bool):
-			return false
-		door_refused.emit(door_id, "locked")
-		_sfx("dry_click")
-		return false
+		# Result: 0 opened, 1 minigame started (the callback unlocks later), 2 denied.
+		var on_done := func(ok: bool) -> void:
+			if ok:
+				unlock_door(door_id)
+			else:
+				door_refused.emit(door_id, "needs key" if def.needs_key else "locked")
+				_sfx("dry_click")
+		var result: int = locks.call("try_open", def, self, on_done)
+		return result == 0
 	if link.get("needs_key", false):
 		door_refused.emit(door_id, "needs key")
 		_sfx("dry_click")

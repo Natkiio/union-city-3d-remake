@@ -292,6 +292,7 @@ func test_travel(world: Node) -> void:
 	check("travel hours to a section off the map = 0", WorldData.travel_hours("16", "1") == 0)
 	world.enter_location("16")
 	var before: int = clock.game_minutes
+	autoload("Quests").unlock_section("9")  # sections open through quests
 	var ok: bool = world.travel_to("9")
 	check("travel_to 9 advances the clock 2 h", ok and clock.game_minutes - before == 120, str(clock.game_minutes - before))
 	check("travel_to lands at the section's startLoc", world.room_id == "l9_s1_b0_f0_r1" and world.current.section == "9")
@@ -395,10 +396,13 @@ func test_locked_doors(world: Node) -> void:
 	world.enter_room("l16_s3_b4_f1_r1", "door2")
 	world.use_link(world.level().link_named("door2").link)
 	check("an unlocked door stays open", world.room_id == "l16_s3_b4_f1_r2")
-	# a lockpick door (no key needed) opens through the fallback until Locks lands
+	# a lockpick door (no key needed) is gated by Locks: skill check, then the minigame
 	world.enter_room("l12_s2_b1_f1_r2")
 	world.use_link(world.level().link_named("room101").link)
-	check("lockpick door opens through the fallback", world.room_id == "l12_s2_b1_f1_r101")
+	check("lockpick door is gated by Locks, not opened for free", world.room_id == "l12_s2_b1_f1_r2")
+	for n in root.get_children():
+		if n.get_script() != null and str(n.get_script().resource_path).ends_with("lock_ui.gd"):
+			n.queue_free()
 	world.door_refused.disconnect(cb)
 	# a boarded entrance refuses
 	world.enter_room("l6_s1_b0_f0_r1")
