@@ -76,7 +76,7 @@ static func from_ref(zombie_ref: String) -> ZombieType:
 	t.health_bonus = float(d.get("healthBonus", 1.0))
 	t.damage_bonus = float(d.get("damageBonus", 1.0))
 	for zone in ["head", "chest", "belly", "legs"]:
-		var key := "armor" + zone.capitalize()
+		var key: String = "armor" + zone.capitalize()
 		if d.has(key):
 			t.armor[zone] = float(d[key])
 	return t
