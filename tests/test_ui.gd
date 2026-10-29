@@ -230,7 +230,7 @@ func _map() -> void:
 	var click := InputEventMouseButton.new()
 	click.button_index = MOUSE_BUTTON_LEFT
 	click.pressed = true
-	click.position = Vector2(360, 220)
+	click.position = m.node_screen_pos(m.node_by_id("12"))
 	m.canvas.gui_input.emit(click)
 	check("click selects node", m.selected_id == "12")
 	var got := [""]

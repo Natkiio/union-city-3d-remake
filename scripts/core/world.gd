@@ -242,7 +242,8 @@ func map_nodes() -> Array:
 		out.append({
 			"id": sec,
 			"name": WorldData.section_name(sec),
-			"pos": WorldData.map_pos(sec),
+			"pos": WorldData.map_display_pos(sec),
+			"hours": travel_hours_to(sec),
 			"danger": int(WorldData.section(sec).get("danger", 0)),
 			"unlocked": is_section_unlocked(sec),
 			"travelable": WorldData.is_travelable(sec),

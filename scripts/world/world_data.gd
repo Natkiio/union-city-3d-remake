@@ -534,6 +534,16 @@ static func map_pos(sec: Variant) -> Variant:
 	return null
 
 
+## Where a section sits on the map screen: Cork geography (data/cork/world/
+## map_display.json, x east, y south, arbitrary units), falling back to the
+## original's map position. Display only; travel cost uses map_pos.
+static func map_display_pos(sec: Variant) -> Variant:
+	var rec: Variant = _data().table("world/map_display").get(norm_section(sec))
+	if rec is Dictionary:
+		return Vector2(float(rec.x), float(rec.y))
+	return map_pos(sec)
+
+
 static func connections(sec: Variant) -> Array[String]:
 	var out: Array[String] = []
 	for loc in _data().entry("sections", norm_section(sec)).get("locations", []):

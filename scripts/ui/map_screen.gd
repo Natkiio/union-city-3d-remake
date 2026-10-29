@@ -9,7 +9,9 @@ extends UIScreen
 signal travelled(section_id: String)
 
 const COST_DIVISOR := 200.0
-const CANVAS_SIZE := Vector2(660, 400)
+const CANVAS_SIZE := Vector2(900, 560)
+const PAD := Vector2(90, 60)
+const LABEL_FS := 14
 const NODE_RADIUS := 11.0
 
 ## Tests inject nodes here; empty means ask World.
@@ -27,7 +29,7 @@ var last_error: String = ""
 
 func _init() -> void:
 	screen_title = "Cork"
-	panel_min = Vector2(700, 0)
+	panel_min = Vector2(940, 0)
 
 
 ## Fallback layout used by tests and until the world workstream lands.
@@ -106,6 +108,8 @@ func cost_to(id: String) -> int:
 	var n := node_by_id(id)
 	if n.is_empty() or current_id == "":
 		return 0
+	if n.has("hours"):
+		return int(n.get("hours"))
 	return travel_cost(current_pos(), to_vec(n.get("pos")))
 
 
@@ -117,6 +121,8 @@ func select(id: String) -> void:
 	var unlocked: bool = bool(n.get("unlocked", true))
 	var reachable: bool = bool(n.get("travelable", true))
 	var txt := "%s   danger %d" % [n.get("name", id), int(n.get("danger", 0))]
+	if id == current_id:
+		txt += "   (YOU ARE HERE)"
 	var h := cost_to(id)
 	if id == current_id:
 		txt += "\nYou are here."
@@ -163,11 +169,63 @@ func _canvas_input(event: InputEvent) -> void:
 			select(hit)
 
 
-func node_at(p: Vector2) -> String:
+## Fits the raw node positions into the canvas: uniform scale, centred, with
+## padding for labels. Returns the screen position of a raw position.
+func layout_bounds() -> Rect2:
+	var lo := Vector2(INF, INF)
+	var hi := Vector2(-INF, -INF)
 	for n in map_nodes:
-		if to_vec(n.get("pos")).distance_to(p) <= NODE_RADIUS + 6.0:
-			return str(n.get("id"))
-	return ""
+		var p := to_vec(n.get("pos"))
+		lo = lo.min(p)
+		hi = hi.max(p)
+	if lo.x == INF:
+		return Rect2(Vector2.ZERO, Vector2.ONE)
+	return Rect2(lo, hi - lo)
+
+
+func to_screen(p: Vector2) -> Vector2:
+	var b := layout_bounds()
+	var avail := CANVAS_SIZE - PAD * 2.0
+	var sc := minf(avail.x / maxf(b.size.x, 1.0), avail.y / maxf(b.size.y, 1.0))
+	var off := PAD + (avail - b.size * sc) * 0.5
+	return off + (p - b.position) * sc
+
+
+func node_screen_pos(n: Dictionary) -> Vector2:
+	return to_screen(to_vec(n.get("pos")))
+
+
+func _label_lines(n: Dictionary) -> Array:
+	var id := str(n.get("id"))
+	var lines: Array = [str(n.get("name", id))]
+	if id == current_id:
+		lines.append("YOU ARE HERE")
+	elif not bool(n.get("unlocked", true)):
+		lines.append("locked")
+	return lines
+
+
+## Screen-space rectangle of the label block (below the dot) for overlap tests.
+func label_rect(n: Dictionary) -> Rect2:
+	var font := ThemeDB.fallback_font
+	var lines := _label_lines(n)
+	var w := 0.0
+	for l in lines:
+		w = maxf(w, font.get_string_size(l, HORIZONTAL_ALIGNMENT_LEFT, -1, LABEL_FS).x)
+	var h := lines.size() * (LABEL_FS + 3.0)
+	var p := node_screen_pos(n)
+	return Rect2(p + Vector2(-w * 0.5, NODE_RADIUS + 5.0), Vector2(w, h))
+
+
+func node_at(p: Vector2) -> String:
+	var best := ""
+	var best_d := NODE_RADIUS + 8.0
+	for n in map_nodes:
+		var d := node_screen_pos(n).distance_to(p)
+		if d <= best_d:
+			best_d = d
+			best = str(n.get("id"))
+	return best
 
 
 func _danger_color(d: int) -> Color:
@@ -179,13 +237,15 @@ func _draw_map() -> void:
 	canvas.draw_rect(Rect2(Vector2.ZERO, canvas.size), Color(0.04, 0.045, 0.05), true)
 	canvas.draw_rect(Rect2(Vector2.ZERO, canvas.size), UITheme.PANEL_EDGE, false, 1.0)
 	for n in map_nodes:
-		var a := to_vec(n.get("pos"))
+		var a := node_screen_pos(n)
 		for c in n.get("connections", []):
 			var o := node_by_id(str(c))
-			if not o.is_empty() and str(n.get("id")) < str(o.get("id")):
-				canvas.draw_line(a, to_vec(o.get("pos")), Color(0.3, 0.3, 0.3), 2.0)
+			if o.is_empty():
+				continue
+			var open := bool(n.get("unlocked", true)) and bool(o.get("unlocked", true))
+			canvas.draw_line(a, node_screen_pos(o), Color(0.42, 0.42, 0.40) if open else Color(0.2, 0.2, 0.2), 2.0 if open else 1.0)
 	for n in map_nodes:
-		var pos := to_vec(n.get("pos"))
+		var pos := node_screen_pos(n)
 		var id := str(n.get("id"))
 		var unlocked: bool = bool(n.get("unlocked", true))
 		var col := _danger_color(int(n.get("danger", 0))) if unlocked else Color(0.25, 0.25, 0.25)
@@ -193,7 +253,12 @@ func _draw_map() -> void:
 		if id == selected_id:
 			canvas.draw_arc(pos, NODE_RADIUS + 5, 0, TAU, 28, Color.WHITE, 2.0)
 		if id == current_id:
-			canvas.draw_arc(pos, NODE_RADIUS + 5, 0, TAU, 28, UITheme.WARN, 2.0)
-		var name_text := str(n.get("name", id))
-		canvas.draw_string(font, pos + Vector2(-60, -NODE_RADIUS - 6), name_text, HORIZONTAL_ALIGNMENT_CENTER,
-			120, UITheme.FS_SMALL, UITheme.TEXT if unlocked else UITheme.TEXT_DIM)
+			canvas.draw_arc(pos, NODE_RADIUS + 5, 0, TAU, 28, Color(0.3, 0.8, 1.0), 3.0)
+		var r := label_rect(n)
+		var lines := _label_lines(n)
+		for i in lines.size():
+			var c: Color = UITheme.TEXT if unlocked else UITheme.TEXT_DIM
+			if i == 1:
+				c = Color(0.3, 0.8, 1.0) if id == current_id else UITheme.TEXT_DIM
+			canvas.draw_string(font, Vector2(r.position.x, r.position.y + LABEL_FS + i * (LABEL_FS + 3.0) - 3.0),
+				lines[i], HORIZONTAL_ALIGNMENT_LEFT, -1, LABEL_FS, c)
