@@ -175,6 +175,7 @@ func _physics_process(delta: float) -> void:
 	_tick_vitals(delta)
 
 	_update_aim()
+	_update_held_item()
 
 	if anim_player:
 		var desired := "Walk" if input_dir != 0.0 else "Idle"
@@ -301,6 +302,69 @@ func _start_punch() -> void:
 ## arm is pointing (and where the cursor currently is).
 func _aim_direction() -> Vector3:
 	return Vector3(cos(aim_pitch) * facing_dir, sin(aim_pitch), 0.0).normalized()
+
+
+## The equipped weapon as a simple flat silhouette at the right hand, pointing
+## along the aim. The imported model has no weapon mesh of its own.
+var _held_pivot: Node3D = null
+var _held_ref: String = ""
+
+func _update_held_item() -> void:
+	var weapon := Weapon.from_ref(equipped_weapon) if equipped_weapon != "fist" else null
+	if weapon == null or weapon.ref == "hands":
+		if _held_pivot != null:
+			_held_pivot.visible = false
+		return
+	if _held_pivot == null:
+		_held_pivot = Node3D.new()
+		_held_pivot.name = "HeldItem"
+		_held_pivot.top_level = true
+		add_child(_held_pivot)
+	if _held_ref != weapon.ref:
+		_held_ref = weapon.ref
+		for c in _held_pivot.get_children():
+			c.queue_free()
+		_build_held_shape(weapon)
+	_held_pivot.visible = true
+	var hand := get_node_or_null("Model/MaleBasic_Armature/Skeleton3D/HandAttachment_R") as Node3D
+	var origin := hand.global_position if hand != null else global_position + Vector3(0.0, 0.2, 0.0)
+	var d := _aim_direction()
+	_held_pivot.global_position = Vector3(origin.x, origin.y, 0.0)
+	_held_pivot.rotation = Vector3(0.0, 0.0, atan2(d.y, d.x))
+	_held_pivot.scale = Vector3(1.0, 1.0 if d.x >= 0.0 else -1.0, 1.0) # keep the grip down when facing left
+
+
+func _build_held_shape(weapon: Weapon) -> void:
+	var dark := _held_material(Color(0.04, 0.04, 0.05))
+	var steel := _held_material(Color(0.14, 0.15, 0.18)) # gunmetal, so it reads against the light model
+	if weapon.is_firearm():
+		var long_gun := not weapon.weapon_type.begins_with("pistol")
+		var barrel_len := 0.85 if long_gun else 0.38
+		_held_box(Vector3(barrel_len, 0.11, 0.08), Vector3(barrel_len * 0.5, 0.0, 0.0), steel)
+		_held_box(Vector3(0.09, 0.2, 0.07), Vector3(0.06, -0.14, 0.0), dark)
+		if long_gun:
+			_held_box(Vector3(0.3, 0.12, 0.07), Vector3(-0.1, -0.03, 0.0), dark) # stock
+	else:
+		var length := 0.9 if weapon.weapon_type == "twoHand" else 0.5
+		_held_box(Vector3(length, 0.07, 0.07), Vector3(length * 0.5 - 0.1, 0.0, 0.0), steel)
+		_held_box(Vector3(0.18, 0.09, 0.08), Vector3(0.0, 0.0, 0.0), dark)
+
+
+func _held_box(size: Vector3, pos: Vector3, mat: Material) -> void:
+	var mesh := MeshInstance3D.new()
+	var box := BoxMesh.new()
+	box.size = size
+	box.material = mat
+	mesh.mesh = box
+	mesh.position = pos
+	_held_pivot.add_child(mesh)
+
+
+func _held_material(color: Color) -> StandardMaterial3D:
+	var m := StandardMaterial3D.new()
+	m.albedo_color = color
+	m.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
+	return m
 
 
 ## Switching weapons drops any reload or burst in progress.
