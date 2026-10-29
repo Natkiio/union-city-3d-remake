@@ -130,6 +130,8 @@ func run() -> void:
 		check("%s parses as object" % f, over is Dictionary)
 		if not (over is Dictionary):
 			continue
+		if f == "world/map_display": # Cork-only presentation data (screen positions), no original
+			continue
 		var orig: Variant = _parse("res://data/original/" + f + ".json")
 		check("%s has an original" % f, orig is Dictionary)
 		if not (orig is Dictionary):
