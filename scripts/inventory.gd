@@ -4,13 +4,8 @@ extends Node
 
 signal item_added(item_name: String)
 signal inventory_changed()
-
-## Items with a defined "use" effect, keyed by name. Everything else
-## can still be carried/dropped but has no Use action.
-const USE_EFFECTS := {
-	"Canned Food": {"type": "heal", "amount": 25.0},
-	"Bandages": {"type": "heal", "amount": 15.0},
-}
+## Emitted when carried weight crosses the carry limit either way.
+signal overweight_changed(is_over: bool)
 
 var items: Dictionary = {}
 
@@ -19,20 +14,40 @@ var items: Dictionary = {}
 ## treated as full by the player.
 var magazines: Dictionary = {}
 
+## Worn clothing by slot (top, bottom, feet, head, ...): slot -> item name.
+## Bookkeeping only; clothing stats are not applied anywhere yet.
+var equipped_clothing: Dictionary = {}
+
+## Skill points from books that Stats could not take (it has no
+## add_skill_points yet): skill -> points.
+var book_points: Dictionary = {}
+
+## True while carried weight is over carry_limit(). The movement penalty
+## belongs to the player; this is the flag it reads.
+var overweight: bool = false
+
 func _ready() -> void:
 	add_to_group("stateful")
+	Events.stats_changed.connect(_update_overweight)
 
 func reset() -> void:
 	items.clear()
 	magazines.clear()
+	equipped_clothing.clear()
+	book_points.clear()
+	_update_overweight()
 	inventory_changed.emit()
 
 func to_dict() -> Dictionary:
-	return {"items": items.duplicate(true), "magazines": magazines.duplicate(true)}
+	return {"items": items.duplicate(true), "magazines": magazines.duplicate(true),
+		"equipped_clothing": equipped_clothing.duplicate(), "book_points": book_points.duplicate()}
 
 func from_dict(d: Dictionary) -> void:
 	items = d.get("items", {}).duplicate(true)
 	magazines = d.get("magazines", {}).duplicate(true)
+	equipped_clothing = d.get("equipped_clothing", {}).duplicate()
+	book_points = d.get("book_points", {}).duplicate()
+	_update_overweight()
 	inventory_changed.emit()
 
 func get_magazine(item_name: String, default_rounds: int) -> int:
@@ -45,8 +60,12 @@ func add_item(item_name: String, weight: float = 1.0, count: int = 1) -> void:
 	if items.has(item_name):
 		items[item_name]["count"] += count
 	else:
+		# The default weight means "look it up": use the item table's.
+		if is_equal_approx(weight, 1.0) and Items.exists(item_name):
+			weight = Items.weight(item_name)
 		items[item_name] = {"weight": weight, "count": count}
 	item_added.emit(item_name)
+	_update_overweight()
 	inventory_changed.emit()
 	print("[Inventory] picked up: %s x%d (unique: %d, total units: %d, %.1f lbs)" % [
 		item_name, count, items.size(), item_count(), total_weight()])
@@ -57,6 +76,7 @@ func remove_item(item_name: String, count: int = 1) -> void:
 	items[item_name]["count"] -= count
 	if items[item_name]["count"] <= 0:
 		items.erase(item_name)
+	_update_overweight()
 	inventory_changed.emit()
 	print("[Inventory] removed: %s x%d" % [item_name, count])
 
@@ -74,10 +94,44 @@ func tag_for(item_name: String) -> String:
 	return ""
 
 func is_usable(item_name: String) -> bool:
-	return USE_EFFECTS.has(item_name)
+	return ItemUse.is_usable(Items.find(item_name))
 
+## Describes the use effect for an item: {"type": kind, "ref": ...}, or {}.
 func get_use_effect(item_name: String) -> Dictionary:
-	return USE_EFFECTS.get(item_name, {})
+	var info := Items.find(item_name)
+	if not ItemUse.is_usable(info):
+		return {}
+	return {"type": info["kind"], "ref": info["ref"]}
+
+## Uses one of `item_name`: applies the effect from the item tables, consumes
+## it (food, meds, books) and emits Events.item_used. Returns false if the
+## item is missing, not usable, or the effect does not apply right now (full
+## health, not tired, ...).
+func use_item(item_name: String) -> bool:
+	if not has_item(item_name):
+		return false
+	var info := Items.find(item_name)
+	if not ItemUse.is_usable(info) or not ItemUse.apply(info):
+		return false
+	if ItemUse.consumes(info):
+		remove_item(item_name, 1)
+	else:
+		inventory_changed.emit()
+	Events.item_used.emit(item_name)
+	return true
+
+## Carry limit in lbs, from Stats.carry_weight().
+func carry_limit() -> float:
+	return Stats.carry_weight()
+
+func is_overweight() -> bool:
+	return total_weight() > carry_limit()
+
+func _update_overweight() -> void:
+	var now := is_overweight()
+	if now != overweight:
+		overweight = now
+		overweight_changed.emit(now)
 
 func item_count() -> int:
 	var total := 0

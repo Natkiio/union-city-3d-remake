@@ -7,6 +7,7 @@ extends CanvasLayer
 
 @onready var items_list: VBoxContainer = $Panel/ItemsList
 @onready var total_weight_label: Label = $Panel/TotalWeightLabel
+@onready var weight_bar: ProgressBar = $Panel/WeightBar
 @onready var action_row: HBoxContainer = $Panel/ActionRow
 @onready var use_button: Button = $Panel/ActionRow/UseButton
 @onready var equip_button: Button = $Panel/ActionRow/EquipButton
@@ -78,7 +79,7 @@ func _refresh() -> void:
 			row.pressed.connect(_on_row_pressed.bind(item_name))
 			items_list.add_child(row)
 
-	total_weight_label.text = "Total weight: %.1f lbs" % Inventory.total_weight()
+	_refresh_weight()
 
 	action_row.visible = selected_item != ""
 	if selected_item != "":
@@ -98,6 +99,19 @@ func _refresh() -> void:
 	else:
 		equip_button.visible = false
 
+
+func _refresh_weight() -> void:
+	var total := Inventory.total_weight()
+	var limit := Inventory.carry_limit()
+	var over := total > limit
+	total_weight_label.text = "Weight: %.1f / %.1f lbs%s" % [total, limit, "  OVERLOADED" if over else ""]
+	weight_bar.max_value = maxf(limit, 0.01)
+	weight_bar.value = minf(total, weight_bar.max_value)
+	var fill := StyleBoxFlat.new()
+	fill.bg_color = Color(0.75, 0.15, 0.1) if over else Color(0.35, 0.5, 0.25)
+	weight_bar.add_theme_stylebox_override("fill", fill)
+	total_weight_label.add_theme_color_override("font_color",
+		Color(0.8, 0.1, 0.05) if over else Color(0.5, 0.12, 0.1))
 
 ## True if `item_name` is the weapon the player currently has equipped.
 func _is_equipped(player: Node, item_name: String) -> bool:
@@ -129,15 +143,10 @@ func _on_row_pressed(item_name: String) -> void:
 func _on_use_pressed() -> void:
 	if selected_item == "" or not Inventory.has_item(selected_item):
 		return
-	var effect: Dictionary = Inventory.get_use_effect(selected_item)
-	if effect.is_empty():
-		print("[Inventory] %s cannot be used" % selected_item)
-		return
-	var player := get_tree().get_first_node_in_group("player")
-	if effect.get("type") == "heal" and player and player.has_method("heal"):
-		player.heal(effect.get("amount", 0.0))
-	Inventory.remove_item(selected_item, 1)
-	print("[Inventory] used 1 %s" % selected_item)
+	if Inventory.use_item(selected_item):
+		print("[Inventory] used 1 %s" % selected_item)
+	else:
+		print("[Inventory] %s cannot be used now" % selected_item)
 
 func _on_equip_pressed() -> void:
 	if selected_item == "" or not Inventory.has_item(selected_item):
