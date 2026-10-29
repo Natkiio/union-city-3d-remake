@@ -209,7 +209,9 @@ func test_seams() -> void:
 			and c1.args[1].desc == "Suitcase" and c1.args[2] == "anywhere" and c1.args[3] == 1, str(c1.args))
 	check("container setup runs before it enters the tree", c1.setup_before_tree)
 	# The container recesses its own body and reaches its trigger to the lane, so its origin is Z=0.
-	check("container placed at its art marker", absf(c1.position.x - 0.582) < 0.01 and is_zero_approx(c1.position.z))
+	# (nudged sideways only as far as needed to clear doors and neighbours; see test_layout)
+	var lay := LevelBuilder.layout_containers("l16_s3_b1_f1_r1", LevelBuilder.px(WorldData.width_px("l16_s3_b1_f1_r1")))
+	check("container placed near its art marker", absf(c1.position.x - lay[0].x) < 0.01 and is_zero_approx(c1.position.z))
 	check("one container per contN", things.get_children().filter(func(n): return n.name.begins_with("Container_")).size() == 3)
 	var npc: Node3D = things.get_node("NPC_Jackson")
 	check("npc setup(npc_id) at NPC_x, off the lane", npc.args == ["Jackson"] and absf(npc.position.x - 3.5) < 0.01 and npc.position.z < -0.5)
