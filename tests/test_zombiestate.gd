@@ -26,7 +26,7 @@ func zs() -> Array:
 func run() -> void:
 	d = autoload("Director")
 	d.reset()
-	d.enabled = false
+	d.enabled = true # begin_area restores only for an enabled Director
 	d.rng.seed = 3
 	autoload("Stats").level = 1
 	player = Node3D.new()

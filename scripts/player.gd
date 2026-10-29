@@ -31,6 +31,9 @@ const PUNCH_DURATION: float = 0.3
 
 ## Horizontal reach in front of the player; the hand hitbox is too pose-dependent.
 const SHOVE_RANGE: float = 1.6
+## Horizontal reach of a punch or melee swing (centre to centre), the same as
+## the shove so a zombie that is attacking or grabbing can be hit back.
+const SWING_RANGE: float = 1.6
 const SHOVE_COOLDOWN_TIME: float = 0.6
 const HIT_STOP_FRAMES: int = 3
 
@@ -204,7 +207,7 @@ func _physics_process(delta: float) -> void:
 		_shove()
 	if Input.is_action_just_pressed("equip_fists"):
 		_set_equipped("fist")
-		print("[Player] equipped fists")
+		DebugLog.say("Player", "equipped fists")
 	if Input.is_action_just_pressed("equip_gun"):
 		if Inventory.slots["primary"] == "":
 			# Nothing readied yet: take the first firearm carried and ready it.
@@ -316,7 +319,7 @@ func _start_punch() -> void:
 	is_punching = true
 	punch_timer = 0.0
 	punch_did_hit = false
-	print("[Player] threw a %s punch" % punch_side)
+	DebugLog.say("Player", "threw a %s punch" % punch_side)
 
 
 ## Direction vector pointing at the current aim target, reconstructed
@@ -400,7 +403,7 @@ func equip_slot(slot: String) -> bool:
 	if weapon == null:
 		return false
 	_set_equipped(weapon.ref)
-	print("[Player] equipped %s (%s)" % [weapon.display_name, slot])
+	DebugLog.say("Player", "equipped %s (%s)" % [weapon.display_name, slot])
 	return true
 
 
@@ -450,7 +453,7 @@ func _update_firearm(delta: float) -> void:
 				return
 			reloading = false
 		if _loaded_rounds(gun) <= 0:
-			print("[Player] %s is empty" % gun.display_name)
+			DebugLog.say("Player", "%s is empty" % gun.display_name)
 			_start_reload(gun)
 			return
 		burst_left = maxi(gun.burst_size, 1)
@@ -500,7 +503,7 @@ func _fire_round(gun: Weapon) -> void:
 		bullet.global_position = Vector3(attack_area_r.global_position.x, attack_area_r.global_position.y, global_position.z)
 		bullet.setup(dir, self, gun.damage, ctx)
 	Events.shot_fired.emit(gun.ref, gun.weapon_noise, attack_area_r.global_position)
-	print("[Player] fired %s, %d/%d loaded, %d in reserve" % [gun.display_name, loaded, gun.mag_size, _reserve(gun)])
+	DebugLog.say("Player", "fired %s, %d/%d loaded, %d in reserve" % [gun.display_name, loaded, gun.mag_size, _reserve(gun)])
 
 
 func _start_reload(gun: Weapon) -> void:
@@ -509,7 +512,7 @@ func _start_reload(gun: Weapon) -> void:
 	reloading = true
 	reload_timer = gun.reload_seconds()
 	burst_left = 0
-	print("[Player] reloading %s" % gun.display_name)
+	DebugLog.say("Player", "reloading %s" % gun.display_name)
 
 
 ## Full reloads finish in one go. Pump actions add one shell per reload
@@ -526,7 +529,7 @@ func _tick_reload(delta: float, gun: Weapon) -> void:
 	var done := take == 0 or not gun.reloads_per_round() or _loaded_rounds(gun) >= gun.mag_size or _reserve(gun) <= 0
 	if done:
 		reloading = false
-		print("[Player] reloaded %s, %d/%d loaded" % [gun.display_name, _loaded_rounds(gun), gun.mag_size])
+		DebugLog.say("Player", "reloaded %s, %d/%d loaded" % [gun.display_name, _loaded_rounds(gun), gun.mag_size])
 	else:
 		reload_timer = gun.reload_seconds()
 
@@ -543,21 +546,38 @@ func _reserve(gun: Weapon) -> int:
 func _shove() -> void:
 	shove_cooldown = SHOVE_COOLDOWN_TIME
 	_use_stamina(CombatRules.STAMINA_COST_SHOVE)
-	print("[Player] shoved")
-	var targets: Array[Node3D] = []
-	for node in get_parent().get_children():
-		var dx: float = node.global_position.x - global_position.x if node is Node3D else INF
-		if node != self and node.has_method("apply_stagger") and dx * facing_dir > 0.0 and absf(dx) <= SHOVE_RANGE:
-			targets.append(node)
-	_melee_strike(targets, CombatRules.shove_base(Stats.attr("strength")), "blunt", true)
+	DebugLog.say("Player", "shoved")
+	_melee_strike(_targets_in_front(SHOVE_RANGE), CombatRules.shove_base(Stats.attr("strength")), "blunt", true)
 
 
+## Combat targets in front of us within `reach` (centre to centre, along x).
+## Zombies live under the level, not next to the player, so the "zombie"
+## group is searched as well as our siblings.
+func _targets_in_front(reach: float) -> Array[Node3D]:
+	var out: Array[Node3D] = []
+	var pool: Array = get_parent().get_children() + get_tree().get_nodes_in_group("zombie")
+	for node in pool:
+		if node == self or not (node is Node3D) or out.has(node) or not node.has_method("apply_stagger"):
+			continue
+		var dx: float = node.global_position.x - global_position.x
+		if dx * facing_dir > 0.0 and absf(dx) <= reach:
+			out.append(node)
+	return out
+
+
+## A swing hits what the fist touches and anything else within swing reach in
+## front: zombies start their attack 1.25-1.55 units away (attack range plus
+## body contact), and the fist hitbox alone only reaches a body in contact.
 func _apply_punch_damage() -> void:
 	var area := attack_area_r if punch_side == "R" else attack_area_l
 	var weapon := _melee_weapon()
 	var base := CombatRules.melee_base(weapon.damage if weapon.damage > 0.0 else -1.0,
 			Stats.attr("strength"), Stats.adjusted_skill(weapon.skill))
-	_melee_strike(area.get_overlapping_bodies(), base, weapon.skill, false, weapon.knockback, area.global_position.y)
+	var bodies: Array = area.get_overlapping_bodies()
+	for t in _targets_in_front(SWING_RANGE):
+		if not bodies.has(t):
+			bodies.append(t)
+	_melee_strike(bodies, base, weapon.skill, false, weapon.knockback, area.global_position.y)
 
 
 ## Resolves a melee hit on each body: shave, crit, armor, damage, then stumble.
@@ -717,7 +737,7 @@ func take_damage(amount: float, _zone: String = "chest", source: Node = null, _k
 	perm_health = maxf(0.0, perm_health - CombatRules.perm_health_loss(amount))
 	_regen_delay_ticks = CombatRules.STAMINA_REGEN_DELAY_TICKS
 	Events.player_damaged.emit(amount, source)
-	print("[Player] took %.1f damage, health now %.1f (perm %.1f)" % [amount, health, perm_health])
+	DebugLog.say("Player", "took %.1f damage, health now %.1f (perm %.1f)" % [amount, health, perm_health])
 	if health <= 0.0:
 		_die()
 
@@ -726,7 +746,7 @@ func take_damage(amount: float, _zone: String = "chest", source: Node = null, _k
 func heal(amount: float) -> void:
 	perm_health = minf(max_health, perm_health + amount)
 	health = minf(perm_health, health + amount)
-	print("[Player] healed %.1f, health now %.1f" % [amount, health])
+	DebugLog.say("Player", "healed %.1f, health now %.1f" % [amount, health])
 
 
 ## Raises only the ceiling (first aid on old wounds); regen then fills health.
@@ -746,13 +766,13 @@ func rest(hours: int) -> void:
 		perm_health = minf(max_health, perm_health + roundf(max_health * REST_HEALTH_FRACTION) + roundf((fitness + endurance) / 2.0))
 		health = perm_health
 		stamina = minf(stamina_max, stamina + roundf(stamina_max * REST_STAMINA_FRACTION) + roundf(fitness + endurance))
-	print("[Player] rested %d h: health %.1f/%.1f stamina %.1f/%.1f" % [hours, health, max_health, stamina, stamina_max])
+	DebugLog.say("Player", "rested %d h: health %.1f/%.1f stamina %.1f/%.1f" % [hours, health, max_health, stamina, stamina_max])
 
 
 func _die() -> void:
 	end_grab()
 	is_dead = true
-	print("[Player] died - showing death screen")
+	DebugLog.say("Player", "died - showing death screen")
 	Events.player_died.emit()
 	GameState.reset_run()
 	get_tree().paused = true

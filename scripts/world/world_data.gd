@@ -502,7 +502,16 @@ static func npcs(id: String) -> Array:
 		out.append({"npc_id": str(ids[i]), "x": float(xs[i]) if i < xs.size() else width_px(id) * 0.5,
 				"pose": str(poses[i]) if i < poses.size() else "idle",
 				"facing": str(facings[i]) if i < facings.size() else "left"})
+	# NPCs the original's level data lacks (quest 500's Fred), see StoryExtras.
+	for extra in StoryExtras.PLACEMENTS.get(id, []):
+		out.append({"npc_id": str(extra.npc_id), "x": float(extra.x),
+				"pose": str(extra.get("pose", "idle")), "facing": str(extra.get("facing", "left"))})
 	return out
+
+
+## The shop set a room sells from (rooms with `shopSet`), or 0.
+static func shop_set(id: String) -> int:
+	return int(room_def(id).get("shopSet", 0))
 
 
 ## Human enemies placed by the room ({ref, x}); the AI belongs to gameplay.

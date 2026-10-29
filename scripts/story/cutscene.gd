@@ -41,6 +41,10 @@ static func play_cutscene(tree: SceneTree, num: int) -> CutscenePlayer:
 	return cp
 
 
+func _ready() -> void:
+	add_to_group("run_overlay") # freed by GameState.reset_run
+
+
 func load_cutscene(num: int) -> bool:
 	var t = _sys("Data").table("world/cutScene%d" % num)
 	if t.is_empty():

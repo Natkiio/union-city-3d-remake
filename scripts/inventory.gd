@@ -99,7 +99,7 @@ func add_item(item_name: String, weight: float = 1.0, count: int = 1) -> void:
 	item_added.emit(item_name)
 	_update_overweight()
 	inventory_changed.emit()
-	print("[Inventory] picked up: %s x%d (unique: %d, total units: %d, %.1f lbs)" % [
+	DebugLog.say("Inventory", "picked up: %s x%d (unique: %d, total units: %d, %.1f lbs)" % [
 		item_name, count, items.size(), item_count(), total_weight()])
 
 func remove_item(item_name: String, count: int = 1) -> void:
@@ -113,7 +113,7 @@ func remove_item(item_name: String, count: int = 1) -> void:
 				slots[slot] = ""
 	_update_overweight()
 	inventory_changed.emit()
-	print("[Inventory] removed: %s x%d" % [item_name, count])
+	DebugLog.say("Inventory", "removed: %s x%d" % [item_name, count])
 
 func has_item(item_name: String) -> bool:
 	return items.has(item_name)

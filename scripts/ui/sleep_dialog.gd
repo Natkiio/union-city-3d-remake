@@ -1,7 +1,9 @@
 class_name SleepDialog
 extends UIScreen
 ## Sleep / wait dialog. Offered only where World.current.safehouse is true.
-## Sleep: Survival.sleep_hours(h). Wait: Survival.wait_hours(h).
+## Sleep: Survival.sleep_hours(h). Wait: Survival.wait_hours(h). Both also
+## heal the player per hour (player.rest, the original's sleepWait) and ask
+## SaveGame for an autosave afterwards.
 
 signal rested(kind: String, hours: int)
 
@@ -53,5 +55,12 @@ func do_rest(kind: String) -> void:
 		s.sleep_hours(hours)
 	else:
 		s.wait_hours(hours)
+	var p := get_tree().get_first_node_in_group("player")
+	if p != null and p.has_method("rest"):
+		p.rest(hours)
 	rested.emit(kind, hours)
+	var sg := GameFlow.save_api()
+	if sg != null and sg.has_method("notify_rest_finished"):
+		# After the dialog has closed and unpaused, or the autosave is refused.
+		sg.call_deferred("notify_rest_finished")
 	close()

@@ -223,6 +223,19 @@ func _connect_hooks() -> void:
 	_hook(events, "level_up", _on_level_up)
 	_hook(events, "item_used", _on_item_used)
 	_hook(events, "container_searched", _on_container_searched)
+	# Taking things (containers, shop, quest rewards): the Inventory signal.
+	# Inventory is registered after Sfx, so connect once the tree is up.
+	_connect_inventory.call_deferred()
+
+
+func _connect_inventory() -> void:
+	var inv := get_node_or_null("/root/Inventory")
+	if inv != null and inv.has_signal("item_added") and not inv.is_connected("item_added", _on_item_added):
+		inv.connect("item_added", _on_item_added)
+
+
+func _on_item_added(_item_name: String) -> void:
+	play("pickup")
 
 
 func _hook(events: Node, signal_name: String, handler: Callable) -> void:

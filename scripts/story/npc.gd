@@ -123,6 +123,7 @@ func _on_body_exited(body: Node3D) -> void:
 
 func _process(_delta: float) -> void:
 	if player_in_range != null and visible and Input.is_action_just_pressed("interact") \
+			and _sys("World").is_interact_target(self) \
 			and not get_tree().paused:
 		interact()
 	if _built and visible:

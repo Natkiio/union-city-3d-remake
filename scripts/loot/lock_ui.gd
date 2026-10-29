@@ -49,6 +49,7 @@ class Board extends Control:
 
 
 func _ready() -> void:
+	add_to_group("run_overlay") # freed by GameState.reset_run
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	layer = 50
 	_build()
@@ -158,14 +159,23 @@ func set_pin() -> void:
 	var out := game.lock_pin()
 	if out == PickGame.Outcome.COMPLETE:
 		Locks.complete(def)
+		_sfx("door")
 		_close(true)
 	else:
+		_sfx("ui_click")
 		_refresh_text()
 
 
 func _on_force() -> void:
 	var ok := Locks.force(def, rng)
+	_sfx("door" if ok else "dry_click")
 	_close(ok)
+
+
+func _sfx(sound: String) -> void:
+	var s := get_node_or_null("/root/Sfx")
+	if s != null:
+		s.play(sound)
 
 
 func _close(success: bool) -> void:

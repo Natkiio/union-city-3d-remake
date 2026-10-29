@@ -40,7 +40,9 @@ func setup(p_container_id: String, p_def: Dictionary, p_room_type: String, p_dan
 	room_type = p_room_type
 	danger = p_danger
 	title = str(def.get("desc", "Container"))
-	rng.randomize()
+	# From the global RNG (randomised at startup), so a test that calls seed()
+	# gets the same loot every run.
+	rng.seed = hash(container_id) ^ randi()
 	_restore()
 	if is_inside_tree():
 		_build()
@@ -186,7 +188,7 @@ func _process(delta: float) -> void:
 		return
 	if player_in_range == null or TrunkUI.visible or reopen_cooldown > 0.0:
 		return
-	if Input.is_action_just_pressed("interact") and _is_nearest_in_range():
+	if Input.is_action_just_pressed("interact") and _is_nearest_in_range() and World.is_interact_target(self):
 		interact()
 
 

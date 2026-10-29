@@ -505,7 +505,7 @@ func take_damage(amount: float, zone: String = "chest", source: Node = null, kno
 	health = maxf(0.0, health - amount)
 	mesh.material_override = _flash_material
 	flash_timer = HIT_FLASH_TIME
-	print("[Zombie] took %.1f damage (%s), health now %.1f" % [amount, zone, health])
+	DebugLog.say("Zombie", "took %.1f damage (%s), health now %.1f" % [amount, zone, health])
 	if health <= 0.0:
 		_die()
 		return
@@ -521,7 +521,7 @@ func take_damage(amount: float, zone: String = "chest", source: Node = null, kno
 
 func _die() -> void:
 	_dead = true
-	print("[Zombie] down")
+	DebugLog.say("Zombie", "down")
 	_end_grab()
 	_sys("Events").enemy_killed.emit(enemy_ref, danger_level, xp_value())
 	died.emit(self)

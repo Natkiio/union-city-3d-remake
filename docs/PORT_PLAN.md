@@ -69,9 +69,13 @@ Each runs on its own branch `feat/<name>` in its own worktree (made by the lead 
 
 `world` (level builder from `world/l*.json` plus Cork overrides, rooms, doors, stairs, safehouses, scrolling streets), `loot` (container generation, searching, lockpicking, shops), `story` (NPCs, dialogue box, quests, triggers, cutscenes), `ui` (main menu, map and travel screen, pause, settings, shop), `persistence` (save and load), `integrate-visuals` (rig into player and zombies), `companions`.
 
+Done: `world` ([docs/world.md](world.md)), `loot` ([loot.md](loot.md)), `story` ([story.md](story.md)), `ui` ([ui.md](ui.md)), `persistence` ([persistence.md](persistence.md)), `gameplay` ([gameplay.md](gameplay.md)). `integrate-visuals` was replaced by the Blender-rigged models; `companions` is in progress.
+
 ### Wave 3
 
 Integration, balance pass against the doc's numbers, end-to-end playthrough test, Cork content pass, cleanup, docs.
+
+Done: `integrate` ([docs/integration.md](integration.md)): the seams between wave 2 systems, `tests/test_integration.gd`, the end-to-end `tests/test_playthrough.gd` and the all-rooms `tests/test_soak.gd`.
 
 ## Rules for every workstream
 

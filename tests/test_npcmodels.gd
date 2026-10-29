@@ -147,9 +147,15 @@ func run() -> void:
 	var level: Level = world.level()
 	var npc: Node3D = null
 	for n in level.find_children("NPC_*", "Area3D", true, false):
-		npc = n
+		if n.visible: # NPCs whose story state is "off" are placed hidden
+			npc = n
 	check("room has an NPC", npc != null)
 	if npc != null:
+		# integrate: entering a room can fire story triggers that pause for a dialogue
+		for old_box in root.find_children("*", "DialogueBox", true, false):
+			old_box.queue_free()
+		paused = false
+		await frames(2)
 		player.global_position = Vector3(npc.global_position.x + 3.0, 0.1, 0.0)
 		await frames(3)
 		var away: float = npc.model.rotation.y

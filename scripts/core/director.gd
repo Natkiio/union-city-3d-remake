@@ -103,7 +103,7 @@ func to_dict() -> Dictionary:
 		"on_break": on_break, "break_start": break_start, "break_length": break_length,
 		"spawned_since_break": spawned_since_break, "droppers": droppers,
 		"last_drop_time": last_drop_time, "area_visits": area_visits.duplicate(),
-		"fallback_minutes": _fallback_minutes,
+		"fallback_minutes": _fallback_minutes, "ending_rush": ending_rush,
 		"zombie_state": _zombie_state_snapshot(),
 	}
 
@@ -124,6 +124,7 @@ func from_dict(d: Dictionary) -> void:
 	# The next attach() must not overwrite the loaded memory with stale zombies.
 	area_id = ""
 	zombies.clear()
+	ending_rush = bool(d.get("ending_rush", false))
 
 
 # --- time and player adapters ----------------------------------------------
@@ -201,7 +202,8 @@ func begin_area(new_danger: int, width: float, is_outdoors: bool, is_safehouse: 
 	safehouse = is_safehouse
 	area_id = id
 	_refresh_limits()
-	if id == "" or max_zombies <= 0 or _live_count() > 0:
+	# A disabled Director (tests, scripted scenes) spawns nothing at all.
+	if not enabled or id == "" or max_zombies <= 0 or _live_count() > 0:
 		return 0
 	if zombie_state.has_room(id):
 		if zombie_state.is_fresh(id, now(), outdoors):
@@ -248,6 +250,17 @@ func _zombie_state_snapshot() -> Dictionary:
 	if area_id != "" and spawn_root != null and is_instance_valid(spawn_root):
 		zombie_state.capture(area_id, zombies, now())
 	return zombie_state.to_dict()
+
+
+## The story's final rush (trig startEndingRush): a rush that does not end.
+func start_ending_rush() -> void:
+	ending_rush = true
+	_refresh_limits()
+	if not rush_active:
+		rush_active = true
+		rush_start = now()
+		last_rush_time = rush_start
+		Events.rush_started.emit()
 
 
 func _refresh_limits() -> void:

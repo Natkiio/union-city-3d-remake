@@ -22,6 +22,7 @@ signal npc_changed(npc_id: String)
 signal section_unlocked(section_id: String)
 
 const DONE := "complete"
+const CASH_ITEM := "Cash"
 
 ## When true, a "startCutScene" action spawns a CutscenePlayer under the root.
 var auto_play_cutscenes: bool = true
@@ -38,7 +39,18 @@ var _doors: Dictionary = {}         # unlocked door id -> true
 var _end_locs: Dictionary = {}      # end location number -> true
 var _companions: Dictionary = {}    # npc name -> "follower" | "partner"
 var tracked: String = ""
-var cash: int = 0
+## Cash rewards are the inventory item "Cash" (the loot workstream's money),
+## so they save with Inventory and spend in shops. This property reads and
+## writes that stack; Quests keeps no cash of its own.
+var cash: int:
+	get:
+		return int(Inventory.items.get(CASH_ITEM, {}).get("count", 0))
+	set(value):
+		var have := cash
+		if value > have:
+			Inventory.add_item(CASH_ITEM, 0.0, value - have)
+		elif value < have:
+			Inventory.remove_item(CASH_ITEM, have - value)
 var ending_rush: bool = false
 var ending_shown: bool = false
 
@@ -64,7 +76,6 @@ func reset() -> void:
 	_companions.clear()
 	_sections.clear()
 	tracked = ""
-	cash = 0
 	ending_rush = false
 	ending_shown = false
 	var secs := Data.table("sections")
@@ -80,7 +91,7 @@ func to_dict() -> Dictionary:
 		"npc_off": _npc_off.duplicate(), "npc_removed": _npc_removed.duplicate(),
 		"trig_done": _trig_done.duplicate(), "sections": _sections.duplicate(),
 		"doors": _doors.duplicate(), "end_locs": _end_locs.duplicate(),
-		"companions": _companions.duplicate(), "tracked": tracked, "cash": cash,
+		"companions": _companions.duplicate(), "tracked": tracked,
 		"ending_rush": ending_rush, "ending_shown": ending_shown,
 	}
 
@@ -100,7 +111,9 @@ func from_dict(d: Dictionary) -> void:
 	_end_locs = d.get("end_locs", {}).duplicate()
 	_companions = _strs(d.get("companions", {}))
 	tracked = str(d.get("tracked", ""))
-	cash = int(d.get("cash", 0))
+	# Saves from before cash moved into Inventory carried it here.
+	if int(d.get("cash", 0)) > 0 and cash == 0:
+		cash = int(d.get("cash", 0))
 	ending_rush = bool(d.get("ending_rush", false))
 	ending_shown = bool(d.get("ending_shown", false))
 
@@ -282,7 +295,7 @@ func _give_rewards(q: Dictionary) -> void:
 func _give_item(ref: String) -> void:
 	if ref.begins_with("cash_"):
 		var amount := int(ref.trim_prefix("cash_"))
-		cash += amount
+		Inventory.add_item(CASH_ITEM, 0.0, amount)
 		_emit_action("cash", [amount])
 		return
 	Inventory.add_item(item_name(ref))
@@ -339,6 +352,9 @@ func _kill_matches(q: Dictionary, enemy_ref: String) -> bool:
 
 
 func _num(v: Variant) -> int:
+	# JSON numbers load as floats: str(16.0) is "16.0", whose digits read 160.
+	if v is int or v is float:
+		return int(v)
 	var digits := ""
 	for c in str(v):
 		if c >= "0" and c <= "9":

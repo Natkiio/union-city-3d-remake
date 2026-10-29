@@ -14,11 +14,21 @@ extends Node3D
 const STREET_CAMERA := Vector3(0, 2.6, 9.5)
 const ROOM_CAMERA := Vector3(0, 2.0, 7.0)
 
+const GLUE_SCRIPT := "res://scripts/world/run_glue.gd"
+
 var _banner_tween: Tween
+## Connects World, Quests, the UI and persistence (scripts/world/run_glue.gd).
+var glue: Node = null
 
 
 func _ready() -> void:
+	glue = Node.new()
+	glue.name = "Glue"
+	glue.set_script(load(GLUE_SCRIPT))
+	glue.set("run", self)
+	add_child(glue)
 	World.attach_run_scene(self)
+	glue.after_first_build()
 
 
 func _exit_tree() -> void:
