@@ -15,7 +15,7 @@ extends CharacterBody3D
 ## stays bent in guard the whole time. No separate floating prop —
 ## this is the model's own rigged arms.
 
-const SPEED: float = 6.0
+const SPEED: float = 4.5
 const JUMP_VELOCITY: float = 8.0
 ## Movement speed factor while Inventory.overweight. The original subtracts a
 ## flat 50 from a base of 7.5 and clamps at 0 (so an overloaded character
@@ -120,8 +120,11 @@ func _forearm_pose(bend_deg: float) -> Quaternion:
 func _ready() -> void:
 	rng.randomize()
 	refresh_vitals()
-	full_heal()
-	stamina = stamina_max
+	if GameState.has_vitals:
+		restore_vitals()
+	else:
+		full_heal()
+		stamina = stamina_max
 	Events.stats_changed.connect(refresh_vitals)
 	Events.level_up.connect(_on_level_up)
 	if GameState.has_pending_spawn:
@@ -150,6 +153,8 @@ func _ready() -> void:
 	set_process_priority(100)
 
 func _physics_process(delta: float) -> void:
+	if not is_dead:
+		GameState.store_vitals(health, perm_health, stamina)
 	var grabbed := is_grabbed()
 	var input_dir := 0.0
 	if not grabbed:
@@ -661,6 +666,19 @@ func refresh_vitals() -> void:
 func _on_level_up(_new_level: int) -> void:
 	refresh_vitals()
 	full_heal()
+
+
+## Reads health, perm health and stamina back from GameState (kept across
+## room changes and saves), clamped to the current ceilings.
+func restore_vitals() -> void:
+	health = minf(GameState.vit_health, max_health)
+	perm_health = minf(maxf(GameState.vit_perm_health, health), max_health)
+	stamina = minf(GameState.vit_stamina, stamina_max)
+
+
+func _exit_tree() -> void:
+	if not is_dead:
+		GameState.store_vitals(health, perm_health, stamina)
 
 
 func full_heal() -> void:
