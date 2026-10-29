@@ -46,10 +46,12 @@ func _build() -> void:
 	_panel.anchor_right = 0.5
 	_panel.anchor_top = 1.0
 	_panel.anchor_bottom = 1.0
-	_panel.offset_left = -380
-	_panel.offset_right = 380
-	_panel.offset_top = -360
+	_panel.offset_left = -440
+	_panel.offset_right = 440
+	# Zero height: the panel is as tall as its text and grows upward from the bottom edge.
+	_panel.offset_top = -24
 	_panel.offset_bottom = -24
+	_panel.grow_vertical = Control.GROW_DIRECTION_BEGIN
 	var style := StyleBoxFlat.new()
 	style.bg_color = Color(0.93, 0.89, 0.78)
 	style.border_color = Color(0.2, 0.15, 0.1)
@@ -73,11 +75,11 @@ func _build() -> void:
 	head.add_child(_title_label)
 	_text = RichTextLabel.new()
 	_text.bbcode_enabled = false
-	_text.scroll_active = true
-	_text.size_flags_vertical = Control.SIZE_EXPAND_FILL
-	_text.custom_minimum_size = Vector2(0, 190)
+	_text.scroll_active = false
+	_text.fit_content = true
+	_text.custom_minimum_size = Vector2(0, 48)
 	_text.add_theme_color_override("default_color", Color(0.1, 0.07, 0.04))
-	_text.add_theme_font_size_override("normal_font_size", 17)
+	_text.add_theme_font_size_override("normal_font_size", 20)
 	_text.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	box.add_child(_text)
 	_reward = Label.new()
