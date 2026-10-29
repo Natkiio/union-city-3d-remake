@@ -293,9 +293,10 @@ Quests can also **unlock map sections** (`unlocks`) and change NPC states (`chan
 
 ## 12. World map
 
-- 16 explorable **sections** (`world/l1..l16`) arranged on a map; the map has 17 slots. The player travels by clicking a section; **travel time = `round(manhattanMapDistance / 200)` game units of time** passed through `sleepWait`, so crossing the map costs time (and hunger/sleep).
+- 16 explorable **sections** (`world/l1..l16`) arranged on a map; the map has 17 slots. The player travels by clicking a section; **travel time = `round(manhattanMapDistance / 200)` game hours** (each unit is `gameTime += 60` in the source) passed through `sleepWait`, so crossing the map costs time (and hunger/sleep).
 - Sections unlock via quests (`unlockAreas`), not by distance.
 - **Danger levels** (drive §3 stats and §5 spawns): section 16: 1, 9: 4, 13: 7, 12: 9, 5: 10, 15: 10, 11: 11, 6: 16, 14: 20, 7: 25 (end area). Sections 2, 3, 4, 8, 10 are small and have no danger value (story areas). Uptown (section 1) is built from 7 street blocks.
+- Room widths and the positions of doors, stairs and containers are not in the script data; they live in the SWF's art and are extracted by `tools/extract_layout.py` (see `docs/world.md`).
 - Hierarchy inside a section: street → building → floor → room, with doors, stairs, `dropFloor`, safehouse flags, and room `type` (selects the junk list) — see `world/l*.json`.
 
 ## 13. Not analysed yet

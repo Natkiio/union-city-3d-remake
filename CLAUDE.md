@@ -15,6 +15,7 @@ Keep this list current. When the combined size of these gets unwieldy, switch fr
 - The original is an **ActionScript 2** SWF. Decompile with FFDec (in `~/tools`, outside the repo; reproduction commands are in `docs/ORIGINAL_ANALYSIS.md`). `rea` is not needed for this.
 - `reference/` holds the SWF and decompiled scripts and is **git-ignored**. Never commit anything from it (original code, art, audio).
 - `tools/extract_data.py` turns the decompiled script into JSON under `data/original/` (committed): item/enemy/quest tables, `constants.json`, and `world/` location data. Re-run it rather than hand-editing those files.
+- `tools/extract_layout.py` pulls room widths and door/stair/container positions out of FFDec's XML dump of the SWF into `data/original/world/layout/` and `map.json` (numbers and marker names only; commands in `docs/world.md`).
 - Write new findings into `docs/ORIGINAL_ANALYSIS.md`. Mark anything not confirmed against the running original as **(verify)**.
 
 ## Testing
