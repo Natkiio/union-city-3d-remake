@@ -87,11 +87,11 @@ static func choose(model: Dictionary, action: String) -> Dictionary:
 
 
 ## A one-line caption model (cutscene speech): no buttons, no pause.
-static func line_model(speaker: String, text: String, seconds: float = 0.0) -> Dictionary:
+static func line_model(speaker: String, text: String, seconds: float = 0.0, who: String = "") -> Dictionary:
 	if seconds <= 0.0:
 		seconds = 1.2 + text.length() * 0.045
 	return {"npc": "", "name": speaker, "title": "", "text": text, "buttons": [],
-		"reward": "", "pause": false, "auto_close": seconds, "kind": "line"}
+		"reward": "", "pause": false, "auto_close": seconds, "kind": "line", "speaker": who}
 
 
 ## Talks to an NPC: completes talk quests aimed at them, then opens the box
