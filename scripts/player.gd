@@ -17,9 +17,11 @@ extends CharacterBody3D
 
 const SPEED: float = 6.0
 const JUMP_VELOCITY: float = 8.0
-## Fallback for scripts that still read player.MAX_HEALTH (the HUD does). The
-## real ceiling is `max_health`, from Stats.max_health().
-const MAX_HEALTH: float = 55.0
+## Movement speed factor while Inventory.overweight. The original subtracts a
+## flat 50 from a base of 7.5 and clamps at 0 (so an overloaded character
+## cannot walk or jump at all). We keep the player able to crawl so a run is
+## never softlocked; set this to 0.0 for exact parity. Jumping stays disabled.
+const OVERWEIGHT_SPEED_FACTOR: float = 0.25
 const RUN_SPEED_MULT: float = 1.5
 const CROUCH_SPEED_DIV: float = 2.0
 const MAX_AIM_PITCH_DEG: float = 80.0
@@ -40,14 +42,17 @@ const SPREAD_RESET_TIME: float = 0.6
 ## One stamina / regen tick is 5 original frames; run cost applies per frame.
 const STAMINA_TICK: float = 5.0 / 30.0
 const STAMINA_FRAME: float = 1.0 / 30.0
-## Crouch has no input action yet; read this key directly (Blocked: ask lead).
-const CROUCH_KEY: Key = KEY_C
-const RUN_KEY: Key = KEY_SHIFT
 
-var health: float = MAX_HEALTH
-## Ceiling that regen can restore health to; drops by damage/1.85 per hit.
-var perm_health: float = MAX_HEALTH
-var max_health: float = MAX_HEALTH
+## Per-hour rest healing (sleepWait): max health fraction, and the stamina
+## fraction restored. Plus a flat part from fitness and endurance, see rest().
+const REST_HEALTH_FRACTION: float = 0.1
+const REST_STAMINA_FRACTION: float = 0.2
+
+## Current health, the ceiling regen can restore it to (drops by damage/1.85 per
+## hit), and the absolute ceiling from Stats.max_health().
+var health: float = 0.0
+var perm_health: float = 0.0
+var max_health: float = 0.0
 var stamina: float = 0.0
 var stamina_max: float = 0.0
 var crouched: bool = false
@@ -68,6 +73,10 @@ var _hit_stopping: bool = false
 var reloading: bool = false
 var reload_timer: float = 0.0
 var burst_left: int = 0
+
+## The zombie holding the player, or null. Set by start_grab / end_grab.
+var grabbed_by: Node = null
+var _struggle_prompt: StrugglePrompt = null
 
 var facing_dir: float = 1.0
 var aim_pitch: float = 0.0
@@ -111,9 +120,10 @@ func _forearm_pose(bend_deg: float) -> Quaternion:
 func _ready() -> void:
 	rng.randomize()
 	refresh_vitals()
-	health = max_health
-	perm_health = max_health
+	full_heal()
 	stamina = stamina_max
+	Events.stats_changed.connect(refresh_vitals)
+	Events.level_up.connect(_on_level_up)
 	if GameState.has_pending_spawn:
 		global_position.x = GameState.consume_spawn()
 	model.rotation.y = -PI / 2.0 if facing_dir > 0.0 else PI / 2.0
@@ -129,14 +139,18 @@ func _ready() -> void:
 	set_process_priority(100)
 
 func _physics_process(delta: float) -> void:
+	var grabbed := is_grabbed()
 	var input_dir := 0.0
-	if Input.is_action_pressed("move_left"):
-		input_dir -= 1.0
-	if Input.is_action_pressed("move_right"):
-		input_dir += 1.0
+	if not grabbed:
+		if Input.is_action_pressed("move_left"):
+			input_dir -= 1.0
+		if Input.is_action_pressed("move_right"):
+			input_dir += 1.0
+	else:
+		_struggle_input()
 
-	crouched = Input.is_key_pressed(CROUCH_KEY) and is_on_floor()
-	running = Input.is_key_pressed(RUN_KEY) and input_dir != 0.0 and not crouched and stamina > 0.0
+	crouched = Input.is_action_pressed("crouch") and is_on_floor() and not grabbed
+	running = Input.is_action_pressed("run") and input_dir != 0.0 and not crouched and stamina > 0.0
 	var speed := SPEED
 	if crouched:
 		speed /= CROUCH_SPEED_DIV
@@ -146,9 +160,12 @@ func _physics_process(delta: float) -> void:
 		while _run_cost_clock >= STAMINA_FRAME:
 			_run_cost_clock -= STAMINA_FRAME
 			_use_stamina(CombatRules.STAMINA_COST_RUN)
+	if Inventory.overweight:
+		speed *= OVERWEIGHT_SPEED_FACTOR
 	velocity.x = input_dir * speed
 	velocity.z = 0.0 # locked to the street plane, 2.5D style
-	if Input.is_action_just_pressed("jump") and is_on_floor() and not crouched and stamina > 0.0:
+	if Input.is_action_just_pressed("jump") and is_on_floor() and not crouched and not grabbed \
+			and not Inventory.overweight and stamina > 0.0:
 		velocity.y = JUMP_VELOCITY
 		_use_stamina(CombatRules.STAMINA_COST_JUMP)
 	if not is_on_floor():
@@ -255,7 +272,9 @@ func _update_aim() -> void:
 ## screen/mouse plumbing.
 func _apply_aim(aim_point: Vector3) -> void:
 	var dx := aim_point.x - global_position.x
-	if abs(dx) > 0.05:
+	if is_grabbed():
+		facing_dir = signf(grabbed_by.global_position.x - global_position.x) if grabbed_by.global_position.x != global_position.x else facing_dir
+	elif abs(dx) > 0.05:
 		facing_dir = sign(dx)
 	model.rotation.y = -PI / 2.0 if facing_dir > 0.0 else PI / 2.0
 
@@ -369,7 +388,8 @@ func _fire_round(gun: Weapon) -> void:
 			dir = aim.rotated(Vector3.BACK, rng.randf_range(-PELLET_SCATTER_RAD, PELLET_SCATTER_RAD))
 		var bullet := BulletScene.instantiate()
 		get_parent().add_child(bullet)
-		bullet.global_position = attack_area_r.global_position
+		# The hand hangs a little off the street plane; rounds fly on the Z=0 lane.
+		bullet.global_position = Vector3(attack_area_r.global_position.x, attack_area_r.global_position.y, global_position.z)
 		bullet.setup(dir, self, gun.damage, ctx)
 	Events.shot_fired.emit(gun.ref, gun.weapon_noise, attack_area_r.global_position)
 	print("[Player] fired %s, %d/%d loaded, %d in reserve" % [gun.display_name, loaded, gun.mag_size, _reserve(gun)])
@@ -429,25 +449,29 @@ func _apply_punch_damage() -> void:
 	var weapon := _melee_weapon()
 	var base := CombatRules.melee_base(weapon.damage if weapon.damage > 0.0 else -1.0,
 			Stats.attr("strength"), Stats.adjusted_skill(weapon.skill))
-	_melee_strike(area.get_overlapping_bodies(), base, weapon.skill, false, weapon.knockback)
+	_melee_strike(area.get_overlapping_bodies(), base, weapon.skill, false, weapon.knockback, area.global_position.y)
 
 
 ## Resolves a melee hit on each body: shave, crit, armor, damage, then stumble.
-## Shoves always stagger; swings stagger on a crit or a knockback roll.
-func _melee_strike(bodies: Array, base: float, skill_name: String, always_stagger: bool, weapon_knockback: float = 0.0) -> void:
+## Shoves always stagger; swings stagger on a crit or a knockback roll. The
+## zone (for armor) comes from `hit_y`, the height of the striking hand; NAN
+## (shoves) means the chest.
+func _melee_strike(bodies: Array, base: float, skill_name: String, always_stagger: bool,
+		weapon_knockback: float = 0.0, hit_y: float = NAN) -> void:
 	var adjusted := Stats.adjusted_skill(skill_name)
 	for body in bodies:
 		if body == self:
 			continue # the hitbox sits on our own hand; never hit ourselves
 		if not body.has_method("take_damage"):
 			continue
+		var zone := "chest" if is_nan(hit_y) or not body is Node3D else CombatActions.zone_at(body, hit_y)
 		var crit := CombatRules.roll_crit(rng, Stats.attr("luck"), adjusted)
-		var dmg := CombatRules.melee_final(rng, base, crit, CombatActions.armor_for(body, "chest"))
+		var dmg := CombatRules.melee_final(rng, base, crit, CombatActions.armor_for(body, zone))
 		var stagger := always_stagger or crit or CombatRules.roll_knockback(rng, weapon_knockback)
 		var kb := 0.0
 		if stagger:
 			kb = CombatRules.px_to_units(CombatRules.stumble_px(dmg, Stats.attr("strength"), Stats.adjusted_skill("fitness")))
-		CombatActions.deal_damage(body, dmg, "chest", self, kb)
+		CombatActions.deal_damage(body, dmg, zone, self, kb)
 		_hit_stop()
 
 
@@ -477,16 +501,68 @@ func _melee_weapon() -> Weapon:
 	return Weapon.from_ref("hands")
 
 
+# --- Grab and struggle ----------------------------------------------------
+
+## Called by the zombie that grabs us. Movement and jumping lock, we face the
+## zombie, and the A / D (move_left / move_right) presses feed its struggle.
+func start_grab(zombie: Node) -> void:
+	grabbed_by = zombie
+	velocity.x = 0.0
+	if zombie is Node3D and zombie.global_position.x != global_position.x:
+		facing_dir = signf(zombie.global_position.x - global_position.x)
+	if _struggle_prompt == null:
+		_struggle_prompt = StrugglePrompt.new()
+		add_child(_struggle_prompt)
+	_struggle_prompt.setup(zombie)
+
+
+## Called by the zombie when it lets go (escape, stagger, death). Idempotent.
+func end_grab() -> void:
+	grabbed_by = null
+	if _struggle_prompt != null:
+		_struggle_prompt.queue_free()
+		_struggle_prompt = null
+
+
+func is_grabbed() -> bool:
+	return grabbed_by != null and is_instance_valid(grabbed_by)
+
+
+## Routes the press of either move key into the grabbing zombie's struggle.
+## "A" is whatever the move_left action is bound to (Q on AZERTY), "D" move_right.
+func _struggle_input() -> void:
+	if not grabbed_by.has_method("struggle_press"):
+		return
+	if Input.is_action_just_pressed("move_left"):
+		grabbed_by.struggle_press("A")
+	elif Input.is_action_just_pressed("move_right"):
+		grabbed_by.struggle_press("D")
+
+
 # --- Vitals ---------------------------------------------------------------
 
-## Re-reads the ceilings from Stats (level-ups, endurance changes). Keeps the
-## current fractions of health/perm_health/stamina.
+## Re-reads the ceilings from Stats (level-ups, endurance and hunger changes).
+## Keeps current health, perm health and stamina, clamped to the new ceilings.
 func refresh_vitals() -> void:
 	max_health = Stats.max_health()
-	stamina_max = CombatRules.stamina_max(Stats.level, Stats.attr("endurance"), 0.0, Stats.adjusted_skill("fitness"))
+	var hunger_penalty: float = Survival.hunger_penalty()
+	stamina_max = CombatRules.stamina_max(Stats.level, Stats.attr("endurance"), hunger_penalty, Stats.adjusted_skill("fitness"))
 	health = minf(health, max_health)
 	perm_health = minf(perm_health, max_health)
 	stamina = minf(stamina, stamina_max)
+
+
+## Level-up: the original restores health and perm health to full when the
+## level-up screen is confirmed (confirmStats -> fullHealth). The bus has no
+## "confirmed" event, so we do it when the level arrives (verify with ui).
+func _on_level_up(_new_level: int) -> void:
+	refresh_vitals()
+	full_heal()
+
+
+func full_heal() -> void:
+	health = max_health
+	perm_health = max_health
 
 
 func _use_stamina(base_cost: float) -> void:
@@ -532,7 +608,28 @@ func heal(amount: float) -> void:
 	print("[Player] healed %.1f, health now %.1f" % [amount, health])
 
 
+## Raises only the ceiling (first aid on old wounds); regen then fills health.
+func heal_perm(amount: float) -> void:
+	perm_health = minf(max_health, perm_health + amount)
+
+
+## Resting or waiting `hours` game hours (sleepWait). Each hour: perm health
+## and health both go up by round(0.1 * max health) + round((fitness +
+## endurance) / 2) (health is set to the new ceiling), and stamina by
+## round(0.2 * stamina max) + round(fitness + endurance). The original reads
+## raw `player.fitness` (the skill) and the attribute; we do the same.
+func rest(hours: int) -> void:
+	var fitness := float(Stats.skill("fitness"))
+	var endurance := float(Stats.attr("endurance"))
+	for i in maxi(hours, 0):
+		perm_health = minf(max_health, perm_health + roundf(max_health * REST_HEALTH_FRACTION) + roundf((fitness + endurance) / 2.0))
+		health = perm_health
+		stamina = minf(stamina_max, stamina + roundf(stamina_max * REST_STAMINA_FRACTION) + roundf(fitness + endurance))
+	print("[Player] rested %d h: health %.1f/%.1f stamina %.1f/%.1f" % [hours, health, max_health, stamina, stamina_max])
+
+
 func _die() -> void:
+	end_grab()
 	is_dead = true
 	print("[Player] died - showing death screen")
 	Events.player_died.emit()
