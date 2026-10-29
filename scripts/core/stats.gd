@@ -141,6 +141,14 @@ func name_context() -> Dictionary:
 	return {"playerName": player_name, "sex": sex}
 
 
+## Books: adds n points to a skill, capped at skill_max(). Returns points actually added.
+func add_skill_points(skill_name: String, n: int) -> int:
+	var before := skill(skill_name)
+	_skills[skill_name] = mini(before + n, skill_max())
+	Events.stats_changed.emit()
+	return skill(skill_name) - before
+
+
 # --- penalties (Survival) -----------------------------------------------------
 
 ## Subtract n from an attribute until cleared (n = 0). Not saved; Survival re-applies.
