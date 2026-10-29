@@ -23,3 +23,4 @@ func _reset_run_state() -> void:
 	LootState.looted.clear()
 	LootState.trunk_contents.clear()
 	GameState.has_pending_spawn = false
+	GameState.equipped_weapon = "fist"
