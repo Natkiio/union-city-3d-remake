@@ -55,14 +55,16 @@ mesh = SubResource("BoxMesh_building")
 surface_material_override/0 = SubResource("StandardMaterial3D_building")
 
 [node name="Player" parent="." unique_id=1699670702 instance=ExtResource("1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 1, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.358866, 1, 0)
 
 [node name="Zombie" parent="." unique_id=100253904 instance=ExtResource("2")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 1, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.162918, 1, 0)
+
+[node name="Zombie2" parent="." unique_id=881527577 instance=ExtResource("2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.6756878, 1, 0)
 
 [node name="LootCrate1" parent="." unique_id=461404622 instance=ExtResource("3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0.25, -5)
-item_weight = 1.0
 
 [node name="LootCrate2" parent="." unique_id=840308638 instance=ExtResource("3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0.25, -7)
@@ -82,8 +84,11 @@ item_weight = 2.0
 [node name="HouseExterior" parent="." unique_id=1696498767 instance=ExtResource("6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25, 0, -1.8)
 
+[node name="HouseExterior2" parent="." unique_id=1121955047 instance=ExtResource("6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.1588688, 0, -2.0254352)
+
 [node name="Car" parent="." unique_id=1127041731 instance=ExtResource("7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, -1.8)
+transform = Transform3D(0.8802006, 0, 0.47460175, 0, 1, 0, -0.47460175, 0, 0.8802006, -7, 0, -1.8)
 
 [node name="CameraRig" type="Node3D" parent="." unique_id=1468777941]
 script = ExtResource("5")
