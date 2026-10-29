@@ -55,7 +55,7 @@ Keys (all optional, `Look.normalize` fills them): `sex skinColour hair hairColou
 ## Seeing it
 
 ```
-godot --path . -s tests/capture_demo.gd -- /some/dir     # windowed, ~5 s, quits by itself
+godot --path . -s tests/capture_demo.gd -- /some/dir [cork_day|cork_dusk|docks_night]   # windowed, ~5 s, quits by itself
 ```
 
 Saves `stage_<name>.png` (1600x900) for every demo stage (anims, weapons, looks, zombies1, zombies2, closeup, closeup_zombies) to the given directory (default `user://`). Run the demo interactively with `godot --path . scenes/chars/cutout_demo.tscn`. The demo camera is level with a shifted frustum, so vertical lines stay vertical.

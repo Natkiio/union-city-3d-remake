@@ -8,6 +8,7 @@ const HERO := {"sex": "male", "skinColour": "White", "hair": "short2", "hairColo
 	"clothesTop": "male_hoodyBlack", "clothesBottom": "male_jeansBlue", "clothesShoe": "shoeBrown", "backpack": true, "weapon": "none"}
 
 var frozen: bool = false
+var backdrop_preset: String = "cork_dusk"
 var stage: int = 0
 var cam: Camera3D
 var stage_nodes: Array = []
@@ -19,7 +20,7 @@ var backdrop: Node3D
 
 func _ready() -> void:
 	RenderingServer.set_default_clear_color(Color(0.05, 0.05, 0.07))
-	backdrop = Backdrop.build(Backdrop.preset("cork_dusk"))
+	backdrop = Backdrop.build(Backdrop.preset(backdrop_preset))
 	add_child(backdrop)
 	_ground()
 	cam = Camera3D.new()

@@ -1,6 +1,6 @@
 extends SceneTree
 ## NOT a test. Windowed screenshot tool for the cutout demo (see docs/cutout.md).
-##   godot --path . -s tests/capture_demo.gd [-- out_dir]
+##   godot --path . -s tests/capture_demo.gd [-- out_dir [backdrop_preset]]
 ## Saves stage_<name>.png for every demo stage to out_dir (default: user://) and quits.
 
 const OUT_DEFAULT := "user://"
@@ -13,6 +13,8 @@ func _initialize() -> void:
 	DisplayServer.window_set_size(Vector2i(1600, 900))
 	var demo: Node3D = load("res://scenes/chars/cutout_demo.tscn").instantiate()
 	demo.set("frozen", true)
+	if args.size() > 1:
+		demo.set("backdrop_preset", args[1])
 	root.add_child(demo)
 	await process_frame
 	await process_frame
