@@ -92,8 +92,8 @@ static func sell_price(item_name: String) -> int:
 	return int(base_cost(item_name) * SELL_FRACTION)
 
 
-## Sells one unit of an inventory item. Ammo sells one box's rows are not
-## split: an ammo stack must hold the box count to be sold (rare, skip).
+## Sells one unit of an inventory item (one whole box for ammo: the stack must
+## hold at least the shop row's count).
 static func sell(item_name: String) -> bool:
 	var value := sell_price(item_name)
 	if value <= 0 or not LootRules.auto("Inventory").has_item(item_name):

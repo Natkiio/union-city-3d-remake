@@ -34,8 +34,8 @@ class Board extends Control:
 		var top := 20.0
 		var scale := (size.y - 40.0) / 70.0  # PIN_TOP..PIN_BOTTOM spans 65, plus slack
 		for i in g.pin_count():
-			var x := 40.0 + i * (LockPickUI.PIN_W + LockPickUI.PIN_GAP)
-			draw_rect(Rect2(x - 4, top, LockPickUI.PIN_W + 8, size.y - 40), Color(0.15, 0.13, 0.1))
+			var x: float = 40.0 + i * (ui.PIN_W + ui.PIN_GAP)
+			draw_rect(Rect2(x - 4, top, ui.PIN_W + 8, size.y - 40), Color(0.15, 0.13, 0.1))
 			var y: float = g.heights[i]
 			var py := top + (y - PickGame.PIN_TOP) * scale
 			var lit: bool = i == g.current and g.in_spot(i, y)
@@ -44,8 +44,8 @@ class Board extends Control:
 				col = Color(0.3, 0.7, 0.35)
 			elif i == g.current:
 				col = Color(1.0, 0.9, 0.3) if lit else Color(0.75, 0.75, 0.8)
-			draw_rect(Rect2(x, py, LockPickUI.PIN_W, 14), col)
-			draw_rect(Rect2(x + LockPickUI.PIN_W * 0.5 - 3, py + 14, 6, size.y - 40 + top - py - 14), col.darkened(0.3))
+			draw_rect(Rect2(x, py, ui.PIN_W, 14), col)
+			draw_rect(Rect2(x + ui.PIN_W * 0.5 - 3, py + 14, 6, size.y - 40 + top - py - 14), col.darkened(0.3))
 
 
 func _ready() -> void:
