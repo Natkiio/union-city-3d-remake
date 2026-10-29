@@ -74,6 +74,8 @@ const TOPS := [
 	["police", Color(0.1, 0.14, 0.3)], ["military", Color(0.33, 0.37, 0.22)],
 	["hazmat", Color(0.92, 0.8, 0.1)], ["suit", Color(0.38, 0.38, 0.42)],
 	["checkers", Color(0.25, 0.35, 0.72)], ["hoody", Color(0.1, 0.1, 0.12)],
+	["longsleeveblack", Color(0.2, 0.2, 0.24)], ["longsleevered", Color(0.5, 0.1, 0.16)],
+	["longsleevewhite", Color(0.78, 0.82, 0.88)], ["_shirtblue", Color(0.5, 0.65, 0.88)],
 	["blue", Color(0.2, 0.38, 0.8)], ["red", Color(0.75, 0.15, 0.15)],
 	["green", Color(0.2, 0.55, 0.28)], ["black", Color(0.1, 0.1, 0.12)],
 	["white", Color(0.9, 0.9, 0.88)], ["brown", Color(0.45, 0.3, 0.18)],
@@ -94,7 +96,7 @@ const SHOES := [
 const SHORT_SLEEVE_WORDS := ["tshirt", "scrubs", "hospital", "none", "apron", "tls"]
 
 static func _lookup(table: Array, name: String, default: Color) -> Color:
-	var n := name.to_lower()
+	var n := "_" + name.to_lower().trim_prefix("male_").trim_prefix("female_") # "_" anchors the start
 	for row in table:
 		if n.contains(row[0]):
 			return row[1]
@@ -221,9 +223,13 @@ static func top_y(model_root: Node3D) -> float:
 static func _resolve_random(record: Dictionary, rng: RandomNumberGenerator) -> Dictionary:
 	var r := record.duplicate()
 	var skin = r.get("skinColour", "White")
-	if not (skin is String) or skin == "random":
-		r["skinColour"] = _SKINS[rng.randi() % _SKINS.size()] if skin == "random" else "White"
-	if str(r.get("hairColour", "")) == "random" or not r.has("hairColour"):
+	if skin is String and skin == "random":
+		r["skinColour"] = _SKINS[rng.randi() % _SKINS.size()]
+	elif not (skin is String): # {"$expr": "player.skinColour"} and the like
+		r["skinColour"] = "White"
+	r["skinColour"] = r.get("skinColour", "White")
+	var hc = r.get("hairColour", "random")
+	if not (hc is String) or hc == "random":
 		r["hairColour"] = _HAIRC[rng.randi() % _HAIRC.size()]
 	if str(r.get("hair", "")) == "random":
 		r["hair"] = _HAIRS[rng.randi() % _HAIRS.size()]
