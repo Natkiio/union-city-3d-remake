@@ -30,8 +30,21 @@ static func quit(tree: SceneTree) -> void:
 		tree.quit()
 
 
+## Tests put stand-ins for the World / SaveGame autoloads here.
+static var world_override: Node = null
+static var save_override: Node = null
+
+
 static func _autoload(tree: SceneTree, n: String) -> Node:
+	if n == "World" and world_override != null:
+		return world_override
+	if n == "SaveGame" and save_override != null:
+		return save_override
 	return tree.root.get_node_or_null(n)
+
+
+static func world(tree: SceneTree) -> Node:
+	return _autoload(tree, "World")
 
 
 ## Wipes the previous run and opens character creation as a child of `host`.

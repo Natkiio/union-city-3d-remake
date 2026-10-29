@@ -12,7 +12,7 @@ var hours_label: Label
 
 
 static func available(tree: SceneTree) -> bool:
-	var w := tree.root.get_node_or_null("World")
+	var w := GameFlow.world(tree)
 	if w == null or not ("current" in w) or not (w.current is Dictionary):
 		return false
 	return bool(w.current.get("safehouse", false))

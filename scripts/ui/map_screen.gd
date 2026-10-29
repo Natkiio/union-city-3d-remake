@@ -54,7 +54,7 @@ static func travel_cost(a: Vector2, b: Vector2) -> int:
 
 
 func _world() -> Node:
-	return get_tree().root.get_node_or_null("World")
+	return GameFlow.world(get_tree())
 
 
 func build() -> void:

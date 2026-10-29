@@ -16,23 +16,23 @@ func _init() -> void:
 func build() -> void:
 	for b in Settings.BUSES:
 		var s := _slider(float(Settings.get_value("volume_" + b)))
-		s.value_changed.connect(func(v: float): _set("volume_" + b, v))
+		s.value_changed.connect(func(v: float): _put("volume_" + b, v))
 		sliders["volume_" + b] = s
 		add_row("%s volume" % b, s)
 	var br := _slider(float(Settings.get_value("brightness")))
-	br.value_changed.connect(func(v: float): _set("brightness", v))
+	br.value_changed.connect(func(v: float): _put("brightness", v))
 	sliders["brightness"] = br
 	add_row("Brightness", br)
 	head_shots = CheckBox.new()
 	head_shots.text = "Head shots only"
 	head_shots.button_pressed = bool(Settings.get_value("head_shots_only"))
-	head_shots.toggled.connect(func(on: bool): _set("head_shots_only", on))
+	head_shots.toggled.connect(func(on: bool): _put("head_shots_only", on))
 	body.add_child(head_shots)
 	mode_pick = OptionButton.new()
 	mode_pick.add_item("Survivor (hunger and sleep)")
 	mode_pick.add_item("Run'n'Gun (more ammo)")
 	mode_pick.selected = 1 if Settings.get_value("mode") == "runngun" else 0
-	mode_pick.item_selected.connect(func(i: int): _set("mode", "runngun" if i == 1 else "survivor"))
+	mode_pick.item_selected.connect(func(i: int): _put("mode", "runngun" if i == 1 else "survivor"))
 	add_row("Mode", mode_pick)
 	var keys := GridContainer.new()
 	keys.columns = 4
@@ -54,7 +54,7 @@ func _slider(v: float) -> HSlider:
 	return s
 
 
-func _set(key: String, value: Variant) -> void:
+func _put(key: String, value: Variant) -> void:
 	Settings.set_value(key, value)
 	Settings.apply(get_tree())
 
