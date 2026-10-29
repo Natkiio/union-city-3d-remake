@@ -34,7 +34,7 @@ var search_left: float = -1.0
 var reopen_cooldown: float = 0.0
 var _lock_busy: bool = false
 var _body: MeshInstance3D
-var _label: Label3D
+var _label: WorldText
 var _trigger: Area3D
 
 
@@ -233,7 +233,7 @@ func _refresh_prompt() -> void:
 	var text := "[E] %s" % title
 	if is_locked():
 		var d := lock_def()
-		text = "%s [LOCKED - %s]" % [title, str(d["lock_diff"]).to_upper()]
+		text = "%s\nLOCKED - %s" % [title, str(d["lock_diff"]).to_upper()]
 	elif searched and items.is_empty():
 		text = "%s (empty)" % title
 	_label.text = text
@@ -308,11 +308,8 @@ func _build() -> void:
 	hover.add_child(hshape)
 	add_child(hover)
 
-	_label = Label3D.new()
+	_label = WorldText.make("", WorldText.Kind.PROMPT)
 	_label.name = "Prompt"
-	_label.billboard = BaseMaterial3D.BILLBOARD_ENABLED
-	_label.no_depth_test = true
-	_label.pixel_size = 0.01
 	_label.position = Vector3(0, maxf(size.y, 1.0) + 0.5, 0.0)
 	_label.visible = false
 	add_child(_label)

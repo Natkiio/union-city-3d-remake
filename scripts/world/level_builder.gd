@@ -230,14 +230,8 @@ func add_link(root: Node3D, link: Dictionary, x: float, visual_z: float, mesh: M
 	cs.position = Vector3(0, 1.2, visual_z + depth * 0.5)
 	area.add_child(cs)
 	area.position = Vector3(x, 0, 0)
-	var prompt := Label3D.new()
+	var prompt := WorldText.make("", WorldText.Kind.PROMPT, Color(1, 0.95, 0.6))
 	prompt.name = "Prompt"
-	prompt.font_size = 36
-	prompt.pixel_size = 0.006
-	prompt.outline_size = 10
-	prompt.modulate = Color(1, 0.95, 0.6)
-	prompt.billboard = BaseMaterial3D.BILLBOARD_ENABLED
-	prompt.no_depth_test = true
 	prompt.position = Vector3(0, 2.4, 0.2)
 	area.add_child(prompt)
 	area.prompt = prompt

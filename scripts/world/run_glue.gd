@@ -178,15 +178,8 @@ func speech_bubble(speaker: String, text: String) -> Label3D:
 	var old := target.get_node_or_null("SpeechBubble")
 	if old != null:
 		old.free()
-	var l := Label3D.new()
+	var l := WorldText.make(text, WorldText.Kind.BUBBLE)
 	l.name = "SpeechBubble"
-	l.text = text
-	l.font_size = 40
-	l.pixel_size = 0.005
-	l.outline_size = 12
-	l.billboard = BaseMaterial3D.BILLBOARD_ENABLED
-	l.no_depth_test = true
-	l.modulate = Color(1, 1, 1)
 	l.position = Vector3(0, 2.2, 0)
 	target.add_child(l)
 	var t := l.create_tween()
@@ -268,15 +261,9 @@ func refresh_markers() -> void:
 				label.visible = false
 			continue
 		if label == null:
-			label = Label3D.new()
+			label = WorldText.make("", WorldText.Kind.MARKER, Color(1.0, 0.85, 0.2))
 			label.name = MARKER_NAME
-			label.font_size = 96
-			label.pixel_size = 0.006
-			label.outline_size = 18
-			label.billboard = BaseMaterial3D.BILLBOARD_ENABLED
-			label.no_depth_test = true
 			label.position = Vector3(0, 2.5, 0)
-			label.modulate = Color(1.0, 0.85, 0.2)
 			npc.add_child(label)
 		label.text = mark
 		label.visible = true
