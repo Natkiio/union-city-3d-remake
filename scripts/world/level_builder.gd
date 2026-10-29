@@ -292,6 +292,10 @@ static func container_script() -> GDScript:
 
 
 ## Half the x extent a link's visual and trigger take up.
+## Half the width of floor reserved around an NPC when placing containers.
+const NPC_CLEARANCE := 0.6
+
+
 static func link_half_width(kind: String) -> float:
 	if kind in ["sup", "sdwn"]:
 		return 0.8
@@ -312,6 +316,21 @@ static func layout_containers(id: String, w: float) -> Array:
 		var lx := clampf(px(link.x), 0.3, maxf(w - 0.3, 0.3))
 		var lh := link_half_width(str(link.kind))
 		blocked.append([lx - lh, lx + lh])
+	# People stand where the room data puts them; furniture keeps clear of them too.
+	for n in WorldData.npcs(id):
+		var nx := clampf(px(n.x), 0.4, maxf(w - 0.4, 0.4))
+		blocked.append([nx - NPC_CLEARANCE, nx + NPC_CLEARANCE])
+	# The bed and the shop counter are built later by _build_extras.
+	if WorldData.is_safehouse(id):
+		for m in WorldData.markers(id, "abed"):
+			var bx := clampf(px(m.x), 1.0, maxf(w - 1.0, 1.0))
+			blocked.append([bx - 1.0, bx + 1.0])
+			break
+	if WorldData.shop_set(id) > 0:
+		var slots := WorldData.markers(id, "shop")
+		var sx := px(float(slots[0].x)) if not slots.is_empty() else w * 0.5
+		sx = clampf(sx, 1.0, maxf(w - 1.0, 1.0))
+		blocked.append([sx - 0.9, sx + 0.9])
 	var half: Array = []
 	for c in conts:
 		var size: Vector3 = container_script().visual_for(str(c.def.get("desc", c.key)))["size"]

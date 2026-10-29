@@ -35,6 +35,16 @@ func run() -> void:
 					var lh := LevelBuilder.link_half_width(str(l.kind))
 					if x + h > lx - lh and x - h < lx + lh:
 						bad.append("%s %s hits link %s" % [id, conts[i].key, l.name])
+				if WorldData.is_safehouse(id):
+					for m in WorldData.markers(id, "abed"):
+						var bx := clampf(LevelBuilder.px(m.x), 1.0, maxf(w - 1.0, 1.0))
+						if x + h > bx - 1.0 and x - h < bx + 1.0:
+							bad.append("%s %s blocks the bed" % [id, conts[i].key])
+						break
+				for n in WorldData.npcs(id):
+					var nx := clampf(LevelBuilder.px(n.x), 0.4, maxf(w - 0.4, 0.4))
+					if x + h > nx - LevelBuilder.NPC_CLEARANCE and x - h < nx + LevelBuilder.NPC_CLEARANCE:
+						bad.append("%s %s blocks NPC %s" % [id, conts[i].key, n.npc_id])
 				for j in boxes.size():
 					var b: Array = boxes[j]
 					if b[2] == lay[i].row and x + h + LevelBuilder.CONTAINER_GAP * 0.99 > b[0] and x - h - LevelBuilder.CONTAINER_GAP * 0.99 < b[1]:
