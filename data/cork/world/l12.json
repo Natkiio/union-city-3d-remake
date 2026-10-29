@@ -1,0 +1,48 @@
+{
+  "s1": {
+    "b0": {
+      "name": "ST PATRICK'S STREET"
+    },
+    "b1": {
+      "name": "Credit Union",
+      "f1": {
+        "r0": {
+          "name": "Credit Union"
+        },
+        "r1": {
+          "name": "Credit Union"
+        }
+      }
+    },
+    "b2": {
+      "name": "The Crooked Bishop",
+      "f1": {
+        "r1": {
+          "name": "Credit Union"
+        }
+      }
+    },
+    "b3": {
+      "name": "Lee Security"
+    },
+    "b5": {
+      "name": "King's Pawnbrokers"
+    }
+  },
+  "s2": {
+    "b0": {
+      "name": "GRAND PARADE"
+    },
+    "b1": {
+      "name": "The Golden Cod"
+    },
+    "b2": {
+      "name": "Lee Paper Co. Offices"
+    },
+    "b3": {
+      "name": "Motor Garage"
+    }
+  },
+  "startLocName": "ST PATRICK'S STREET - LEE SECURITY",
+  "endLocName": "CULVERT EXIT"
+}

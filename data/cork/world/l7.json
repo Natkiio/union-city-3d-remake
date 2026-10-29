@@ -1,0 +1,63 @@
+{
+  "s1": {
+    "b0": {
+      "name": "FERRY LANDING"
+    },
+    "b1": {
+      "name": "Pay Office"
+    },
+    "b2": {
+      "name": "The Canteen"
+    },
+    "b3": {
+      "name": "Guardhouse"
+    },
+    "b5": {
+      "name": "Armoury"
+    }
+  },
+  "s2": {
+    "b0": {
+      "name": "THE PARADE GROUND"
+    },
+    "b1": {
+      "name": "Officers Mess"
+    },
+    "b2": {
+      "name": "Admin Block"
+    },
+    "b3": {
+      "name": "Motor Pool"
+    }
+  },
+  "s3": {
+    "b0": {
+      "name": "SPIKE ISLAND"
+    },
+    "b1": {
+      "name": "Officers Mess"
+    },
+    "b2": {
+      "name": "Admin Block"
+    },
+    "b3": {
+      "name": "Motor Pool"
+    }
+  },
+  "s4": {
+    "b0": {
+      "name": "FORT MITCHEL"
+    },
+    "b1": {
+      "name": "Officers Mess"
+    },
+    "b2": {
+      "name": "Admin Block"
+    },
+    "b3": {
+      "name": "Motor Pool"
+    }
+  },
+  "startLocName": "FERRY LANDING",
+  "endLocName": "ESCAPE PIER"
+}

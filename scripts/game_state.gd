@@ -12,6 +12,45 @@ var pending_spawn_x: float = 0.0
 ## player node; this is the single source of truth now (issues #29/#39).
 var equipped_weapon: String = "fist"
 
+## Player vitals survive scene reloads (room changes, travel) and saves. The
+## player node writes them every physics frame; a fresh player reads them back
+## instead of starting at full health (issue #30). has_vitals=false means a
+## new run: the player starts full.
+var has_vitals: bool = false
+var vit_health: float = 0.0
+var vit_perm_health: float = 0.0
+var vit_stamina: float = 0.0
+
+
+func _ready() -> void:
+	add_to_group("stateful")
+
+
+func store_vitals(h: float, perm: float, stam: float) -> void:
+	has_vitals = true
+	vit_health = h
+	vit_perm_health = perm
+	vit_stamina = stam
+
+
+func reset() -> void:
+	has_vitals = false
+
+
+func to_dict() -> Dictionary:
+	return {"has_vitals": has_vitals, "health": vit_health, "perm_health": vit_perm_health, "stamina": vit_stamina}
+
+
+func from_dict(d: Dictionary) -> void:
+	has_vitals = bool(d.get("has_vitals", false))
+	vit_health = float(d.get("health", 0.0))
+	vit_perm_health = float(d.get("perm_health", 0.0))
+	vit_stamina = float(d.get("stamina", 0.0))
+	for p in get_tree().get_nodes_in_group("player"):
+		if p.has_method("restore_vitals"):
+			p.restore_vitals()
+
+
 func request_spawn(x: float) -> void:
 	has_pending_spawn = true
 	pending_spawn_x = x
@@ -19,3 +58,27 @@ func request_spawn(x: float) -> void:
 func consume_spawn() -> float:
 	has_pending_spawn = false
 	return pending_spawn_x
+
+
+## Wipes every stateful system (inventory, loot, stats, quests...) for a new
+## run or after death. Systems join group "stateful" and implement reset().
+func reset_run() -> void:
+	has_pending_spawn = false
+	equipped_weapon = "fist"
+	for node in get_tree().get_nodes_in_group("stateful"):
+		node.reset()
+	_close_run_overlays()
+	Events.run_reset.emit()
+
+
+## Screens that belong to a run and live under the root (dialogue, cutscene,
+## lockpick, shop) go with it; the autoload panels are closed.
+func _close_run_overlays() -> void:
+	for node in get_tree().get_nodes_in_group("run_overlay"):
+		node.queue_free()
+	var trunk := get_node_or_null("/root/TrunkUI")
+	if trunk != null and trunk.visible and trunk.has_method("close"):
+		trunk.close()
+	var inv_ui := get_node_or_null("/root/InventoryUI")
+	if inv_ui != null and inv_ui.visible and inv_ui.has_method("_close"):
+		inv_ui._close()

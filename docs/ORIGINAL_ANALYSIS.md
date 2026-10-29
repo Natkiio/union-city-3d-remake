@@ -32,7 +32,7 @@ python3 -I tools/extract_data.py reference/scripts/scripts/frame_4/DoAction.as d
 adjustedSkill(s) = round( skill[s] + attribute[ skill.attr ] * 1.6 - 5 )
 ```
 
-(`attributeMod` = 1.6, `attributeBase` = 5). So an attribute of 5 adds nothing; each attribute point above 5 adds 1.6 effective skill to every skill that uses it.
+(`attributeMod` = 1.6, `attributeBase` = 5). The `- 5` is the constant, not `attributeBase`, so a base attribute of 5 adds 3 (skill 7 → 10) and each attribute point adds 1.6 effective skill to every skill that uses it. Confirmed against `adjustedSkill` in the source (progression workstream).
 
 **Level up**: cap 30. Each level grants **1 attribute point** and **10 skill points** (`playerAttPoints`, `playerSkillPoints`).
 
@@ -293,9 +293,10 @@ Quests can also **unlock map sections** (`unlocks`) and change NPC states (`chan
 
 ## 12. World map
 
-- 16 explorable **sections** (`world/l1..l16`) arranged on a map; the map has 17 slots. The player travels by clicking a section; **travel time = `round(manhattanMapDistance / 200)` game units of time** passed through `sleepWait`, so crossing the map costs time (and hunger/sleep).
+- 16 explorable **sections** (`world/l1..l16`) arranged on a map; the map has 17 slots. The player travels by clicking a section; **travel time = `round(manhattanMapDistance / 200)` game hours** (each unit is `gameTime += 60` in the source) passed through `sleepWait`, so crossing the map costs time (and hunger/sleep).
 - Sections unlock via quests (`unlockAreas`), not by distance.
 - **Danger levels** (drive §3 stats and §5 spawns): section 16: 1, 9: 4, 13: 7, 12: 9, 5: 10, 15: 10, 11: 11, 6: 16, 14: 20, 7: 25 (end area). Sections 2, 3, 4, 8, 10 are small and have no danger value (story areas). Uptown (section 1) is built from 7 street blocks.
+- Room widths and the positions of doors, stairs and containers are not in the script data; they live in the SWF's art and are extracted by `tools/extract_layout.py` (see `docs/world.md`).
 - Hierarchy inside a section: street → building → floor → room, with doors, stairs, `dropFloor`, safehouse flags, and room `type` (selects the junk list) — see `world/l*.json`.
 
 ## 13. Not analysed yet

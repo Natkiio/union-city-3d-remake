@@ -1,101 +1,67 @@
 [gd_scene format=3 uid="uid://h6f5g7i8main"]
 
-[ext_resource type="PackedScene" uid="uid://brkmmjsexl3ej" path="res://scenes/player/player.tscn" id="1"]
-[ext_resource type="PackedScene" uid="uid://b0wtc2kfx4joa" path="res://scenes/zombie/zombie.tscn" id="2"]
-[ext_resource type="PackedScene" uid="uid://f4d3e5g6loot" path="res://scenes/building/loot_crate.tscn" id="3"]
-[ext_resource type="PackedScene" uid="uid://g5e4f6h7hud" path="res://scenes/ui/hud.tscn" id="4"]
-[ext_resource type="Script" uid="uid://hk8fraxhflyo" path="res://scripts/camera_rig.gd" id="5"]
-[ext_resource type="PackedScene" uid="uid://bhngb4prda4au" path="res://scenes/house/house_exterior.tscn" id="6"]
-[ext_resource type="PackedScene" uid="uid://ckfi017achjt3" path="res://scenes/car/car.tscn" id="7"]
+[ext_resource type="Script" path="res://scripts/world/run_scene.gd" id="1_run"]
+[ext_resource type="PackedScene" path="res://scenes/player/player.tscn" id="2_player"]
+[ext_resource type="PackedScene" path="res://scenes/ui/hud.tscn" id="3_hud"]
+[ext_resource type="Script" uid="uid://hk8fraxhflyo" path="res://scripts/camera_rig.gd" id="4_cam"]
+[ext_resource type="Script" uid="uid://cp88oe7lwreow" path="res://scripts/items/day_night.gd" id="5_dn"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_street"]
-size = Vector3(60, 1, 6)
+[sub_resource type="Environment" id="Env_run"]
+background_mode = 1
+background_color = Color(0.05, 0.06, 0.08, 1)
+ambient_light_source = 2
+ambient_light_color = Color(1, 1, 1, 1)
+ambient_light_energy = 0.55
+tonemap_mode = 0
 
-[sub_resource type="BoxMesh" id="BoxMesh_street"]
-size = Vector3(60, 1, 6)
+[node name="Main" type="Node3D"]
+script = ExtResource("1_run")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_street"]
-albedo_color = Color(0.22, 0.22, 0.24, 1)
+[node name="Sun" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.94, -0.12, 0.32, 0, 0.94, 0.34, -0.34, -0.33, 0.88, 0, 10, 6)
+light_energy = 0.8
+shadow_enabled = false
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_building"]
-size = Vector3(10, 1, 8)
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Env_run")
 
-[sub_resource type="BoxMesh" id="BoxMesh_building"]
-size = Vector3(10, 1, 8)
+[node name="DayNight" type="Node" parent="."]
+script = ExtResource("5_dn")
+sun = NodePath("../Sun")
+world_environment = NodePath("../WorldEnvironment")
+base_sun_energy = 0.8
+base_ambient_energy = 0.55
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_building"]
-albedo_color = Color(0.3, 0.25, 0.2, 1)
+[node name="LevelRoot" type="Node3D" parent="."]
 
-[node name="Main" type="Node3D" unique_id=1293013932]
+[node name="Player" parent="." instance=ExtResource("2_player")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0.95, 0)
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1938065118]
-transform = Transform3D(0.8, -0.3, 0.5, 0, 0.86, 0.5, -0.6, -0.4, 0.69, 0, 10, 5)
-shadow_enabled = true
+[node name="CameraRig" type="Node3D" parent="."]
+script = ExtResource("4_cam")
+offset = Vector3(0, 2.6, 9.5)
 
-[node name="Street" type="StaticBody3D" parent="." unique_id=1063684449]
+[node name="Camera3D" type="Camera3D" parent="CameraRig"]
+transform = Transform3D(1, 0, 0, 0, 0.9986, 0.052, 0, -0.052, 0.9986, 0, 0, 0)
+current = true
+fov = 38.0
 
-[node name="StreetCollision" type="CollisionShape3D" parent="Street" unique_id=456394855]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
-shape = SubResource("BoxShape3D_street")
+[node name="HUD" parent="." instance=ExtResource("3_hud")]
 
-[node name="StreetMesh" type="MeshInstance3D" parent="Street" unique_id=403715988]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
-mesh = SubResource("BoxMesh_street")
-surface_material_override/0 = SubResource("StandardMaterial3D_street")
+[node name="Banner" type="CanvasLayer" parent="."]
+layer = 5
 
-[node name="BuildingFloor" type="StaticBody3D" parent="." unique_id=1045686735]
-
-[node name="BuildingCollision" type="CollisionShape3D" parent="BuildingFloor" unique_id=2048623081]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, -0.5, -6)
-shape = SubResource("BoxShape3D_building")
-
-[node name="BuildingMesh" type="MeshInstance3D" parent="BuildingFloor" unique_id=1528674668]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, -0.5, -6)
-mesh = SubResource("BoxMesh_building")
-surface_material_override/0 = SubResource("StandardMaterial3D_building")
-
-[node name="Player" parent="." unique_id=1699670702 instance=ExtResource("1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.358866, 1, 0)
-
-[node name="Zombie" parent="." unique_id=100253904 instance=ExtResource("2")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.162918, 1, 0)
-
-[node name="Zombie2" parent="." unique_id=881527577 instance=ExtResource("2")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.6756878, 1, 0)
-
-[node name="LootCrate1" parent="." unique_id=461404622 instance=ExtResource("3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0.25, -5)
-
-[node name="LootCrate2" parent="." unique_id=840308638 instance=ExtResource("3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0.25, -7)
-item_name = "Bandages"
-item_weight = 0.5
-
-[node name="LootCrate3" parent="." unique_id=629044188 instance=ExtResource("3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 0.25, -5)
-item_name = "9mm Ammo"
-item_weight = 0.0
-
-[node name="LootCrate4" parent="." unique_id=629044189 instance=ExtResource("3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 0.25, -5)
-item_name = "G17 Pistol"
-item_weight = 2.0
-
-[node name="HouseExterior" parent="." unique_id=1696498767 instance=ExtResource("6")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25, 0, -1.8)
-
-[node name="HouseExterior2" parent="." unique_id=1121955047 instance=ExtResource("6")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.1588688, 0, -2.0254352)
-
-[node name="Car" parent="." unique_id=1127041731 instance=ExtResource("7")]
-transform = Transform3D(0.8802006, 0, 0.47460175, 0, 1, 0, -0.47460175, 0, 0.8802006, -7, 0, -1.8)
-
-[node name="CameraRig" type="Node3D" parent="." unique_id=1468777941]
-script = ExtResource("5")
-offset = Vector3(0, 2.3, 4.4)
-
-[node name="Camera3D" type="Camera3D" parent="CameraRig" unique_id=1042660207]
-transform = Transform3D(1, 0, 0, 0, 0.97, 0.26, 0, -0.26, 0.97, 0, 0, 0)
-fov = 50.0
-
-[node name="HUD" parent="." unique_id=1769649300 instance=ExtResource("4")]
+[node name="Label" type="Label" parent="Banner"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -300.0
+offset_top = 24.0
+offset_right = 300.0
+offset_bottom = 110.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.95, 0.92, 0.8, 1)
+theme_override_colors/font_outline_color = Color(0.05, 0.05, 0.05, 1)
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/font_size = 22
+horizontal_alignment = 1

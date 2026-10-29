@@ -1,0 +1,41 @@
+{
+  "unionSecTop": {
+    "name": "Lee Security Shirt",
+    "desc": "Uniform top of Lee Security officers"
+  },
+  "policeBottom": {
+    "name": "Garda Pants",
+    "desc": "Uniform pants of the Garda Síochána"
+  },
+  "bioHazardHat": {
+    "desc": "ERC scientist hat."
+  },
+  "bioHazardTop": {
+    "desc": "ERC scientist bio-hazard top."
+  },
+  "bioHazardPants": {
+    "desc": "ERC scientist bio-hazard pants."
+  },
+  "kevlarVestHERC": {
+    "name": "Kevlar Vest - ERC [PREMIUM]"
+  },
+  "HERCtop": {
+    "name": "ERC Jacket [PREMIUM]",
+    "desc": "ERC issue combat jacket."
+  },
+  "HERCbottom": {
+    "name": "ERC Combat Pants [PREMIUM]",
+    "desc": "ERC issue combat pants."
+  },
+  "helmetHERC": {
+    "name": "ERC Helmet [PREMIUM]",
+    "desc": "ERC issue combat helmet."
+  },
+  "medicalMask": {
+    "desc": "ERC issued medical mask."
+  },
+  "HERCmask": {
+    "name": "ERC Mask [PREMIUM]",
+    "desc": "ERC issued military rebreather."
+  }
+}

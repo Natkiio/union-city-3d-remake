@@ -1,0 +1,60 @@
+{
+  "startLocName": "SHANDON STREET - BUTTER MARKET CHAMBERS",
+  "endLocName": "DUBLIN STREET - PAWNBROKERS",
+  "s1": {
+    "b0": {
+      "name": "SHANDON STREET"
+    },
+    "b1": {
+      "name": "Butter Market Chambers"
+    },
+    "b2": {
+      "name": "Bell Tower Hotel"
+    },
+    "b3": {
+      "name": "Lee Security"
+    }
+  },
+  "s2": {
+    "b0": {
+      "name": "WATERCOURSE ROAD"
+    },
+    "b1": {
+      "name": "Petrol Station"
+    },
+    "b2": {
+      "name": "Sive's Boutique"
+    },
+    "b3": {
+      "name": "Motor Garage"
+    }
+  },
+  "s3": {
+    "b0": {
+      "name": "CLARKE'S HILL"
+    },
+    "b1": {
+      "name": "Hegarty & Sons Hardware"
+    },
+    "b2": {
+      "name": "Medical Centre"
+    },
+    "b3": {
+      "name": "Motor Garage"
+    }
+  },
+  "s4": {
+    "b0": {
+      "name": "DUBLIN STREET"
+    },
+    "b1": {
+      "name": "The Golden Cod"
+    },
+    "b2": {
+      "name": "Garda Station"
+    },
+    "b3": {
+      "name": "King's Pawnbrokers"
+    }
+  }
+}
