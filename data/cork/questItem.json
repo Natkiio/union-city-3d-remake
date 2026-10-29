@@ -1,0 +1,44 @@
+{
+  "unionSecKey": {
+    "name": "Lee Security Key",
+    "desc": "[QUEST ITEM] Key to the cage at Lee Security."
+  },
+  "EOBbathroomKey": {
+    "desc": "Key to the ladies at The Golden Cod."
+  },
+  "UCPDcageKey": {
+    "name": "[KEY] Garda - Gun Cage",
+    "desc": "Key to the Garda Station gun cage."
+  },
+  "stadiumKey": {
+    "name": "[KEY] Ground Sewer",
+    "desc": "Sewer access at Páirc Uí Chaoimh."
+  },
+  "questHERCkey": {
+    "name": "Key to ERC cell",
+    "desc": "[QUEST ITEM] Key to the ERC cell holding your partner."
+  },
+  "sewerKey": {
+    "name": "[KEY] Hegarty's Sewer",
+    "desc": "Sewer access to the Butter Exchange."
+  },
+  "docksKey": {
+    "name": "[KEY] Harbour Office"
+  },
+  "hospitalStore": {
+    "desc": "Key to Mercy Storage Room"
+  },
+  "gas": {
+    "name": "Gallon of Petrol",
+    "desc": "[QUEST ITEM] One gallon of petrol."
+  },
+  "woodsWarehouseKey": {
+    "desc": "Key to small warehouse at Ballea Woods"
+  },
+  "woodsSafeKey": {
+    "desc": "Key to small safe at Ballea Woods"
+  },
+  "doctorOfficeKey": {
+    "desc": "Key to the clinic office in Shandon."
+  }
+}

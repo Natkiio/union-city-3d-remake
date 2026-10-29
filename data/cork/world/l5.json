@@ -1,0 +1,24 @@
+{
+  "s1": {
+    "b0": {
+      "name": "CENTRE PARK ROAD",
+      "f0": {
+        "r1": {
+          "name": "Páirc Uí Chaoimh - Outside"
+        }
+      }
+    },
+    "b1": {
+      "name": "Páirc Uí Chaoimh",
+      "f1": {
+        "r1": {
+          "name": "Páirc Uí Chaoimh - Outside"
+        }
+      }
+    },
+    "b2": {
+      "name": "12 CENTRE PARK ROAD"
+    }
+  },
+  "startLocName": "CENTRE PARK ROAD"
+}

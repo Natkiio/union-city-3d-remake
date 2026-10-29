@@ -1,0 +1,23 @@
+{
+  "startLocName": "RINGASKIDDY ROAD",
+  "endLocName": "HAULBOWLINE NAVAL BASE",
+  "s1": {
+    "b0": {
+      "name": "RINGASKIDDY ROAD - CHURCH"
+    },
+    "b2": {
+      "name": "12 RINGASKIDDY ROAD - CHURCH"
+    }
+  },
+  "s2": {
+    "b0": {
+      "name": "HAULBOWLINE NAVAL BASE"
+    },
+    "b1": {
+      "name": "HAULBOWLINE NAVAL BASE"
+    },
+    "b2": {
+      "name": "HAULBOWLINE NAVAL BASE"
+    }
+  }
+}

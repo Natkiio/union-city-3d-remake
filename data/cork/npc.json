@@ -1,0 +1,442 @@
+{
+  "Partner": {
+    "content1": "Oh thank God, you're alive. I...I...you found me. I got bitten above in the Mercy. They were doing tests on people and I never saw them again, I heard gunshots, what...get me out, quickly.\n\nThe keys are on the wall.",
+    "content1active": "Quickly, the keys! Gotta get out, gotta get out.",
+    "content1complete": "Quickly, the keys! Gotta get out, gotta get out."
+  },
+  "Williams": {
+    "fullName": "Sgt. Kiely",
+    "title": "Army Sergeant",
+    "say1A": {
+      "template": "Quickly!\nMove inside, {Formal}.",
+      "placeholders": [
+        "Formal"
+      ]
+    },
+    "content1": {
+      "template": "Head inside to the ground, {Formal}. Registration is through the lobby.",
+      "placeholders": [
+        "Formal"
+      ]
+    }
+  },
+  "Ramirez": {
+    "fullName": "Pte. Twomey",
+    "title": "Army Private",
+    "say1A": {
+      "template": "No loitering back here, {Formal}.",
+      "placeholders": [
+        "Formal"
+      ]
+    },
+    "content1": {
+      "template": "Don't loiter near the toilets, {Formal}.\n\nWe can't have people gathering in groups around the toilets.\n\nDo your business and get back out on the pitch.",
+      "placeholders": [
+        "Formal"
+      ]
+    }
+  },
+  "DrSmith": {
+    "fullName": "Dr. Lyons",
+    "title": "ERC Doctor",
+    "say1A": "That way, please.",
+    "content1": "Make your way out onto the pitch with the rest of the survivors.",
+    "reqMet1": "HERE THEY ARE"
+  },
+  "Kowalski": {
+    "fullName": "Pte. Coughlan",
+    "title": "Army Private",
+    "content1": {
+      "template": "Through the door behind me and talk to the registration officer, {Formal}.",
+      "placeholders": [
+        "Formal"
+      ]
+    }
+  },
+  "Simmons": {
+    "fullName": "Pte. Healy",
+    "title": "Army Private",
+    "content1": {
+      "template": "Sorry {Formal}, this is a quarantine area, we can't let you leave.\n\nTalk to the registration officer over there and go out onto the pitch with everyone else.",
+      "placeholders": [
+        "Formal"
+      ]
+    }
+  },
+  "Martinez": {
+    "fullName": "Cpl. Harrington",
+    "title": "Army Corporal",
+    "content1": {
+      "template": "Give your name to the registration officer if you haven't already, {Formal}.\n\nWe're gathering names so we can get families back together when this is over.",
+      "placeholders": [
+        "Formal"
+      ]
+    }
+  },
+  "Hammond": {
+    "fullName": "Kate Barrett",
+    "title": "ERC Registration Officer",
+    "content1": {
+      "template": "Right so, {Title}{playerLastName}, we'll add you to the register.\n\nIf you're looking for someone, the lists are posted on the wall behind me.",
+      "placeholders": [
+        "Title",
+        "playerLastName"
+      ]
+    }
+  },
+  "Carol": {
+    "fullName": "Carol Deasy",
+    "title": "Civilian",
+    "content1": "What's happening out there? We're being kept in the dark here, like.\n\nI keep asking the soldiers what's going on and they keep ignoring me.\n\nI'm sure it's under control...I mean it has to be if people are still arriving.\n\nYeah, it means people are being brought in by the Army, that's what it means."
+  },
+  "Steve": {
+    "fullName": "Stevie Hurley",
+    "title": "Civilian",
+    "content1": "They brought me and a few of the others in from the Mercy, you know, the hospital.\n\nI went looking for my brother, he'd been in a coma for years before all this started, lucky bastard.\n\nHe was long gone before I got there, the place was hopping with those things.\n\nI fought my way in only to find him in pieces. Then the Army landed and dragged us out here."
+  },
+  "Ryan": {
+    "fullName": "Ryan Tobin",
+    "title": "Nurse",
+    "content1": "I'd pulled a 48 hour shift and was resting in one of the empty rooms when one of the other nurses came down and woke me up.\n\nSomething was going on in the upper floors, we just legged it and got the hell out of there.\n\nRan across to the city centre and then the Army found me and brought me here.\n\nProbably saved my life."
+  },
+  "Anna": {
+    "fullName": "Aoife Walsh",
+    "title": "Nurse",
+    "content1": "I'm just thankful to be alive.\n\nI was on the fourth floor of the Mercy when everything went mad, I shouldn't have made it. I tried to get as many people out as I could, you know.\n\nSome were just too slow."
+  },
+  "Barry": {
+    "fullName": "Barry Cotter",
+    "title": "Janitor",
+    "content1": {
+      "template": "{PartnerName}? That's the bunk there.\n\nSome of the lads in the green suits 'relocated' them last night.\n\nLook, I'll tell you straight, this place is locked down, they're gathering us up here for something. You want to find your {Partner}, you'll follow me.\n\nMeet me in the maintenance room through the Gents.",
+      "placeholders": [
+        "PartnerName",
+        "Partner"
+      ]
+    },
+    "content1active": "Meet me in the maintenance room in the back of the Gents, I'll be there in a minute so it doesn't look suspicious.\n\nWe need to hurry before they do another round of 'relocations'.",
+    "content2": "Good, we can talk freely here.\n\nThey took my wife in the first round of relocations.\n\nDidn't say where, didn't say why.\n\nI trust the Army, but I want to know what the ERC is up to. They've no good reason to be separating families.\n\nThey have a command post set up on the far side of the ground. The door behind me leads to service areas all around the stadium, you'll be able to get in through there.\n\nGet me some info and I'll get you out of here.",
+    "content2active": "Go and find out what the ERC is at, then come back to me. Hopefully there's some lead on where they're taking people.",
+    "content2complete": "They're taking them to the Butter Exchange?\n\n",
+    "content3": "They shot at you?! Jesus, Mary and Joseph. This is worse than I thought.\n\nThe Butter Exchange up in Shandon, you say, grand. You go. I'll leave in a few hours, so they don't cop on that we're escaping.\n\nThere's a culvert in the boiler room at the end of the access tunnels, here's the key. It comes out in the street.\n\nMeet me at Hegarty's Hardware in Shandon, I've a way into the Exchange from there.",
+    "content3active": "Good luck, meet me at Hegarty's Hardware in Shandon.\n\nGo on, get outta here and mind yourself!"
+  },
+  "Jack": {
+    "fullName": "Jack Cullinane",
+    "title": "Survivor Leader",
+    "content1": "Name's Jack, nice to meet you.\n\nI was a petty officer on Haulbowline until they ordered us to crew a ship for people who weren't us. I walked.\n\nI've been moving for days, looking for a way off the island, started in Macroom, went through Mallow, Midleton, Fermoy and then here.\n\nNothing to show for it. Nothing at all. Except these other survivors and a handful of supplies.",
+    "content2": "The only boats left are the ones they've got at Spike Island.\n\nProblem is the ERC dropped a wall of shipping containers right across the pier road.\n\nIf you can find something to blow a hole in it, we can get out of here.\n\nI'd know where to look. The armoury on Haulbowline, past Ringaskiddy. They'll have C4, caps, the lot, and hardly a soul left to guard it.",
+    "content2active": "Go to the naval base on Haulbowline, out past Ringaskiddy.\n\nSee if you can't find something to blow our way onto that island.",
+    "content3": "The only boats left are the ones they've got at Spike Island.\n\nProblem is the ERC dropped a wall of shipping containers right across the pier road.\n\nIf you can find something to blow a hole in it, we can get out of here.\n\nThe armoury on Haulbowline, out past Ringaskiddy. I'd go myself, but someone has to mind this lot.",
+    "content3active": "Did you find enough explosives to blow a hole in that wall?",
+    "content3complete": "Fair play, you found them. I wasn't sure you had it in you. Let's get ready to make our push, take that island and get out of here.\n\nTake this, I took it off a heavy lump of an ERC soldier the other day, it's not as reliable as my own rifle, but you might like it.",
+    "content4": "I'll head out and rig the explosives, meet me at the wall.",
+    "content4active": "You go ahead, I'll meet you out at the wall."
+  },
+  "Jane": {
+    "fullName": "Jane Tolan",
+    "title": "Survivor",
+    "content1": "Jack found me in Carrigaline, he was searching around the petrol station where I was holed up.\n\nFigured it'd be safer if we stuck together.\n\nSome crazy story he has about the Navy, you wouldn't believe the half of it."
+  },
+  "Dana": {
+    "fullName": "Dana Kelleher",
+    "title": "Survivor",
+    "content1": "Don't come any closer.\n\nTalk to Jack if you have to talk to someone."
+  },
+  "Shawn": {
+    "fullName": "Seán O'Shea",
+    "title": "Survivor",
+    "content1": "Hey, Jack saved my skin more than a few times, and I've only known the fella a few days.\n\nI was fighting my way out of Midleton, and he comes tearing through with a flare gun in his fist, blowing those things to pieces.\n\nWant someone to keep you alive? Jack is your man."
+  },
+  "JackWall": {
+    "fullName": "Jack Cullinane",
+    "title": "Survivor Leader"
+  },
+  "JaneWall": {
+    "fullName": "Jane Tolan",
+    "title": "Survivor"
+  },
+  "JaneSacrifice": {
+    "fullName": "Jane Tolan",
+    "title": "Survivor"
+  },
+  "DanaWall": {
+    "fullName": "Dana Kelleher",
+    "title": "Survivor"
+  },
+  "ShawnWall": {
+    "fullName": "Seán O'Shea",
+    "title": "Survivor"
+  },
+  "ShawnSacrifice": {
+    "fullName": "Seán O'Shea",
+    "title": "Survivor"
+  },
+  "Darnel": {
+    "fullName": "Dinny Cronin",
+    "title": "Tinkerer",
+    "say1A": {
+      "template": "Ah hello there, {Young}!",
+      "placeholders": [
+        "Young"
+      ]
+    },
+    "content1": "Good to meet someone else with the neck to stand up to these things!\n\nI'll tell you what, I've some ideas for little tools to give us an advantage over these monsters.\n\nYou find me the materials and I'll kit you out to crack skulls.",
+    "reqMet1": "HERE THEY ARE",
+    "content1active": "Did you find the things I asked for?",
+    "content1complete": "Lovely job, I filed down that weight and put it inside the pipe for you, should give it a nice swing.\n\nI've more ideas if you're willing to find what I need.",
+    "content2": "How's that pipe working out?\n\nI've a great idea this time, something nasty. Fierce nasty <Dinny's eye twitches and he smiles broadly>.\n\nIt's a simple enough build, but I think you'll like it, here's the list.",
+    "reqMet2": "HERE THEY ARE",
+    "content2active": "Got those parts?",
+    "content2complete": "Lovely!\n\nNow careful with that thing, those nails were fierce rusty.\n\nI found plans for one more thing in my uhhh 'handbook', going to need more materials though.\n\nThese might be tougher to find.",
+    "content3": "Right so, here's the list. I need these things exactly. With this one, they won't even hear you coming.\n\nYou'll be like some kind of ninja out of the Mardyke.",
+    "content3active": "Did you find everything?",
+    "content3complete": "Here she is, my finest work yet!\n\nYou'll be popping heads in silence in no time.\n\nI'm going to get back to work, gotta keep myself busy. Don't worry about me, I'll be grand. I did three tours of Lebanon with the UN, I think I can outlast a few shamblers.",
+    "content4": {
+      "template": "Just glad I could help, {Friendly}.",
+      "placeholders": [
+        "Friendly"
+      ]
+    }
+  },
+  "Kelly": {
+    "fullName": "Kelly Dinneen",
+    "title": "Shop Assistant",
+    "content1": "Oh God, please help, I've been stuck in here since it all started. I must have dropped my glasses on the floor somewhere in the shop in the confusion.\n\nI'm blind as a bat without them.\n\nIf you can find them, would it be ok if I came with you?",
+    "reqMet1": "HERE THEY ARE",
+    "content1active": "I can't see a thing without my glasses.\n\nI must have dropped them on the floor somewhere in the shop.",
+    "content1complete": "Ok, I'll stay here.",
+    "content2": "Ok, I'll stay here, thanks for finding my glasses."
+  },
+  "newBarry": {
+    "fullName": "Barry Cotter",
+    "title": "Janitor",
+    "say1A": "There's a safe room downstairs, go.",
+    "content1": "Head into the safe room downstairs, there's a way into the Exchange from there. Those ERC soldiers are going to be looking for us."
+  },
+  "safeRoomBarry": {
+    "fullName": "Barry Cotter",
+    "title": "Janitor",
+    "say1A": {
+      "template": "{playerFirstName}, over here.",
+      "placeholders": [
+        "playerFirstName"
+      ]
+    },
+    "content1": {
+      "template": "Here's the culvert key. I cleaned this building for years until they let me go. Kept my own copy of the keys though.\n\nI'm too old to be crawling around down there, you go.\n\nGet in, find your {Partner} and get out. Take a few of those bastards with you if you get the chance.",
+      "placeholders": [
+        "Partner"
+      ]
+    },
+    "content1active": "Go through the culvert and into the ERC compound, you'll find your partner in there, I'm sure of it.",
+    "content1complete": {
+      "template": "Oh, you found {PartnerSexAddress}. I'm happy for you, I really am.\n\nYou two go, get out of here. I'm going to see if I can find my wife amongst the dead.\n\nHead for Cobh, get off the island if you can. Good luck, friend.",
+      "placeholders": [
+        "PartnerSexAddress"
+      ]
+    }
+  },
+  "Johnson": {
+    "fullName": "Declan Hickey",
+    "title": "Lee Security",
+    "say1A": "Head upstairs, Sheehan is in charge.",
+    "content1": "You've got a weapon, great. You might be able to help us out.\n\nHead upstairs and talk to Sheehan, he'll fill you in.",
+    "content2": "Nice job finding the key, boy.\n\nHopefully now we can get organised and head out to Páirc Uí Chaoimh with everyone else.\n\nI hear that's where they're taking people."
+  },
+  "Keith": {
+    "fullName": "Keith Moynihan",
+    "title": "Lee Security",
+    "content1": "That langer Duggan left us to die here. Left us for dead. I'll wring his neck if I ever get out of here.\n\nSwear to God.",
+    "content2": "Duggan's dead? Good.\n\nRat. We might make it out of here after all. Thanks for helping us with the cage."
+  },
+  "Stephens": {
+    "fullName": "Tadhg Sheehan",
+    "title": "Lee Security",
+    "say1A": "Over here, stranger.",
+    "content1": {
+      "template": "We're in a bit of a spot here, {Older}.\n\nYou see, Duggan, one of our new lads, lost it and ran off with the key to the cage.\n\nHe was headed for Shandon, God knows what he was thinking.\n\nThe thing is, without that key we're defenceless.\n\nCan you get it back?",
+      "placeholders": [
+        "Older"
+      ]
+    },
+    "content1active": "If you've got the key back, go ahead and help yourself to whatever you like in the cage.",
+    "content1complete": "Appreciate the help there, stranger.\n\nGo ahead and take your pick from the cage.",
+    "content2": "Thanks again for the help, we'll get out of here once we're organised. Feel free to rest up here as long as you need, it's the least we can do."
+  },
+  "King": {
+    "fullName": "King",
+    "title": "King's Pawnbrokers",
+    "say1A": "Hey hey, welcome to\nKing's Pawnbrokers.",
+    "content1": "The King has what you need, friend.\n\nUnderstand that the King can only take CASH. In these uncertain times, friend, money is...uhhh...King.\n\nNo trade-ins, no loans, no credit. It's cash cash cash, boy.\n\nSee something you like, go ahead and pick it out."
+  },
+  "Hank": {
+    "fullName": "Hank Crowley",
+    "title": "Gun Shop Owner",
+    "say1A": "Take whatever you want...",
+    "content1": "Oh, you're not here to rob me?\n\nYou'd think I'd have the firepower to hold them off but there was too many, people with wild eyes on them.\n\nI'm not going anywhere without my da's rifle and bolt.\n\nThey're in the gun cabinet in my flat down the road, number 202. The place is boarded up, take this spare key my neighbour gave me, it'll get you in.",
+    "reqMet1": "HERE THEY ARE",
+    "content1active": "I told you I'm not going anywhere without my da's rifle. Find it and the bolt.\n\nFlat 202, remember.",
+    "content1complete": "Great! Thanks, let's get out of here.",
+    "content2": "Thanks a million, this should help me survive for a while at least. Good luck out there."
+  },
+  "Laura": {
+    "fullName": "Laura Hayes",
+    "title": "Nurse",
+    "content1": "We've been here since it started.\n\nI was on a break and heard trucks pull up outside, soldiers poured out of the back of them and into the hospital.\n\nAt first it was just commotion, then...gunshots. So we hid in the storage cupboard.\n\nThe soldiers missed us and cleared out.\n\nWhen we came out, there were just dead people everywhere so we holed up here."
+  },
+  "Shenice": {
+    "fullName": "Shenice Adeyemi",
+    "title": "Nurse",
+    "content1": {
+      "template": "I haven't seen your {Partner}, {Formal}.\n\nBut I did see what happened to everyone else who wasn't lucky enough to be in this room.\n\nThey were herding people onto trucks at gunpoint to take them out to Páirc Uí Chaoimh for quarantine.\n\nI'd start looking there. Go east through the City Centre and then over the river by Shandon to get there.",
+      "placeholders": [
+        "Partner",
+        "Formal"
+      ]
+    },
+    "content1active": {
+      "template": "I'm pretty sure your {Partner} will be at Páirc Uí Chaoimh.\n\nIt was the Army that took everyone away, so I'd normally say they'd be safe, but there was gunfire going off everywhere.",
+      "placeholders": [
+        "Partner"
+      ]
+    }
+  },
+  "JebEnemy": {
+    "fullName": "Jer Buckley",
+    "title": "Stranded"
+  },
+  "PaulEnemy": {
+    "fullName": "Paudie Buckley",
+    "title": "Stranded"
+  },
+  "Jeb": {
+    "fullName": "Jer Buckley",
+    "title": "Stranded",
+    "content1": "Hey there...friend.\n\nMy brother and our other...friends here ran into some car trouble. There's a village just down the road, you wouldn't mind going in and picking up some petrol, a fan belt and some tools now would you?\n\nWe'd go but, we have to uhhhh protect our friends here.\n\nI'm sure our new friends can make it worth your while.",
+    "reqMet1": "HERE THEY ARE",
+    "content1active": "Just keep going into the village, down the Carrigaline road, you can't miss it. Remember we need petrol and a new fan belt, the old one is shot.",
+    "content1complete": "Heeeey, thanks friend.\n\nThese are exactly what we needed, I suppose we'll be on our way."
+  },
+  "Paul": {
+    "fullName": "Paudie Buckley",
+    "title": "Stranded",
+    "content1": "Talk to my brother, friend.\n\nPerhaps you can uhhh, help us out here, we're in a right pickle."
+  },
+  "Clarence": {
+    "fullName": "Clarence Dillinger",
+    "title": "Stranded Tourist",
+    "content1": "<Clarence doesn't respond, he seems very on edge and gestures you away>",
+    "content2": {
+      "template": "Oh thank goodness.\n\nYou saved our skins there, {Older}.\n\nWe broke down here a few hours ago on the way to Blarney and then those guys came at us out of the woods.\n\nThanks for getting the things we need to fix the van, keep the money they took from us, you deserve it, hopefully it's useful.",
+      "placeholders": [
+        "Older"
+      ]
+    }
+  },
+  "Fern": {
+    "fullName": "Fern Dillinger",
+    "title": "Stranded Tourist",
+    "content1": "<Fern looks down and away from you, glancing over at Paudie>",
+    "content2": "Thank you so much.\n\nLord knows what they would have done with us.\n\nWe appreciate your help, you've saved us."
+  },
+  "Terry": {
+    "fullName": "Terry Granger",
+    "title": "Survivalist",
+    "content1": "Did Lisa send you? How'd you find me out here. What's the situation in Cork City, soldier? Hmm! Tell me.\n\nNot a talker, huh? Ok, very well. I've been working on some improvised 'hunting tools', if you're going to be part of my platoon, you'd best be equipped for the job!",
+    "content2": "Tell Lisa I'm grand. I'm not going back in there, and that's final."
+  },
+  "Lisa": {
+    "fullName": "Lisa Granger",
+    "title": "Survivor",
+    "content1": {
+      "template": "Oh {Formal}, you have to help me.\n\nIt's my brother, Terry. He went off his tablets a few weeks ago and disappeared. Then this whole thing happened and now I've no hope of finding him on my own.\n\nI think he's probably gone to his cabin out in Ballea Woods.\n\nIf I give you the directions do you think you could look for him?\n\nHere's how to get to the cabin: Go left, up, turn right at the pond. Go past the old fence and take the path up. Go left and take the second path. Look for the can on a stick.",
+      "placeholders": [
+        "Formal"
+      ]
+    },
+    "content1active": "Like I said, just go left, up, then turn right at the pond. Go past the old fence and take the path up. Go left and take the second path. Look for the can on a stick.",
+    "content1complete": "Oh you found him, thank God.\n\nHe's staying out there? Ok, he knows how to look after himself I suppose, I'm just happy he's alive."
+  },
+  "Phillip": {
+    "fullName": "Philip Hurley",
+    "title": "Scientist",
+    "content1": "I left the city and abandoned the ERC post I was assigned to. They're doing terrible things to civilians, unspeakable things, I mean, I'm only a haematologist. I didn't want to be part of it.\n\nI'm trying to find some way to fix this. The infection started out at Ringaskiddy somewhere and I think that maybe, just maybe, the answers are out here too - in the blood.\n\nHelp me gather samples from the corpses in these woods, would you?",
+    "content1active": "I need at least 4 sample vials from corpses in Ballea Woods. Your help could get me closer to finding out what caused all this.",
+    "content1complete": "Excellent work, these samples should get us closer to finding out what started all this. When the Emergency Powers kicked in, we took over the clinics first. Take this key, it's for the offices at the Medical Centre on Clarke's Hill in Shandon, hopefully you can find something of use there.",
+    "content2": "Thanks for your help, I wish I could tell you more but it could take weeks to analyse these samples. Good luck!"
+  },
+  "Jackson": {
+    "fullName": "Seamus Hall",
+    "title": "Homeowner",
+    "say1A": "Oh, thank God.",
+    "content1": "I'm sorry, I only just moved in, are you one of the neighbours? I suppose that doesn't matter now. You're safe here.\n\nThis all started a few days ago, people just...started killing each other. The ones they killed didn't stay dead.\n\n< He takes a second to compose himself >\n\nStay here and rest up. I've Sarah and Peter from next door staying in my room upstairs. You're welcome to sleep on the floor here if you need to."
+  },
+  "Ed": {
+    "fullName": "Eddie Boyle",
+    "title": "Lad",
+    "say1A": "It won't open!",
+    "content1": "The Army put this fence up a few days ago, blocking the road to Bishopstown, then abandoned it.\n\nWe need something to cut our way through.\n\nI know Ray at number 12 has a pair of bolt cutters, I borrowed them last month. Hurry!",
+    "reqMet1": "HERE THEY ARE",
+    "content1active": "Go talk to Ray at number 12, he has a pair for sure.",
+    "content2": "What? I have them?\n\nHmmmm maybe I didn't return them. Here's the key to my garage, go find them yourself and bring 'em back.",
+    "reqMet2": "HERE THEY ARE",
+    "content2active": "Did you find those bolt cutters yet?\n\nIt's the only way we're getting through here.",
+    "content2complete": "Great, hand them over.\n\nFinally we can make our way to safety."
+  },
+  "Ray": {
+    "fullName": "Ray Stack",
+    "title": "Old man",
+    "say1A": "Argh! What do you want?!",
+    "say2A": "Where did I put my gun...",
+    "content1": "Damn shuffling things.\n\nAre they still downstairs?\n\nI'm too old for this business.",
+    "content1active": "I'm staying right here, damn it.\n\nI was born in this house and this is where I'll die.",
+    "content2": "What's that? That langer Ed sent you, did he?\n\nBolt cutters! He borrowed them weeks ago and never returned them!\n\nThey're probably next door in his stinking garage!\n\nGo tell him he still has the damn things.",
+    "content2active": "What? I told you, Ed never returned my bolt cutters. They're probably in his garage.",
+    "reqMet2": "HERE THEY ARE",
+    "content3": "What, go away."
+  },
+  "Sarah": {
+    "fullName": "Sarah Daly",
+    "title": "Peter's Wife",
+    "say1A": "We can't leave yet, pet, we need to wait it out.",
+    "content1": "Oh, you're not one of them, thank God.\n\nSeamus was kind enough to take us in, he's secured the place as best he could, I don't think they're getting in here any time soon.\n\nMy husband has lost it, he wants to leave, I think it's best we stay here and wait this out, don't you?\n\nAnyway, good luck finding your way."
+  },
+  "Peter": {
+    "fullName": "Peter Daly",
+    "title": "Sarah's husband.",
+    "say1B": "*sobbing* Oh God, we're dead. We're dead.",
+    "content1": "<The man looks visibly shaken>\n\nOoooh God, oh God, oh God. Why won't they stop. Why is this happening, they already took my kids what do they waaant FROM ME!\n\nWe have to leave, we have to leave. The bags are packed and ready. We can go, we can go now.",
+    "content1active": "I'm staying right here, damn it.\n\nI was born in this house and this is where I'll die."
+  },
+  "looter1": {
+    "title": "Fella"
+  },
+  "HERCscientist": {
+    "title": "Fella"
+  },
+  "HERCscientistMelee": {
+    "title": "Fella"
+  },
+  "HERCsoldier": {
+    "title": "Fella"
+  },
+  "HERCsoldierHeavy": {
+    "title": "Fella"
+  },
+  "HERCsoldierHeavyFriendly": {
+    "title": "Fella"
+  },
+  "army": {
+    "title": "Fella"
+  },
+  "armyBio": {
+    "title": "Fella"
+  },
+  "armyBio2": {
+    "title": "Fella"
+  },
+  "armyBioOfficer": {
+    "title": "Fella"
+  }
+}

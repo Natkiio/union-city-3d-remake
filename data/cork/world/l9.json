@@ -1,0 +1,31 @@
+{
+  "s1": {
+    "b0": {
+      "name": "WILTON ROAD"
+    },
+    "b1": {
+      "name": "86 WILTON ROAD"
+    },
+    "b2": {
+      "name": "88 WILTON ROAD"
+    },
+    "b3": {
+      "name": "DINNY'S CORNER SHOP"
+    }
+  },
+  "s2": {
+    "b0": {
+      "name": "CURRAHEEN ROAD"
+    },
+    "b1": {
+      "name": "Phone Fix",
+      "f1": {
+        "r1": {
+          "name": "Phone Fix"
+        }
+      }
+    }
+  },
+  "startLocName": "WILTON ROAD",
+  "endLocName": "CURRAHEEN ROAD - FLAT"
+}

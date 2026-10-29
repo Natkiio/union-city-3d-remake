@@ -1,0 +1,37 @@
+{
+  "startLocName": "MACROOM ROAD - CAR CRASH",
+  "endLocName": "MAIN STREET - ARMY FENCE",
+  "s1": {
+    "b0": {
+      "name": "MACROOM ROAD"
+    },
+    "b1": {
+      "name": "10 MACROOM ROAD"
+    },
+    "b2": {
+      "name": "12 MACROOM ROAD"
+    }
+  },
+  "s2": {
+    "b0": {
+      "name": "INNISCARRA ROAD"
+    }
+  },
+  "s3": {
+    "b0": {
+      "name": "MAIN STREET"
+    },
+    "b1": {
+      "name": "8 MAIN STREET"
+    },
+    "b2": {
+      "name": "10 MAIN STREET"
+    },
+    "b3": {
+      "name": "12 MAIN STREET"
+    },
+    "b4": {
+      "name": "14 MAIN STREET"
+    }
+  }
+}
