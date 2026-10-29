@@ -327,6 +327,17 @@ func test_run_scene(world: Node) -> void:
 	world.enter_room("l16_s3_b2_f1_r1", "exit2")
 	await frames(2)
 	check("lighting uses the room's light reduction", is_equal_approx(scn.get_node("DayNight").light_reduction, 40.0))
+	# walk into the right-hand end wall with the real move action
+	world.enter_room("l16_s3_b2_f1_r1", "right")
+	await frames(2)
+	Input.action_press("move_right")
+	await frames(45)
+	Input.action_release("move_right")
+	var w: float = world.level().width_units()
+	check("the floor holds the player", player.global_position.y > 0.5 and player.global_position.y < 1.2, str(player.global_position.y))
+	check("the end wall stops the player inside the room", player.global_position.x < w and player.global_position.x > w - 0.8,
+			"%.2f of %.2f" % [player.global_position.x, w])
+	check("the player stays on the lane", is_zero_approx(player.global_position.z))
 
 
 ## Walk into the entrance trigger, press interact, arrive inside at the exit.

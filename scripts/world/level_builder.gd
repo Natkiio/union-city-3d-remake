@@ -164,8 +164,8 @@ func _facade_colour(seed_value: int) -> Color:
 	return palette[posmod(seed_value, palette.size())]
 
 
-static func _short(text: String) -> String:
-	return text if text.length() <= 26 else text.substr(0, 25) + "."
+static func _short(text: String, limit: int = 34) -> String:
+	return text if text.length() <= limit else text.substr(0, limit - 1) + "."
 
 
 # --- interiors -----------------------------------------------------------------

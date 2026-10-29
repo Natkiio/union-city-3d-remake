@@ -50,8 +50,9 @@ func on_level_built(level: Level, info: Dictionary) -> void:
 
 func _show_banner(info: Dictionary) -> void:
 	var text := str(info.get("name", ""))
-	if info.get("outdoors", false):
-		text = "%s\n%s" % [str(info.get("section_name", "")).to_upper(), text]
+	var section_name := str(info.get("section_name", "")).to_upper()
+	if info.get("outdoors", false) and section_name != text.to_upper():
+		text = "%s\n%s" % [section_name, text]
 	if info.get("safehouse", false):
 		text += "\nSAFEHOUSE"
 	banner.text = text
