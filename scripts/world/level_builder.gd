@@ -278,24 +278,135 @@ static func _scene(source: Variant) -> PackedScene:
 	return null
 
 
+## Gap kept between two container bodies, and between a container and a link.
+const CONTAINER_GAP := 0.2
+## Body depth centre of the second row, for rooms too narrow for one row.
+const SECOND_ROW_Z := -2.05
+static var _container_script: GDScript
+
+
+static func container_script() -> GDScript:
+	if _container_script == null:
+		_container_script = load("res://scripts/loot/container.gd")
+	return _container_script
+
+
+## Half the x extent a link's visual and trigger take up.
+static func link_half_width(kind: String) -> float:
+	if kind in ["sup", "sdwn"]:
+		return 0.8
+	if kind == "drop":
+		return 0.7
+	return 0.6
+
+
+## Presentation positions for a room's containers: [{key, x (units), row}] in
+## WorldData.containers order. Bodies never overlap in x (CONTAINER_GAP apart),
+## stay inside the walls and clear of every door, stair and drop; a container
+## moves to the nearest free gap. If the room is too narrow it goes to a second
+## row (row 1, deeper). Data and ids are untouched.
+static func layout_containers(id: String, w: float) -> Array:
+	var conts := WorldData.containers(id)
+	var blocked: Array = [] # [lo, hi] x intervals taken by links
+	for link in WorldData.links(id):
+		var lx := clampf(px(link.x), 0.3, maxf(w - 0.3, 0.3))
+		var lh := link_half_width(str(link.kind))
+		blocked.append([lx - lh, lx + lh])
+	var half: Array = []
+	for c in conts:
+		var size: Vector3 = container_script().visual_for(str(c.def.get("desc", c.key)))["size"]
+		half.append(size.x * 0.5)
+	# Whole room at full size first; if it cannot all fit on two rows, shrink every
+	# body a step at a time.
+	var out: Array = []
+	for scale in [1.0, 0.8, 0.65, 0.5, 0.35]:
+		out = _place_all(conts, half, scale, w, blocked)
+		if not out.is_empty():
+			return out
+	return _place_all(conts, half, 0.35, w, blocked, true)
+
+
+static func _place_all(conts: Array, half: Array, scale: float, w: float, blocked: Array, force: bool = false) -> Array:
+	var out: Array = []
+	out.resize(conts.size())
+	var rows: Array = [[], []] # placed [lo, hi] per row
+	# Place in x order so the order along the wall is kept.
+	var order: Array = range(conts.size())
+	order.sort_custom(func(a, b): return conts[a].x < conts[b].x)
+	for i in order:
+		var h: float = half[i] * scale
+		var want := clampf(px(conts[i].x), h + 0.1, maxf(w - h - 0.1, h + 0.1))
+		var row := 0
+		var x := _free_x(want, h, w, blocked, [rows[0], rows[1]])
+		if is_nan(x):
+			row = 1
+			x = _free_x(want, h, w, blocked, [rows[1]])
+		if is_nan(x):
+			if not force:
+				return []
+			x = want
+		rows[row].append([x - h, x + h])
+		out[i] = {"key": conts[i].key, "x": x, "row": row, "scale": scale, "half": h}
+	return out
+
+
+## The x nearest `want` where a body of `half` fits in [0, w], clear of every
+## blocked interval (links) and every placed interval in `placed` lists. NAN if none.
+static func _free_x(want: float, half: float, w: float, blocked: Array, placed: Array) -> float:
+	var walls: Array = []
+	for iv in blocked:
+		walls.append([iv[0] - CONTAINER_GAP * 0.5, iv[1] + CONTAINER_GAP * 0.5])
+	for lst in placed:
+		for iv in lst:
+			walls.append([iv[0] - CONTAINER_GAP, iv[1] + CONTAINER_GAP])
+	var lo := half + 0.1
+	var hi := w - half - 0.1
+	var cands: Array = [want, lo, hi]
+	for iv in walls:
+		cands.append(iv[0] - half)
+		cands.append(iv[1] + half)
+	var best := NAN
+	var best_d := INF
+	for cx in cands:
+		cx = float(cx)
+		if cx < lo - 0.0001 or cx > hi + 0.0001:
+			continue
+		var ok := true
+		for iv in walls:
+			if cx + half > iv[0] + 0.0001 and cx - half < iv[1] - 0.0001:
+				ok = false
+				break
+		if ok and absf(cx - want) < best_d:
+			best_d = absf(cx - want)
+			best = cx
+	return best
+
+
 func _build_containers(root: Node3D, id: String, w: float, outdoors: bool) -> void:
 	var scene := _scene(container_scene)
 	var z := STREET_PROP_Z if outdoors else INTERIOR_PROP_Z
 	var rtype := WorldData.room_type(id)
 	var dz := WorldData.danger(id)
-	var last_x := -INF
+	var placed := layout_containers(id, w)
 	var lift := 0.0
-	for c in WorldData.containers(id):
-		var x := clampf(px(c.x), 0.4, maxf(w - 0.4, 0.4))
+	var conts := WorldData.containers(id)
+	for i in conts.size():
+		var c: Dictionary = conts[i]
+		var x: float = placed[i].x
 		if scene != null:
 			var node: Node3D = scene.instantiate()
 			node.name = "Container_" + str(c.key)
 			# The container recesses its own body and reaches its trigger back to the
 			# lane, so it is placed at Z=0 (not at the prop depth).
 			node.position = Vector3(x, 0, 0.0)
+			if placed[i].row == 1 and "recess_z" in node:
+				node.recess_z = SECOND_ROW_Z
+			if "width_scale" in node:
+				node.width_scale = placed[i].scale
 			if node.has_method("setup"):
 				node.setup(c.id, c.def, rtype, dz)
 			node.set_meta("container_id", c.id)
+			node.set_meta("row", placed[i].row)
 			root.add_child(node)
 		else:
 			var marker := Node3D.new()
@@ -305,8 +416,6 @@ func _build_containers(root: Node3D, id: String, w: float, outdoors: bool) -> vo
 			marker.set_meta("placeholder", true)
 			marker.add_to_group("world_container")
 			root.add_child(marker)
-			lift = 0.0 if absf(x - last_x) > 1.0 or lift >= 0.6 else lift + 0.3
-			last_x = x
 			dressing.container_prop(marker, 0.0, 0.0, str(c.def.get("desc", c.key)), lift)
 
 

@@ -23,6 +23,11 @@ var items: Array = []
 var searched: bool = false
 var title: String = "Container"
 var rng := RandomNumberGenerator.new()
+## Depth of the body behind the lane. The level builder sets a deeper value for a
+## second row when a room is too narrow for all its containers on one.
+var recess_z: float = RECESS_Z
+## Squeezes the body's width in a very crowded room (1.0 = normal).
+var width_scale: float = 1.0
 
 var player_in_range: Node3D = null
 var search_left: float = -1.0
@@ -186,6 +191,9 @@ func _process(delta: float) -> void:
 			_open_panel()
 			_refresh_prompt()
 		return
+	# Neighbouring triggers can overlap: only the nearest container shows its prompt.
+	if _label != null and player_in_range != null:
+		_label.visible = _is_nearest_in_range()
 	if player_in_range == null or TrunkUI.visible or reopen_cooldown > 0.0:
 		return
 	if Input.is_action_just_pressed("interact") and _is_nearest_in_range() and World.is_interact_target(self):
@@ -223,22 +231,23 @@ func _refresh_prompt() -> void:
 static func visual_for(desc: String) -> Dictionary:
 	var d := desc.to_lower()
 	var table := [
-		[["fridge"], Vector3(0.9, 1.8, 0.8), Color(0.82, 0.84, 0.86)],
-		[["locker", "gun", "weapons", "equipment", "rack", "cage"], Vector3(0.8, 1.9, 0.6), Color(0.38, 0.45, 0.4)],
-		[["safe"], Vector3(0.8, 0.9, 0.7), Color(0.2, 0.2, 0.22)],
-		[["bookshelf", "bookcase", "book shelf", "books", "shelf", "shelves"], Vector3(1.4, 1.9, 0.5), Color(0.5, 0.33, 0.2)],
-		[["trash", "bin", "dumpster", "junk"], Vector3(1.0, 1.0, 0.8), Color(0.25, 0.4, 0.28)],
-		[["filing"], Vector3(0.6, 1.4, 0.7), Color(0.55, 0.57, 0.6)],
-		[["desk", "table", "counter", "register"], Vector3(1.4, 0.8, 0.7), Color(0.55, 0.4, 0.28)],
-		[["cupboard", "cabinet", "closet", "drawer", "dresser", "sideboard", "bedside"], Vector3(1.0, 1.1, 0.6), Color(0.6, 0.45, 0.3)],
-		[["box", "crate", "suitcase", "bag", "trunk", "footlocker", "chest", "container"], Vector3(0.9, 0.6, 0.6), Color(0.6, 0.5, 0.32)],
-		[["corpse", "body"], Vector3(1.6, 0.25, 0.6), Color(0.45, 0.3, 0.3)],
+		[["fridge"], Vector3(0.8, 1.8, 0.7), Color(0.82, 0.84, 0.86)],
+		[["bedside"], Vector3(0.6, 0.7, 0.5), Color(0.6, 0.45, 0.3)],
+		[["locker", "gun", "weapons", "equipment", "rack", "cage"], Vector3(0.7, 1.9, 0.6), Color(0.38, 0.45, 0.4)],
+		[["safe"], Vector3(0.6, 0.8, 0.6), Color(0.2, 0.2, 0.22)],
+		[["bookshelf", "bookcase", "book shelf", "books", "shelf", "shelves"], Vector3(1.0, 1.9, 0.5), Color(0.5, 0.33, 0.2)],
+		[["trash", "bin", "dumpster", "junk"], Vector3(0.7, 0.9, 0.7), Color(0.25, 0.4, 0.28)],
+		[["filing"], Vector3(0.5, 1.3, 0.6), Color(0.55, 0.57, 0.6)],
+		[["desk", "table", "counter", "register"], Vector3(1.1, 0.8, 0.6), Color(0.55, 0.4, 0.28)],
+		[["cupboard", "cabinet", "closet", "drawer", "dresser", "sideboard"], Vector3(0.8, 1.1, 0.5), Color(0.6, 0.45, 0.3)],
+		[["box", "crate", "suitcase", "bag", "trunk", "footlocker", "chest", "container"], Vector3(0.7, 0.5, 0.5), Color(0.6, 0.5, 0.32)],
+		[["corpse", "body"], Vector3(1.4, 0.25, 0.5), Color(0.45, 0.3, 0.3)],
 	]
 	for row in table:
 		for kw in row[0]:
 			if d.contains(kw):
 				return {"size": row[1], "color": row[2]}
-	return {"size": Vector3(1.0, 1.0, 0.6), "color": Color(0.5, 0.5, 0.5)}
+	return {"size": Vector3(0.8, 0.9, 0.5), "color": Color(0.5, 0.5, 0.5)}
 
 
 func _build() -> void:
@@ -246,6 +255,7 @@ func _build() -> void:
 		return
 	var vis := visual_for(title)
 	var size: Vector3 = vis["size"]
+	size.x *= width_scale
 	_body = MeshInstance3D.new()
 	_body.name = "Body"
 	var box := BoxMesh.new()
@@ -254,7 +264,7 @@ func _build() -> void:
 	mat.albedo_color = vis["color"]
 	box.material = mat
 	_body.mesh = box
-	_body.position = Vector3(0, size.y * 0.5, RECESS_Z)
+	_body.position = Vector3(0, size.y * 0.5, recess_z)
 	add_child(_body)
 
 	# Trigger: the only part that reaches the Z=0 lane. Not a solid body.
@@ -263,9 +273,9 @@ func _build() -> void:
 	var tshape := CollisionShape3D.new()
 	tshape.name = "Shape"
 	var tbox := BoxShape3D.new()
-	tbox.size = Vector3(size.x + 0.6, 2.0, absf(RECESS_Z) + 1.0)
+	tbox.size = Vector3(size.x + 0.3, 2.0, absf(recess_z) + 1.0)
 	tshape.shape = tbox
-	_trigger.position = Vector3(0, 1.0, RECESS_Z * 0.5 + 0.0)
+	_trigger.position = Vector3(0, 1.0, recess_z * 0.5)
 	_trigger.add_child(tshape)
 	add_child(_trigger)
 	_trigger.body_entered.connect(_on_body_entered)
