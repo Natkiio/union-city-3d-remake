@@ -1,0 +1,1153 @@
+{
+ "l5_s1_b0_f0_r1": {
+  "floor_y": 312.1,
+  "height": 395.1,
+  "left": 0.0,
+  "markers": [
+   {
+    "bottom": 353.4,
+    "flip": true,
+    "left": -26.9,
+    "name": "area1",
+    "right": 24.9,
+    "top": 162.5,
+    "x": 1.4,
+    "y": 256.1
+   },
+   {
+    "bottom": 294.0,
+    "flip": false,
+    "left": 758.6,
+    "name": "noSpawn",
+    "right": 2185.5,
+    "top": 64.0,
+    "x": 758.6,
+    "y": 64.0
+   },
+   {
+    "bottom": 358.3,
+    "flip": false,
+    "left": 864.8,
+    "name": "block1",
+    "right": 1093.1,
+    "top": 141.1,
+    "x": 908.2,
+    "y": 323.8
+   },
+   {
+    "bottom": -5.3,
+    "flip": false,
+    "left": 1255.0,
+    "name": "cont1",
+    "right": 1322.8,
+    "top": -95.7,
+    "x": 1288.9,
+    "y": -50.5
+   },
+   {
+    "bottom": 316.4,
+    "flip": false,
+    "left": 843.3,
+    "name": "trig23",
+    "right": 2111.3,
+    "top": 254.2,
+    "x": 1477.3,
+    "y": 285.3
+   },
+   {
+    "bottom": 246.3,
+    "flip": false,
+    "left": 1455.0,
+    "name": "entr1",
+    "right": 1755.0,
+    "top": 125.7,
+    "x": 1604.9,
+    "y": 185.9
+   },
+   {
+    "bottom": 360.3,
+    "flip": true,
+    "left": 1861.4,
+    "name": "block2",
+    "right": 2089.7,
+    "top": 143.1,
+    "x": 2046.2,
+    "y": 325.8
+   },
+   {
+    "bottom": 343.4,
+    "flip": true,
+    "left": 2981.7,
+    "name": "area2",
+    "right": 3033.5,
+    "top": 152.5,
+    "x": 3009.9,
+    "y": 246.1
+   }
+  ],
+  "top": 0.0,
+  "width": 3013.1
+ },
+ "l5_s1_b1_f1_r1": {
+  "floor_y": 335.0,
+  "height": 395.1,
+  "left": 0.0,
+  "markers": [
+   {
+    "bottom": 325.5,
+    "flip": true,
+    "left": -0.9,
+    "name": "exit1",
+    "right": 144.9,
+    "top": 134.6,
+    "x": 78.7,
+    "y": 228.2
+   },
+   {
+    "bottom": -5.3,
+    "flip": false,
+    "left": 1255.0,
+    "name": "cont1",
+    "right": 1322.8,
+    "top": -95.7,
+    "x": 1288.9,
+    "y": -50.5
+   },
+   {
+    "bottom": 322.4,
+    "flip": true,
+    "left": 1892.5,
+    "name": "room2",
+    "right": 2038.3,
+    "top": 131.5,
+    "x": 1972.0,
+    "y": 225.1
+   }
+  ],
+  "top": 0.0,
+  "width": 2148.8
+ },
+ "l5_s1_b1_f1_r100": {
+  "floor_y": 348.1,
+  "height": 395.9,
+  "left": 5.0,
+  "markers": [
+   {
+    "bottom": 287.2,
+    "flip": false,
+    "left": 23.1,
+    "name": "room4",
+    "right": 148.2,
+    "top": 199.6,
+    "x": 85.6,
+    "y": 243.4
+   },
+   {
+    "bottom": -130.0,
+    "flip": false,
+    "left": 76.1,
+    "name": "abed1",
+    "right": 269.9,
+    "top": -196.1,
+    "x": 173.0,
+    "y": -163.1
+   },
+   {
+    "bottom": -65.1,
+    "flip": false,
+    "left": 309.6,
+    "name": "cont1",
+    "right": 435.4,
+    "top": -226.2,
+    "x": 372.5,
+    "y": -145.7
+   },
+   {
+    "bottom": 287.2,
+    "flip": false,
+    "left": 1005.0,
+    "name": "room3",
+    "right": 1130.1,
+    "top": 199.6,
+    "x": 1067.5,
+    "y": 243.4
+   },
+   {
+    "bottom": 346.4,
+    "flip": false,
+    "left": 1564.1,
+    "name": "trig24",
+    "right": 1821.1,
+    "top": 284.3,
+    "x": 1692.6,
+    "y": 315.4
+   }
+  ],
+  "top": -3.0,
+  "width": 2340.1
+ },
+ "l5_s1_b1_f1_r2": {
+  "floor_y": 368.1,
+  "height": 395.9,
+  "left": 5.0,
+  "markers": [
+   {
+    "bottom": 391.2,
+    "flip": false,
+    "left": -14.9,
+    "name": "block1",
+    "right": 68.6,
+    "top": 119.6,
+    "x": 26.9,
+    "y": 391.2
+   },
+   {
+    "bottom": -130.0,
+    "flip": false,
+    "left": 76.1,
+    "name": "abed1",
+    "right": 269.9,
+    "top": -196.1,
+    "x": 173.0,
+    "y": -163.1
+   },
+   {
+    "bottom": -65.1,
+    "flip": false,
+    "left": 309.6,
+    "name": "cont1",
+    "right": 435.4,
+    "top": -226.2,
+    "x": 372.5,
+    "y": -145.7
+   },
+   {
+    "bottom": 337.1,
+    "flip": false,
+    "left": 644.9,
+    "name": "room1",
+    "right": 759.0,
+    "top": 205.6,
+    "x": 701.9,
+    "y": 271.3
+   },
+   {
+    "bottom": 199.5,
+    "flip": false,
+    "left": 692.2,
+    "name": "lsmg1",
+    "right": 711.8,
+    "top": 166.4,
+    "x": 702.0,
+    "y": 184.1
+   },
+   {
+    "bottom": 387.8,
+    "flip": false,
+    "left": 1352.4,
+    "name": "door1",
+    "right": 1404.2,
+    "top": 196.8,
+    "x": 1376.0,
+    "y": 290.4
+   }
+  ],
+  "top": -3.0,
+  "width": 1395.9
+ },
+ "l5_s1_b1_f1_r3": {
+  "floor_y": 368.1,
+  "height": 395.9,
+  "left": 5.0,
+  "markers": [
+   {
+    "bottom": 396.4,
+    "flip": true,
+    "left": -4.9,
+    "name": "door1",
+    "right": 46.9,
+    "top": 205.5,
+    "x": 23.4,
+    "y": 299.1
+   },
+   {
+    "bottom": -130.0,
+    "flip": false,
+    "left": 76.1,
+    "name": "abed1",
+    "right": 269.9,
+    "top": -196.1,
+    "x": 173.0,
+    "y": -163.1
+   },
+   {
+    "bottom": 271.3,
+    "flip": false,
+    "left": 485.4,
+    "name": "note32",
+    "right": 510.4,
+    "top": 215.4,
+    "x": 497.9,
+    "y": 243.3
+   },
+   {
+    "bottom": 271.3,
+    "flip": false,
+    "left": 515.4,
+    "name": "note33",
+    "right": 540.4,
+    "top": 215.4,
+    "x": 527.9,
+    "y": 243.3
+   },
+   {
+    "bottom": 337.2,
+    "flip": false,
+    "left": 647.0,
+    "name": "room100",
+    "right": 760.0,
+    "top": 196.6,
+    "x": 703.5,
+    "y": 266.9
+   }
+  ],
+  "top": -3.0,
+  "width": 1395.9
+ },
+ "l5_s1_b1_f1_r4": {
+  "floor_y": 368.1,
+  "height": 395.9,
+  "left": 5.0,
+  "markers": [
+   {
+    "bottom": -130.0,
+    "flip": false,
+    "left": 76.1,
+    "name": "abed1",
+    "right": 269.9,
+    "top": -196.1,
+    "x": 173.0,
+    "y": -163.1
+   },
+   {
+    "bottom": 337.2,
+    "flip": false,
+    "left": 167.0,
+    "name": "room100",
+    "right": 280.1,
+    "top": 196.6,
+    "x": 223.5,
+    "y": 266.9
+   },
+   {
+    "bottom": 349.3,
+    "flip": false,
+    "left": 410.4,
+    "name": "cont1",
+    "right": 568.3,
+    "top": 274.3,
+    "x": 489.4,
+    "y": 311.8
+   },
+   {
+    "bottom": 337.2,
+    "flip": false,
+    "left": 775.0,
+    "name": "room402",
+    "right": 844.1,
+    "top": 208.7,
+    "x": 809.5,
+    "y": 272.9
+   },
+   {
+    "bottom": 337.2,
+    "flip": false,
+    "left": 1058.0,
+    "name": "room403",
+    "right": 1127.1,
+    "top": 208.7,
+    "x": 1092.5,
+    "y": 272.9
+   },
+   {
+    "bottom": 274.3,
+    "flip": false,
+    "left": 1171.3,
+    "name": "note31",
+    "right": 1211.3,
+    "top": 234.3,
+    "x": 1191.3,
+    "y": 254.3
+   },
+   {
+    "bottom": 284.3,
+    "flip": false,
+    "left": 1231.3,
+    "name": "note30",
+    "right": 1271.3,
+    "top": 244.3,
+    "x": 1251.3,
+    "y": 264.3
+   }
+  ],
+  "top": -3.0,
+  "width": 1395.9
+ },
+ "l5_s1_b1_f1_r402": {
+  "floor_y": 319.1,
+  "height": 333.0,
+  "left": 0.0,
+  "markers": [
+   {
+    "bottom": -130.0,
+    "flip": false,
+    "left": 76.1,
+    "name": "abed1",
+    "right": 269.9,
+    "top": -196.1,
+    "x": 173.0,
+    "y": -163.1
+   },
+   {
+    "bottom": 283.1,
+    "flip": false,
+    "left": 732.0,
+    "name": "room4",
+    "right": 801.2,
+    "top": 149.6,
+    "x": 766.5,
+    "y": 216.3
+   }
+  ],
+  "top": 0.0,
+  "width": 1075.8
+ },
+ "l5_s1_b1_f1_r403": {
+  "floor_y": 319.1,
+  "height": 333.0,
+  "left": 0.0,
+  "markers": [
+   {
+    "bottom": 283.1,
+    "flip": false,
+    "left": 105.0,
+    "name": "room4",
+    "right": 174.2,
+    "top": 149.6,
+    "x": 139.6,
+    "y": 216.3
+   },
+   {
+    "bottom": -130.0,
+    "flip": false,
+    "left": 76.1,
+    "name": "abed1",
+    "right": 269.9,
+    "top": -196.1,
+    "x": 173.0,
+    "y": -163.1
+   },
+   {
+    "bottom": 326.4,
+    "flip": false,
+    "left": 1029.0,
+    "name": "door1",
+    "right": 1080.9,
+    "top": 135.5,
+    "x": 1052.6,
+    "y": 229.1
+   }
+  ],
+  "top": 0.0,
+  "width": 1075.8
+ },
+ "l5_s1_b1_f1_r404": {
+  "floor_y": 263.1,
+  "height": 278.9,
+  "left": -2.0,
+  "markers": [
+   {
+    "bottom": 279.5,
+    "flip": true,
+    "left": -3.9,
+    "name": "door1",
+    "right": 47.9,
+    "top": 88.5,
+    "x": 24.4,
+    "y": 182.2
+   },
+   {
+    "bottom": 242.1,
+    "flip": false,
+    "left": 72.4,
+    "name": "cont1",
+    "right": 194.3,
+    "top": 96.1,
+    "x": 133.3,
+    "y": 169.1
+   },
+   {
+    "bottom": 283.4,
+    "flip": false,
+    "left": -9.7,
+    "name": "trig25",
+    "right": 296.4,
+    "top": 221.3,
+    "x": 143.3,
+    "y": 252.3
+   },
+   {
+    "bottom": 91.5,
+    "flip": false,
+    "left": 375.2,
+    "name": "lflu1",
+    "right": 394.8,
+    "top": 58.5,
+    "x": 384.9,
+    "y": 76.1
+   },
+   {
+    "bottom": 246.3,
+    "flip": false,
+    "left": 354.3,
+    "name": "abed1",
+    "right": 513.3,
+    "top": 196.3,
+    "x": 433.8,
+    "y": 221.3
+   },
+   {
+    "bottom": 245.0,
+    "flip": false,
+    "left": 521.0,
+    "name": "cont100",
+    "right": 624.0,
+    "top": 195.0,
+    "x": 572.5,
+    "y": 220.0
+   },
+   {
+    "bottom": 277.5,
+    "flip": false,
+    "left": 671.0,
+    "name": "door2",
+    "right": 722.9,
+    "top": 86.5,
+    "x": 694.6,
+    "y": 180.2
+   }
+  ],
+  "top": 0.0,
+  "width": 722.0
+ },
+ "l5_s1_b1_f1_r405": {
+  "floor_y": 263.1,
+  "height": 278.9,
+  "left": -2.0,
+  "markers": [
+   {
+    "bottom": 279.5,
+    "flip": true,
+    "left": -3.9,
+    "name": "door1",
+    "right": 47.9,
+    "top": 88.5,
+    "x": 24.4,
+    "y": 182.2
+   },
+   {
+    "bottom": 91.5,
+    "flip": false,
+    "left": 882.2,
+    "name": "lflu1",
+    "right": 901.8,
+    "top": 58.5,
+    "x": 892.0,
+    "y": 76.1
+   },
+   {
+    "bottom": 228.1,
+    "flip": false,
+    "left": 1158.0,
+    "name": "room4051",
+    "right": 1218.0,
+    "top": 96.5,
+    "x": 1188.0,
+    "y": 162.3
+   },
+   {
+    "bottom": 277.5,
+    "flip": false,
+    "left": 1412.0,
+    "name": "door2",
+    "right": 1463.9,
+    "top": 86.5,
+    "x": 1435.6,
+    "y": 180.2
+   }
+  ],
+  "top": 0.0,
+  "width": 1461.9
+ },
+ "l5_s1_b1_f1_r4051": {
+  "floor_y": 263.1,
+  "height": 278.9,
+  "left": -2.0,
+  "markers": [
+   {
+    "bottom": 261.1,
+    "flip": false,
+    "left": 40.3,
+    "name": "cont1",
+    "right": 89.2,
+    "top": 205.0,
+    "x": 64.8,
+    "y": 233.1
+   },
+   {
+    "bottom": 228.1,
+    "flip": false,
+    "left": 169.0,
+    "name": "room405",
+    "right": 229.1,
+    "top": 96.5,
+    "x": 199.0,
+    "y": 162.3
+   },
+   {
+    "bottom": 159.5,
+    "flip": false,
+    "left": 251.4,
+    "name": "cont5",
+    "right": 280.4,
+    "top": 138.5,
+    "x": 265.9,
+    "y": 149.0
+   },
+   {
+    "bottom": 91.5,
+    "flip": false,
+    "left": 375.2,
+    "name": "lflu1",
+    "right": 394.8,
+    "top": 58.5,
+    "x": 384.9,
+    "y": 76.1
+   },
+   {
+    "bottom": 240.0,
+    "flip": false,
+    "left": 427.2,
+    "name": "cont2",
+    "right": 464.2,
+    "top": 211.1,
+    "x": 445.7,
+    "y": 225.6
+   },
+   {
+    "bottom": 247.4,
+    "flip": false,
+    "left": 464.4,
+    "name": "cont3",
+    "right": 549.4,
+    "top": 168.5,
+    "x": 506.9,
+    "y": 207.9
+   },
+   {
+    "bottom": 235.4,
+    "flip": false,
+    "left": 556.5,
+    "name": "cont4",
+    "right": 669.5,
+    "top": 137.5,
+    "x": 613.0,
+    "y": 186.4
+   }
+  ],
+  "top": 0.0,
+  "width": 722.0
+ },
+ "l5_s1_b1_f1_r406": {
+  "floor_y": 263.1,
+  "height": 278.9,
+  "left": -2.0,
+  "markers": [
+   {
+    "bottom": 279.5,
+    "flip": true,
+    "left": -3.9,
+    "name": "door1",
+    "right": 47.9,
+    "top": 88.5,
+    "x": 24.4,
+    "y": 182.2
+   },
+   {
+    "bottom": 227.8,
+    "flip": false,
+    "left": 239.0,
+    "name": "room4061",
+    "right": 299.1,
+    "top": 96.2,
+    "x": 269.0,
+    "y": 161.9
+   },
+   {
+    "bottom": 227.8,
+    "flip": false,
+    "left": 1156.0,
+    "name": "room4062",
+    "right": 1216.0,
+    "top": 96.2,
+    "x": 1186.0,
+    "y": 161.9
+   }
+  ],
+  "top": 0.0,
+  "width": 1461.9
+ },
+ "l5_s1_b1_f1_r4061": {
+  "floor_y": 263.1,
+  "height": 278.9,
+  "left": -2.0,
+  "markers": [
+   {
+    "bottom": 228.1,
+    "flip": false,
+    "left": 100.0,
+    "name": "room406",
+    "right": 160.1,
+    "top": 96.5,
+    "x": 130.0,
+    "y": 162.3
+   },
+   {
+    "bottom": 91.5,
+    "flip": false,
+    "left": 356.2,
+    "name": "lflu1",
+    "right": 375.8,
+    "top": 58.5,
+    "x": 365.9,
+    "y": 76.1
+   },
+   {
+    "bottom": 56.9,
+    "flip": false,
+    "left": 531.0,
+    "name": "room499",
+    "right": 611.0,
+    "top": 25.3,
+    "x": 571.0,
+    "y": 41.0
+   }
+  ],
+  "top": 0.0,
+  "width": 722.0
+ },
+ "l5_s1_b1_f1_r4062": {
+  "floor_y": 263.1,
+  "height": 278.9,
+  "left": -2.0,
+  "markers": [
+   {
+    "bottom": 228.1,
+    "flip": false,
+    "left": 169.0,
+    "name": "room406",
+    "right": 229.1,
+    "top": 96.5,
+    "x": 199.0,
+    "y": 162.3
+   },
+   {
+    "bottom": 277.7,
+    "flip": false,
+    "left": 300.0,
+    "name": "room4063",
+    "right": 380.0,
+    "top": 252.2,
+    "x": 339.9,
+    "y": 264.9
+   }
+  ],
+  "top": 0.0,
+  "width": 722.0
+ },
+ "l5_s1_b1_f1_r4063": {
+  "floor_y": 256.1,
+  "height": 281.0,
+  "left": 0.0,
+  "markers": [
+   {
+    "bottom": -130.0,
+    "flip": false,
+    "left": 76.1,
+    "name": "abed1",
+    "right": 269.9,
+    "top": -196.1,
+    "x": 173.0,
+    "y": -163.1
+   },
+   {
+    "bottom": -167.5,
+    "flip": false,
+    "left": 401.4,
+    "name": "cont1",
+    "right": 438.4,
+    "top": -230.6,
+    "x": 419.9,
+    "y": -199.1
+   },
+   {
+    "bottom": 46.1,
+    "flip": false,
+    "left": 414.8,
+    "name": "room4062",
+    "right": 496.9,
+    "top": 17.6,
+    "x": 455.9,
+    "y": 31.9
+   },
+   {
+    "bottom": -126.0,
+    "flip": false,
+    "left": 486.5,
+    "name": "cont2",
+    "right": 600.4,
+    "top": -276.9,
+    "x": 543.5,
+    "y": -201.4
+   },
+   {
+    "bottom": -126.0,
+    "flip": false,
+    "left": 604.5,
+    "name": "cont3",
+    "right": 729.4,
+    "top": -276.9,
+    "x": 667.0,
+    "y": -201.4
+   },
+   {
+    "bottom": -126.0,
+    "flip": false,
+    "left": 733.5,
+    "name": "cont4",
+    "right": 844.3,
+    "top": -276.9,
+    "x": 788.9,
+    "y": -201.4
+   },
+   {
+    "bottom": 269.3,
+    "flip": false,
+    "left": 610.2,
+    "name": "trig29",
+    "right": 1174.4,
+    "top": 124.3,
+    "x": 892.3,
+    "y": 196.8
+   },
+   {
+    "bottom": 52.4,
+    "flip": false,
+    "left": 1537.3,
+    "name": "area1",
+    "right": 1608.4,
+    "top": 15.7,
+    "x": 1572.8,
+    "y": 34.0
+   }
+  ],
+  "top": 0.0,
+  "width": 1711.3
+ },
+ "l5_s1_b1_f1_r499": {
+  "floor_y": 263.1,
+  "height": 278.9,
+  "left": -2.0,
+  "markers": [
+   {
+    "bottom": 265.2,
+    "flip": false,
+    "left": 65.1,
+    "name": "room4061",
+    "right": 148.1,
+    "top": 235.6,
+    "x": 106.5,
+    "y": 250.4
+   },
+   {
+    "bottom": 149.3,
+    "flip": false,
+    "left": 65.4,
+    "name": "cont1",
+    "right": 168.3,
+    "top": 89.3,
+    "x": 116.8,
+    "y": 119.3
+   },
+   {
+    "bottom": 91.5,
+    "flip": false,
+    "left": 173.2,
+    "name": "lflu1",
+    "right": 192.7,
+    "top": 58.5,
+    "x": 182.9,
+    "y": 76.1
+   },
+   {
+    "bottom": 239.0,
+    "flip": false,
+    "left": 178.6,
+    "name": "cont2",
+    "right": 312.6,
+    "top": 86.0,
+    "x": 245.6,
+    "y": 162.5
+   },
+   {
+    "bottom": 277.2,
+    "flip": false,
+    "left": 325.4,
+    "name": "door1",
+    "right": 377.2,
+    "top": 86.3,
+    "x": 348.9,
+    "y": 179.9
+   }
+  ],
+  "top": 0.0,
+  "width": 377.9
+ },
+ "l5_s1_b1_f1_r500": {
+  "floor_y": 421.8,
+  "height": 442.1,
+  "left": 0.0,
+  "markers": [
+   {
+    "bottom": 440.3,
+    "flip": true,
+    "left": 3.3,
+    "name": "door1",
+    "right": 55.1,
+    "top": 249.3,
+    "x": 31.6,
+    "y": 342.9
+   },
+   {
+    "bottom": 429.4,
+    "flip": false,
+    "left": 449.3,
+    "name": "trig52",
+    "right": 739.3,
+    "top": 367.2,
+    "x": 594.3,
+    "y": 398.3
+   },
+   {
+    "bottom": 399.0,
+    "flip": false,
+    "left": 928.6,
+    "name": "cont1",
+    "right": 1015.2,
+    "top": 356.6,
+    "x": 971.9,
+    "y": 377.8
+   },
+   {
+    "bottom": 440.3,
+    "flip": false,
+    "left": 1023.5,
+    "name": "door2",
+    "right": 1075.4,
+    "top": 249.3,
+    "x": 1047.1,
+    "y": 342.9
+   }
+  ],
+  "top": 0.0,
+  "width": 1076.2
+ },
+ "l5_s1_b1_f1_r501": {
+  "floor_y": 421.8,
+  "height": 442.1,
+  "left": 0.0,
+  "markers": [
+   {
+    "bottom": 440.3,
+    "flip": true,
+    "left": 3.3,
+    "name": "door1",
+    "right": 55.1,
+    "top": 249.3,
+    "x": 31.6,
+    "y": 342.9
+   },
+   {
+    "bottom": 435.4,
+    "flip": false,
+    "left": 15.3,
+    "name": "trig26",
+    "right": 281.4,
+    "top": 373.2,
+    "x": 148.3,
+    "y": 404.3
+   },
+   {
+    "bottom": -130.0,
+    "flip": false,
+    "left": 76.1,
+    "name": "abed1",
+    "right": 269.9,
+    "top": -196.1,
+    "x": 173.0,
+    "y": -163.1
+   },
+   {
+    "bottom": 403.0,
+    "flip": false,
+    "left": 392.6,
+    "name": "cont1",
+    "right": 480.3,
+    "top": 365.5,
+    "x": 436.4,
+    "y": 384.2
+   },
+   {
+    "bottom": -16.9,
+    "flip": false,
+    "left": 486.6,
+    "name": "cont2",
+    "right": 598.2,
+    "top": -71.4,
+    "x": 542.4,
+    "y": -44.1
+   },
+   {
+    "bottom": -41.9,
+    "flip": false,
+    "left": 621.1,
+    "name": "cont3",
+    "right": 732.8,
+    "top": -96.4,
+    "x": 677.0,
+    "y": -69.2
+   },
+   {
+    "bottom": 342.9,
+    "flip": false,
+    "left": 706.5,
+    "name": "lsml1",
+    "right": 726.1,
+    "top": 309.8,
+    "x": 716.3,
+    "y": 327.4
+   },
+   {
+    "bottom": 367.3,
+    "flip": false,
+    "left": 696.3,
+    "name": "note34",
+    "right": 736.3,
+    "top": 327.3,
+    "x": 716.3,
+    "y": 347.3
+   },
+   {
+    "bottom": -33.8,
+    "flip": false,
+    "left": 773.1,
+    "name": "cont4",
+    "right": 832.9,
+    "top": -116.4,
+    "x": 803.0,
+    "y": -75.1
+   },
+   {
+    "bottom": -45.9,
+    "flip": false,
+    "left": 848.1,
+    "name": "cont5",
+    "right": 959.7,
+    "top": -100.4,
+    "x": 903.9,
+    "y": -73.2
+   },
+   {
+    "bottom": 440.3,
+    "flip": false,
+    "left": 1023.5,
+    "name": "door2",
+    "right": 1075.4,
+    "top": 249.3,
+    "x": 1047.1,
+    "y": 342.9
+   }
+  ],
+  "top": 0.0,
+  "width": 1076.2
+ },
+ "l5_s1_b1_f1_r502": {
+  "floor_y": 421.8,
+  "height": 442.1,
+  "left": 0.0,
+  "markers": [
+   {
+    "bottom": 440.3,
+    "flip": true,
+    "left": 3.3,
+    "name": "door1",
+    "right": 55.1,
+    "top": 249.3,
+    "x": 31.6,
+    "y": 342.9
+   },
+   {
+    "bottom": 401.0,
+    "flip": false,
+    "left": 96.7,
+    "name": "cont1",
+    "right": 177.4,
+    "top": 359.6,
+    "x": 137.1,
+    "y": 380.3
+   },
+   {
+    "bottom": 431.4,
+    "flip": false,
+    "left": 13.3,
+    "name": "trig28",
+    "right": 322.4,
+    "top": 369.2,
+    "x": 167.8,
+    "y": 400.3
+   },
+   {
+    "bottom": 400.0,
+    "flip": false,
+    "left": 657.6,
+    "name": "cont2",
+    "right": 738.2,
+    "top": 359.6,
+    "x": 697.9,
+    "y": 379.8
+   },
+   {
+    "bottom": 454.6,
+    "flip": false,
+    "left": 745.1,
+    "name": "block1",
+    "right": 835.5,
+    "top": 130.0,
+    "x": 790.3,
+    "y": 454.6
+   }
+  ],
+  "top": 0.0,
+  "width": 1076.2
+ }
+}
