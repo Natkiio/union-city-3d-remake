@@ -121,7 +121,7 @@ func _run(a: Dictionary, skipping: bool) -> void:
 			var text = _sys("Data").text(a["var2"], StoryNames.context())
 			speech.emit(who, text)
 			if _box != null:
-				_box.show_model(Dialogue.line_model(who, text))
+				_box.show_model(Dialogue.line_model(who, text, 0.0, str(a["var1"])))
 			action_run.emit(fn, [str(a["var1"]), text])
 		"removePartner":
 			_sys("Quests").remove_partner()
