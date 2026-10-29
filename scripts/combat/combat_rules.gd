@@ -7,7 +7,6 @@ extends RefCounted
 ## Values mirror data/original/constants.json; tests/test_combat.gd checks
 ## that they still match.
 
-const ZONES: Array[String] = ["head", "chest", "belly", "legs"]
 const ZONE_MOD := {"head": 1.2, "chest": 1.0, "belly": 0.8, "legs": 0.6}
 const CRIT_DAMAGE: float = 3.0
 const CRIT_LUCK_DIV: float = 7.0
@@ -21,7 +20,6 @@ const MISS_CHANCE: int = 400
 const MISS_RANGE: int = 1000
 const MISS_CROUCH_MULT: float = 1.5
 const PERM_HEALTH_DIV: float = 1.85
-const STRUGGLE_DAMAGE_MOD: float = 0.5
 const SPREAD_SKILL_CROUCH: float = 25.0
 const SPREAD_SKILL_MOVING: float = -20.0
 const SPREAD_SKILL_JUMPING: float = -50.0

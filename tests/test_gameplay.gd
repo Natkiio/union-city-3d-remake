@@ -21,6 +21,9 @@ func run() -> void:
 	await test_grab()
 	await test_vitals()
 	await test_movement()
+	test_balance()
+	await test_director_run(false)
+	await test_director_run(true)
 	_cleanup()
 
 
@@ -403,3 +406,214 @@ func test_movement() -> void:
 	await frames(4)
 	check("full speed again", is_equal_approx(player.velocity.x, walk), str(player.velocity.x))
 	Input.action_release("move_right")
+
+
+# --- 6. balance baseline --------------------------------------------------------
+# A pure-rules fight: every number comes from CombatRules, Weapon and ZombieType,
+# the timing from Zombie's constants. Assumptions: the zombies start in contact,
+# the player always hits the nearest one at chest height at point blank (only the
+# miss roll applies), nobody staggers, no grabs, no regeneration.
+
+## One fight at level 1 (default stats). Returns {won, time, hp, kills}.
+func sim_fight(rng: RandomNumberGenerator, count: int, weapon_ref: String, danger: int = 1) -> Dictionary:
+	var stats := autoload("Stats")
+	var zt := ZombieType.from_ref("zombieSlow")
+	var hp: Array[float] = []
+	var next_bite: Array[float] = []
+	for i in count:
+		hp.append(float(zt.health_for(danger)))
+		next_bite.append(Zombie.BITE_WINDUP_TIME)
+	var bite := zt.damage_for(danger)
+	var gun := Weapon.from_ref(weapon_ref)
+	var firearm := gun != null and gun.is_firearm()
+	var melee := Weapon.from_ref("hands")
+	var interval := gun.fire_interval() if firearm else melee.melee_interval()
+	var skill_name := gun.skill if firearm else melee.skill
+	var adjusted: int = stats.adjusted_skill(skill_name)
+	var player_hp: float = stats.max_health()
+	var rounds := gun.mag_size if firearm else 0
+	var t := 0.0
+	var next_swing := 0.0
+	var kills := 0
+	while t < 120.0:
+		# Player acts.
+		if t >= next_swing:
+			var target := -1
+			for i in count:
+				if hp[i] > 0.0:
+					target = i
+					break
+			if target < 0:
+				break
+			next_swing = t + interval
+			var crit := CombatRules.roll_crit(rng, stats.attr("luck"), adjusted)
+			if firearm:
+				if rounds <= 0:
+					next_swing = t + gun.reload_seconds()
+					rounds = gun.mag_size
+				else:
+					rounds -= 1
+					for pellet in gun.rounds_per_shot:
+						if not CombatRules.roll_miss(rng, adjusted, false, gun.never_misses()):
+							hp[target] -= CombatRules.ranged_damage(rng, gun.damage, "chest", adjusted, crit, -1.0, false, true)
+			else:
+				var base := CombatRules.melee_base(-1.0, stats.attr("strength"), adjusted)
+				hp[target] -= CombatRules.melee_final(rng, base, crit)
+			if hp[target] <= 0.0:
+				kills += 1
+		# Zombies act.
+		for i in count:
+			if hp[i] > 0.0 and t >= next_bite[i]:
+				player_hp -= bite
+				next_bite[i] = t + Zombie.BITE_COOLDOWN_TIME + Zombie.BITE_WINDUP_TIME
+		if player_hp <= 0.0:
+			break
+		t += 1.0 / 60.0
+	return {"won": kills == count and player_hp > 0.0, "time": t, "hp": maxf(player_hp, 0.0), "kills": kills}
+
+
+func sim_stats(count: int, weapon_ref: String, trials: int = 600, danger: int = 1) -> Dictionary:
+	var rng := RandomNumberGenerator.new()
+	rng.seed = 2024
+	var wins := 0
+	var hp_sum := 0.0
+	var time_sum := 0.0
+	var kills_sum := 0
+	for i in trials:
+		var r := sim_fight(rng, count, weapon_ref, danger)
+		wins += 1 if r.won else 0
+		hp_sum += r.hp
+		time_sum += r.time
+		kills_sum += r.kills
+	return {"win": float(wins) / trials, "hp": hp_sum / trials, "time": time_sum / trials, "kills": float(kills_sum) / trials}
+
+
+## Mean number of trigger pulls / swings to kill one zombie of `hp`.
+func shots_to_kill(weapon_ref: String, zone: String, hp: float, trials: int = 2000) -> float:
+	var stats := autoload("Stats")
+	var rng := RandomNumberGenerator.new()
+	rng.seed = 99
+	var gun := Weapon.from_ref(weapon_ref)
+	var adjusted: int = stats.adjusted_skill(gun.skill)
+	var total := 0
+	for i in trials:
+		var left := hp
+		var n := 0
+		while left > 0.0 and n < 100:
+			n += 1
+			var crit := CombatRules.roll_crit(rng, stats.attr("luck"), adjusted)
+			for pellet in gun.rounds_per_shot:
+				if not CombatRules.roll_miss(rng, adjusted):
+					left -= CombatRules.ranged_damage(rng, gun.damage, zone, adjusted, crit, -1.0, false, true)
+		total += n
+	return float(total) / trials
+
+
+func test_balance() -> void:
+	fresh_stats()
+	var stats := autoload("Stats")
+	var slow_hp := ZombieType.from_ref("zombieSlow").health_for(1)
+	check("level-1 baseline: 12 HP zombie, 7 damage bite, 55 HP player",
+			slow_hp == 12 and ZombieType.from_ref("zombieSlow").damage_for(1) == 7.0 and stats.max_health() == 55.0)
+
+	var punch := CombatRules.melee_base(-1.0, stats.attr("strength"), stats.adjusted_skill("blunt"))
+	var punches := ceili(float(slow_hp) / punch)
+	print("[BALANCE] unarmed: %d damage per punch, %d punches (%.1f s at %.1f s) kill a 12 HP zombie, crit chance %d%%" % [
+			punch, punches, punches * Weapon.from_ref("hands").melee_interval(), Weapon.from_ref("hands").melee_interval(),
+			CombatRules.crit_chance(stats.attr("luck"), stats.adjusted_skill("blunt"))])
+	check("unarmed does 2 damage per punch: 6 punches", punch == 2.0 and punches == 6)
+
+	var g_head := shots_to_kill("glock", "head", float(slow_hp))
+	var g_chest := shots_to_kill("glock", "chest", float(slow_hp))
+	var s_chest := shots_to_kill("shotgun", "chest", float(slow_hp))
+	var miss := CombatRules.miss_threshold(stats.adjusted_skill("pistols"), false) / 10.0
+	print("[BALANCE] G17 (9 dmg, %.0f%% miss at skill %d): %.2f shots to kill by headshot, %.2f by chest shot" % [
+			miss, stats.adjusted_skill("pistols"), g_head, g_chest])
+	print("[BALANCE] shotgun (3 pellets of 12, each rolls to miss), point blank, chest: %.2f shells to kill" % s_chest)
+	check("G17 headshots kill a 12 HP zombie in 2-4 pulls on average", g_head >= 2.0 and g_head <= 4.0, "%.2f" % g_head)
+	check("shotgun at close range needs fewer pulls than the G17", s_chest < g_chest, "%.2f vs %.2f" % [s_chest, g_chest])
+
+	for weapon in ["hands", "glock", "shotgun"]:
+		for n in [1, 3]:
+			var r := sim_stats(n, weapon)
+			print("[BALANCE] %s vs %d zombie%s (danger 1, all in contact): survives %.0f%%, mean HP left %.1f of 55, mean fight %.1f s, mean kills %.2f" % [
+					weapon, n, "" if n == 1 else "s", r.win * 100.0, r.hp, r.time, r.kills])
+	var one := sim_stats(1, "hands")
+	var three := sim_stats(3, "hands")
+	check("unarmed level 1 survives one zombie nearly always", one.win >= 0.95, "%.2f" % one.win)
+	check("unarmed level 1 does not survive three at once", three.win <= 0.10, "%.2f" % three.win)
+	check("armed with the G17 three zombies are survivable more often than unarmed", sim_stats(3, "glock").win > three.win)
+
+
+# --- 7. director plus player ----------------------------------------------------
+
+## 120 game minutes at danger 3 in a 3000 px outdoor area with the player standing
+## still at x=0. With `defend` the player also kills any zombie that comes within
+## 6 units (a stand-in for a competent player), so spawns keep flowing and the
+## breaks and rushes show up; without it the first zombies fill the budget.
+func test_director_run(defend: bool) -> void:
+	fresh_stats()
+	make_world()
+	await frames(12)
+	var director := autoload("Director")
+	var clock := autoload("Clock")
+	director.rng.seed = 42
+	director.attach(world, player)
+	director.set_bounds(-15.0, 15.0)
+	director.begin_area(3, 3000.0, true, false)
+	var seen := {}
+	var biters := {}
+	var total := [0.0]
+	var bites := [0]
+	var rushes := [0]
+	var breaks := [0]
+	var grabs := 0
+	var was_grabbed := false
+	var was_break := false
+	var kills := 0
+	var peak := 0
+	var on_hit := func(amount: float, source: Node) -> void:
+		total[0] += amount
+		bites[0] += 1
+		if source != null:
+			biters[source.get_instance_id()] = true
+	var on_rush := func() -> void: rushes[0] += 1
+	autoload("Events").player_damaged.connect(on_hit)
+	autoload("Events").rush_started.connect(on_rush)
+	var start: int = clock.game_minutes
+	var xp0: int = autoload("Stats").xp
+	var steps := Engine.max_physics_steps_per_frame
+	Engine.max_physics_steps_per_frame = 64
+	Engine.time_scale = 40.0
+	var guard := 0
+	while clock.game_minutes - start < 120 and guard < 900:
+		await seconds(0.5)
+		guard += 1
+		# The player cannot die in this run: top up so the report covers the full 120 minutes.
+		player.health = player.max_health
+		player.perm_health = player.max_health
+		for z in director.zombies.duplicate():
+			if not is_instance_valid(z) or z.is_dead():
+				continue
+			seen[z.get_instance_id()] = true
+			if defend and absf(z.global_position.x - player.global_position.x) < 6.0:
+				z.take_damage(1000.0, "head", player)
+				kills += 1
+		peak = maxi(peak, director.zombies.size())
+		if player.is_grabbed() and not was_grabbed:
+			grabs += 1
+		was_grabbed = player.is_grabbed()
+		if director.on_break and not was_break:
+			breaks[0] += 1
+		was_break = director.on_break
+	Engine.time_scale = 1.0
+	Engine.max_physics_steps_per_frame = steps
+	autoload("Events").player_damaged.disconnect(on_hit)
+	autoload("Events").rush_started.disconnect(on_rush)
+	var minutes: int = clock.game_minutes - start
+	print("[BALANCE] director %s, danger 3, 3000 px outdoors, level-1 player standing still, %d game minutes: %d zombies spawned, peak %d at once (max %d), %d killed, %d rushes, %d breaks, %d zombies bit the player (%d bites, %.0f damage), %d grabs, +%d XP" % [
+			"with a defender" if defend else "idle", minutes, seen.size(), peak, director.max_zombies, kills, rushes[0],
+			breaks[0], biters.size(), bites[0], total[0], grabs, autoload("Stats").xp - xp0])
+	check("director run (defend=%s) covered 120 game minutes" % defend, minutes >= 120, str(minutes))
+	check("sanity (defend=%s): zombies spawned, never beyond maxZombies" % defend, seen.size() > 0 and peak <= 5, "seen=%d peak=%d" % [seen.size(), peak])
+	check("sanity (defend=%s): damage taken is bounded by bites x full bite" % defend, total[0] <= bites[0] * 14.0)
