@@ -31,7 +31,7 @@ const TURN_RANGE := 6.0 ## faces the player when closer than this (metres)
 const LABEL_GAP := 0.3
 
 var model: Node3D
-var _label: Label3D
+var _label: WorldText
 var _anim: AnimationPlayer
 var _built: bool = false
 
@@ -88,9 +88,7 @@ func _build_visual() -> void:
 		_anim.get_animation("Idle").loop_mode = Animation.LOOP_PINGPONG
 		_anim.play("Idle")
 		_anim.seek(randf() * _anim.current_animation_length, true) # crowds do not sync
-	_label = Label3D.new()
-	_label.billboard = BaseMaterial3D.BILLBOARD_ENABLED
-	_label.pixel_size = 0.006
+	_label = WorldText.make("", WorldText.Kind.NAME)
 	_label.position.y = 2.1
 	_label.visible = false
 	add_child(_label)

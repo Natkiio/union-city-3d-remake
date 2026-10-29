@@ -79,16 +79,8 @@ func slab(parent: Node3D, center: Vector3, size: Vector3, color: Color) -> MeshI
 
 
 func label(parent: Node3D, pos: Vector3, text: String, font_size: int = 48, color: Color = Color(0.95, 0.93, 0.85)) -> Label3D:
-	var l := Label3D.new()
-	l.text = text
-	l.font_size = font_size
-	l.pixel_size = 0.006
-	l.modulate = color
-	l.outline_modulate = OUTLINE
-	l.outline_size = 10
+	var l := WorldText.make(text, WorldText.Kind.SIGN, color, font_size)
 	l.position = pos
-	l.shaded = false
-	l.double_sided = false
 	parent.add_child(l)
 	return l
 
