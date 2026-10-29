@@ -83,30 +83,30 @@ static func security_xp(level: int, adjusted_smarts: int) -> int:
 # --- State -------------------------------------------------------------------
 
 static func is_unlocked(def: Dictionary) -> bool:
-	return LootState.get_lock(str(def.get("id", ""))).get("unlocked", false)
+	return LootRules.auto("LootState").get_lock(str(def.get("id", ""))).get("unlocked", false)
 
 
 static func is_broken(def: Dictionary) -> bool:
-	return LootState.get_lock(str(def.get("id", ""))).get("broken", false)
+	return LootRules.auto("LootState").get_lock(str(def.get("id", ""))).get("broken", false)
 
 
 static func unlock(def: Dictionary) -> void:
-	var st := LootState.get_lock(str(def.get("id", "")))
+	var st: Dictionary = LootRules.auto("LootState").get_lock(str(def.get("id", "")))
 	st["unlocked"] = true
-	LootState.set_lock(str(def.get("id", "")), st)
+	LootRules.auto("LootState").set_lock(str(def.get("id", "")), st)
 
 
 static func break_lock(def: Dictionary) -> void:
-	var st := LootState.get_lock(str(def.get("id", "")))
+	var st: Dictionary = LootRules.auto("LootState").get_lock(str(def.get("id", "")))
 	st["broken"] = true
-	LootState.set_lock(str(def.get("id", "")), st)
+	LootRules.auto("LootState").set_lock(str(def.get("id", "")), st)
 
 
 ## The inventory item name of a key for this lock, or "" (questItem whose
 ## `door` equals def.door_id, or the lock id when door_id is absent).
 static func find_key(def: Dictionary) -> String:
 	var want: String = str(def.get("door_id", def.get("id", "")))
-	for item_name in Inventory.items:
+	for item_name in LootRules.auto("Inventory").items:
 		var info := Items.find(item_name)
 		if not info.is_empty() and info["kind"] == "questItem" and info["rec"].get("door", "") == want:
 			return item_name
@@ -128,7 +128,7 @@ static func try_open(def: Dictionary, host: Node, on_done: Callable) -> int:
 		return Result.DENIED
 	var key := find_key(def)
 	if key != "":
-		Inventory.remove_item(key, 1)
+		LootRules.auto("Inventory").remove_item(key, 1)
 		unlock(def)
 		on_done.call(true)
 		return Result.OPENED
@@ -137,7 +137,7 @@ static func try_open(def: Dictionary, host: Node, on_done: Callable) -> int:
 		on_done.call(false)
 		return Result.DENIED
 	var diff: String = def.get("lock_diff", "normal")
-	var adj: int = Stats.adjusted_skill("security")
+	var adj: int = LootRules.auto("Stats").adjusted_skill("security")
 	if not can_attempt(adj, diff):
 		last_denied_reason = "SECURITY SKILL TOO LOW - NEED %d" % roundi(required_skill(diff) - LootRules._const("secSkillBuffer", 25))
 		on_done.call(false)
@@ -151,7 +151,7 @@ static func try_open(def: Dictionary, host: Node, on_done: Callable) -> int:
 ## A successful pick or force: unlocks and grants security XP.
 static func complete(def: Dictionary) -> void:
 	unlock(def)
-	Stats.add_xp(security_xp(Stats.level, Stats.adjusted_skill("smarts")), "security")
+	LootRules.auto("Stats").add_xp(security_xp(LootRules.auto("Stats").level, LootRules.auto("Stats").adjusted_skill("smarts")), "security")
 
 
 ## Force attempt: rolls once; on failure the lock is permanently broken.
@@ -159,7 +159,7 @@ static func force(def: Dictionary, rng: RandomNumberGenerator = null) -> bool:
 	if rng == null:
 		rng = RandomNumberGenerator.new()
 		rng.randomize()
-	var chance := force_chance(Stats.adjusted_skill("security"), Stats.attr("luck"), def.get("lock_diff", "normal"))
+	var chance := force_chance(LootRules.auto("Stats").adjusted_skill("security"), LootRules.auto("Stats").attr("luck"), def.get("lock_diff", "normal"))
 	var ok := force_roll(chance, rng)
 	if ok:
 		complete(def)

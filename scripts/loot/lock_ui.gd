@@ -1,4 +1,3 @@
-class_name LockPickUI
 extends CanvasLayer
 ## Lockpick minigame screen, built in code. Logic lives in PickGame; this only
 ## draws it and maps input.
@@ -26,7 +25,7 @@ var _closed: bool = false
 
 
 class Board extends Control:
-	var ui: LockPickUI
+	var ui
 
 	func _draw() -> void:
 		var g: PickGame = ui.game

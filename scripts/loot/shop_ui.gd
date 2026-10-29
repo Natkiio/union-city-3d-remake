@@ -1,4 +1,3 @@
-class_name ShopUI
 extends CanvasLayer
 ## Shop screen: stock on the left (click to buy), your sellable items on the
 ## right (click to sell). Built in code; pauses the game while open.

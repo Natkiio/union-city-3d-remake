@@ -1,4 +1,3 @@
-class_name LootContainer
 extends Node3D
 ## A searchable container (bin, locker, fridge, ...) built from one `contN`
 ## entry of the world data. World calls setup(); Loot owns everything after.
@@ -236,6 +235,7 @@ func _build() -> void:
 	_trigger = Area3D.new()
 	_trigger.name = "Trigger"
 	var tshape := CollisionShape3D.new()
+	tshape.name = "Shape"
 	var tbox := BoxShape3D.new()
 	tbox.size = Vector3(size.x + 0.6, 2.0, absf(RECESS_Z) + 1.0)
 	tshape.shape = tbox

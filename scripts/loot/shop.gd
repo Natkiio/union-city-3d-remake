@@ -23,7 +23,7 @@ static func discount_cost(cost: int, smarts: int) -> int:
 
 ## Price the player pays now (uses the raw Smarts skill).
 static func price(cost: int) -> int:
-	return discount_cost(cost, Stats.skill("smarts"))
+	return discount_cost(cost, LootRules.auto("Stats").skill("smarts"))
 
 
 ## Items of shopSet<set_id>: up to 9 of {ref, cost, num, name, item} sorted by
@@ -50,19 +50,19 @@ static func stock(set_id: Variant) -> Array:
 # --- Cash ---------------------------------------------------------------------
 
 static func cash() -> int:
-	return int(Inventory.items.get(CASH_ITEM, {}).get("count", 0))
+	return int(LootRules.auto("Inventory").items.get(CASH_ITEM, {}).get("count", 0))
 
 
 static func add_cash(amount: int) -> void:
 	if amount > 0:
-		Inventory.add_item(CASH_ITEM, 0.0, amount)
+		LootRules.auto("Inventory").add_item(CASH_ITEM, 0.0, amount)
 
 
 static func spend_cash(amount: int) -> bool:
 	if amount > cash():
 		return false
 	if amount > 0:
-		Inventory.remove_item(CASH_ITEM, amount)
+		LootRules.auto("Inventory").remove_item(CASH_ITEM, amount)
 	return true
 
 
@@ -74,7 +74,7 @@ static func buy(row: Dictionary) -> bool:
 	if not spend_cash(cost):
 		return false
 	var item: Dictionary = row["item"]
-	Inventory.add_item(item["name"], item["weight"], item["count"])
+	LootRules.auto("Inventory").add_item(item["name"], item["weight"], item["count"])
 	return true
 
 
@@ -96,15 +96,15 @@ static func sell_price(item_name: String) -> int:
 ## split: an ammo stack must hold the box count to be sold (rare, skip).
 static func sell(item_name: String) -> bool:
 	var value := sell_price(item_name)
-	if value <= 0 or not Inventory.has_item(item_name):
+	if value <= 0 or not LootRules.auto("Inventory").has_item(item_name):
 		return false
 	var row_count := 1
 	for n in range(1, 7):
 		for row in stock(n):
 			if row["item"]["name"] == item_name:
 				row_count = row["item"]["count"]
-	if Inventory.items[item_name]["count"] < row_count:
+	if LootRules.auto("Inventory").items[item_name]["count"] < row_count:
 		return false
-	Inventory.remove_item(item_name, row_count)
+	LootRules.auto("Inventory").remove_item(item_name, row_count)
 	add_cash(value)
 	return true

@@ -21,8 +21,15 @@ static func _const(key: String, fallback: float) -> float:
 	return float(table.get(key, fallback))
 
 
+## An autoload by name. Static helper classes use this instead of the global
+## identifier so they also compile in headless `-s` runs, where autoloads are
+## not registered yet when class_name scripts are parsed.
+static func auto(autoload_name: String) -> Node:
+	return (Engine.get_main_loop() as SceneTree).root.get_node(autoload_name)
+
+
 static func _data() -> Node:
-	return (Engine.get_main_loop() as SceneTree).root.get_node("Data")
+	return auto("Data")
 
 
 static func rnd(rng: RandomNumberGenerator, n: int) -> int:
@@ -89,7 +96,7 @@ static func rarity_pool(r: int) -> Array:
 	for k in RARITY_KINDS:
 		for info in Items.all(k):
 			var rec: Dictionary = info["rec"]
-			if rec.has("rarity") and info["ref"] != "none" and absf(float(rec["rarity"]) - r) <= cap:
+			if rec.get("rarity") != null and info["ref"] != "none" and absf(float(rec["rarity"]) - r) <= cap:
 				out.append(info["ref"])
 	return out
 
