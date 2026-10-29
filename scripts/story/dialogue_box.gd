@@ -47,7 +47,7 @@ func _build() -> void:
 	_panel.anchor_bottom = 1.0
 	_panel.offset_left = -380
 	_panel.offset_right = 380
-	_panel.offset_top = -270
+	_panel.offset_top = -360
 	_panel.offset_bottom = -24
 	var style := StyleBoxFlat.new()
 	style.bg_color = Color(0.93, 0.89, 0.78)
@@ -74,7 +74,7 @@ func _build() -> void:
 	_text.bbcode_enabled = false
 	_text.scroll_active = true
 	_text.size_flags_vertical = Control.SIZE_EXPAND_FILL
-	_text.custom_minimum_size = Vector2(0, 110)
+	_text.custom_minimum_size = Vector2(0, 190)
 	_text.add_theme_color_override("default_color", Color(0.1, 0.07, 0.04))
 	_text.add_theme_font_size_override("normal_font_size", 17)
 	_text.mouse_filter = Control.MOUSE_FILTER_IGNORE
