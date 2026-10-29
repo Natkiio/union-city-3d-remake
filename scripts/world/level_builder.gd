@@ -26,6 +26,10 @@ const TRIGGER_FRONT_Z := 0.8
 const HOVER_LAYER := 2
 
 var dressing: SetDressing
+## Where containers and NPCs come from: a path (used only if the file exists,
+## the loot and story workstreams add them) or a PackedScene (tests).
+var container_scene: Variant = CONTAINER_SCENE
+var npc_scene: Variant = NPC_SCENE
 
 
 func _init(kit: SetDressing = null) -> void:
@@ -265,8 +269,16 @@ func _add_hover(area: WorldLink, mesh: MeshInstance3D, visual_z: float) -> void:
 
 # --- containers and people ----------------------------------------------------------
 
+static func _scene(source: Variant) -> PackedScene:
+	if source is PackedScene:
+		return source
+	if source is String and source != "" and ResourceLoader.exists(source):
+		return load(source)
+	return null
+
+
 func _build_containers(root: Node3D, id: String, w: float, outdoors: bool) -> void:
-	var have_scene := ResourceLoader.exists(CONTAINER_SCENE)
+	var scene := _scene(container_scene)
 	var z := STREET_PROP_Z if outdoors else INTERIOR_PROP_Z
 	var rtype := WorldData.room_type(id)
 	var dz := WorldData.danger(id)
@@ -274,8 +286,8 @@ func _build_containers(root: Node3D, id: String, w: float, outdoors: bool) -> vo
 	var lift := 0.0
 	for c in WorldData.containers(id):
 		var x := clampf(px(c.x), 0.4, maxf(w - 0.4, 0.4))
-		if have_scene:
-			var node: Node3D = load(CONTAINER_SCENE).instantiate()
+		if scene != null:
+			var node: Node3D = scene.instantiate()
 			node.name = "Container_" + str(c.key)
 			node.position = Vector3(x, 0, z)
 			if node.has_method("setup"):
@@ -296,12 +308,12 @@ func _build_containers(root: Node3D, id: String, w: float, outdoors: bool) -> vo
 
 
 func _build_npcs(root: Node3D, id: String, w: float) -> void:
-	var have_scene := ResourceLoader.exists(NPC_SCENE)
+	var scene := _scene(npc_scene)
 	for n in WorldData.npcs(id):
 		var x := clampf(px(n.x), 0.4, maxf(w - 0.4, 0.4))
 		var facing := -1.0 if n.facing == "left" else 1.0
-		if have_scene:
-			var node: Node3D = load(NPC_SCENE).instantiate()
+		if scene != null:
+			var node: Node3D = scene.instantiate()
 			node.name = "NPC_" + n.npc_id
 			node.position = Vector3(x, 0, NPC_Z)
 			if node.has_method("setup"):
@@ -316,7 +328,7 @@ func _build_npcs(root: Node3D, id: String, w: float) -> void:
 			marker.set_meta("placeholder", true)
 			marker.add_to_group("world_npc")
 			root.add_child(marker)
-			var display := str(Data.entry("npc", n.npc_id).get("name", n.npc_id))
+			var display := str(WorldData._data().entry("npc", n.npc_id).get("name", n.npc_id))
 			dressing.npc_marker(marker, 0.0, 0.0, display if display != "" else n.npc_id, facing)
 
 

@@ -31,6 +31,12 @@ const LINK_KINDS := ["door", "entr", "exit", "sup", "sdwn", "drop", "strt", "are
 static var _room_re: RegEx
 
 
+## The Data autoload, looked up at run time so this class also compiles in
+## headless test scripts (autoload names are not globals there).
+static func _data() -> Node:
+	return (Engine.get_main_loop() as SceneTree).root.get_node("Data")
+
+
 # --- ids --------------------------------------------------------------------
 
 ## "16", "l16", "section16" or 16 -> "16".
@@ -79,12 +85,31 @@ static func door_id(id: String, marker_name: String) -> String:
 
 # --- tables -----------------------------------------------------------------
 
+static var _wrapped: Dictionary = {}
+
+
+## The section's table. Section 1 is defined in the original with its
+## buildings at the top level and no street; it is read as street 1.
 static func section(sec: Variant) -> Dictionary:
-	return Data.table("world/l" + norm_section(sec))
+	var s := norm_section(sec)
+	var d: Dictionary = _data().table("world/l" + s)
+	if d.has("b0") and not d.has("s1"):
+		if not _wrapped.has(s):
+			var street := {}
+			var top := {}
+			for k in d:
+				if k.begins_with("b") and k.substr(1).is_valid_int():
+					street[k] = d[k]
+				else:
+					top[k] = d[k]
+			top["s1"] = street
+			_wrapped[s] = top
+		return _wrapped[s]
+	return d
 
 
 static func layout_table(sec: Variant) -> Dictionary:
-	return Data.table("world/layout/l" + norm_section(sec))
+	return _data().table("world/layout/l" + norm_section(sec))
 
 
 static func _node(id: String, depth: int) -> Dictionary:
@@ -217,7 +242,7 @@ static func place_name(id: String) -> String:
 
 static func section_name(sec: Variant) -> String:
 	var s := norm_section(sec)
-	var rec: Dictionary = Data.entry("sections", s)
+	var rec: Dictionary = _data().entry("sections", s)
 	return str(rec.get("name", section(s).get("name", "Section " + s)))
 
 
@@ -270,9 +295,11 @@ static func _synth_layout(id: String) -> Dictionary:
 	var mk := func(n: String, x: float) -> Dictionary:
 		return {"name": n, "x": x, "y": 300.0, "left": x - 25.0, "right": x + 25.0, "top": 150.0, "bottom": 300.0, "flip": false, "synth": true}
 	if outdoors and p.floor == 0 and p.room == 1:
-		if street_name(with_parts(id, {"street": p.street - 1})) != "":
+		# an unnamed street (the unused s0 rooms) is not a street anyone walks to
+		var named := street_name(id) != ""
+		if named and street_name(with_parts(id, {"street": p.street - 1})) != "":
 			ms.append(mk.call("strt1", 18.0))
-		if street_name(with_parts(id, {"street": p.street + 1})) != "":
+		if named and street_name(with_parts(id, {"street": p.street + 1})) != "":
 			ms.append(mk.call("strt2", w - 18.0))
 		var st := street_def(id)
 		var n := 0
@@ -492,7 +519,7 @@ static func enemies(id: String) -> Array:
 # --- map --------------------------------------------------------------------
 
 static func map_pos(sec: Variant) -> Variant:
-	var rec: Variant = Data.table("world/map").get(norm_section(sec))
+	var rec: Variant = _data().table("world/map").get(norm_section(sec))
 	if rec is Dictionary:
 		return Vector2(float(rec.x), float(rec.y))
 	return null
@@ -500,7 +527,7 @@ static func map_pos(sec: Variant) -> Variant:
 
 static func connections(sec: Variant) -> Array[String]:
 	var out: Array[String] = []
-	for loc in Data.entry("sections", norm_section(sec)).get("locations", []):
+	for loc in _data().entry("sections", norm_section(sec)).get("locations", []):
 		out.append(norm_section(loc))
 	return out
 
