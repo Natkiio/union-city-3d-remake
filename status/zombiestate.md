@@ -1,0 +1,3 @@
+# zombiestate
+Done (issue #25). `scripts/enemies/zombie_state.gd` (RefCounted, owned by Director as `zombie_state`): per room id, living zombies (kind, health, x), dead kinds, leave time. Captured in `Director.attach()` (level swap) and live in `to_dict`; restored in `begin_area` when within `DirectorRules.repop_time`; stale entries are forgotten and the normal room-entry roll applies. Saved under `zombie_state` in Director's dict; cleared in `reset()`. Test: tests/test_zombiestate.gd.
+Follow-ups: ambient/rush spawns still add zombies in a restored outdoor room; dead list is informational only; World.detach path captured via attach(null,null).

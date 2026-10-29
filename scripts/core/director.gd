@@ -49,6 +49,8 @@ var rng := RandomNumberGenerator.new()
 ## Game minute when the player last left each area id (for room-entry spawns).
 var area_visits: Dictionary = {}
 var enabled: bool = true
+## Per-room memory of living and dead zombies (issue #25).
+var zombie_state := ZombieState.new()
 
 var _fallback_minutes: float = 1440.0
 var _tick_accum: float = 0.0
@@ -85,6 +87,7 @@ func reset() -> void:
 	break_start = 0.0
 	break_length = 0
 	area_visits.clear()
+	zombie_state.clear()
 	area_id = ""
 	zombies.clear()
 	_fallback_minutes = 1440.0
@@ -101,6 +104,7 @@ func to_dict() -> Dictionary:
 		"spawned_since_break": spawned_since_break, "droppers": droppers,
 		"last_drop_time": last_drop_time, "area_visits": area_visits.duplicate(),
 		"fallback_minutes": _fallback_minutes,
+		"zombie_state": _zombie_state_snapshot(),
 	}
 
 
@@ -116,6 +120,10 @@ func from_dict(d: Dictionary) -> void:
 	last_drop_time = d.get("last_drop_time", 1440.0)
 	area_visits = d.get("area_visits", {}).duplicate()
 	_fallback_minutes = d.get("fallback_minutes", 1440.0)
+	zombie_state.from_dict(d.get("zombie_state", {}))
+	# The next attach() must not overwrite the loaded memory with stale zombies.
+	area_id = ""
+	zombies.clear()
 
 
 # --- time and player adapters ----------------------------------------------
@@ -165,6 +173,8 @@ func _count_meds() -> int:
 # --- area -------------------------------------------------------------------
 
 func attach(root: Node3D, player_node: Node3D) -> void:
+	# The old level is going away: remember who was alive in it.
+	zombie_state.capture(area_id, zombies, now())
 	spawn_root = root
 	player = player_node
 	zombies.clear()
@@ -189,6 +199,11 @@ func begin_area(new_danger: int, width: float, is_outdoors: bool, is_safehouse: 
 	_refresh_limits()
 	if id == "" or max_zombies <= 0 or _live_count() > 0:
 		return 0
+	if zombie_state.has_room(id):
+		if zombie_state.is_fresh(id, now(), outdoors):
+			area_visits[id] = now()
+			return _restore_zombies(id)
+		zombie_state.forget(id) # stale: repopulate by the normal rule
 	var last = area_visits.get(id)
 	if last != null and now() - float(last) <= DirectorRules.repop_time(outdoors):
 		return 0
@@ -200,6 +215,35 @@ func begin_area(new_danger: int, width: float, is_outdoors: bool, is_safehouse: 
 		if _try_spawn_random(true) != null:
 			spawned += 1
 	return spawned
+
+
+## Recreates the remembered living zombies of a room. They count toward threat
+## like any other; the dead stay dead.
+func _restore_zombies(id: String) -> int:
+	if spawn_root == null or player == null:
+		return 0
+	var n := 0
+	for rec in zombie_state.living(id):
+		var z := Zombie.spawn(spawn_root, str(rec["kind"]), danger, float(rec["x"]))
+		z.rng.seed = rng.randi()
+		z.health = minf(float(rec["health"]), z.max_health)
+		_track(z)
+		n += 1
+	zombie_state.rooms[id]["alive"] = []
+	return n
+
+
+func _track(z: Zombie) -> void:
+	zombies.append(z)
+	var id := area_id
+	z.died.connect(func(dead: Zombie): zombie_state.record_death(id, dead.enemy_ref))
+
+
+## Snapshot for saving: current room live, others as last captured.
+func _zombie_state_snapshot() -> Dictionary:
+	if area_id != "" and spawn_root != null and is_instance_valid(spawn_root):
+		zombie_state.capture(area_id, zombies, now())
+	return zombie_state.to_dict()
 
 
 func _refresh_limits() -> void:
@@ -312,7 +356,7 @@ func spawn_zombie(ref: String, inside: bool = false) -> Zombie:
 	if droppers > 0 and ref != "zombieDog":
 		droppers -= 1
 		z.carries_loot = true
-	zombies.append(z)
+	_track(z)
 	spawned_since_break += 1
 	return z
 
