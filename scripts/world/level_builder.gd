@@ -237,6 +237,7 @@ func add_link(root: Node3D, link: Dictionary, x: float, visual_z: float, mesh: M
 	area.prompt = prompt
 	root.add_child(area)
 	prompt.text = area.prompt_text()
+	area.visual = mesh
 	if mesh != null:
 		_add_hover(area, mesh, visual_z)
 	return area
