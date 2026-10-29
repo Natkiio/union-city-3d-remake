@@ -24,7 +24,7 @@ func _ready() -> void:
 	col.add_theme_constant_override("separation", 12)
 	col.alignment = BoxContainer.ALIGNMENT_CENTER
 	center.add_child(col)
-	var title := UITheme.label("UNION CITY", UITheme.FS_TITLE, UITheme.ACCENT)
+	var title := UITheme.label("CORK CITY", UITheme.FS_TITLE, UITheme.ACCENT)
 	title.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	col.add_child(title)
 	var sub := UITheme.label("Cork. Samhain week. The Cordon is closed.", UITheme.FS_BODY, UITheme.TEXT_DIM)

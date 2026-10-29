@@ -322,7 +322,8 @@ func _test_scene() -> void:
 	# Punch uses the unarmed formula (2 damage at base stats, shaved to >= 1).
 	var puncher := _make_target(OLD_TARGET_SRC, Vector3(1.0, 0, 0))
 	player._melee_strike([puncher], CombatRules.melee_base(-1, 5, 7), "blunt", false, 100.0)
-	check("unarmed punch deals 1-2", puncher.hits.size() == 1 and puncher.hits[0] >= 1.0 and puncher.hits[0] <= 2.0, str(puncher.hits))
+	# A crit (random) triples the hit, so the ceiling is 2 x 3.
+	check("unarmed punch deals 1-2 (6 on a crit)", puncher.hits.size() == 1 and puncher.hits[0] >= 1.0 and puncher.hits[0] <= 6.0, str(puncher.hits))
 	Engine.time_scale = 1.0
 	puncher.queue_free()
 

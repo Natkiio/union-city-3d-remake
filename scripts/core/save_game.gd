@@ -312,6 +312,8 @@ func autosave_blocked_reason() -> String:
 		return "paused"
 	if Director.rush_active:
 		return "rush"
+	if get_tree().get_first_node_in_group("player") == null:
+		return "no_run"
 	return ""
 
 

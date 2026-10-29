@@ -223,6 +223,9 @@ func run() -> void:
 	check("autosave slot id", sg.AUTOSAVE_SLOT == 0 and sg.MANUAL_SLOTS == 3)
 
 	# --- autosave rules ---
+	var fake_player := Node.new()  # autosave needs an active run (a player in the tree)
+	fake_player.add_to_group("player")
+	root.add_child(fake_player)
 	sg.autosave_enabled = true
 	_clean()
 	var saves := [0]
@@ -259,6 +262,7 @@ func run() -> void:
 	check("debounce uses last autosave", saves[0] == 0)
 	sg.saved.disconnect(cb)
 	sg.autosave_enabled = false
+	fake_player.queue_free()
 
 	# --- quick save / load actions ---
 	_clean()
