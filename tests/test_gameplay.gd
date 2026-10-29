@@ -374,7 +374,7 @@ func test_movement() -> void:
 	fresh_stats()
 	make_world()
 	await frames(12)
-	var walk := 6.0
+	var walk: float = player.SPEED
 	Input.action_press("move_right")
 	await frames(4)
 	check("walk speed", is_equal_approx(player.velocity.x, walk), str(player.velocity.x))
