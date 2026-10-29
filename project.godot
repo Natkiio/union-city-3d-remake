@@ -20,6 +20,16 @@ config/features=PackedStringArray("4.7", "Forward Plus")
 
 [autoload]
 
+Data="*res://scripts/core/data.gd"
+Events="*res://scripts/core/events.gd"
+Stats="*res://scripts/core/stats.gd"
+Clock="*res://scripts/core/clock.gd"
+Survival="*res://scripts/core/survival.gd"
+Director="*res://scripts/core/director.gd"
+Quests="*res://scripts/core/quests.gd"
+World="*res://scripts/core/world.gd"
+SaveGame="*res://scripts/core/save_game.gd"
+Sfx="*res://scripts/core/sfx.gd"
 Inventory="*res://scripts/inventory.gd"
 GameState="*res://scripts/game_state.gd"
 LootState="*res://scripts/loot_state.gd"

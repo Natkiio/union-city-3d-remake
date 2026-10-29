@@ -11,6 +11,20 @@ extends Node
 var looted: Dictionary = {}
 var trunk_contents: Dictionary = {}
 
+func _ready() -> void:
+	add_to_group("stateful")
+
+func reset() -> void:
+	looted.clear()
+	trunk_contents.clear()
+
+func to_dict() -> Dictionary:
+	return {"looted": looted.duplicate(true), "trunk_contents": trunk_contents.duplicate(true)}
+
+func from_dict(d: Dictionary) -> void:
+	looted = d.get("looted", {}).duplicate(true)
+	trunk_contents = d.get("trunk_contents", {}).duplicate(true)
+
 func mark_looted(loot_id: String) -> void:
 	looted[loot_id] = true
 

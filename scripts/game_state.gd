@@ -12,3 +12,12 @@ func request_spawn(x: float) -> void:
 func consume_spawn() -> float:
 	has_pending_spawn = false
 	return pending_spawn_x
+
+
+## Wipes every stateful system (inventory, loot, stats, quests...) for a new
+## run or after death. Systems join group "stateful" and implement reset().
+func reset_run() -> void:
+	has_pending_spawn = false
+	for node in get_tree().get_nodes_in_group("stateful"):
+		node.reset()
+	Events.run_reset.emit()

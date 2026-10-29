@@ -19,6 +19,22 @@ var items: Dictionary = {}
 ## treated as full by the player.
 var magazines: Dictionary = {}
 
+func _ready() -> void:
+	add_to_group("stateful")
+
+func reset() -> void:
+	items.clear()
+	magazines.clear()
+	inventory_changed.emit()
+
+func to_dict() -> Dictionary:
+	return {"items": items.duplicate(true), "magazines": magazines.duplicate(true)}
+
+func from_dict(d: Dictionary) -> void:
+	items = d.get("items", {}).duplicate(true)
+	magazines = d.get("magazines", {}).duplicate(true)
+	inventory_changed.emit()
+
 func get_magazine(item_name: String, default_rounds: int) -> int:
 	return magazines.get(item_name, default_rounds)
 

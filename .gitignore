@@ -15,3 +15,4 @@ data_*/
 
 # Local-only reverse engineering inputs/outputs (original game files, decompiled code, extracted assets)
 reference/
+.claude/worktrees/
