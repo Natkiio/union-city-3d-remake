@@ -434,6 +434,14 @@ func _process(_delta: float) -> void:
 		return
 	if Input.is_action_just_pressed("interact"):
 		var link := nearest_link_in_range()
+		var px: float = player().global_position.x
+		var link_d: float = absf(link.global_position.x - px) if link != null else INF
+		# Containers and NPCs handle the key themselves; when one is at least as
+		# close as the door trigger overlapping it, the key is theirs.
+		for node in get_tree().get_nodes_in_group("world_interactable"):
+			if node.has_method("wants_interact") and node.wants_interact() \
+					and absf(node.global_position.x - px) <= link_d:
+				return
 		if link != null:
 			use_link(link.link)
 

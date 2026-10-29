@@ -289,7 +289,9 @@ func _build_containers(root: Node3D, id: String, w: float, outdoors: bool) -> vo
 		if scene != null:
 			var node: Node3D = scene.instantiate()
 			node.name = "Container_" + str(c.key)
-			node.position = Vector3(x, 0, z)
+			# The container recesses its own body and reaches its trigger back to the
+			# lane, so it is placed at Z=0 (not at the prop depth).
+			node.position = Vector3(x, 0, 0.0)
 			if node.has_method("setup"):
 				node.setup(c.id, c.def, rtype, dz)
 			node.set_meta("container_id", c.id)

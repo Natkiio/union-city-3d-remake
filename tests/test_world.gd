@@ -208,7 +208,8 @@ func test_seams() -> void:
 	check("container setup(id, def, room type, danger)", c1.args.size() == 4 and c1.args[0] == "l16/s3/b1/f1/r1/cont1"
 			and c1.args[1].desc == "Suitcase" and c1.args[2] == "anywhere" and c1.args[3] == 1, str(c1.args))
 	check("container setup runs before it enters the tree", c1.setup_before_tree)
-	check("container placed at its art marker, off the lane", absf(c1.position.x - 0.582) < 0.01 and c1.position.z < -1.0)
+	# The container recesses its own body and reaches its trigger to the lane, so its origin is Z=0.
+	check("container placed at its art marker", absf(c1.position.x - 0.582) < 0.01 and is_zero_approx(c1.position.z))
 	check("one container per contN", things.get_children().filter(func(n): return n.name.begins_with("Container_")).size() == 3)
 	var npc: Node3D = things.get_node("NPC_Jackson")
 	check("npc setup(npc_id) at NPC_x, off the lane", npc.args == ["Jackson"] and absf(npc.position.x - 3.5) < 0.01 and npc.position.z < -0.5)

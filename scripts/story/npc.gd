@@ -47,6 +47,7 @@ func setup(id: String) -> void:
 func _ready() -> void:
 	add_to_group("hoverable")
 	add_to_group("npc")
+	add_to_group("world_interactable")
 	collision_layer = 2
 	collision_mask = 1
 	position.z = RECESS_Z
@@ -129,6 +130,12 @@ func _process(delta: float) -> void:
 	if player_in_range != null and visible and Input.is_action_just_pressed("interact") \
 			and not get_tree().paused:
 		interact()
+
+
+## True while the player is in range and could talk (World checks this so a
+## door trigger behind the NPC does not steal the key).
+func wants_interact() -> bool:
+	return player_in_range != null and visible and not get_tree().paused
 
 
 ## Opens the dialogue. Returns the box (null if the NPC has nothing to say).

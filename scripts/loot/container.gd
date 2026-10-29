@@ -47,9 +47,16 @@ func setup(p_container_id: String, p_def: Dictionary, p_room_type: String, p_dan
 
 
 func _ready() -> void:
+	add_to_group("world_interactable")
 	if container_id == "":
 		return
 	_build()
+
+
+## True while the player stands at this container and interact would act on it
+## (World checks this so a door trigger behind it does not steal the key).
+func wants_interact() -> bool:
+	return player_in_range != null and not TrunkUI.visible and reopen_cooldown <= 0.0
 
 
 func _restore() -> void:
